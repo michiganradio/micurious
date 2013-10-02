@@ -38,6 +38,11 @@ GEM
     diff-lcs (1.2.4)
     erubis (2.7.0)
     execjs (2.0.2)
+    factory_girl (4.2.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.2.1)
+      factory_girl (~> 4.2.0)
+      railties (>= 3.0.0)
     hike (1.2.3)
     i18n (0.6.5)
     jbuilder (1.5.1)
@@ -127,6 +132,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  factory_girl_rails (~> 4.2.1)
   jbuilder (~> 1.2)
   jquery-rails
   mysql (= 2.9.1)
