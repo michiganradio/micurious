@@ -3,7 +3,6 @@ require 'spec_helper'
 describe "questions/edit" do
   before(:each) do
     @question = assign(:question, stub_model(Question,
-      :original_text => "MyText",
       :display_text => "MyText"
     ))
   end
@@ -13,7 +12,6 @@ describe "questions/edit" do
 
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "form[action=?][method=?]", question_path(@question), "post" do
-      assert_select "textarea#question_original_text[name=?]", "question[original_text]"
       assert_select "textarea#question_display_text[name=?]", "question[display_text]"
     end
   end
