@@ -11,25 +11,12 @@ describe Question do
 
   it { should respond_to(:original_text) }
   it { should respond_to(:display_text) }
-
-  describe "display_text" do
-    context "larger than 500 characters" do
-      it "throws an error" do
-        invalid_text = "0" * 501
-        @question.display_text = invalid_text
-        expect(@question).not_to be_valid
-      end
-    end
-  end
-
-  describe "original_text" do
-    context "larger than 500 characters" do
-      it "throws an error" do
-        invalid_text = "0" * 501
-        @question.original_text = invalid_text
-        expect(@question).not_to be_valid
-      end
-    end
-  end
+  it { should ensure_length_of(:original_text).
+        is_at_least(1).
+        is_at_most(500) }
+  
+  it { should ensure_length_of(:display_text).
+        is_at_least(1). 
+        is_at_most(500) }
 
 end
