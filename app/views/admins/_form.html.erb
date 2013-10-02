@@ -2,7 +2,6 @@
   <% if @admin.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@admin.errors.count, "error") %> prohibited this admin from being saved:</h2>
-
       <ul>
       <% @admin.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -18,6 +17,10 @@
   <div class="field">
     <%= f.label :password %><br>
     <%= f.text_field :password %>
+  </div>
+  <div class="field">
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation %>
   </div>
   <div class="actions">
     <%= f.submit %>
