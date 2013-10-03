@@ -21,6 +21,7 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
+gem 'mysql2', '~> 0.3.13'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
@@ -30,11 +31,6 @@ group :development, :test do
   gem 'shoulda', '~> 3.5.0'
   gem 'factory_girl_rails', '~>4.2.1'
   gem 'capybara', '~> 2.1.0'
-  gem 'mysql2', '~> 0.3.13'
-end
-
-group :production do
-  gem 'pg'
 end
 
 group :doc do
