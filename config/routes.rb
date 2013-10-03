@@ -3,9 +3,10 @@ Curiouscity::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :questions
 
-  match '/signup',  to: 'users#new',            via: 'get'
+  match '/signup',  to: 'admins#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
+  match '/admin_main', to: 'admins#main', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

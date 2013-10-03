@@ -32,4 +32,9 @@ describe Admin do
       end
     end
   end
+
+  context "remember token" do
+    before { @admin.save }
+    its(:remember_token) { should_not be_blank }
+  end
 end

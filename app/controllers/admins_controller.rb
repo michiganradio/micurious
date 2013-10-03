@@ -21,6 +21,10 @@ class AdminsController < ApplicationController
   def edit
   end
 
+  # GET /admin_main
+  def main
+  end
+
   # POST /admins
   # POST /admins.json
   def create

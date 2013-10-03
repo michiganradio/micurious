@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :admin do
     username "MyString"
-    password "MyString"
+    password "password"
+    password_confirmation "password"
   end
 end
