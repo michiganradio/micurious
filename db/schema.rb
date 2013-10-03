@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131003140052) do
+ActiveRecord::Schema.define(version: 20131003160726) do
 
   create_table "admins", force: true do |t|
     t.string   "username"
@@ -27,6 +27,21 @@ ActiveRecord::Schema.define(version: 20131003140052) do
   create_table "questions", force: true do |t|
     t.text     "original_text"
     t.text     "display_text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "voting_round_questions", force: true do |t|
+    t.integer  "voting_round_id"
+    t.integer  "question_id"
+    t.integer  "vote_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "voting_rounds", force: true do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,31 @@
+<h1>Listing voting_round_questions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Voting round</th>
+      <th>Question</th>
+      <th>Vote number</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @voting_round_questions.each do |voting_round_question| %>
+      <tr>
+        <td><%= voting_round_question.voting_round_id %></td>
+        <td><%= voting_round_question.question_id %></td>
+        <td><%= voting_round_question.vote_number %></td>
+        <td><%= link_to 'Show', voting_round_question %></td>
+        <td><%= link_to 'Edit', edit_voting_round_question_path(voting_round_question) %></td>
+        <td><%= link_to 'Destroy', voting_round_question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Voting round question', new_voting_round_question_path %>

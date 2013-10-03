@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @voting_round.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @voting_round.end_time %>
+</p>
+
+<%= link_to 'Edit', edit_voting_round_path(@voting_round) %> |
+<%= link_to 'Back', voting_rounds_path %>

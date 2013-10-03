@@ -1,4 +1,8 @@
 Curiouscity::Application.routes.draw do
+  resources :voting_round_questions
+
+  resources :voting_rounds
+
   resources :admins
   resources :sessions, only: [:new, :create, :destroy]
   resources :questions
