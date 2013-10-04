@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131003160726) do
+ActiveRecord::Schema.define(version: 20131004143210) do
 
   create_table "admins", force: true do |t|
     t.string   "username"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20131003160726) do
   create_table "voting_round_questions", force: true do |t|
     t.integer  "voting_round_id"
     t.integer  "question_id"
-    t.integer  "vote_number"
+    t.integer  "vote_number",     default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
