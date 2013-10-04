@@ -17,6 +17,11 @@ test:
   <<: *default
   database: curiouscity_test
 
+qa:
+  <<: *default
+  database: curiouscity_production
+  password: wbez
+
 production:
   <<: *default
   database: curiouscity_production
