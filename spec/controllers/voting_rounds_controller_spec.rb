@@ -157,4 +157,13 @@ describe VotingRoundsController do
     end
   end
 
+  describe "add question to voting round" do
+    it "saves the voting round question" do
+      voting_round = VotingRound.create! valid_attributes
+      question = FactoryGirl.create(:question)
+      expect {
+        put :add_question, {:question_id => question.id, :id => voting_round.id}
+      }.to change(VotingRoundQuestion, :count).by(1)
+    end
+  end
 end

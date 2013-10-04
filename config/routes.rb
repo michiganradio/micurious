@@ -1,11 +1,17 @@
 Curiouscity::Application.routes.draw do
   resources :voting_round_questions
-
-  resources :voting_rounds
-
+  resources :voting_rounds do
+    member do
+      post :add_question
+    end
+  end
   resources :admins
   resources :sessions, only: [:new, :create, :destroy]
-  resources :questions
+  resources :questions do
+    member do
+      post :add_question_to_voting_round
+    end
+  end
 
   match '/signup',  to: 'admins#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
@@ -13,7 +19,7 @@ Curiouscity::Application.routes.draw do
   match '/admin_main', to: 'admins#main', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+ # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

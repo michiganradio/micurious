@@ -51,7 +51,7 @@ class QuestionsController < ApplicationController
     end
   end
 
-  # DELETE /questions/1
+  # DELETE /questions/0
   # DELETE /questions/1.json
   def destroy
     @question.destroy
@@ -59,6 +59,17 @@ class QuestionsController < ApplicationController
       format.html { redirect_to questions_url }
       format.json { head :no_content }
     end
+  end
+
+  def add_question_to_voting_round
+    voting_round = VotingRound.last
+    raise "No voting round exists!" unless voting_round
+    question = Question.find(params[:id])
+    voting_round.add_question(question)
+    voting_round.save!
+    @questions = Question.all
+    flash[:notice] = "Question was successfully added to the voting round."
+    render 'index'
   end
 
   private

@@ -99,6 +99,15 @@ describe QuestionsController do
     end
   end
 
+  describe "POST add_question_to_voting_round" do
+    it "creates a voting_round_question" do
+      voting_round = FactoryGirl.create(:voting_round)
+      question = Question.create! valid_attributes
+      put :add_question_to_voting_round, id: question.id
+      response.should render_template("index")
+    end
+  end
+
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested question" do

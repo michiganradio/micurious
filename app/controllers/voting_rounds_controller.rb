@@ -61,6 +61,11 @@ class VotingRoundsController < ApplicationController
     end
   end
 
+  def add_question
+    VotingRoundQuestion.create(voting_round_id: VotingRound.find(params[:id]).id, question_id: params[:question_id])
+    render :action => :show
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_voting_round
@@ -69,6 +74,6 @@ class VotingRoundsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def voting_round_params
-      params.require(:voting_round).permit(:start_time, :end_time)
+      params.require(:voting_round).permit(:start_time, :end_time, :question_id)
     end
 end
