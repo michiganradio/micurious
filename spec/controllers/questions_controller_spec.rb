@@ -127,17 +127,24 @@ describe QuestionsController do
     end
   end
 
-  describe "DELETE destroy" do
-    it "destroys the requested question" do
+  describe "DELETE deactive" do
+    it "marks the requested question inactive" do
       question = Question.create! valid_attributes
       expect {
-        delete :destroy, {:id => question.to_param}, valid_session
-      }.to change(Question, :count).by(-1)
+        delete :deactivate, {:id => question.to_param}, valid_session
+      }.to change{Question.where(active: true).count}.by(-1)
+    end
+
+    it "does not destroy the requested question" do
+      question = Question.create! valid_attributes
+      expect {
+        delete :deactivate, {:id => question.to_param}, valid_session
+      }.to_not change{Question.count}.by(-1)
     end
 
     it "redirects to the questions list" do
       question = Question.create! valid_attributes
-      delete :destroy, {:id => question.to_param}, valid_session
+      delete :deactivate, {:id => question.to_param}, valid_session
       response.should redirect_to(questions_url)
     end
   end

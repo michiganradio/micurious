@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131004143210) do
+ActiveRecord::Schema.define(version: 20131004205222) do
 
   create_table "admins", force: true do |t|
     t.string   "username"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20131004143210) do
     t.text     "display_text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",        default: true, null: false
   end
 
   create_table "voting_round_questions", force: true do |t|
