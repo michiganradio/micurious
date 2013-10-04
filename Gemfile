@@ -26,6 +26,8 @@ gem 'mysql2', '~> 0.3.13'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+gem 'therubyracer', '0.12.0'
+
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'shoulda', '~> 3.5.0'
