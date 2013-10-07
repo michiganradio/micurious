@@ -5,6 +5,8 @@
     <tr>
       <th>Original text</th>
       <th>Display text</th>
+      <th>Name</th>
+      <th>Email</th>
       <th>Neighborhood</th>
       <th>Active</th>
       <th></th>
@@ -18,6 +20,8 @@
       <tr>
         <td><%= question.original_text %></td>
         <td><%= question.display_text %></td>
+        <td><%= question.name %></td>
+        <td><%= question.email %></td>
         <td><%= question.neighbourhood %></td>
         <td><%= question.active %></td>
         <td><%= link_to 'Show', question %></td>

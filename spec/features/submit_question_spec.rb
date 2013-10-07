@@ -12,6 +12,8 @@ describe 'Ask a question' do
     end
 
     it { should have_content "New question" }
+    it { should have_field("question_name") }
+    it { should have_field("question_email") }
     it { should have_field("question_neighbourhood") }
   end
 end
