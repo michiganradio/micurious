@@ -3,13 +3,14 @@ require 'spec_helper'
 describe 'MainPage' do
   subject { page }
   
-  context "Submit question" do
-    before { visit root_path }
+  before { visit root_path }
 
-    describe "empty question" do
-      before { click_button "Ask" }
-      it { should have_selector('div.alert.alert-error', text: 'Question needs to be more than 0 characters.') }
+  describe "valid question" do
+    before do
+      find_by_id("question_text").set("Why is the sky blue?")
+      click_button "Ask"
     end
- 
+
+    it { should have_title "Question details" }
   end
 end

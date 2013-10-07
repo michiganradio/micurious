@@ -8,7 +8,7 @@
   </h1>Ask a question</h1>
   <%= form_for(:question, url: ask_question_path) do |f| %>
 
-  <%= f.text_field :questiontext %>
+  <%= f.text_field :text %>
   <%= f.submit "Ask" %>
   <% end %>
 </body>

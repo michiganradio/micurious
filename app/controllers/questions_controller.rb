@@ -63,7 +63,6 @@ class QuestionsController < ApplicationController
   end
 
   def ask_question
-    flash.now[:error] = 'Question needs to be more than 0 characters.'
   end
 
   private
