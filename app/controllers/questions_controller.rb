@@ -58,8 +58,12 @@ class QuestionsController < ApplicationController
     voting_round.add_question(question)
     voting_round.save!
     @questions = Question.all
-    flash[:notice] = "Question was successfully added to the voting round."
+    flash.now[:notice] = "Question was successfully added to the voting round."
     render 'index'
+  end
+
+  def ask_question
+    flash.now[:error] = 'Question needs to be more than 0 characters.'
   end
 
   private
