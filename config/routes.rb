@@ -15,7 +15,7 @@ Curiouscity::Application.routes.draw do
   end
 
   root  'welcome#home'
-  match '/ask_question', to: 'questions#ask_question',     via: 'post'
+  match '/ask_question', to: 'questions#new',     via: 'get'
   match '/signup',       to: 'admins#new',        via: 'get'
   match '/signin',       to: 'sessions#new',      via: 'get'
   match '/signout',      to: 'sessions#destroy',  via: 'delete'

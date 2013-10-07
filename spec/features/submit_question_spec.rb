@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'MainPage' do
+describe 'Ask a question' do
   subject { page }
   
   before { visit root_path }
@@ -11,6 +11,7 @@ describe 'MainPage' do
       click_button "Ask"
     end
 
-    it { should have_title "Question details" }
+    it { should have_content "New question" }
+    it { should have_field("question_neighbourhood") }
   end
 end
