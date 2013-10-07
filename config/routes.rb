@@ -14,9 +14,10 @@ Curiouscity::Application.routes.draw do
     end
   end
 
-  match '/signup',  to: 'admins#new',            via: 'get'
+  root  'welcome#home'
+  match '/signup',  to: 'admins#new',           via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
-  match '/admin_main', to: 'admins#main', via: 'get'
+  match '/admin_main', to: 'admins#main',       via: 'get'
 
 end
