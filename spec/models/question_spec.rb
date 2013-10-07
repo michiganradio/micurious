@@ -24,4 +24,9 @@ describe Question do
           is_at_least(1).   
           is_at_most(500) }
   end
+
+  it { should respond_to(:name) }
+  it { should respond_to(:neighbourhood) }
+  it { should respond_to(:email) }
+  it { should respond_to(:anonymous) }
 end
