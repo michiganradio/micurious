@@ -15,7 +15,7 @@ describe 'Ask a question' do
     it { should have_field("question_name") }
     it { should have_field("question_email") }
     it { should have_field("question_neighbourhood") }
-
+    it { page.find("#question_display_text").should have_content "Why is the sky blue?" }
     it { should have_unchecked_field("question_anonymous") }
   end
 end

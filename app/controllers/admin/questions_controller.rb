@@ -15,6 +15,7 @@ module Admin
     # GET /questions/new
     def new
       @question = Question.new
+      @question.display_text = params["question"]["text"] if params["question"]
     end
 
     # GET /questions/1/edit
@@ -62,9 +63,6 @@ module Admin
       @questions = Question.all
       flash.now[:notice] = "Question was successfully added to the voting round."
       render 'index'
-    end
-
-    def ask_question
     end
 
     private
