@@ -1,14 +1,20 @@
 require 'spec_helper'
 
 describe QuestionsController do
+  let(:valid_attributes) { { "original_text" => "MyText",
+                                "display_text" => "display text" } }
+
   context "not signed in" do
-    get :index, {}
-    it { should have_title('Sign in') }
+    describe "GET index" do
+      it "redirects to sign in page" do
+        question = Question.create! valid_attributes
+        get :index, {}
+        assigns(:questions).should_not eq([question])
+      end
+    end
   end
 
   context "signed in admin" do
-    let(:valid_attributes) { { "original_text" => "MyText",
-                                "display_text" => "display text" } }
     before { sign_in FactoryGirl.create(:admin) }
 
     describe "GET index" do
