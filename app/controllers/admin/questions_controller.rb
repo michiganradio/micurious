@@ -60,8 +60,8 @@ module Admin
       question = Question.find(params[:id])
       voting_round.add_question(question)
       voting_round.save!
+      flash.now[:notice] = 'Question was successfully added to the voting round'
       @questions = Question.all
-      flash.now[:notice] = "Question was successfully added to the voting round."
       render 'index'
     end
 
