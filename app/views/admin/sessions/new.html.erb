@@ -1,0 +1,20 @@
+<head>
+    <title>Sign in</title>
+</head>
+
+<body>
+  <h1>Sign in</h1>
+
+  <%= form_for(:session, url: admin_sessions_path) do |f| %>
+
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.submit "Sign in" %>
+  <% end %>
+
+  <p>New user? <%= link_to "Register", admin_signup_path %></p>
+</body>

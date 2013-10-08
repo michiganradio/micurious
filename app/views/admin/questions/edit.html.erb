@@ -1,0 +1,12 @@
+<h1>Editing question</h1>
+
+<%= render 'form', :url => admin_question_path(@question) %>
+
+<form name="add_to_voting_round_form" method="post" action="add_question_to_voting_round">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" >
+  <input type="hidden" value="<%= @question.id %>">
+  <input type="submit" value="Add question to voting round">
+</form>
+
+<%= link_to 'Show', admin_question_path(@question) %> |
+<%= link_to 'Back', admin_questions_path %>

@@ -1,0 +1,39 @@
+<h1>Listing questions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Original text</th>
+      <th>Display text</th>
+      <th>Name</th>
+      <th>Anonymous</th>
+      <th>Email</th>
+      <th>Neighborhood</th>
+      <th>Active</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= question.original_text %></td>
+        <td><%= question.display_text %></td>
+        <td><%= question.name %></td>
+        <td><%= question.anonymous %></td>
+        <td><%= question.email %></td>
+        <td><%= question.neighbourhood %></td>
+        <td><%= question.active %></td>
+        <td><%= link_to 'Show', admin_question_path(question) %></td>
+        <td><%= link_to 'Edit', edit_admin_question_path(question) %></td>
+        <td><%= link_to 'Deactivate', deactivate_admin_question_path(question), method: :post, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Question', new_admin_question_path %>

@@ -6,6 +6,6 @@ describe "Admin main" do
   subject { page }
 
   describe "links to voting round" do
-    it { should have_link('New voting round', href: 'voting_rounds/new')}
+    it { should have_link('New voting round', href: new_admin_voting_round_path)}
   end
 end

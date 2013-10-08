@@ -1,34 +1,34 @@
 require "spec_helper"
 
-describe QuestionsController do
+describe Admin::QuestionsController do
   describe "routing" do
 
     it "routes to #index" do
-      get("/questions").should route_to("questions#index")
+      get("/admin/questions").should route_to("admin/questions#index")
     end
 
     it "routes to #new" do
-      get("/questions/new").should route_to("questions#new")
+      get("/admin/questions/new").should route_to("admin/questions#new")
     end
 
     it "routes to #show" do
-      get("/questions/1").should route_to("questions#show", :id => "1")
+      get("/admin/questions/1").should route_to("admin/questions#show", :id => "1")
     end
 
     it "routes to #edit" do
-      get("/questions/1/edit").should route_to("questions#edit", :id => "1")
+      get("/admin/questions/1/edit").should route_to("admin/questions#edit", :id => "1")
     end
 
     it "routes to #create" do
-      post("/questions").should route_to("questions#create")
+      post("/admin/questions").should route_to("admin/questions#create")
     end
 
     it "routes to #update" do
-      put("/questions/1").should route_to("questions#update", :id => "1")
+      put("/admin/questions/1").should route_to("admin/questions#update", :id => "1")
     end
 
     it "routes to #destroy" do
-      delete("/questions/1").should route_to("questions#destroy", :id => "1")
+      delete("/admin/questions/1").should route_to("admin/questions#destroy", :id => "1")
     end
 
   end

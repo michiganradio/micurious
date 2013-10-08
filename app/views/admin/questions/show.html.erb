@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Original text:</strong>
+  <%= @question.original_text %>
+</p>
+
+<p>
+  <strong>Display text:</strong>
+  <%= @question.display_text %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @question.name %>
+</p>
+
+<p>
+  <strong>Anonymous:</strong>
+  <%= @question.anonymous %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @question.email %>
+</p>
+
+<p>
+  <strong>Neighborhood:</strong>
+  <%= @question.neighbourhood %>
+</p>
+
+<%= link_to 'Edit', edit_admin_question_path(@question) %> |
+<%= link_to 'Back', admin_questions_path %>

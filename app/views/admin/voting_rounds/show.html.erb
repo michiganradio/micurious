@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @voting_round.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @voting_round.end_time %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Vote number</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @voting_round.voting_round_questions.each do |voting_round_question| %>
+      <tr>
+        <td><%= voting_round_question.question.display_text %></td>
+        <td><%= voting_round_question.vote_number || 0 %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Edit', edit_admin_voting_round_path(@voting_round) %> |
+<%= link_to 'Back', admin_voting_rounds_path %>

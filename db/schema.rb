@@ -11,18 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131007134846) do
-
-  create_table "admins", force: true do |t|
-    t.string   "username"
-    t.string   "password"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "remember_token"
-    t.string   "password_digest"
-  end
-
-  add_index "admins", ["remember_token"], name: "index_admins_on_remember_token", using: :btree
+ActiveRecord::Schema.define(version: 20131008154725) do
 
   create_table "questions", force: true do |t|
     t.text     "original_text"
@@ -35,6 +24,17 @@ ActiveRecord::Schema.define(version: 20131007134846) do
     t.string   "email"
     t.boolean  "anonymous"
   end
+
+  create_table "users", force: true do |t|
+    t.string   "username"
+    t.string   "password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "remember_token"
+    t.string   "password_digest"
+  end
+
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
   create_table "voting_round_questions", force: true do |t|
     t.integer  "voting_round_id"

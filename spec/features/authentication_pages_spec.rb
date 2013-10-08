@@ -5,7 +5,7 @@ describe "Authentication" do
   subject { page }
 
   describe "signin" do
-    before { visit signin_path }
+    before { visit admin_signin_path }
 
     describe "with invalid information" do
       before { click_button "Sign in" }
@@ -14,13 +14,13 @@ describe "Authentication" do
       it { should have_selector('div.alert.alert-error', text: 'Invalid') }
 
       describe "after visiting another page" do
-        before { visit questions_path }
+        before { visit admin_questions_path }
         it { should_not have_selector('div.alert.alert-error') }
       end
     end
 
     describe "with valid information" do
-      let(:admin) { FactoryGirl.create(:admin) }
+      let(:admin) { FactoryGirl.create(:user) }
       before do
         fill_in "Username", with: admin.username
         fill_in "Password", with: admin.password
