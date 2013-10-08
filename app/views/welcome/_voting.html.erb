@@ -1,0 +1,6 @@
+<% if @voting_round %>
+  <% @voting_round.questions.each do |question| %>
+    <li> <%= question.display_text %>  <br/>
+  <% end %>
+<% end %>
+
