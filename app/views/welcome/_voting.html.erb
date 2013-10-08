@@ -1,6 +1,34 @@
+<div>
 <% if @voting_round %>
-  <% @voting_round.questions.each do |question| %>
-    <li> <%= question.display_text %>  <br/>
-  <% end %>
+  <div class="row">
+    <div class="col-lg-4">
+    </div>
+    <div class="col-lg-8 right-col">
+      <div class="super">
+        <h1>Which should we investigate next?</h1>
+      </div>
+      <div class="sub">
+        <h5>Select the question you’d most like answered.</h5>
+      </div>
+    </div>
+  </div>
+    <div id="questions">
+      <% @voting_round.questions.each do |question| %>
+        <div class="question">
+          <div class="row">
+            <div class="col-sm-4 question-image">
+              <img src="http://farm2.staticflickr.com/1437/1238664937_4d7dc8aace.jpg" alt="question image">
+            </div>
+            <a href="#">
+              <i class="vote hover"></i>
+            </a>
+            <div class="col-lg-8 question-text">
+              <h2><%= question.display_text %></h2>
+              <p class="author">Asked by <%=question.name%></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
 <% end %>
-
+</div>
