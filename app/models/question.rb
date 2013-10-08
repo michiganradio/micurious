@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-  ANONYMOUS = "Anonymos"
+  ANONYMOUS = "Anonymous"
 
   has_many :voting_rounds, through: :voting_round_questions
   has_many :voting_round_questions
