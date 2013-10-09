@@ -4,6 +4,6 @@ FactoryGirl.define do
   factory :voting_round_question do
     voting_round_id 1
     question_id 1
-    vote_number 1
+    vote_number 0
   end
 end

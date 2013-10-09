@@ -1,0 +1,68 @@
+29ea382 HEAD@{0}: reset: moving to HEAD^
+775c23f HEAD@{1}: rebase finished: returning to refs/heads/master
+775c23f HEAD@{2}: pull --rebase: et/rl-108-add vote button to main page
+29ea382 HEAD@{3}: checkout: moving from master to 29ea38297a2860e9e47dd7011a860250eeb62087^0
+ec35724 HEAD@{4}: commit: et/rl-108-add vote button to main page
+074a856 HEAD@{5}: commit: Refactor question index view
+bbfbfc2 HEAD@{6}: rebase finished: returning to refs/heads/master
+bbfbfc2 HEAD@{7}: pull --rebase: et/rl-107-create public pages for viewing and adding questions
+5815a44 HEAD@{8}: checkout: moving from master to 5815a44aeac0e41770f1ae6690bdf28ffe6e198d^0
+333dc83 HEAD@{9}: commit: et/rl-107-create public pages for viewing and adding questions
+9f8a5ad HEAD@{10}: commit: rl - 44 - fix up view_question_spec a bit to test anonymity
+3ab8a1b HEAD@{11}: pull: Fast-forward
+9ca2cf4 HEAD@{12}: commit: [ET] Anonymous checkbox has label 'Remain anonymous' when submitting question
+17c8b31 HEAD@{13}: rebase finished: returning to refs/heads/master
+17c8b31 HEAD@{14}: pull --rebase: et/rl remove double success message and make flash notice green
+9a2cf86 HEAD@{15}: checkout: moving from master to 9a2cf862dff1db438447ac73a151e5ae9a018be2^0
+cd14016 HEAD@{16}: commit: et/rl remove double success message and make flash notice green
+8cd6331 HEAD@{17}: rebase finished: returning to refs/heads/master
+8cd6331 HEAD@{18}: checkout: moving from master to 8cd633114ab065ca9d098318305373675ec817d1^0
+c2d03eb HEAD@{19}: commit: rl-delete garbage file
+65b3e4f HEAD@{20}: rebase finished: returning to refs/heads/master
+65b3e4f HEAD@{21}: pull --rebase: [ET/RL] Fill display text field when submitting question from front page
+ab4e8e6 HEAD@{22}: checkout: moving from master to ab4e8e6290f033b9381fb64a7963c0187e7f26a1^0
+4d47bdd HEAD@{23}: commit: [ET/RL] Fill display text field when submitting question from front page
+0c00b13 HEAD@{24}: commit: et/rl - add anonymity for questioners in the public display of questions
+08a7cfa HEAD@{25}: pull: Fast-forward
+0251c5f HEAD@{26}: pull --no-rebase: Merge made by the 'recursive' strategy.
+fbe9826 HEAD@{27}: commit: [ET/RL] Hide password when creating admin
+babea31 HEAD@{28}: commit: rl - fixed build...
+ddb7280 HEAD@{29}: commit: rl - questions index page requires admin signin
+faa715c HEAD@{30}: commit: [ET/RL] Add anonymous field to question
+69af087 HEAD@{31}: commit: et/rl - add name and email fields to question
+27b8805 HEAD@{32}: commit: [RL/ET] Add neighborhood field to question submission
+3b6efbd HEAD@{33}: commit: et/rl - ask a question goes to a page where one should enter question details
+7b9d95b HEAD@{34}: commit: et/rl - question submission with no question throws an error
+53f1434 HEAD@{35}: commit: [ET/RL] Add home page and corresponding welcome controller
+f25f7a4 HEAD@{36}: commit: rl - add user info to questions
+5bb32f8 HEAD@{37}: commit: rl - clean out json from controllers
+11e10b6 HEAD@{38}: pull: Fast-forward
+0a3dc62 HEAD@{39}: commit: rl-remove scaffolding comments
+c0e6630 HEAD@{40}: pull: Fast-forward
+f9f8a2b HEAD@{41}: commit: et/rl-give voting_round_questions vote_number attribute a default value of 0
+1c395f3 HEAD@{42}: rebase finished: returning to refs/heads/master
+1c395f3 HEAD@{43}: pull --rebase: [RL/ET] Add question to voting round via question edit page
+bed9d3f HEAD@{44}: checkout: moving from master to bed9d3f9ddd61e2d1ac70931d66623a843bb9a0f^0
+6517aad HEAD@{45}: commit: [RL/ET] Add question to voting round via question edit page
+f59a8ae HEAD@{46}: commit: [ET/RL] Generate scaffold for voting round and voting round questions
+fa794c9 HEAD@{47}: rebase finished: returning to refs/heads/master
+fa794c9 HEAD@{48}: pull --rebase: et rl-redirect successful login to admin main page
+0f59bef HEAD@{49}: pull --rebase: et rl-redirect successful login to admin main page
+56b404a HEAD@{50}: checkout: moving from master to 56b404a44b45c1de00066b476d886e7cc6832276^0
+837fde3 HEAD@{51}: commit: et rl-redirect successful login to admin main page
+090968f HEAD@{52}: commit: et rl-redirect successful login to admin main page
+1a5e040 HEAD@{53}: commit: rl - add password confirmation and security
+80129dc HEAD@{54}: pull: Fast-forward
+1fe8a84 HEAD@{55}: pull: Merge made by the 'recursive' strategy.
+748dd6d HEAD@{56}: commit: rl - remove random file (6)
+728062f HEAD@{57}: commit: rl - change configuration to use mysql2 instead of mysql for the snap-ci to work
+d711296 HEAD@{58}: commit: [Ed] Remove original text field from question form
+a749196 HEAD@{59}: commit: Copy display text to original text
+6eff43b HEAD@{60}: commit: rl - refactor question controller test to add shoulda gem
+61f84d3 HEAD@{61}: commit: rl - add validation for original text
+b01b6c3 HEAD@{62}: commit: rl-add question model
+6fcba08 HEAD@{63}: pull: Fast-forward
+0fb8186 HEAD@{64}: pull: Fast-forward
+b20aa19 HEAD@{65}: pull: Fast-forward
+7a117cc HEAD@{66}: commit: project initial setup
+fa0e27b HEAD@{67}: clone: from https://github.com/wbez/curiouscity.git

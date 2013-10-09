@@ -1,7 +1,7 @@
 Curiouscity::Application.routes.draw do
   root  'welcome#home'
   match '/ask_question', to: 'questions#new',     via: 'get'
-
+  match '/vote', to: 'welcome#vote', via: 'post'
   resources :questions
 
   namespace :admin do
