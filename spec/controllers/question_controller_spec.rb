@@ -1,0 +1,66 @@
+require 'spec_helper'
+
+describe QuestionsController do
+  let(:valid_attributes) { { "original_text" => "MyText",
+                                "display_text" => "display text" } }
+
+  describe "GET index" do
+    it "assigns all questions as @questions" do
+      question = Question.create! valid_attributes
+      get :index, {}
+      assigns(:questions).should eq([question])
+    end
+  end
+
+  describe "GET show" do
+    it "assigns the requested question as @question" do
+      question = Question.create! valid_attributes
+      get :show, {:id => question.to_param}
+      assigns(:question).should eq(question)
+    end
+  end
+
+  describe "GET new" do
+    it "assigns a new question as @question" do
+      get :new, {}
+      assigns(:question).should be_a_new(Question)
+    end
+  end
+
+  describe "POST create" do
+    describe "with valid params" do
+      it "creates a new Question" do
+        expect {
+          post :create, {:question => valid_attributes}
+        }.to change(Question, :count).by(1)
+      end
+
+      it "assigns a newly created question as @question" do
+        post :create, {:question => valid_attributes}
+        assigns(:question).should be_a(Question)
+        assigns(:question).should be_persisted
+      end
+
+      it "redirects to the created question" do
+        post :create, {:question => valid_attributes}
+        response.should redirect_to(question_url(Question.last))
+      end
+    end
+
+    describe "with invalid params" do
+      it "assigns a newly created but unsaved question as @question" do
+        # Trigger the behavior that occurs when invalid params are submitted
+        Question.any_instance.stub(:save).and_return(false)
+        post :create, {:question => { "original_text" => "invalid value" }}
+        assigns(:question).should be_a_new(Question)
+      end
+
+      it "re-renders the 'new' template" do
+        # Trigger the behavior that occurs when invalid params are submitted
+        Question.any_instance.stub(:save).and_return(false)
+        post :create, {:question => { "original_text" => "invalid value" }}
+        response.should render_template("new")
+      end
+    end
+  end
+end
