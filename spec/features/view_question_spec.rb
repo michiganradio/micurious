@@ -5,8 +5,11 @@ describe 'View all questions' do
 
   before do
     @question = FactoryGirl.create(:question)
+    @anonymous_question = FactoryGirl.create(:question, :anonymous)
     @question.display_text = "new display text"
+    @anonymous_question.display_text = "anonymous display text"
     @question.save
+    @anonymous_question.save
     visit questions_path
   end
 
@@ -20,7 +23,7 @@ describe 'View all questions' do
   end
 
   describe "anonymous question" do
-    before { @anonymous_question = FactoryGirl.create(:question, :anonymous) }
     it { should_not have_content(@anonymous_question.name) }
+    it { should have_content("Anonymous") }
   end
 end
