@@ -19,7 +19,7 @@
             <div class="col-sm-4 question-image">
               <img src="http://farm2.staticflickr.com/1437/1238664937_4d7dc8aace.jpg" alt="question image">
             </div>
-            <%= link_to "", vote_path(question_id: question.id), method: :post, class: "vote hover", id: "Vote" %>
+            <%= link_to "", vote_path(question_id: question.id), method: :post, class: "vote hover", id: "Vote"+question.id.to_s %>
 <!--              <a id='Vote' class="vote hover" href="<%=vote_path(question)%>"></a>-->
             <div class="col-lg-8 question-text">
               <h2><%= question.display_text %></h2>
