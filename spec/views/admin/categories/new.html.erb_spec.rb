@@ -14,9 +14,9 @@ describe "admin/categories/new" do
 
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "form[action=?][method=?]", admin_categories_path, "post" do
-      assert_select "input#category_name[name=?]", "category[name]"
-      assert_select "input#category_label[name=?]", "category[label]"
-      assert_select "input#category_active[name=?]", "category[active]"
+      assert_select "input#admin_category_name[name=?]", "admin_category[name]"
+      assert_select "input#admin_category_label[name=?]", "admin_category[label]"
+      assert_select "input#admin_category_active[name=?]", "admin_category[active]"
     end
   end
 end
