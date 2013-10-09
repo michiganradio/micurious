@@ -4,7 +4,8 @@ Curiouscity::Application.routes.draw do
 
   resources :questions
 
-  namespace 'admin' do
+  namespace :admin do
+    resources :categories
     resources :voting_round_questions
     resources :voting_rounds do
       member do
