@@ -8,7 +8,7 @@
     <% @questions.each do |question| %>
       <tr>
         <td><%= question.display_text %></td>
-        <td><%= if question.anonymous then "Anonymous" else question.name end%></td>
+        <td><%= question.display_author %></td>
         <td><%= link_to 'Show', admin_question_path(question) %></td>
       </tr>
     <% end %>
