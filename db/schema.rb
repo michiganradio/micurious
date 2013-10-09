@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131008154725) do
+ActiveRecord::Schema.define(version: 20131009134736) do
 
   create_table "questions", force: true do |t|
-    t.text     "original_text"
-    t.text     "display_text"
+    t.string   "original_text", limit: 140,                null: false
+    t.string   "display_text",  limit: 140,                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "active",        default: true, null: false
+    t.boolean  "active",                    default: true, null: false
     t.string   "neighbourhood"
     t.string   "name"
     t.string   "email"
