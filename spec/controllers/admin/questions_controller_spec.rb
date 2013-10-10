@@ -3,6 +3,8 @@ require 'spec_helper'
 describe Admin::QuestionsController do
   let(:valid_attributes) { { "original_text" => "MyText",
                                 "display_text" => "display text" } }
+  let(:categories) { [FactoryGirl.create(:category),
+                      FactoryGirl.create(:category)]}
 
   context "not signed in" do
     describe "GET index" do
@@ -38,6 +40,11 @@ describe Admin::QuestionsController do
         get :new, {}
         assigns(:question).should be_a_new(Question)
       end
+
+      it "assigns categories" do
+        get :new, {}
+        assigns(:categories).should == categories
+      end
     end
 
     describe "GET edit" do
@@ -45,6 +52,12 @@ describe Admin::QuestionsController do
         question = Question.create! valid_attributes
         get :edit, {:id => question.to_param}
         assigns(:question).should eq(question)
+      end
+
+      it "assigns categories" do
+        question = Question.create! valid_attributes
+        get :edit, {:id => question.to_param}
+        assigns(:categories).should == categories
       end
     end
 

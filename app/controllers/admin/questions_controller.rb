@@ -2,6 +2,7 @@ module Admin
   class QuestionsController < ApplicationController
     before_action :set_question, only: [:show, :edit, :update, :deactivate]
     before_action :signed_in_admin, only: [:index]
+    before_action :load_categories, only: [:new, :edit]
 
     # GET /questions
     def index
@@ -77,7 +78,11 @@ module Admin
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def question_params
-        params.require(:question).permit(:original_text, :display_text, :name, :anonymous, :email, :neighbourhood)
+        params.require(:question).permit(:original_text, :display_text, :name, :anonymous, :email, :neighbourhood, :category_ids => [])
+      end
+
+      def load_categories
+        @categories = Category.all
       end
   end
 end

@@ -2,7 +2,8 @@ FactoryGirl.define do
   factory :question do
     display_text  "display_text"
     name "Questioner_name"
-    
+    categories []
+
     trait :anonymous do
       anonymous true
       name "Anon_name"

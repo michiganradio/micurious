@@ -9,6 +9,7 @@
       <th>Anonymous</th>
       <th>Email</th>
       <th>Neighborhood</th>
+      <th>Category</th>
       <th>Active</th>
       <th></th>
       <th></th>
@@ -25,6 +26,7 @@
         <td><%= question.anonymous %></td>
         <td><%= question.email %></td>
         <td><%= question.neighbourhood %></td>
+        <td><%= question.categories.map(&:label).join(',') %></td>
         <td><%= question.active %></td>
         <td><%= link_to 'Show', admin_question_path(question) %></td>
         <td><%= link_to 'Edit', edit_admin_question_path(question) %></td>

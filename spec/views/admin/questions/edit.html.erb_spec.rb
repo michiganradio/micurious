@@ -2,9 +2,8 @@ require 'spec_helper'
 
 describe "admin/questions/edit" do
   before(:each) do
-    @question = assign(:question, stub_model(Question,
-      :display_text => "MyText"
-    ))
+    @question = assign(:question, FactoryGirl.build(:question))
+    @categories = assign(:categories, [FactoryGirl.build(:category)])
   end
 
   it "renders the edit question form" do

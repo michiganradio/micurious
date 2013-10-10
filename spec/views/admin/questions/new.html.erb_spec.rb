@@ -5,6 +5,7 @@ describe "admin/questions/new" do
     assign(:question, stub_model(Question,
       :display_text => "MyText"
     ).as_new_record)
+    assign(:categories, [])
   end
 
   it "renders new question form" do
