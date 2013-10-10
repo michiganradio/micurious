@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
 
   private
     def question_params
-      params.require(:question).permit(:original_text, :display_text, :name, :anonymous, :email, :neighbourhood, :category_ids => [])
+      params.require(:question).permit(:original_text, :display_text, :name, :anonymous, :email, :email_confirmation, :neighbourhood, :category_ids => [])
     end
 
     def set_question
