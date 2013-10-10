@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131009164245) do
+ActiveRecord::Schema.define(version: 20131010182247) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
     t.string   "label"
-    t.boolean  "active"
+    t.boolean  "active",     default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
