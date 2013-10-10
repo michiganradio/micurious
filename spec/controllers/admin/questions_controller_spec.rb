@@ -1,15 +1,21 @@
 require 'spec_helper'
 
 describe Admin::QuestionsController do
-  let(:valid_attributes) { { "original_text" => "MyText",
-                                "display_text" => "display text" } }
+
+  let(:valid_attributes) {
+                           { :display_text => "display text",
+                             :name => "name",
+                             :email => "email@email.com",
+                             :email_confirmation => "email@email.com"
+                            }
+                          }
   let(:categories) { [FactoryGirl.create(:category),
                       FactoryGirl.create(:category)]}
 
   context "not signed in" do
     describe "GET index" do
       it "redirects to sign in page" do
-        question = Question.create! valid_attributes
+        question = FactoryGirl.create(:question)
         get :index, {}
         assigns(:questions).should_not eq([question])
       end
@@ -21,7 +27,7 @@ describe Admin::QuestionsController do
 
     describe "GET index" do
       it "assigns all questions as @questions" do
-        question = Question.create! valid_attributes
+        question = FactoryGirl.create(:question)
         get :index, {}
         assigns(:questions).should eq([question])
       end
@@ -29,7 +35,7 @@ describe Admin::QuestionsController do
 
     describe "GET show" do
       it "assigns the requested question as @question" do
-        question = Question.create! valid_attributes
+        question = FactoryGirl.create(:question)
         get :show, {:id => question.to_param}
         assigns(:question).should eq(question)
       end
@@ -49,13 +55,13 @@ describe Admin::QuestionsController do
 
     describe "GET edit" do
       it "assigns the requested question as @question" do
-        question = Question.create! valid_attributes
+        question = FactoryGirl.create(:question)
         get :edit, {:id => question.to_param}
         assigns(:question).should eq(question)
       end
 
       it "assigns categories" do
-        question = Question.create! valid_attributes
+        question = FactoryGirl.create(:question)
         get :edit, {:id => question.to_param}
         assigns(:categories).should == categories
       end

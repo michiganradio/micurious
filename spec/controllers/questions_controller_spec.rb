@@ -1,8 +1,13 @@
 require 'spec_helper'
 
 describe QuestionsController do
-  let(:valid_attributes) { { "original_text" => "MyText",
-                                "display_text" => "display text" } }
+  let(:valid_attributes) {
+                           { :display_text => "display text",
+                             :name => "name",
+                             :email => "email@email.com",
+                             :email_confirmation => "email@email.com"
+                            }
+                          }
 
   describe "GET index" do
     it "assigns all questions as @questions" do

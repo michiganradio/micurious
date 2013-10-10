@@ -21,6 +21,7 @@ class QuestionsController < ApplicationController
       if @question.save
         format.html { redirect_to question_url(@question), notice: 'Question was successfully created.' }
       else
+        @categories = Category.all
         format.html { render action: 'new' }
       end
     end
