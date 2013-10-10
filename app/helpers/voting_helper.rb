@@ -7,4 +7,7 @@ module VotingHelper
     cookies.permanent[:voting_round_id].to_i == VotingRound.last.id.to_i
   end 
 
+  def last_vote?(question_id)
+    cookies.permanent[:question_id].to_i == question_id.to_i
+  end
 end

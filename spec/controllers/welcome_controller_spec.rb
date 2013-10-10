@@ -38,8 +38,8 @@ describe WelcomeController do
         post :vote, :question_id => @question.id
       end  
       
-      it "flash already voted error" do
-        flash[:error].should eq 'You can only vote once.'
+      it "returns 409 error" do
+        response.status.should be 409
       end
 
       it "does not increment vote" do

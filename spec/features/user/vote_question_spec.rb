@@ -13,22 +13,24 @@ describe "Vote on a question" do
   end
 
   specify "have vote link" do
-    should have_link('Vote' + @question.id.to_s)
+    should have_link('vote' + @question.id.to_s)
   end
 
   context "after voting" do   
-    before { click_link('Vote' + @question.id.to_s) }
+    before { click_link('vote' + @question.id.to_s) }
 
     specify "error when try to vote twice" do
       page.driver.post(vote_path(question_id: @question.id))
-      p page.driver.html
-      p page.driver.follow_redirects?
       page.driver.status_code.should_not eq 200
     end
 
-    specify "vote icons hidden when already voted" do
-      should have_no_selector('Vote' + @question.id.to_s)
-      should have_no_selector('Vote' + @question2.id.to_s)
+    specify "vote icons hidden" do
+      should have_no_selector('vote' + @question.id.to_s)
+      should have_no_selector('vote' + @question2.id.to_s)
+    end
+
+    specify "voted icon displayed next to voted on questio" do
+      should have_selector('img#vote_confirm' + @question.id.to_s)
     end
   end
 end
