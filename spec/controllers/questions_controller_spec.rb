@@ -25,6 +25,12 @@ describe QuestionsController do
       get :new, {}
       assigns(:question).should be_a_new(Question)
     end
+
+    it "assigns categories" do
+      Category.stub(:all).and_return(categories=[])
+      get :new, {}
+      assigns(:categories).should == categories
+    end
   end
 
   describe "POST create" do

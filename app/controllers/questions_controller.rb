@@ -10,12 +10,13 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
+    @categories = Category.all
     @question.display_text = params["question"]["text"] if params["question"]
   end
 
   def create
     @question = Question.new(question_params)
-  
+
     respond_to do |format|
       if @question.save
         format.html { redirect_to question_url(@question), notice: 'Question was successfully created.' }
@@ -27,7 +28,7 @@ class QuestionsController < ApplicationController
 
   private
     def question_params
-      params.require(:question).permit(:original_text, :display_text, :name, :anonymous, :email, :neighbourhood)
+      params.require(:question).permit(:original_text, :display_text, :name, :anonymous, :email, :neighbourhood, :category_ids => [])
     end
 
     def set_question

@@ -37,6 +37,12 @@
     <%= f.label :neighbourhood %><br>
     <%= f.text_field :neighbourhood %>
   </div>
+  <div >
+    <%= f.label :category %><br>
+    <% @categories.each do |category| %>
+      <%=  check_box_tag 'question[category_ids][]', category.id, @question.categories.include?(category), { multiple: true } %> 
+      <%= h category.label %> 
+    <% end%>
   <div class="actions">
     <%= f.submit %>
   </div>

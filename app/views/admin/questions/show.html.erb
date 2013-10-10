@@ -30,5 +30,10 @@
   <%= @question.neighbourhood %>
 </p>
 
+<p>
+  <strong>Category:</strong>
+  <%= @question.categories.map(&:label).join(',') %>
+</p>
+
 <%= link_to 'Edit', edit_admin_question_path(@question) %> |
 <%= link_to 'Back', admin_questions_path %>
