@@ -16,7 +16,6 @@ describe "admin/categories/edit" do
     assert_select "form[action=?][method=?]", admin_category_path(@admin_category), "post" do
       assert_select "input#admin_category_name[name=?]", "admin_category[name]"
       assert_select "input#admin_category_label[name=?]", "admin_category[label]"
-      assert_select "input#admin_category_active[name=?]", "admin_category[active]"
     end
   end
 end

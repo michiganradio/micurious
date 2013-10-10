@@ -1,5 +1,5 @@
 class Admin::CategoriesController < ApplicationController
-  before_action :set_admin_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_admin_category, only: [:show, :edit, :update, :deactivate]
 
   # GET /admin/categories
   # GET /admin/categories.json
@@ -51,13 +51,11 @@ class Admin::CategoriesController < ApplicationController
     end
   end
 
-  # DELETE /admin/categories/1
-  # DELETE /admin/categories/1.json
-  def destroy
-    @admin_category.destroy
+  # POST /admin/categories/1
+  def deactivate
+    @admin_category.update_attribute(:active, false)
     respond_to do |format|
       format.html { redirect_to admin_categories_url }
-      format.json { head :no_content }
     end
   end
 

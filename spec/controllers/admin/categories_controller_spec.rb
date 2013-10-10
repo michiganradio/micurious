@@ -23,7 +23,7 @@ describe Admin::CategoriesController do
   # This should return the minimal set of attributes required to create a valid
   # Category. As you add validations to Admin::Category, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "name" => "MyString" } }
+  let(:valid_attributes) { { "name" => "MyString", "active" => true } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -142,17 +142,17 @@ describe Admin::CategoriesController do
     end
   end
 
-  describe "DELETE destroy" do
-    it "destroys the requested admin_category" do
+  describe "POST deactivate" do
+    it "deactivates the requested admin_category" do
       category = Category.create! valid_attributes
       expect {
-        delete :destroy, {:id => category.to_param}, valid_session
-      }.to change(Category, :count).by(-1)
+        post :deactivate, {:id => category.to_param}, valid_session
+      }.to change{ Category.where(active: true).count}.by(-1)
     end
 
     it "redirects to the admin_categories list" do
       category = Category.create! valid_attributes
-      delete :destroy, {:id => category.to_param}, valid_session
+      post :deactivate, {:id => category.to_param}, valid_session
       response.should redirect_to(admin_categories_url)
     end
   end

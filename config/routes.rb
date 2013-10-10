@@ -5,7 +5,11 @@ Curiouscity::Application.routes.draw do
   resources :questions
 
   namespace :admin do
-    resources :categories
+    resources :categories do
+      member do
+        post :deactivate
+      end
+    end
     resources :voting_round_questions
     resources :voting_rounds do
       member do
