@@ -30,7 +30,7 @@ describe "Vote on a question" do
     end
 
     specify "voted icon displayed next to voted on questio" do
-      should have_selector('img#vote_confirm' + @question.id.to_s)
+      should have_selector('div#vote_confirm' + @question.id.to_s)
     end
   end
 end
