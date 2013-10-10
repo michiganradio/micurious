@@ -19,8 +19,8 @@
             <div class="col-sm-4 question-image">
               <img src="http://farm2.staticflickr.com/1437/1238664937_4d7dc8aace.jpg" alt="question image">
             </div>
-            <%= if !voted? then link_to "", vote_path(question_id: question.id), method: :post, class: "vote hover", id: "vote"+question.id.to_s end %>
-            <%= if last_vote?(question.id) then image_tag("votebutton.png", id: 'vote_confirm' + question.id.to_s) end %>
+            <%= if !voted? then link_to "", vote_path(question_id: question.id), method: :post, class: "vote", id: "vote"+question.id.to_s end %>
+            <%= if voted? and last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted") end %>
             <div class="col-lg-8 question-text">
               <h2><%= question.display_text %></h2>
               <p class="author">Asked by <%=question.display_author%></p>
