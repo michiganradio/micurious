@@ -5,7 +5,7 @@ class WelcomeController < ApplicationController
   end
 
   def vote
-    if (cookies.permanent[:voting_round_id] == nil)
+    unless (cookies.permanent[:voting_round_id].to_i == VotingRound.last.id.to_i)
       voting_round_question = VotingRoundQuestion.find_by(question_id: params[:question_id])
       voting_round_question.vote_number += 1
       voting_round_question.save

@@ -29,8 +29,23 @@ describe "Vote on a question" do
       should have_no_selector('vote' + @question2.id.to_s)
     end
 
-    specify "voted icon displayed next to voted on questio" do
+    specify "voted icon displayed next to voted on question" do
       should have_selector('img#vote_confirm' + @question.id.to_s)
+    end
+
+    context "new voting round" do
+      before do
+        new_voting_round = FactoryGirl.create(:voting_round, :other)
+        new_voting_round.add_question(@question)
+      end
+
+      specify "have vote link" do
+        should have_link('vote' + @question.id.to_s)
+      end
+
+      specify "voted icon not displayed" do
+        should_not have_selector('img#vote_confirm' + @question.id.to_s)
+      end
     end
   end
 end
