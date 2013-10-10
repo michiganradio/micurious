@@ -20,7 +20,7 @@
         <td><%= admin_category.active %></td>
         <td><%= link_to 'Show', admin_category_path(admin_category) %></td>
         <td><%= link_to 'Edit', edit_admin_category_path(admin_category) %></td>
-        <td><%= link_to 'Deactivate', admin_category_path(admin_category), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Deactivate', deactivate_admin_category_path(admin_category), method: :post, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
