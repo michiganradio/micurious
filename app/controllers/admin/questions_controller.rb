@@ -31,6 +31,7 @@ module Admin
         if @question.save
           format.html { redirect_to admin_question_url(@question), notice: 'Question was successfully created.' }
         else
+          load_categories
           format.html { render action: 'new' }
         end
       end

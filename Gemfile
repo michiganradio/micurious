@@ -28,6 +28,7 @@ gem 'mysql2', '~> 0.3.13'
 gem 'jbuilder', '~> 1.2'
 
 gem 'therubyracer', '0.12.0'
+gem "email_validator", "~> 1.4.0"
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'

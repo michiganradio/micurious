@@ -89,16 +89,16 @@
 
 .vote
 {
-   background-position:0px 0;
-   height:50px;
-   width:50px;
-   overflow:hidden;
-   position:relative;
-   top: 1.75em;
-   left: -2em;
-   display: inline-block;
-   cursor: pointer;
-   background-image: url(votebutton.png);
+    background-position:0px 0;
+    height:50px;
+    width:50px;
+    overflow:hidden;
+    position:relative;
+    top: 1.75em;
+    left: -3em;
+    display: inline-block;
+    cursor: pointer;
+    background-image: url(votebutton.png);
 }
 
 .vote:hover, .vote:active {
@@ -110,16 +110,16 @@
 
 .voted
 {
-   background-position: -51px 0;
-   background-color: transparent;
-   height: 50px;
-   width: 50px;
-   overflow: hidden;
-   position: relative;
-   top: 1.75em;
-   left: -2em;
-   display:inline-block;
-   background-image: url(votebutton.png);
+    background-position: -51px 0;
+    background-color: transparent;
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    position: relative;
+    top: 1.75em;
+    left: -2em;
+    display:inline-block;
+    background-image: url(votebutton.png);
 }
 
 .alert-notice {

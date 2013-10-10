@@ -21,6 +21,7 @@ class QuestionsController < ApplicationController
       if @question.save
         format.html { redirect_to question_url(@question), notice: 'Question was successfully created.' }
       else
+        @categories = Category.all
         format.html { render action: 'new' }
       end
     end
@@ -28,7 +29,7 @@ class QuestionsController < ApplicationController
 
   private
     def question_params
-      params.require(:question).permit(:original_text, :display_text, :name, :anonymous, :email, :neighbourhood, :category_ids => [])
+      params.require(:question).permit(:original_text, :display_text, :name, :anonymous, :email, :email_confirmation, :neighbourhood, :category_ids => [])
     end
 
     def set_question
