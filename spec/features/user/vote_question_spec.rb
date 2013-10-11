@@ -3,18 +3,18 @@ require 'spec_helper'
 describe "Vote on a question" do
   subject { page }
 
-  before(:each) do                                                                            
-    @question = FactoryGirl.create(:question)                                                 
-    @question2 = FactoryGirl.create(:question, :other)                                        
-    voting_round = FactoryGirl.create(:voting_round)                                          
+  before(:each) do
+    @question = FactoryGirl.create(:question)
+    @question2 = FactoryGirl.create(:question, :other)
+    voting_round = FactoryGirl.create(:voting_round)
     voting_round.add_question(@question)
-    voting_round.add_question(@question2)                                                     
-    visit root_path                                                                           
+    voting_round.add_question(@question2)
+    visit root_path
   end
     
   specify "have vote link" do
-    should have_link('vote' + @question.id.to_s)                                              
-  end                                                                                         
+    should have_link('vote' + @question.id.to_s)
+  end
 
   context "after voting" do   
     before { click_link('vote' + @question.id.to_s) }
