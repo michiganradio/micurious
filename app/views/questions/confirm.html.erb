@@ -16,5 +16,14 @@
 <% end %>
 <br>
 
+<%= form_for(@question) do |f| %>
+  <%= f.hidden_field :display_text, value: @question.display_text %>
+  <%= f.hidden_field :name, value: @question.name %>
+  <%= f.hidden_field :anonymous, value: @question.anonymous %>
+  <%= f.hidden_field :email, value: @question.email %>
+  <%= f.hidden_field :neighbourhood, value: @question.neighbourhood %>
+  <%= f.hidden_field :categories, value: @question.categories %>
+  <%= f.submit "Confirm" %>
+<% end %>
 
 <%= link_to 'Back', new_question_path %>

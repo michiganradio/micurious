@@ -42,7 +42,7 @@ describe 'Ask a question' do
       click_button "Create Question"
     end
 
-    specify "valid question" do
+    specify "confirm details" do
       should have_content "Confirm question"
       should have_content "Why is the sky green?"
       should have_content "Robert Johnson"
@@ -51,6 +51,7 @@ describe 'Ask a question' do
       should have_content "Hell"
       should have_content @category1.label
       should have_content @category2.label
+      should have_button "Confirm"
     end
   end
 end
