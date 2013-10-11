@@ -1,0 +1,20 @@
+<h1>Confirm question</h1>
+
+<label>Question</label><br>
+<%= @question.display_text %><br><br>
+<label>Name</label><br>
+<%= @question.name %><br><br>
+<label>Anonymous</label><br>
+<%= @question.anonymous %><br><br>
+<label>Email</label><br>
+<%= @question.email %><br><br>
+<label>Neighborhood</label><br>
+<%= @question.neighbourhood %><br><br>
+<label>Categories</label><br>
+<% @question.categories.each do |category| %>
+  <%= category.label %><br>
+<% end %>
+<br>
+
+
+<%= link_to 'Back', new_question_path %>

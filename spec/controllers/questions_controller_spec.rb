@@ -39,7 +39,6 @@ describe QuestionsController do
   end
 
   describe "POST create" do
-    describe "with valid params" do
       it "creates a new Question" do
         expect {
           post :create, {:question => valid_attributes}
@@ -58,20 +57,27 @@ describe QuestionsController do
       end
     end
 
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved question as @question" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Question.any_instance.stub(:save).and_return(false)
-        post :create, {:question => { "original_text" => "invalid value" }}
+  describe "POST confirm" do
+    describe "with valid params" do
+      it "assigns the new question as @question" do
+        post :confirm, {:question => valid_attributes}
         assigns(:question).should be_a_new(Question)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Question.any_instance.stub(:save).and_return(false)
-        post :create, {:question => { "original_text" => "invalid value" }}
-        response.should render_template("new")
       end
     end
   end
+     describe "with invalid params" do
+       it "assigns a newly created but unsaved question as @question" do
+        # Trigger the behavior that occurs when invalid params are submitted
+         Question.any_instance.stub(:save).and_return(false)
+         post :create, {:question => { "original_text" => "invalid value" }}
+         assigns(:question).should be_a_new(Question)
+       end
+
+       it "re-renders the 'new' template" do
+        # Trigger the behavior that occurs when invalid params are submitted
+         Question.any_instance.stub(:save).and_return(false)
+         post :create, {:question => { "original_text" => "invalid value" }}
+         response.should render_template("new")
+     end
+   end
 end

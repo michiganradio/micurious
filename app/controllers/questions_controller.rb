@@ -27,6 +27,10 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def confirm
+    @question = Question.new(question_params)
+    @categories = Category.all
+  end
   private
     def question_params
       params.require(:question).permit(:original_text, :display_text, :name, :anonymous, :email, :email_confirmation, :neighbourhood, :category_ids => [])

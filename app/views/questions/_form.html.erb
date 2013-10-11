@@ -44,7 +44,9 @@
   <div >
     <%= f.label :category %><br>
     <% @categories.each do |category| %>
-      <%=  check_box_tag 'question[category_ids][]', category.id, @question.categories.include?(category), { multiple: true } %> 
+      <%=  check_box_tag('question[category_ids][]', category.id,
+            @question.categories.include?(category),
+            { multiple: true, id: "question_category_id_#{category.id}" }) %> 
       <%= h category.label %> 
     <% end%>
   <div class="actions">
