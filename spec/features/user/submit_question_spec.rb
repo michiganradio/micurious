@@ -8,7 +8,7 @@ describe 'Ask a question' do
   context "main page" do
     describe "valid question" do
       before do
-        find_by_id("question_text").set("Why is the sky blue?")
+        find_by_id("display_text").set("Why is the sky blue?")
         click_button "Ask"
       end
 
@@ -17,7 +17,7 @@ describe 'Ask a question' do
       it { should have_field("question_email") }
       it { should have_field("question_email_confirmation") }
       it { should have_field("question_neighbourhood") }
-      it { page.find("#question_display_text").should have_content "Why is the sky blue?" }
+      it { page.find_by_id("question_display_text").should have_content "Why is the sky blue?" }
       it { should have_unchecked_field("question_anonymous") }
     end
   end

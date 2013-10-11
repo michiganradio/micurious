@@ -11,14 +11,7 @@ class QuestionsController < ApplicationController
   def new
     @question = Question.new
     @categories = Category.all
-    @question.display_text = params["display_text"]
-    @question.name = params["name"]
-    @question.anonymous = params["anonymous"]
-    @question.email = params["email"]
-    @question.neighbourhood = params["neighbourhood"]
-    @question.category_ids = params["category_ids"] || []
-    @question.display_text = params["question"]["text"] if params["question"] # TODO: rename 'text' to be 'display_text'
-
+    @question.attributes = params.permit(:display_text, :name, :anonymous, :email, :neighbourhood, :category_ids)
   end
 
   def create

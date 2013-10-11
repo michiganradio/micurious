@@ -6,10 +6,9 @@
 
 <body>
   </h1>Ask a question</h1>
-  <%= form_for(:question, url: ask_question_path, :method => :get) do |f| %>
-
-  <%= f.text_field :text %>
-  <%= f.submit "Ask" %>
+  <%= form_tag ask_question_path do %>
+  <%= text_field_tag :display_text %>
+  <%= submit_tag "Ask" %>
   <% end %>
   <%= render "voting" %>
 </body>
