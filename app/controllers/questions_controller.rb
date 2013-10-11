@@ -11,7 +11,14 @@ class QuestionsController < ApplicationController
   def new
     @question = Question.new
     @categories = Category.all
-    @question.display_text = params["question"]["text"] if params["question"]
+    @question.display_text = params["display_text"]
+    @question.name = params["name"]
+    @question.anonymous = params["anonymous"]
+    @question.email = params["email"]
+    @question.neighbourhood = params["neighbourhood"]
+    @question.category_ids = params["category_ids"] || []
+    @question.display_text = params["question"]["text"] if params["question"] # TODO: rename 'text' to be 'display_text'
+
   end
 
   def create
@@ -30,6 +37,8 @@ class QuestionsController < ApplicationController
   def confirm
     @question = Question.new(question_params)
     @categories = Category.all
+
+    render action: 'new' unless @question.valid?
   end
   private
     def question_params

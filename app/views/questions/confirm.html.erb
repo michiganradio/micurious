@@ -26,4 +26,4 @@
   <%= f.submit "Confirm" %>
 <% end %>
 
-<%= link_to 'Back', new_question_path %>
+<%= link_to 'Back', new_question_path(:display_text => @question.display_text, :name => @question.name, :anonymous => @question.anonymous, :email => @question.email, :neighbourhood=>@question.neighbourhood, :category_ids=> @question.category_ids) %>
