@@ -8,6 +8,11 @@
 </head>
   <body>
     <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <%= image_tag("cc-logo.gif", :height => "75px", :width => "310px") %>
+        </div>
+      </div>
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
