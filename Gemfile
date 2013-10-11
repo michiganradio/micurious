@@ -35,6 +35,7 @@ group :development, :test do
   gem 'shoulda', '~> 3.5.0'
   gem 'factory_girl_rails', '~>4.2.1'
   gem 'capybara', '~> 2.1.0'
+  gem "awesome_print", "~> 1.2.0"
 end
 
 group :doc do
@@ -45,7 +46,7 @@ end
 # Use ActiveModel has_secure_password
 
 gem 'bcrypt-ruby', '~> 3.0.0'
-
+gem "flickrie", "~> 1.6.0"
 # Use unicorn as the app server
 # gem 'unicorn'
 
