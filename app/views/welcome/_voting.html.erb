@@ -16,7 +16,7 @@
       <% @voting_round.questions.each do |question| %>
         <div class="question">
           <div class="row">
-            <div class="col-md-5 question-image">
+            <div class="col-lg-2 question-image">
               <img src="http://farm2.staticflickr.com/1437/1238664937_4d7dc8aace.jpg" alt="question image">
               <%= if !voted? then link_to "", vote_path(question_id: question.id), method: :post, class: "vote", id: "vote"+question.id.to_s end %>
               <%= if voted? and last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted") end %>

@@ -1,19 +1,10 @@
-#questions,
-#archive-questions
-{
-    padding:5px 0;
-    border-bottom: 1px dotted #808184;
-    margin-bottom: 26px;
-}
-
 .question
 {
-    height:100px;
     width:100%;
     -webkit-transition: color,background-color .25s linear;
      transition: color,background-color .25s linear;
     background-color:white;
-    background-image:url(../images/bg_dots.png);
+    background-image:url(bg_dots.png);
     position:relative;
     transition: outline 0.5s;
     -moz-transition: outline 0.5s; /* Firefox 4 */
@@ -24,14 +15,11 @@
     padding-bottom: 3px;
     margin-bottom: -3px;
 }
-.question + .question{ margin-top:5px;}
 
-.question.hoverstate
-{
-}
 .question .row {
     border-top: 3px solid white;
 }
+
 .question h2 {
     color: #231F20;
     font-weight: 400;
@@ -48,12 +36,14 @@
 
 .question-image
 {
-    height:100px;
-    position:relative;
-    background:no-repeat;
-    background-size: 100%;
-    background-position: 0 50%;
-    overflow:hidden;
+  float:left;
+  height: 100px;
+  width: 50%;
+  position:relative;
+  background:no-repeat;
+  background-size: 100%;
+  background-position: 0 50%;
+  overflow:hidden;
 }
 
 .question-image img
@@ -63,34 +53,26 @@
     width: 80%;
 }
 
-.question-text .comment-count
-{
-    position:absolute;
-    bottom:5px;
-    right:10px;
-    
-}
-
 .question-text {
-    max-height:100px;
     overflow:hidden;
 }
 
 .question-text .author{
     position: relative;
     float: right;
+    padding: 10px;
 }
 
 .vote
 {
-  float: right;
+  float: left;
   background-position:0px 0;
   height:50px;
   width:50px;
   overflow:hidden;
   position:relative;
-  top: 1.75em;
-  right: 2em;
+  top: 25%;
+  left: 80%;
   display: inline-block;
   cursor: pointer;
   background-image: url(votebutton.png);
@@ -109,10 +91,10 @@
     background-color: transparent;
     height: 50px;
     width: 50px;
+    top: 25%;
+    left: 80%;
     overflow: hidden;
     position: relative;
-    top: 1.75em;
-    left: -3em;
     display:inline-block;
     background-image: url(votebutton.png);
 }
