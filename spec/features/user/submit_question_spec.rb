@@ -12,7 +12,7 @@ describe 'Ask a question' do
         click_button "Ask"
       end
 
-      it { should have_content "New question" }
+      it { should have_content "What do you wonder about Chicago, the region or its people?" }
       it { should have_field("question_name") }
       it { should have_field("question_email") }
       it { should have_field("question_email_confirmation") }
@@ -24,11 +24,11 @@ describe 'Ask a question' do
 
   context "new question page" do
     before do
-      @category1 = FactoryGirl.create(:category) 
-      @category2 = FactoryGirl.create(:category, label: "MyString2") 
-        
+      @category1 = FactoryGirl.create(:category)
+      @category2 = FactoryGirl.create(:category, label: "MyString2")
+
       visit new_question_path
-      
+
       fill_in('question_display_text', with: "Why is the sky green?")
       fill_in('question_name', with: "Robert Johnson")
       check('question_anonymous')
@@ -36,7 +36,7 @@ describe 'Ask a question' do
       fill_in('question_email', with: "rjohnson@a.com")
       fill_in('question_email_confirmation', with: "rjohnson@a.com")
       fill_in('question_neighbourhood', with: "Hell")
-        
+
       check('question_category_id_' + @category1.id.to_s)
       check('question_category_id_' + @category2.id.to_s)
       click_button "Create Question"

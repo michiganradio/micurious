@@ -180,3 +180,7 @@
   font-style: italic;
   color: #CCC;
 }
+
+.anonymous-checkbox-group {
+  float:right;
+}
