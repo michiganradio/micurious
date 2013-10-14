@@ -60,7 +60,7 @@
 .question-text .author{
     position: relative;
     float: right;
-    padding: 10px;
+    padding: 10px
 }
 
 .vote
@@ -121,7 +121,6 @@
 
 .submit-wrap .submit-question-container {
   background: #fffbfe;
-  width: 580px !important;
   border: 3px solid #ff0066 !important;
   font-size: 20px;
   font-weight: normal;
@@ -133,10 +132,10 @@
 }
 
 .submit-wrap .submit-question-btn {
-  position: relative;
-  left: 30px;
-  top: 4em;
+  position: absolute;
   color: white;
+  float:right;
+  bottom:1em;
 }
 
 .submit-wrap .submit-question-text {
@@ -144,7 +143,7 @@
   background-color: #fffbfe;
   overflow: hidden;
   resize: none;
-  width: 23em;
+  width: 90%;
   height: 4.4em;
   outline: none;
 }
