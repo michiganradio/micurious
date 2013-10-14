@@ -66,6 +66,13 @@
     width: 80%;
 }
 
+.question-image h2
+{
+  position: absolute;
+  z-index: 1;
+  color: white;
+}
+
 .question-text {
     overflow:hidden;
 }

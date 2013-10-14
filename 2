@@ -60,8 +60,8 @@ describe "Vote on a question" do
       end
 
       specify "ranks not displayed" do
-        should_not have_selector("h2#rank#{@question.id}")
-        should_not have_selector("h2#rank#{@question2.id}")
+        should_not have_selector("rank#{@question.id}")
+        should_not have_selector("rank#{@question2.id}")
       end
     end
 
@@ -73,8 +73,8 @@ describe "Vote on a question" do
       end
 
       specify "ranks displayed" do
-        should have_selector("h2#rank#{@question.id}", text: "2nd")
-        should have_selector("h2#rank#{@question2.id}", text: "1st")
+        should have_selector("rank#{@question.id}", value: "2nd")
+        should have_selector("rank#{@question2.id}", value: "1st")
       end 
     end
   end
