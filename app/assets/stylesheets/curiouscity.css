@@ -61,10 +61,9 @@
 {
     position: absolute;
     top: -50%;
-    min-width: 100%;
+    width: 80%;
     min-height: 200px;
 }
-
 
 .question-text .comment-count
 {
@@ -89,20 +88,21 @@
 
 .vote
 {
-    background-position:0px 0;
-    height:50px;
-    width:50px;
-    overflow:hidden;
-    position:relative;
-    top: 1.75em;
-    left: -3em;
-    display: inline-block;
-    cursor: pointer;
-    background-image: url(votebutton.png);
+  float: right;
+  background-position:0px 0;
+  height:50px;
+  width:50px;
+  overflow:hidden;
+  position:relative;
+  top: 1.75em;
+  right: 2em;
+  display: inline-block;
+  cursor: pointer;
+  background-image: url(votebutton.png);
 }
 
 .vote:hover, .vote:active {
-   background-position:-51px 0;
+  background-position:-51px 0;
   background-color: transparent;
 }
 
@@ -124,4 +124,50 @@
 
 .alert-notice {
   color: green;
+}
+
+.submit-wrap {
+  position: relative;
+  width: 60%;
+  float: left;
+  margin-left: 2em;
+}
+
+.submit-wrap .carrot {
+  position: absolute;
+  top: 25px;
+  left: -17px;
+  width: 20px;
+  height: 24px;
+  background: url(carrot.png) no-repeat;
+}
+
+.submit-wrap .submit-question-container {
+  background: #fffbfe;
+  width: 580px !important;
+  border: 3px solid #ff0066 !important;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 28px;
+  color: black;
+  padding: 10px 15px;
+  border-radius: 12px;
+  -webkit-box-shadow: none !important;
+}
+
+.submit-wrap .submit-question-btn {
+  position: relative;
+  left: 30px;
+  top: 4em;
+  color: white;
+}
+
+.submit-wrap .submit-question-text {
+  border-style:none;
+  background-color: #fffbfe;
+  overflow: hidden;
+  resize: none;
+  width: 23em;
+  height: 4.4em;
+  outline: none;
 }
