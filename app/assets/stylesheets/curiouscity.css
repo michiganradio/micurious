@@ -6,6 +6,11 @@
   background-position: left center;
   border: 10px solid black;
 }
+
+.image-logo {
+  max-width: 100%;
+}
+
 .question
 {
     width:100%;
