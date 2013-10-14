@@ -20,7 +20,8 @@ describe WelcomeController do
 
     describe "first vote" do
       before do
-        post :vote, :question_id => @question.id
+        post :vote, :question_id => @question.id,
+                    :voting_round_id => @voting_round.id
       end  
         
       it "asks voting round question to increment vote" do
@@ -37,7 +38,8 @@ describe WelcomeController do
       
       describe "second vote" do
         before do
-          post :vote, :question_id => @question.id
+          post :vote, :question_id => @question.id,
+                      :voting_round_id => @voting_round.id
         end  
         
         it "returns 409 error" do
@@ -56,9 +58,10 @@ describe WelcomeController do
         @new_voting_round = FactoryGirl.create(:voting_round, :other)
         @new_question = FactoryGirl.create(:question, :other)
         @new_voting_round_question = FactoryGirl.create(:voting_round_question,
-                                                    question_id: @new_question.id,
-                                                    voting_round_id: @new_voting_round.id)
-        post :vote, :question_id => @new_question.id
+                                          question_id: @new_question.id,
+                                          voting_round_id: @new_voting_round.id)
+        post :vote, :question_id => @new_question.id,
+                    :voting_round_id => @new_voting_round.id
       end
 
       it "asks voting round question to increment vote" do
