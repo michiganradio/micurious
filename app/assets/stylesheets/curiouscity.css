@@ -3,7 +3,6 @@
 {
     padding:5px 0;
     border-bottom: 1px dotted #808184;
-    min-height:200px;
     margin-bottom: 26px;
 }
 
@@ -36,7 +35,7 @@
 .question h2 {
     color: #231F20;
     font-weight: 400;
-    font-size: 25px;
+    font-size: 20px;
     line-height: 28px;
 }
 .question h2 a{
@@ -62,7 +61,6 @@
     position: absolute;
     top: -50%;
     width: 80%;
-    min-height: 200px;
 }
 
 .question-text .comment-count
@@ -74,16 +72,13 @@
 }
 
 .question-text {
-
     max-height:100px;
     overflow:hidden;
-
 }
 
 .question-text .author{
-   # position: absolute;
-    right: 0;
-    top: 80px;
+    position: relative;
+    float: right;
 }
 
 .vote
