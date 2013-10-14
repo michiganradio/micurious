@@ -5,24 +5,25 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <div class="header-logo">
+  </div>
 </head>
   <body>
     <div class="container">
       <div class="row">
         <div class="col-sm-4">
-          <%= image_tag("cc-logo.gif") %>
+          <%= image_tag("cc-logo.gif", style: "max-width: 100%") %>
         </div>
         <div class="submit-wrap">
-        <div class="carrot"></div>
-        <div class="submit-question-container">
-          <%= form_tag ask_question_path do %>
-            <%= text_area_tag :display_text, nil, placeholder: "What do you wonder about Chicago, the region or its people that you want WBEZ to investigate?", class: "submit-question-text" %>
-            <%= submit_tag "Ask", class: "btn submit-question-btn" %>
-            
-          <% end %>
-        </div>
+          <div class="carrot"></div>
+          <div class="submit-question-container">
+            <%= form_tag ask_question_path do %>
+              <%= text_area_tag :display_text, nil, placeholder: "What do you wonder about Chicago, the region or its people that you want WBEZ to investigate?", class: "submit-question-text" %>
+              <%= submit_tag "Ask", class: "btn submit-question-btn" %>
+            <% end %>
           </div>
         </div>
+      </div>
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>

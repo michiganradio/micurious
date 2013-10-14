@@ -1,3 +1,11 @@
+.header-logo {
+  background-color: black;
+  background-image: url(wbez.png);
+  background-repeat: no-repeat;
+  height: 40px;
+  background-position: left center;
+  border: 10px solid black;
+}
 .question
 {
     width:100%;
@@ -104,6 +112,7 @@
 }
 
 .submit-wrap {
+  margin: 1em;
   position: relative;
   width: 60%;
   float: left;
@@ -146,4 +155,16 @@
   width: 90%;
   height: 4.4em;
   outline: none;
+}
+::-webkit-input-placeholder {
+  font-style: italic;
+  color: #CCC;
+}
+:-moz-placeholder {
+  font-style: italic;
+  color: #CCC;
+}
+:-ms-input-placeholder {
+  font-style: italic;
+  color: #CCC;
 }
