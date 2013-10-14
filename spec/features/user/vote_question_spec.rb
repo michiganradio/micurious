@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'active_support/core_ext/integer/inflections'
 
 describe "Vote on a question" do
   subject { page }
@@ -6,9 +7,9 @@ describe "Vote on a question" do
   before(:each) do
     @question = FactoryGirl.create(:question)
     @question2 = FactoryGirl.create(:question, :other)
-    voting_round = FactoryGirl.create(:voting_round)
-    voting_round.add_question(@question)
-    voting_round.add_question(@question2)
+    @voting_round = FactoryGirl.create(:voting_round)
+    @voting_round.add_question(@question)
+    @voting_round.add_question(@question2)
     visit root_path
   end
     
@@ -29,10 +30,9 @@ describe "Vote on a question" do
       should have_no_selector('vote' + @question2.id.to_s)
     end
 
-    specify "voted icon displayed next to voted on question" do
+    specify "voted icon displayed next to voted-on question" do
       should have_selector('div#vote_confirm' + @question.id.to_s)
     end
-
   end
 
   context "new voting round" do
@@ -50,6 +50,22 @@ describe "Vote on a question" do
 
     specify "voted icon not displayed" do
       should_not have_selector('div#vote_confirm' + @new_question.id.to_s)
+    end
+  end
+
+  context "ordering" do
+    context "before voting" do
+      specify "by id from least to greatest" do
+        body.should =~ /question#{@question.id}.*question#{@question2.id}/m
+      end
+    end
+
+    context "after voting" do
+      before { click_link('vote' + @question2.id.to_s) }
+
+      specify "by number of votes from greatest to least" do
+        body.should =~ /question#{@question2.id}.*question#{@question.id}/m
+      end
     end
   end
 end

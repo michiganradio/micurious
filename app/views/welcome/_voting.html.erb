@@ -13,8 +13,8 @@
     </div>
   </div>
     <div id="questions">
-      <% @voting_round.questions.each do |question| %>
-        <div class="question">
+      <% (@voting_round.questions.sort &sort_proc).each do |question| %>
+        <div class="question", id="question<%= question.id.to_s %>">
           <div class="row">
             <div class="col-lg-2 question-image">
               <img src="http://farm2.staticflickr.com/1437/1238664937_4d7dc8aace.jpg" alt="question image">
