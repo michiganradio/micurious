@@ -39,7 +39,7 @@ describe 'Ask a question' do
 
       check('question_category_id_' + @category1.id.to_s)
       check('question_category_id_' + @category2.id.to_s)
-      click_button "Create Question"
+      click_button "NEXT"
     end
 
     specify "confirm details" do

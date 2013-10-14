@@ -181,6 +181,11 @@
   color: #CCC;
 }
 
-.anonymous-checkbox-group {
+.checkbox-group {
   float:right;
+  padding: 3px;
+}
+
+.checkbox-group > label{
+  font-weight: normal;
 }

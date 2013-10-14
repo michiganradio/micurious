@@ -17,15 +17,17 @@
   <div class="field col-lg-5">
     <%= f.label :category, "Add a category to make it easier to find:" %><br>
     <% @categories.each do |category| %>
+      <div class="checkbox-group">
       <%=  check_box_tag('question[category_ids][]', category.id,
             @question.categories.include?(category),
             { multiple: true, id: "question_category_id_#{category.id}" }) %> 
           <%= f.label "category_id_#{category.id}", category.label%> 
+        </div>
     <% end%>
   </div>
   <div class="field col-lg-6">
     <%= f.label :name %>
-    <div class="anonymous-checkbox-group">
+    <div class="checkbox-group">
       <%= f.check_box :anonymous %>
       <%= f.label "Remain anonymous" %>
     </div>
