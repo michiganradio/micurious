@@ -180,3 +180,12 @@
   font-style: italic;
   color: #CCC;
 }
+
+.checkbox-group {
+  float:right;
+  padding: 3px;
+}
+
+.checkbox-group > label{
+  font-weight: normal;
+}
