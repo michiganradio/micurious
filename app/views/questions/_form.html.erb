@@ -11,42 +11,48 @@
     </div>
   <% end %>
 
-  <div class="field col-lg-7">
-    <%= f.text_area :display_text, placeholder: "Enter your question here", class: "form-control"%>
-  </div>
-  <div class="field col-lg-5">
-    <%= f.label :category, "Add a category to make it easier to find:" %><br>
-    <% @categories.each do |category| %>
-      <div class="checkbox-group">
-      <%=  check_box_tag('question[category_ids][]', category.id,
-            @question.categories.include?(category),
-            { multiple: true, id: "question_category_id_#{category.id}" }) %> 
-          <%= f.label "category_id_#{category.id}", category.label%> 
-        </div>
-    <% end%>
-  </div>
-  <div class="field col-lg-6">
-    <%= f.label :name %>
-    <div class="checkbox-group">
-      <%= f.check_box :anonymous %>
-      <%= f.label "Remain anonymous" %>
+  <fieldset>
+    <div class="field col-lg-7">
+      <%= f.text_area :display_text, placeholder: "Enter your question here", class: "form-control"%>
     </div>
-    <br>
-    <%= f.text_field :name, class: "form-control" %>
-  </div>
-  <div class="field col-lg-6">
-    <%= f.label :email %><br>
-    <%= f.text_field :email, class: "form-control" %>
-  </div>
-  <div class="field col-lg-6">
-    <%= f.label :neighbourhood %><br>
-    <%= f.text_field :neighbourhood, class: "form-control" %>
-  </div>
-  <div class="field col-lg-6">
-    <%= f.label :email_confirmation %><br>
-    <%= f.text_field :email_confirmation, class: "form-control" %>
-  </div>
-  <div class="actions">
+    <div class="field col-lg-5">
+      <%= f.label :category, "Add a category to make it easier to find:", class: "pull-right" %>
+      <div class="categories-group">
+        <% @categories.each do |category| %>
+          <div class="checkbox-group">
+            <%=  check_box_tag('question[category_ids][]', category.id,
+                @question.categories.include?(category),
+                { multiple: true, id: "question_category_id_#{category.id}" }) %> 
+            <%= f.label "category_id_#{category.id}", category.label%> 
+          </div>
+        <% end%>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <div class="field col-lg-6">
+      <%= f.label :name %>
+      <div class="checkbox-group">
+        <%= f.check_box :anonymous %>
+        <%= f.label "Remain anonymous" %>
+      </div>
+      <br>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="field col-lg-6">
+      <%= f.label :neighbourhood %><br>
+      <%= f.text_field :neighbourhood, class: "form-control" %>
+    </div>
+    <div class="field col-lg-6">
+      <%= f.label :email %><br>
+      <%= f.text_field :email, class: "form-control" %>
+    </div>
+    <div class="field col-lg-6">
+      <%= f.label :email_confirmation %><br>
+      <%= f.text_field :email_confirmation, class: "form-control" %>
+    </div>
+  </fieldset>
+  <div class="actions col-lg-6">
     <%= f.submit value: "NEXT", class: "btn"%>
   </div>
 <% end %>

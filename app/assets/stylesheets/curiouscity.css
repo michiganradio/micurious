@@ -183,9 +183,14 @@
 
 .checkbox-group {
   float:right;
-  padding: 3px;
+  padding-left: 3px;
+  padding-right: 3px;
 }
 
 .checkbox-group > label{
   font-weight: normal;
+}
+
+.categories-group {
+  clear: right;
 }
