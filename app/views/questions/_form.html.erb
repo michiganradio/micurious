@@ -12,11 +12,11 @@
 <% end %>
 
 <fieldset>
-  <div class="field col-lg-7">
+  <div class="field col-lg-6">
     <%= f.label :your_question %>
     <%= f.text_area :display_text, placeholder: "Enter your question here", class: "form-control"%>
   </div>
-  <div class="field col-lg-5">
+  <div class="field col-lg-6">
     <%= f.label :category, "Add a category to make it easier to find:", class: "pull-right" %>
     <div class="categories-group">
       <% @categories.each do |category| %>

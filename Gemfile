@@ -36,6 +36,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~>4.2.1'
   gem 'capybara', '~> 2.1.0'
   gem "awesome_print", "~> 1.2.0"
+  gem "js-test-driver-rails", "~> 0.4.3"
 end
 
 group :doc do
