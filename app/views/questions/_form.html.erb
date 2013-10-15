@@ -1,23 +1,26 @@
 <%= form_for(@question, :url => url) do |f| %>
   <% if @question.errors.any? %>
     <div id="error_explanation">
-    <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
 
-    <ul>
-    <% @question.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
+      <ul>
+      <% @question.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<fieldset>
-  <div class="field col-lg-6">
-    <%= f.label :your_question %>
-    <%= f.text_area :display_text, placeholder: "Enter your question here", class: "form-control"%>
+<div class="row">
+  <div class="field col-lg-8">
+    <%= f.label :your_question, "Your question*" %>
+    <%= f.text_area :display_text, placeholder: "Enter your question here", class: "form-control submit-question-text"%>
   </div>
-  <div class="field col-lg-6">
-    <%= f.label :category, "Add a category to make it easier to find:", class: "pull-right" %>
+</div>
+
+<div class="row">
+  <div class="field col-lg-8">
+    <%= f.label :category, "Add a category to make it easier to find:" %>
     <div class="categories-group">
       <% @categories.each do |category| %>
         <div class="checkbox-group">
@@ -29,32 +32,42 @@
       <% end%>
     </div>
   </div>
-</fieldset>
-<fieldset>
-  <h3>In case your question is chosen and we need to follow up, please give us a way to contact you.</h3><br>
-    <div class="field col-lg-6">
-      <%= f.label :name %>
-      <div class="checkbox-group">
-        <%= f.check_box :anonymous %>
-        <%= f.label "Remain anonymous - your contact information and e-mail are never shared" %>
-      </div>
-      <br>
-      <%= f.text_field :name, class: "form-control" %>
-    </div>
-    <div class="field col-lg-6">
-      <%= f.label "Neighborhood" %><br>
-      <%= f.text_field :neighbourhood, class: "form-control" %>
-    </div>
-    <div class="field col-lg-6">
-      <%= f.label :email %><br>
-      <%= f.text_field :email, class: "form-control" %>
-    </div>
-    <div class="field col-lg-6">
-      <%= f.label "Confirm E-mail" %><br>
-      <%= f.text_field :email_confirmation, class: "form-control" %>
-    </div>
-  </fieldset>
-  <div class="actions">
-    <%= f.submit value: "NEXT", class: "btn pull-right"%>
+</div>
+<div class="row">
+  <div class="field col-md-6">
+    <%= f.label :name, "Name*" %>
+    <br>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
+  <div class="field col-md-6">
+    <%= f.label :email, "Email* (your email address is never shared)" %>
+    <br>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="field col-md-6">
+    <div class="checkbox-group">
+      <%= f.check_box :anonymous %>
+      <%= f.label "Remain anonymous" %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="field col-md-6">
+    <%= f.label :neighbourhood, "Neighborhood (e.g. Pilsen) or town (e.g. Berwyn)" %><br>
+    <%= f.text_field :neighbourhood, class: "form-control" %>
+  </div>
+  <div class="field col-md-6">
+    <%= f.label "Confirm E-mail*" %><br>
+    <%= f.text_field :email_confirmation, class: "form-control" %>
+  </div>
+</div>
+
+<p>* required fields</p>
+<div class="actions">
+<%= f.submit value: "NEXT", class: "btn btn-info pull-right"%>
+</div>
 <% end %>

@@ -168,6 +168,11 @@
   height: 4.4em;
   outline: none;
 }
+
+.submit-question-text {
+  resize: none;
+}
+
 ::-webkit-input-placeholder {
   font-style: italic;
   color: #CCC;
@@ -182,7 +187,7 @@
 }
 
 .checkbox-group {
-  float:right;
+  float:left;
   padding-left: 3px;
   padding-right: 3px;
 }
