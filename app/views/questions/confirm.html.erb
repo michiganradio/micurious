@@ -23,6 +23,7 @@
   <%= f.hidden_field :email, value: @question.email %>
   <%= f.hidden_field :neighbourhood, value: @question.neighbourhood %>
   <%= f.hidden_field :categories, value: @question.categories %>
-  <%= f.submit "Confirm" %>
+  <%= f.submit "SUBMIT", class: "btn" %>
 <% end %>
-<%= link_to 'Back', new_question_path(@question.attributes) %>
+<br>
+<%= button_to 'GO BACK', new_question_path(@question.attributes), class: "btn", method: "get" %>
