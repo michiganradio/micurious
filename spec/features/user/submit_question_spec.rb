@@ -12,7 +12,7 @@ describe 'Ask a question' do
         click_button "Ask"
       end
 
-      it { should have_content "What do you wonder about Chicago, the region or its people?" }
+      it { should have_content "Submit your question to Curious City" }
       it { should have_field("question_name") }
       it { should have_field("question_email") }
       it { should have_field("question_email_confirmation") }
