@@ -22,6 +22,7 @@ describe QuestionsController do
       question = Question.create! valid_attributes
       get :show, {:id => question.to_param}
       assigns(:question).should eq(question)
+      assigns(:ask).should eq true
     end
   end
 

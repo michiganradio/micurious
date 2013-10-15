@@ -1,7 +1,7 @@
 <!--<p id="notice"><%= notice %></p>-->
 
 <p>
-  <strong>Display text:</strong>
+  <strong>Question:</strong>
   <%= @question.display_text %>
 </p>
 
@@ -20,4 +20,4 @@
   <%= @question.neighbourhood %>
 </p>
 
-<%= link_to 'Back', questions_path %>
+<%= button_to 'Back', questions_path, method: "get", class: "btn" %>

@@ -6,6 +6,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @ask = true
   end
 
   def new
