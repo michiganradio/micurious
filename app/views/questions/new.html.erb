@@ -37,19 +37,20 @@
     </div>
   </div>
 </div>
+<br>
 <div class="row">
-  <div class="field col-md-6">
+  <div class="field col-md-5">
     <%= f.label :name, "Name*" %>
     <%= f.text_field :name, class: "form-control" %>
   </div>
-  <div class="field col-md-6">
+  <div class="field col-md-5">
     <%= f.label :email, "Email* (your email address is never shared)" %>
     <%= f.text_field :email, class: "form-control" %>
   </div>
 </div>
 
 <div class="row">
-  <div class="field col-md-6">
+  <div class="field col-md-5">
     <div class="checkbox-group">
       <%= f.check_box :anonymous %>
       <%= f.label "Remain anonymous" %>
@@ -58,11 +59,11 @@
 </div>
 
 <div class="row">
-  <div class="field col-md-6">
+  <div class="field col-md-5">
     <%= f.label :neighbourhood, "Neighborhood (e.g. Pilsen) or town (e.g. Berwyn)" %><br>
     <%= f.text_field :neighbourhood, class: "form-control" %>
   </div>
-  <div class="field col-md-6">
+  <div class="field col-md-5">
     <%= f.label "Confirm E-mail*" %><br>
     <%= f.text_field :email_confirmation, class: "form-control" %>
   </div>
