@@ -76,13 +76,22 @@
 }
 
 .question-text {
-    overflow:hidden;
+  height: 100%;
+  width: 45%;
+  overflow:hidden;
+}
+
+.question-text h2 {
+  height: 40px;
+  margin: 5px;
 }
 
 .question-text .author{
-    position: relative;
-    float: right;
-    padding: 10px
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    padding: 5px;
+    margin: 0px;
 }
 
 .vote
