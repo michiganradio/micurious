@@ -43,7 +43,7 @@ describe 'Ask a question' do
     end
 
     specify "confirm details" do
-      should have_content "Confirm question"
+      should have_content "Double check your question looks good:"
       should have_content "Why is the sky green?"
       should have_content "Robert Johnson"
       should have_content "true"

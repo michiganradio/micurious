@@ -1,35 +1,36 @@
 <%= form_for(@question, :url => url) do |f| %>
   <% if @question.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+    <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
 
-      <ul>
-      <% @question.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <ul>
+    <% @question.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
-  <fieldset>
-    <div class="field col-lg-7">
-      <%= f.text_area :display_text, placeholder: "Enter your question here", class: "form-control"%>
+<fieldset>
+  <div class="field col-lg-7">
+    <%= f.text_area :display_text, placeholder: "Enter your question here", class: "form-control"%>
+  </div>
+  <div class="field col-lg-5">
+    <%= f.label :category, "Add a category to make it easier to find:", class: "pull-right" %>
+    <div class="categories-group">
+      <% @categories.each do |category| %>
+        <div class="checkbox-group">
+          <%=  check_box_tag('question[category_ids][]', category.id,
+              @question.categories.include?(category),
+              { multiple: true, id: "question_category_id_#{category.id}" }) %> 
+          <%= f.label "category_id_#{category.id}", category.label%> 
+        </div>
+      <% end%>
     </div>
-    <div class="field col-lg-5">
-      <%= f.label :category, "Add a category to make it easier to find:", class: "pull-right" %>
-      <div class="categories-group">
-        <% @categories.each do |category| %>
-          <div class="checkbox-group">
-            <%=  check_box_tag('question[category_ids][]', category.id,
-                @question.categories.include?(category),
-                { multiple: true, id: "question_category_id_#{category.id}" }) %> 
-            <%= f.label "category_id_#{category.id}", category.label%> 
-          </div>
-        <% end%>
-      </div>
-    </div>
-  </fieldset>
-  <fieldset>
+  </div>
+</fieldset>
+<fieldset>
+  <h3>In case your question is chosen and we need to follow up, please give us a way to contact you.</h3><br>
     <div class="field col-lg-6">
       <%= f.label :name %>
       <div class="checkbox-group">
