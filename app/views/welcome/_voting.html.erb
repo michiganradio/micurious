@@ -16,7 +16,7 @@
       <% (@voting_round.questions.sort &sort_proc).each_with_index do |question, index| %>
         <div class="question", id="question<%= question.id.to_s %>">
           <div class="row">
-            <div class="col-lg-2 question-image">
+            <div class="question-image">
               <% if voted? %>
                 <h2 id="rank<%= question.id.to_s %>"><%= (index + 1).ordinalize %></h2>
               <% end %>
@@ -24,7 +24,7 @@
               <%= if !voted? then link_to "", vote_path(question_id: question.id, voting_round_id: @voting_round.id), method: :post, class: "vote", id: "vote"+question.id.to_s end %>
               <%= if voted? and last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted") end %>
             </div>  
-            <div class="col-lg-4 question-text">
+            <div class="question-text">
               <h2><%= question.display_text %></h2>
               <p class="author">Asked by <%=question.display_author%></p>
             </div>
