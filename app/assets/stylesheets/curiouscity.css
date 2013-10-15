@@ -173,6 +173,14 @@
   resize: none;
 }
 
+.submit-question-spec {
+  position: relative;
+  float: right;
+  bottom: 1.5em;
+  right: .3em;
+  font-style: italic;
+}
+
 ::-webkit-input-placeholder {
   font-style: italic;
   color: #CCC;
