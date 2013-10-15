@@ -13,9 +13,19 @@ module VotingHelper
 
   def sort_proc
     if voted?
-      Proc.new{ |q1, q2| VotingRoundQuestion.find_by(question_id: q2.id).vote_number <=> VotingRoundQuestion.find_by(question_id: q1.id).vote_number }
+      sort_by_most_votes_proc
     else
-      Proc.new{ |q1, q2| q1.id <=> q2.id }
+      sort_by_id_proc
     end
+  end
+
+  private
+
+  def sort_by_most_votes_proc
+    Proc.new{ |q1, q2| VotingRoundQuestion.find_by(question_id: q2.id).vote_number <=> VotingRoundQuestion.find_by(question_id: q1.id).vote_number }
+  end
+
+  def sort_by_id_proc
+    Proc.new{ |q1, q2| q1.id <=> q2.id }
   end
 end
