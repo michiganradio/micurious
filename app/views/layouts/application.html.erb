@@ -16,6 +16,7 @@
         </div>
         <% if @ask %>
           <div class="submit-wrap">
+            <%= image_tag("question_mark.png") %>
             <div class="carrot"></div>
             <div class="submit-question-container">
               <%= form_tag ask_question_path do %>

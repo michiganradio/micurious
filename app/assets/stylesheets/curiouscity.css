@@ -138,11 +138,22 @@
 }
 
 .submit-wrap {
-  margin: 1em;
   position: relative;
   width: 60%;
   float: left;
-  margin-left: 2em;
+  left: 100px;
+  margin: 1em;
+}
+
+.submit-wrap img {
+  position:absolute;
+  top: 5px;
+  left: -110px;
+  background-size: 100% 100%;
+  width: 100px;
+  height: 100px;
+  z-index: 100;
+  background: url(question_mark.png) no-repeat;
 }
 
 .submit-wrap .carrot {
@@ -169,7 +180,7 @@
 .submit-wrap .submit-question-btn {
   position: absolute;
   color: white;
-  float:right;
+  right: 10px;
   bottom:1em;
 }
 
