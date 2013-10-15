@@ -1,6 +1,7 @@
 class WelcomeController < ApplicationController
 
   def home
+    @ask = true
     @voting_round = VotingRound.last
   end
 
@@ -13,7 +14,7 @@ class WelcomeController < ApplicationController
       cookies.permanent[:question_id]=voting_round_question.question_id
       redirect_to root_path
     else
-      redirect_to root_path, :status => 409 
+      redirect_to root_path, :status => 409
     end
   end
 

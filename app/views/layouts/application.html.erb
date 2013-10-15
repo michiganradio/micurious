@@ -14,15 +14,17 @@
         <div class="col-sm-4">
           <%= image_tag("cc-logo.gif", class: "image-logo") %>
         </div>
-        <div class="submit-wrap">
-          <div class="carrot"></div>
-          <div class="submit-question-container">
-            <%= form_tag ask_question_path do %>
-              <%= text_area_tag :display_text, nil, placeholder: "What do you wonder about Chicago, the region or its people that you want WBEZ to investigate?", class: "submit-question-text" %>
-              <%= submit_tag "Ask", class: "btn submit-question-btn" %>
-            <% end %>
+        <% if @ask %>
+          <div class="submit-wrap">
+            <div class="carrot"></div>
+            <div class="submit-question-container">
+              <%= form_tag ask_question_path do %>
+                <%= text_area_tag :display_text, nil, placeholder: "What do you wonder about Chicago, the region or its people that you want WBEZ to investigate?", class: "submit-question-text" %>
+                <%= submit_tag "Ask", class: "btn submit-question-btn" %>
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
