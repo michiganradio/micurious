@@ -13,6 +13,7 @@
 
 .question
 {
+  background-image:url(bg_dots.png);
   width:100%;
   position:relative;
   padding-bottom: 3px;
@@ -20,18 +21,16 @@
 }
 
 .question .row {
-  background-color:white;
-  background-image:url(bg_dots.png);
-  border: 3px solid white;
-  border-top: 1px dotted #808184; 
-  -moz-transition: background .5s ease-in-out;
-  -webkit-transition: background .5s ease-in-out;
-  -o-transition: background .5s ease-in-out;
+  border: 2.5px solid white;
+  background-color: transparent;
+  -moz-transition: background-color .5s ease-in-out;
+  -webkit-transition: background-color .5s ease-in-out;
+  -o-transition: background-color .5s ease-in-out;
   height: 105px;
 }
 
 .question .row:hover {
-  background: #00bff3;
+  background-color: #00bff3;
 }
 
 .question h2 {
@@ -91,7 +90,7 @@
   height:50px;
   width:50px;
   overflow:hidden;
-  position:relative;
+  position:absolute;
   top: 25%;
   left: 80%;
   display: inline-block;
