@@ -56,7 +56,7 @@
 {
   float:left;
   height: 100%;
-  width: 30%;
+  width: 300px;
   position:relative;
   background:no-repeat;
   background-size: 100%;
@@ -67,13 +67,13 @@
 .question-image img
 {
     position: absolute;
-    width: 87%;
+    width: 85%;
 }
 
 .question-image h2
 {
   position: absolute;
-  right: 15%;
+  right: 20%;
   margin: 0;
   z-index: 1;
   color: white;
@@ -81,7 +81,6 @@
 
 .question-text {
   height: 100%;
-  width: 70%;
   overflow:hidden;
 }
 
@@ -107,7 +106,7 @@
   overflow:hidden;
   position:absolute;
   top: 25%;
-  left: 80%;
+  left: 230px;
   display: inline-block;
   cursor: pointer;
   background-image: url(votebutton.png);
@@ -127,7 +126,7 @@
     height: 50px;
     width: 50px;
     top: 25%;
-    left: 80%;
+    left: 230px;
     overflow: hidden;
     position: relative;
     display:inline-block;
