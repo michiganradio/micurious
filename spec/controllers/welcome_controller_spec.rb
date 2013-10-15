@@ -5,6 +5,7 @@ describe WelcomeController do
   describe "GET home" do
     it "gets the home page" do
       get :home, {}, {}
+      assigns(:ask).should eq true
     end
   end
 
@@ -22,26 +23,26 @@ describe WelcomeController do
       before do
         post :vote, :question_id => @question.id,
                     :voting_round_id => @voting_round.id
-      end  
-        
+      end
+
       it "asks voting round question to increment vote" do
         @voting_round_question.reload.vote_number.should eq 1
       end
 
       it "sets cookie with voting round id of vote" do
-        expect(cookies.permanent[:voting_round_id]).to eq @voting_round.id 
+        expect(cookies.permanent[:voting_round_id]).to eq @voting_round.id
       end
 
       it "sets cookie with question id of vote" do
-        expect(cookies.permanent[:question_id]).to eq @question.id 
+        expect(cookies.permanent[:question_id]).to eq @question.id
       end
-      
+
       describe "second vote" do
         before do
           post :vote, :question_id => @question.id,
                       :voting_round_id => @voting_round.id
-        end  
-        
+        end
+
         it "returns 409 error" do
           response.status.should be 409
         end
@@ -69,11 +70,11 @@ describe WelcomeController do
       end
 
       it "sets cookie with voting round id of vote" do
-        expect(cookies.permanent[:voting_round_id]).to eq @new_voting_round.id 
+        expect(cookies.permanent[:voting_round_id]).to eq @new_voting_round.id
       end
 
       it "sets cookie with question id of vote" do
-        expect(cookies.permanent[:question_id]).to eq @new_question.id 
+        expect(cookies.permanent[:question_id]).to eq @new_question.id
       end
     end
   end

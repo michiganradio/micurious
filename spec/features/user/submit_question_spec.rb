@@ -51,7 +51,7 @@ describe 'Ask a question' do
       should have_content "Hell"
       should have_content @category1.label
       should have_content @category2.label
-      should have_button "Confirm"
+      should have_button "SUBMIT"
     end
   end
 end
