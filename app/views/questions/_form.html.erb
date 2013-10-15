@@ -13,6 +13,7 @@
 
 <fieldset>
   <div class="field col-lg-7">
+    <%= f.label :your_question %>
     <%= f.text_area :display_text, placeholder: "Enter your question here", class: "form-control"%>
   </div>
   <div class="field col-lg-5">
@@ -54,6 +55,6 @@
     </div>
   </fieldset>
   <div class="actions">
-    <%= f.submit value: "NEXT", class: "btn"%>
+    <%= f.submit value: "NEXT", class: "btn pull-right"%>
   </div>
 <% end %>

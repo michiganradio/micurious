@@ -23,7 +23,8 @@
   <%= f.hidden_field :email, value: @question.email %>
   <%= f.hidden_field :neighbourhood, value: @question.neighbourhood %>
   <%= f.hidden_field :categories, value: @question.categories %>
-  <%= f.submit "SUBMIT", class: "btn" %>
+  <%= f.submit "SUBMIT", class: "btn pull-right" %>
 <% end %>
 <br>
-<%= button_to 'GO BACK', new_question_path(@question.attributes), class: "btn", method: "get" %>
+<br>
+<%= button_to 'GO BACK', new_question_path(@question.attributes), class: "btn pull-right", method: "get" %>
