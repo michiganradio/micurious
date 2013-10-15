@@ -1,3 +1,6 @@
+$nice_blue: #00bff3;
+$light_nice_blue: #3dcef6;
+
 body {
   background-color: #fff;
   color: #333;
@@ -41,13 +44,13 @@ div {
 
 .field_with_errors {
   padding: 2px;
-  background-color: red;
+  background-color: $nice_blue;
   display: table;
 }
 
 #error_explanation {
   width: 450px;
-  border: 2px solid red;
+  border: 2px solid $light_nice_blue;
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;
@@ -59,7 +62,7 @@ div {
     font-size: 12px;
     margin: -7px;
     margin-bottom: 0px;
-    background-color: #c00;
+    background-color: $nice_blue;
     color: #fff;
   }
   ul li {
