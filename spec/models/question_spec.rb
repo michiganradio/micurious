@@ -50,10 +50,31 @@ describe Question do
       it "is not valid with special characters" do
         @question.name = "$$%^&*((((dddd"
         @question.should_not be_valid
+        @question.errors[:name].first.should eq "only allows letters, spaces, periods, hyphens, apostrophes, and @ signs"
       end
 
       it "is valid with letters and spaces" do
         @question.name = "Ddddd D"
+        @question.should be_valid
+      end
+
+      it "is valid with period" do
+        @question.name = "abc."
+        @question.should be_valid
+      end
+
+      it "is valid with hyphens" do
+        @question.name = "abc-"
+        @question.should be_valid
+      end
+
+      it "is valid with apostrophes" do
+        @question.name = "abc'"
+        @question.should be_valid
+      end
+
+      it "is valid with @" do
+        @question.name = "abc@"
         @question.should be_valid
       end
     end
