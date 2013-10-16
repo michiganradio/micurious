@@ -9,7 +9,14 @@
 
 .image-logo {
   max-width: 100%;
+  height: 100px;
+  width: 400px;
 }
+
+.image-logo:hover {
+  background-color: white;
+}
+
 
 .question
 {
@@ -232,3 +239,4 @@
 .categories-group {
   clear: right;
 }
+
