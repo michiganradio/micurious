@@ -31,5 +31,5 @@ Curiouscity::Application.routes.draw do
     match '/signout',      to: 'sessions#destroy',  via: 'delete'
   end
 
-  match '/admin_main',   to: 'admin/users#main',       via: 'get'
+  match '/admin/main',   to: 'admin/users#main',       via: 'get'
 end
