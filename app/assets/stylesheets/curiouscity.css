@@ -240,3 +240,19 @@
   clear: right;
 }
 
+.navbar .row {
+  background-color: #8ed8f8;
+}
+
+.navbar .navbar-nav {
+  float: right;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: white;
+}
+
+.navbar-default .navbar-text {
+  color: white;
+}  
+

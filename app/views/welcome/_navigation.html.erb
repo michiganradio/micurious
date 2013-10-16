@@ -1,0 +1,23 @@
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+  <div class="row">
+    <ul class="nav navbar-nav">
+      <li><%= link_to "Up for Voting", root_url%></li>
+      <li class="dropdown">
+        <%= link_to("Answered & Investigating", root_url, id: "answered-investigating", class:"dropdown-toggle", data: {toggle: "dropdown"})%>
+        <ul class="dropdown-menu">
+            <% Category.all.each do |category| %>
+              <li><%= link_to(category.label, category.name)%></li>
+            <% end %>  
+          </ul>
+      <li class="dropdown">
+        <%= link_to("New and Unanswered", root_url, id: "new-unanswered", class:"dropdown-toggle", data: {toggle: "dropdown"})%>
+        <ul class="dropdown-menu">
+            <% Category.all.each do |category| %>
+              <li><%= link_to(category.label, category.name)%></li>
+            <% end %>  
+          </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
