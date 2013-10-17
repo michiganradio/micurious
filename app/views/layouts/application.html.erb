@@ -1,23 +1,19 @@
-
 <html>
 <head>
   <title>Curiouscity</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-  <div class="header-logo">
-  </div>
 </head>
   <body>
-    <div class="container">
+      <div class="header-logo">
+        <%= link_to image_tag("wbez.png", class: "header-logo"), "www.wbez.org" %>
+      </div>
       <div class="row">
-        <div class="col-md-4">
           <%= link_to image_tag("cc-logo.gif", class: "image-logo"), root_url %>
-        </div>
         <% if @ask %>
           <div class="modal"></div>
           <div class="submit-wrap">
-            <%= image_tag("question_mark.png") %>
             <div class="carrot"></div>
             <div class="submit-question-container">
               <%= form_tag ask_question_path, remote: true do %>
@@ -33,7 +29,6 @@
       <% end %>
       <%= yield %>
       <%= debug(params) if Rails.env.development? %>
-    </div>
   </body>
   <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">

@@ -4,23 +4,20 @@ $hot-pink: #ff0066;
 
 .header-logo {
   background-color: black;
-  background-image: url(wbez.png);
-  background-repeat: no-repeat;
-  height: 40px;
   background-position: left center;
-  border: 10px solid black;
+  border: 5px solid black;
 }
 
 .image-logo {
+  padding:10px;
+  padding-left: 20px;
   max-width: 100%;
-  height: 100px;
-  width: 400px;
+  float:right;
 }
 
 .image-logo:hover {
   background-color: white;
 }
-
 
 .question
 {
@@ -148,21 +145,21 @@ $hot-pink: #ff0066;
   color: green;
 }
 
+.row > a {
+  float: left;
+}
+
 .submit-wrap {
   position: relative;
-  width: 60%;
+  width: 55%;
   float: left;
-  left: 100px;
   margin: 1em;
 }
 
 .submit-wrap img {
   position:absolute;
   top: 5px;
-  left: -110px;
   background-size: 100% 100%;
-  width: 100px;
-  height: 100px;
   z-index: 100;
   background: url(question_mark.png) no-repeat;
 }
@@ -170,7 +167,6 @@ $hot-pink: #ff0066;
 .submit-wrap .carrot {
   position: absolute;
   top: 25px;
-  left: -17px;
   width: 20px;
   height: 24px;
   background: url(carrot.png) no-repeat;
@@ -179,13 +175,15 @@ $hot-pink: #ff0066;
 .submit-wrap .submit-question-container {
   background: #fffbfe;
   border: 3px solid $hot-pink !important;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: normal;
-  line-height: 28px;
+  line-height: 20px;
+  height: 90px;
   color: black;
   padding: 10px 15px;
   border-radius: 12px;
   -webkit-box-shadow: none !important;
+  margin-left: 17px;
 }
 
 .submit-wrap .submit-question-btn {
@@ -193,6 +191,11 @@ $hot-pink: #ff0066;
   color: white;
   right: 10px;
   bottom:1em;
+  background-color: darkgray;
+}
+
+.submit-question-btn:hover {
+  background-color: $nice-blue;
 }
 
 .submit-wrap .submit-question-text {
@@ -201,7 +204,6 @@ $hot-pink: #ff0066;
   overflow: hidden;
   resize: none;
   width: 90%;
-  height: 4.4em;
   outline: none;
 }
 
