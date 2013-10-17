@@ -116,21 +116,6 @@ describe Admin::VotingRoundsController do
     end
   end
 
-  describe "DELETE destroy" do
-    it "destroys the requested voting_round" do
-      voting_round = VotingRound.create! valid_attributes
-      expect {
-        delete :destroy, {:id => voting_round.to_param}, valid_session
-      }.to change(VotingRound, :count).by(-1)
-    end
-
-    it "redirects to the voting_rounds list" do
-      voting_round = VotingRound.create! valid_attributes
-      delete :destroy, {:id => voting_round.to_param}, valid_session
-      response.should redirect_to(admin_voting_rounds_url)
-    end
-  end
-
   describe "add question to voting round" do
     it "saves the voting round question" do
       voting_round = VotingRound.create! valid_attributes

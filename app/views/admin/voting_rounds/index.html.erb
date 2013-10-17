@@ -8,7 +8,6 @@
       <th>End time</th>
       <th></th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -19,7 +18,6 @@
         <td><%= voting_round.end_time %></td>
         <td><%= link_to 'Show', admin_voting_round_path(voting_round) %></td>
         <td><%= link_to 'Edit', edit_admin_voting_round_path(voting_round) %></td>
-        <td><%= link_to 'Destroy', admin_voting_round_path(voting_round), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

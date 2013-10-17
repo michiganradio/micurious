@@ -12,7 +12,7 @@ Curiouscity::Application.routes.draw do
       end
     end
     resources :voting_round_questions
-    resources :voting_rounds do
+    resources :voting_rounds, except: [:destroy] do
       member do
         post :add_question
       end

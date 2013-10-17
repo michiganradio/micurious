@@ -27,9 +27,5 @@ describe Admin::VotingRoundsController do
       put("/admin/voting_rounds/1").should route_to("admin/voting_rounds#update", :id => "1")
     end
 
-    it "routes to #destroy" do
-      delete("/admin/voting_rounds/1").should route_to("admin/voting_rounds#destroy", :id => "1")
-    end
-
   end
 end

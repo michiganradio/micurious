@@ -44,14 +44,6 @@ module Admin
       end
     end
 
-    # DELETE /voting_rounds/1
-    def destroy
-      @voting_round.destroy
-      respond_to do |format|
-        format.html { redirect_to admin_voting_rounds_url }
-      end
-    end
-
     def add_question
       VotingRoundQuestion.create(voting_round_id: VotingRound.find(params[:id]).id, question_id: params[:question_id])
       render :action => :show
