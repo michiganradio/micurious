@@ -16,7 +16,7 @@
       <%= f.label :original_text %><br>
       <%= f.text_area :original_text, :disabled => true, class:"submit-question-text form-control" %>
       </div>
-  <% end%>
+  <% end %>
   <div class="field">
     <%= f.label :display_text %><br>
     <%= f.text_area :display_text, class:"form-control" %>
@@ -37,7 +37,7 @@
     <%= f.label :neighborhood %><br>
     <%= f.text_field :neighbourhood %>
   </div>
-  <div >
+  <div>
     <%= f.label :category %><br>
     <% @categories.each do |category| %>
       <%=  check_box_tag 'question[category_ids][]', category.id, @question.categories.include?(category), { multiple: true } %> 
