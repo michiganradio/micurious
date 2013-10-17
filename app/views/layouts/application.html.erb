@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html>
 <head>
   <title>Curiouscity</title>
@@ -15,13 +15,14 @@
           <%= link_to image_tag("cc-logo.gif", class: "image-logo"), root_url %>
         </div>
         <% if @ask %>
+          <div class="modal"></div>
           <div class="submit-wrap">
             <%= image_tag("question_mark.png") %>
             <div class="carrot"></div>
             <div class="submit-question-container">
-              <%= form_tag ask_question_path do %>
+              <%= form_tag ask_question_path, remote: true do %>
                 <%= text_area_tag :display_text, nil, placeholder: "What do you wonder about Chicago, the region or its people that you want WBEZ to investigate?", class: "submit-question-text" %>
-                <%= submit_tag "Ask", class: "btn submit-question-btn" %>
+                <%= submit_tag "Ask", class: "btn submit-question-btn", remote: true%>
               <% end %>
             </div>
           </div>
@@ -34,4 +35,20 @@
       <%= debug(params) if Rails.env.development? %>
     </div>
   </body>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 </html>

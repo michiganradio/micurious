@@ -38,7 +38,10 @@ group :development, :test do
   gem "awesome_print", "~> 1.2.0"
   gem "js-test-driver-rails", "~> 0.4.3"
   gem "launchy"
+  gem "selenium-webdriver"
+  gem "database_cleaner", '~> 1.2.0'
 end
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

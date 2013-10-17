@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'features/features_spec_helper'
 
 describe "QuestionEditPage" do
   subject { page }

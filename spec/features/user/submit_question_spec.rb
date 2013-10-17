@@ -1,17 +1,20 @@
-require 'spec_helper'
+require 'features/features_spec_helper'
 
-describe 'Ask a question' do
+require 'selenium-webdriver'
+Capybara.current_driver = :selenium
+
+describe 'Ask a question', js: true do
   subject { page }
 
-  before { visit root_path }
+  before do
+    DatabaseCleaner.clean
+    visit root_path
+    find_by_id("display_text").set("Why is the sky blue?")
+    click_button "Ask"
+  end
 
   context "main page" do
     describe "valid question" do
-      before do
-        find_by_id("display_text").set("Why is the sky blue?")
-        click_button "Ask"
-      end
-
       it { should have_content "Submit your question to Curious City" }
       it { should have_field("question_name") }
       it { should have_field("question_email") }
@@ -26,8 +29,9 @@ describe 'Ask a question' do
     before do
       @category1 = FactoryGirl.create(:category)
       @category2 = FactoryGirl.create(:category, label: "MyString2")
-
-      visit new_question_path
+      visit root_path
+      find_by_id("display_text").set("Why is the sky blue?")
+      click_button "Ask"
 
       fill_in('question_display_text', with: "Why is the sky green?")
       fill_in('question_name', with: "Robert Johnson")

@@ -1,0 +1,6 @@
+$('document').ready(function() {
+$modal = $('.modal'),
+$('.modal .modal-header').html("Submit your question to Curious City");
+$('.modal .modal-body').html("<%= escape_javascript(render "new") %>");
+$modal.modal('show');
+});

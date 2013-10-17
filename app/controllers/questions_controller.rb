@@ -13,6 +13,9 @@ class QuestionsController < ApplicationController
     @question = Question.new
     @categories = Category.all
     @question.attributes = params.permit(:display_text, :name, :anonymous, :email, :neighbourhood, :category_ids)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create

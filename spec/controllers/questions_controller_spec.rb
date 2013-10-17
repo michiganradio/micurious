@@ -26,20 +26,20 @@ describe QuestionsController do
     end
   end
 
-  describe "GET new" do
+  describe "POST new" do
     it "assigns a new question as @question" do
-      get :new, {}
+      post :new, {:format => 'js'}
       assigns(:question).should be_a_new(Question)
     end
 
     it "assigns categories" do
       category = FactoryGirl.create(:category)
-      get :new, {}
+      post :new, {:format => 'js'}
       assigns(:categories).should == [category]
     end
 
     it "assigns passed params into the question" do
-      get :new, {:display_text => 'display', :name => 'name', :anonymous => 'true', :email => 'lkj@lkj.com'}
+      post :new, {:display_text => 'display', :name => 'name', :anonymous => 'true', :email => 'lkj@lkj.com', :format=> 'js'}
       question = assigns(:question)
       expect(question.display_text).to eq 'display'
       expect(question.name).to eq 'name'

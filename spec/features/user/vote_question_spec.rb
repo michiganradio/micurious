@@ -1,10 +1,9 @@
-require 'spec_helper'
-require 'active_support/core_ext/integer/inflections'
+require 'features/features_spec_helper'
 
 describe "Vote on a question" do
   subject { page }
 
-  before(:each) do
+  before do
     @question = FactoryGirl.create(:question)
     @question2 = FactoryGirl.create(:question, :other)
     @voting_round = FactoryGirl.create(:voting_round)
@@ -12,12 +11,12 @@ describe "Vote on a question" do
     @voting_round.add_question(@question2)
     visit root_path
   end
-    
+
   specify "have vote link" do
     should have_link('vote' + @question.id.to_s)
   end
 
-  context "after voting" do   
+  context "after voting" do
     before { click_link('vote' + @question.id.to_s) }
 
     specify "error when try to vote twice" do
@@ -75,7 +74,7 @@ describe "Vote on a question" do
       specify "ranks displayed" do
         should have_selector("h2#rank#{@question.id}", text: "2nd")
         should have_selector("h2#rank#{@question2.id}", text: "1st")
-      end 
+      end
     end
   end
 end
