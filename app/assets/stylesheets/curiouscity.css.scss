@@ -259,10 +259,15 @@ $hot-pink: #ff0066;
 .navbar .navbar-nav {
   float: right;
   height: $user-navigation-menu-height;
+  padding-right: 50px;
+
+  #up-for-voting-id {
+    border-left: 2px solid white;
+  }
 }
 
 .navbar-nav > li {
-  border-left: 2px solid white;
+  border-right: 2px solid white;
 }
 
 .navbar .navbar-nav>li>a{
@@ -301,4 +306,8 @@ $hot-pink: #ff0066;
   height: 10px;
   top: -15px;
   left: 45%;
+}
+
+.voting-round {
+  margin: 10px;
 }
