@@ -1,26 +1,26 @@
 require 'spec_helper'
 
 describe "Navigation" do
-  subject { page }
 
   before(:each) do
     FactoryGirl.create(:category, :name => "life-style", :label => "life style")
-    visit root_url
+    @home = Home.new
+    @home.load
   end
 
-  specify "has up for voting link" do
-    should have_link("Up for Voting")
+  it "has up for voting link" do
+    @home.up_for_voting_link.text.should == 'Up for Voting'
   end
 
-  specify "has Answered and Investigating link" do
-    should have_link("Answered & Investigating")
+  it "has Answered and Investigating link" do
+    @home.answered_and_investigating_link.text.should == "Answered & Investigating"
   end
 
-  specify "has New and Unanswered link" do
-    should have_link("New and Unanswered")
+  it "has New and Unanswered link" do
+    @home.new_and_unanswered_link.text.should == "New and Unanswered"
   end
 
-  specify "has categories dropdown" do
-    should have_selector("li.dropdown ul li a", :text => "life style", :visible => true)
+  it "has categories dropdown" do
+    @home.has_answered_and_investigation_categories_dropdown?
   end
 end
