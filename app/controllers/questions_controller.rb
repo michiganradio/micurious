@@ -31,8 +31,12 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
     @categories = Category.all
 
-    render action: 'new' unless @question.valid?
+
+    respond_to do |format|
+      format.js { render 'confirm.js.erb' }
+    end
   end
+
   private
     def question_params
       params.require(:question).permit(:original_text, :display_text, :name, :anonymous, :email, :email_confirmation, :neighbourhood, :category_ids => [])

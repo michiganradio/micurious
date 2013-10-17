@@ -1,0 +1,15 @@
+if (<%= @question.valid? %>) {
+  $('document').ready(function() {
+    $modal = $('#myModal'),
+      $('.modal-header').html("Double check your question looks good");
+      $('.modal-body').html("<%= escape_javascript(render "confirm") %>");
+    $modal.modal('show');
+  });
+} else {
+  $('document').ready(function() {
+    $modal = $('#myModal'),
+      $('.modal-header').html("Submit your question to Curious City");
+      $('.modal-body').html("<%= escape_javascript(render "new") %>");
+    $modal.modal('show');
+  });
+}
