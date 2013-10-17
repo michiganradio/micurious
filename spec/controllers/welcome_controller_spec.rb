@@ -4,8 +4,11 @@ describe WelcomeController do
 
   describe "GET home" do
     it "gets the home page" do
+      categories = [double(:category)]
+      Category.stub(:all).and_return(categories)
       get :home, {}, {}
       assigns(:ask).should eq true
+      assigns(:categories).should eq categories
     end
   end
 

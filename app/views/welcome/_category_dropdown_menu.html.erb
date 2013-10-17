@@ -1,0 +1,5 @@
+<ul class="dropdown-menu">
+  <% @categories.each do |category| %>
+    <li><%= link_to(category.label, category.name)%></li>
+  <% end %>  
+</ul>

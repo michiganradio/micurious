@@ -3,6 +3,7 @@ class WelcomeController < ApplicationController
   def home
     @ask = true
     @voting_round = VotingRound.last
+    @categories = Category.all
   end
 
   def vote

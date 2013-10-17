@@ -4,18 +4,10 @@
       <li><%= link_to "Up for Voting", root_url, id: "up-for-voting-id"%></li>
       <li class="dropdown" id="answered-investigating">
         <%= link_to("Answered & Investigating", root_url, id: "answered-investigating-id", class:"dropdown-toggle", data: {toggle: "dropdown"})%>
-        <ul class="dropdown-menu">
-            <% Category.all.each do |category| %>
-              <li><%= link_to(category.label, category.name)%></li>
-            <% end %>  
-          </ul>
+        <%= render "category_dropdown_menu" %>
       <li class="dropdown" id="new-unanswered">
         <%= link_to("New and Unanswered", root_url, id: "new-unanswered-id", class:"dropdown-toggle", data: {toggle: "dropdown"})%>
-        <ul class="dropdown-menu">
-            <% Category.all.each do |category| %>
-              <li><%= link_to(category.label, category.name)%></li>
-            <% end %>  
-          </ul>
+        <%= render "category_dropdown_menu" %>
       </li>
     </ul>
   </div>
