@@ -6,7 +6,7 @@ module Admin
 
     # GET /questions
     def index
-      @questions = Question.all
+      @questions = Question.order("created_at DESC")
     end
 
     # GET /questions/1

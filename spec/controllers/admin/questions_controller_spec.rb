@@ -27,9 +27,10 @@ describe Admin::QuestionsController do
 
     describe "GET index" do
       it "assigns all questions as @questions" do
-        question = FactoryGirl.create(:question)
+        questions = [double(:question), double(:question)]
+        Question.should_receive(:order).with("created_at DESC").and_return(questions)
         get :index, {}
-        assigns(:questions).should eq([question])
+        assigns(:questions).should eq(questions)
       end
     end
 
