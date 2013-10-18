@@ -12,9 +12,9 @@
   <% end %>
 
 <div class="row">
-  <div class="field col-lg-8">
+  <div class="field col-lg-12">
     <%= f.label :your_question, "Your question*" %>
-    <%= f.text_area :display_text, placeholder: "Enter your question here", class: "form-control submit-question-text"%>
+    <%= f.text_area :display_text, placeholder: "Enter your question here", rows: "4", maxlength: "140", class: "form-control submit-question-text", style: "resize: none"%>
     <div class="submit-question-spec">
       (140 character limit)
     </div>
@@ -43,7 +43,13 @@
     <%= f.label :name, "Name*" %>
   </div>
   <div class="field col-md-5">
-    <%= f.label :email, "Email* (your email address is never shared)" %>
+    <label for="question_email">
+      Email*
+      <span style="font-size:10">
+        (your email address is never shared)
+      </span>
+    </label>
+    <!--<%= f.label :email, "Email* (your email address is never shared)" %>-->
   </div>
 </div>
 
@@ -67,7 +73,16 @@
 
 <div class="row">
   <div class="field col-md-5">
-    <%= f.label :neighbourhood, "Neighborhood (e.g. Pilsen) or town (e.g. Berwyn)" %><br>
+    <label for="question_neighbourhood">
+      Neighborhood*
+      <span style="font-size:10">
+        (e.g. Pilsen)
+      </span>
+      or town
+      <span style="font-size:10">
+        (e.g. Berwyn)
+      </span>
+    </label>
   </div>
   <div class="field col-md-5">
     <br>
@@ -84,5 +99,5 @@
   </div>
 </div>
 
-<p>* required fields</p>
+<p style="font-size:10">* required fields</p>
 <% end %>
