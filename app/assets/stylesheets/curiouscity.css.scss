@@ -252,14 +252,26 @@ $hot-pink: #ff0066;
       border-left: 2px solid white;
     }
   
-    li {
+    & > li {
       border-right: 2px solid white;
-      
-      a {
-        color: white;
+
+      & > a {
         height: $user-navigation-menu-height;
         padding-top: 5px;
+        color: white;
+      }
+      
+      & > ul > a {
+        color: black;
+        height: $user-navigation-menu-height;
+        width: 100%;
+        padding-top: 5px;
         margin-bottom: 10px;
+
+        &:hover {
+          color: white;
+        }
+
       }
     }
   }
