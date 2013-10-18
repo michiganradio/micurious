@@ -259,6 +259,7 @@ $hot-pink: #ff0066;
         height: $user-navigation-menu-height;
         padding-top: 5px;
         color: white;
+        margin-bottom: 10px; 
       }
       
       & > ul > a {
@@ -266,7 +267,6 @@ $hot-pink: #ff0066;
         height: $user-navigation-menu-height;
         width: 100%;
         padding-top: 5px;
-        margin-bottom: 10px;
 
         &:hover {
           color: white;
