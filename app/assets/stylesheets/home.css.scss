@@ -1,0 +1,196 @@
+$user-navigation-menu-height: 30px;
+$nice-blue: #8ed8f8;
+$hot-pink: #ff0066; 
+
+.navbar {
+  height: $user-navigation-menu-height;
+  min-height: $user-navigation-menu-height;
+
+  .row {
+    background-color: $nice-blue;
+    height: $user-navigation-menu-height;
+  }
+
+  .navbar-nav {
+    float: right;
+    height: $user-navigation-menu-height;
+    padding-right: 50px;
+
+    #up-for-voting-id {
+      border-left: 2px solid white;
+    }
+  
+    & > li {
+      border-right: 2px solid white;
+
+      & > a {
+        height: $user-navigation-menu-height;
+        padding-top: 5px;
+        color: white;
+        margin-bottom: 10px; 
+      }
+      
+      & > ul > a {
+        color: black;
+        height: $user-navigation-menu-height;
+        width: 100%;
+        padding-top: 5px;
+
+        &:hover {
+          color: white;
+        }
+
+      }
+    }
+  }
+}
+
+.dropdown:hover .dropdown-toggle {
+  background-color: $hot-pink; 
+}
+
+#up-for-voting-id:hover {
+  background-color: $hot-pink;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  border: 3px solid $hot-pink;
+  width: 100%;
+  top: 40px;
+  border-radius: 5px;
+}
+
+.dropdown-menu > li > a {
+  width: 100%;
+}
+
+.dropdown-menu > li > a:hover {
+  background-image: none;
+  background-color: $nice-blue !important;
+}
+
+.dropdown .carrot {
+  position: relative;
+  background-image: url('carrot-mini-up.png');
+  width: 15px;
+  height: 10px;
+  top: -15px;
+  left: 45%;
+}
+
+.voting-round {
+  margin: 10px;
+}
+
+.question {
+  border: 2.5px solid white;
+  background-image:url(bg_dots.png);
+  width:100%;
+  position:relative;
+  padding-bottom: 3px;
+  margin-bottom: 3px;
+
+  .row {
+    border-top: 1px dotted #808184;
+    background-color: transparent;
+    -moz-transition: background-color .5s ease-in-out;
+    -webkit-transition: background-color .5s linear;
+    -o-transition: background-color .5s ease-in-out;
+    height: 100px;
+    width: 100%;
+    margin: 0px;
+
+    &:hover {
+      background-color: #00bff3;
+    }
+  }
+
+  h2 {
+    color: #231F20;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+
+    a {
+      color: #231F20;
+
+      &:hover {
+        color: #44C8F5;
+      }
+    }
+  }
+
+  .question-image {
+    float:left;
+    height: 100%;
+    width: 300px;
+    position:relative;
+    background:no-repeat;
+    background-size: 100%;
+    background-position: 0 50%;
+    overflow:hidden;
+
+    img {
+      position: absolute;
+      width: 85%;
+    }
+
+    h2 {
+      position: absolute;
+      right: 20%;
+      margin: 0;
+      color: white;
+    }
+  }
+
+  .question-text {
+    height: 100%;
+    overflow:hidden;
+
+    h2 {
+      height: 40px;
+      margin: 5px;
+    }
+
+    .author {
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      padding: 5px;
+      margin: 0px;
+    }
+  }
+}
+
+.vote {
+  float: left;
+  background-position: 0px 0;
+  height: 50px;
+  width: 50px;
+  overflow: hidden;
+  position: absolute;
+  top: 25%;
+  left: 230px;
+  display: inline-block;
+  cursor: pointer;
+  background-image: url(votebutton.png);
+
+  &:hover {
+    background-position:-51px 0;
+    background-color: transparent;
+  }
+}
+
+.voted {
+  background-position: -51px 0;
+  background-color: transparent;
+  height: 50px;
+  width: 50px;
+  top: 25%;
+  left: 230px;
+  overflow: hidden;
+  position: relative;
+  display:inline-block;
+  background-image: url(votebutton.png);
+}

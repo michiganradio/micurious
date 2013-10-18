@@ -1,3 +1,26 @@
 // Place all the styles related to the questions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.categories-group {
+  clear: right;
+
+  .checkbox-group {
+    float:left;
+    padding-left: 3px;
+    padding-right: 3px;
+
+    label {
+      font-weight: normal;
+    }
+  }
+}
+
+.submit-question-spec {
+  position: relative;
+  float: right;
+  bottom: 1.5em;
+  right: .3em;
+  font-style: italic;
+}
+
+
