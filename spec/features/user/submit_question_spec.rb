@@ -43,6 +43,11 @@ describe 'Ask a question', js: true do
         should have_selector("#modal-form-next")
       end
     end
+
+    it "is shown when root_path is visited with anchor '#ask'" do
+      visit root_path(anchor: "ask")
+      should have_content "Submit your question to Curious City"
+    end
   end
 
   describe "confirm question modal" do
