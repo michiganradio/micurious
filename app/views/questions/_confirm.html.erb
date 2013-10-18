@@ -1,5 +1,3 @@
-<h3>Double check your question looks good:</h3>
-
 <label>Question</label><br>
 <%= @question.display_text %><br><br>
 <label>Name</label><br>
@@ -23,8 +21,4 @@
   <%= f.hidden_field :email, value: @question.email %>
   <%= f.hidden_field :neighbourhood, value: @question.neighbourhood %>
   <%= f.hidden_field :categories, value: @question.categories %>
-  <%= f.submit "SUBMIT", class: "btn pull-left" %>
 <% end %>
-<br>
-<br>
-<%= button_to 'GO BACK', new_question_path(@question.attributes), class: "btn pull-right", method: "get", remote: true %>
