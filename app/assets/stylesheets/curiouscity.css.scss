@@ -293,6 +293,10 @@ $hot-pink: #ff0066;
   border-radius: 5px;
 }
 
+.dropdown-menu > li > a {
+  width: 100%;
+}
+
 .dropdown-menu > li > a:hover {
   background-image: none;
   background-color: $nice-blue !important;
