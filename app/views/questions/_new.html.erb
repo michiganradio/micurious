@@ -36,14 +36,22 @@
     </div>
   </div>
 </div>
-<br>
+
 <div class="row">
   <div class="field col-md-5">
+    <br>
     <%= f.label :name, "Name*" %>
-    <%= f.text_field :name, class: "form-control" %>
   </div>
   <div class="field col-md-5">
     <%= f.label :email, "Email* (your email address is never shared)" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="field col-md-5">
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="field col-md-5">
     <%= f.text_field :email, class: "form-control" %>
   </div>
 </div>
@@ -60,10 +68,18 @@
 <div class="row">
   <div class="field col-md-5">
     <%= f.label :neighbourhood, "Neighborhood (e.g. Pilsen) or town (e.g. Berwyn)" %><br>
+  </div>
+  <div class="field col-md-5">
+    <br>
+    <%= f.label "Confirm E-mail*" %><br>
+  </div>
+</div>
+
+<div class="row">
+  <div class="field col-md-5">
     <%= f.text_field :neighbourhood, class: "form-control" %>
   </div>
   <div class="field col-md-5">
-    <%= f.label "Confirm E-mail*" %><br>
     <%= f.text_field :email_confirmation, class: "form-control" %>
   </div>
 </div>
