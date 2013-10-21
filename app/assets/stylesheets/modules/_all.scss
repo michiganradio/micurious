@@ -6,3 +6,10 @@
 @function hot-pink-border() {
   @return 3px solid $hot-pink;
 }
+
+@mixin smooth-transitions() {
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s linear;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+}
