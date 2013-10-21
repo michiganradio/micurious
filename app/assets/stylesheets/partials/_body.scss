@@ -20,87 +20,61 @@
   font-style: italic;
 }
 
-.voting-round {
-  margin: 10px;
+.questions {
+  padding: $crowded-room;
 }
 
 .question {
-  border: 2.5px solid white;
-  background-image:url(bg_dots.png);
-  width:100%;
+  background-image: url(bg_dots.png);
+  position: relative;
+  height: 100px;
+  border-top: 1px dotted #808184;
+
+  &:hover {
+    color: $bold-blue;
+  }
+}
+
+.question-image {
+  float:left;
+  height: 100%;
+  width: 300px;
   position:relative;
-  padding-bottom: 3px;
-  margin-bottom: 3px;
+  background-position: 0 50%;
+  overflow:hidden;
 
-  .row {
-    border-top: 1px dotted #808184;
-    background-color: transparent;
-    -moz-transition: background-color .5s ease-in-out;
-    -webkit-transition: background-color .5s linear;
-    -o-transition: background-color .5s ease-in-out;
-    height: 100px;
-    width: 100%;
-    margin: 0px;
-
-    &:hover {
-      background-color: #00bff3;
-    }
+  img {
+    position: absolute;
+    width: 85%;
   }
 
   h2 {
-    color: #231F20;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 28px;
+    z-index: 1;
+    position: absolute;
+    right: 20%;
+    margin: 0;
+    color: white;
+  }
+}
 
-    a {
-      color: #231F20;
+.question-text {
+  overflow:hidden;
+  height: 40px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  margin: 5px;
 
-      &:hover {
-        color: #44C8F5;
-      }
-    }
+  .author {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    padding: 5px;
+    margin: 0px;
   }
 
-  .question-image {
-    float:left;
-    height: 100%;
-    width: 300px;
-    position:relative;
-    background:no-repeat;
-    background-size: 100%;
-    background-position: 0 50%;
-    overflow:hidden;
-
-    img {
-      position: absolute;
-      width: 85%;
-    }
-
-    h2 {
-      position: absolute;
-      right: 20%;
-      margin: 0;
-      color: white;
-    }
-  }
-
-  .question-text {
-    height: 100%;
-    overflow:hidden;
-
-    h2 {
-      height: 40px;
-      margin: 5px;
-    }
-
-    .author {
-      position: absolute;
-      bottom: 0px;
-      right: 0px;
-      padding: 5px;
-      margin: 0px;
-    }
+  &:hover {
+    color: $bold-blue;
   }
 }
 

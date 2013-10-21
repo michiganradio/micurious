@@ -11,10 +11,10 @@ $user-navigation-menu-height: 30px;
   padding:10px;
   padding-left: 20px;
   max-width: 100%;
-  float:right;
+  float:left;
 
   &:hover {
-  background-color: white;
+    background-color: white;
   }
 }
 
@@ -23,6 +23,7 @@ $user-navigation-menu-height: 30px;
   width: 55%;
   float: left;
   margin: 1em;
+  
   img {
     position: absolute;
     top: 5px;
@@ -51,9 +52,25 @@ $user-navigation-menu-height: 30px;
     border-radius: 12px;
     -webkit-box-shadow: none !important;
     margin-left: 17px;
+
+  ::-webkit-input-placeholder {
+    font-style: italic;
+    color: #CCC;
   }
-  
-  .submit-question-btn {
+
+  :-moz-placeholder {
+    font-style: italic;
+    color: #CCC;
+  }
+
+  :-ms-input-placeholder {
+    font-style: italic;
+    color: #CCC;
+  }
+
+}
+    
+.submit-question-btn {
     position: absolute;
     color: white;
     right: 10px;
@@ -63,8 +80,8 @@ $user-navigation-menu-height: 30px;
     &:hover {
       background-color: $nice-blue;
     }
-
   }
+
   .submit-question-text {
     border-style:none;
     background-color: #fffbfe;
@@ -75,60 +92,28 @@ $user-navigation-menu-height: 30px;
   }
 }
 
-::-webkit-input-placeholder {
-  font-style: italic;
-  color: #CCC;
-}
-
-:-moz-placeholder {
-  font-style: italic;
-  color: #CCC;
-}
-
-:-ms-input-placeholder {
-  font-style: italic;
-  color: #CCC;
-}
-
 .navbar {
   height: $user-navigation-menu-height;
   min-height: $user-navigation-menu-height;
+  background-color: $nice-blue;
+}
 
-  .row {
-    background-color: $nice-blue;
-    height: $user-navigation-menu-height;
+.navbar-nav {
+  float: right;
+  padding-right: 50px;
+
+  #up-for-voting-id {
+    border-left: 2px solid white;
   }
 
-  .navbar-nav {
-    float: right;
-    height: $user-navigation-menu-height;
-    padding-right: 50px;
+  & > li {
+    border-right: 2px solid white;
 
-    #up-for-voting-id {
-      border-left: 2px solid white;
-    }
-  
-    & > li {
-      border-right: 2px solid white;
-
-      & > a {
-        height: $user-navigation-menu-height;
-        padding-top: 5px;
-        color: white;
-        margin-bottom: 10px; 
-      }
-      
-      & > ul > a {
-        color: black;
-        height: $user-navigation-menu-height;
-        width: 100%;
-        padding-top: 5px;
-
-        &:hover {
-          color: white;
-        }
-
-      }
+    & > a {
+      height: $user-navigation-menu-height;
+      padding: 5px 10px;
+      color: white;
+      margin-bottom: 10px; 
     }
   }
 }
@@ -144,18 +129,11 @@ $user-navigation-menu-height: 30px;
 .dropdown:hover .dropdown-menu {
   display: block;
   border: 3px solid $hot-pink;
-  width: 100%;
-  top: 40px;
   border-radius: 5px;
 }
 
-.dropdown-menu > li > a {
-  width: 100%;
-}
-
 .dropdown-menu > li > a:hover {
-  background-image: none;
-  background-color: $nice-blue !important;
+  background-color: $nice-blue; 
 }
 
 .dropdown .carrot {

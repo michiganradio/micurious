@@ -12,10 +12,10 @@
       </div>
     </div>
   </div>
-    <div id="questions">
+    <div class="questions">
       <% (@voting_round.questions.sort &sort_proc).each_with_index do |question, index| %>
-        <div class="question", id="question<%= question.id.to_s %>">
-          <div class="row">
+        <div class="row">
+          <div class="question", id="question<%= question.id.to_s %>">
             <div class="question-image">
               <% if voted? %>
                 <h2 class = "rank" id="rank<%= question.id.to_s %>"><%= (index + 1).ordinalize %></h2>
@@ -25,7 +25,7 @@
               <%= if voted? and last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted") end %>
             </div>  
             <div class="question-text">
-              <h2><%= question.display_text %></h2>
+              <%= question.display_text %>
               <p class="author">Asked by <%=question.display_author%></p>
             </div>
           </div>
