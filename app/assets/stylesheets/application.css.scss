@@ -1,3 +1,5 @@
+@import "vendor/bootstrap.min.css";
+@import "partials/*";
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -12,22 +14,8 @@
  *= require_tree .
  */
 
-$nice-blue: #8ed8f8;
-$hot-pink: #ff0066; 
-
-.alert-notice {
-  color: green;
-}
-
 .row a {
   float: left;
-}
-
-
-.header-logo {
-  background-color: black;
-  background-position: left center;
-  border: 5px solid black;
 }
 
 .image-logo {
