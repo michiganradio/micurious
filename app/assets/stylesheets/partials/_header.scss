@@ -1,26 +1,29 @@
 @import "base";
 $user-navigation-menu-height: 30px;
+$logo-size: 350px;
+$carrot-width: 20px;
+$navbar-height: $grid-unit*2;
 
 .header-logo {
   background: black left center;
-  border: 5px solid black;
+  border: $grid-unit/2 solid black;
+  border-left: 0px;
 }
 
 .image-logo {
-  float:left;
-  padding: $crowded-room;
+  float: left;
+  width: $logo-size;
+  padding: $grid-unit/2;
 }
 
 .submit-wrap {
   position: relative;
-  width: 55%;
-  float: left;
-  margin: $crowded-room;
+  padding: $grid-unit $grid-unit $grid-unit $logo-size;
   
   .carrot {
     position: absolute;
-    top: 30px;
-    @include set-size(20px, 24px);
+    top: 40%;
+    @include set-size($carrot-width, 24px);
     background: url(carrot.png) no-repeat;
   }
 
@@ -29,35 +32,18 @@ $user-navigation-menu-height: 30px;
     height: 90px;
     padding: $crowded-room;
     border-radius: 12px;
-    -webkit-box-shadow: none;
-    margin-left: 17px;
-
-    form {
-      height: 100%;
-    }
+    margin-left: $carrot-width - 3px;
   }
   
-  ::-webkit-input-placeholder {
-    font-style: italic;
-    color: #CCC;
   }
-
-  :-moz-placeholder {
-    font-style: italic;
-    color: #CCC;
-  }
-
-  :-ms-input-placeholder {
-    font-style: italic;
-    color: #CCC;
-  }
-}
     
+@include faded-placeholder();
+
 .submit-question-btn {
   position: absolute;
   color: white;
-  right: 0.5em;
-  bottom:0.5em;
+  right: $grid-unit * 1.5;
+  bottom: $grid-unit * 1.5;
   background-color: darkgray;
 
   &:hover {
@@ -77,26 +63,27 @@ $user-navigation-menu-height: 30px;
 }
 
 .navbar {
-  height: $user-navigation-menu-height;
-  min-height: $user-navigation-menu-height;
+  height: $navbar-height;
+  min-height: $navbar-height;
   background-color: $nice-blue;
+  border: 0;
+  margin: 0;
 }
 
 .navbar-nav {
   float: right;
-  padding-right: 50px;
-  margin: 0;
 
   #up-for-voting-id {
     border-left: 2px solid white;
   }
 
   & > li > a {
+    display: inline-block;
     border-right: 2px solid white;
-    height: $user-navigation-menu-height;
-    padding: 5px 10px;
+    height: $navbar-height;
+    padding: $grid-unit/3 $grid-unit; //5px 10px;
     color: white;
-    margin-bottom: 10px; 
+    margin-bottom: $grid-unit/2;
   }
 }
 
@@ -109,9 +96,10 @@ $user-navigation-menu-height: 30px;
 }
 
 .dropdown:hover .dropdown-menu {
-  display: block;
+  display: inline-block;
   border: hot-pink-border();
   border-radius: 5px;
+  width: 100%;
 }
 
 .dropdown-menu > li > a:hover {
@@ -126,5 +114,3 @@ $user-navigation-menu-height: 30px;
   top: -15px;
   left: 45%;
 }
-
-

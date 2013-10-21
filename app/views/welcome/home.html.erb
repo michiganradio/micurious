@@ -3,6 +3,7 @@
 </head>
 
 <body>
+  <div class="container">
   <script>      
     $( document ).ready(function() {
       if(window.location.hash == '#ask') {
@@ -12,5 +13,8 @@
     });
   </script>
   <%= render "navigation" %>
+  <div class="container-padding">
   <%= render "voting" %>
+</div>
+</div>
 </body>

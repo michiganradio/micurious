@@ -1,16 +1,18 @@
 <html>
 <head>
-  <title>Curiouscity</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+    <title>Curiouscity</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
 </head>
-  <body>
-      <div class="header-logo">
-        <%= link_to image_tag("wbez.png", class: "header-logo"), "http://www.wbez.org" %>
-      </div>
+<body>
+  <div class="container">
+    <div class="header-logo">
+      <%= link_to image_tag("wbez.png", class: "header-logo container-padding"), "http://www.wbez.org" %>
+    </div>
+    <div class="container-padding">
       <div class="row">
-          <%= link_to image_tag("cc-logo.gif", class: "image-logo"), root_url %>
+        <%= link_to image_tag("cc-logo.gif", class: "image-logo"), root_url, :class=> "image-logo" %>
         <% if @ask %>
           <div class="modal"></div>
           <div class="submit-wrap">
@@ -24,22 +26,25 @@
           </div>
         <% end %>
       </div>
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-      <% end %>
-      <%= yield %>
-      <%= debug(params) if Rails.env.development? %>
-  </body>
-  <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-        </div>
-        <div class="modal-body">
-        </div>
-        <div class="modal-footer">
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+    </div>
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+    <%= yield %>
+    <%= debug(params) if Rails.env.development? %>
+    </div>
+  </div>
+</body>
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </html>

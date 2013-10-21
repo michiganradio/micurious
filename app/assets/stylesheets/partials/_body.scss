@@ -1,10 +1,11 @@
+$voting-round-image-width: $grid-unit * 20;
+
 .categories-group {
   clear: right;
 
   .checkbox-group {
     float:left;
-    padding-left: 3px;
-    padding-right: 3px;
+    padding: 0 3px;
 
     label {
       font-weight: normal;
@@ -13,13 +14,14 @@
 }
 
 .questions {
-  padding: $crowded-room;
+  padding: $grid-unit;
+  padding-top: $grid-unit/2;
 }
 
 .question {
   background-image: url(bg_dots.png);
   position: relative;
-  height: 100px;
+  height: $grid-unit * 8;
   border-top: 1px dotted darkgray;
   @include smooth-transitions();
 
@@ -31,20 +33,20 @@
 .question-image {
   float: left;
   height: 100%;
-  width: 300px;
+  width: $voting-round-image-width + $grid-unit * 3;
   position:relative;
   background-position: 0 50%;
   overflow: hidden;
 
   img {
     position: absolute;
-    width: 85%;
+    width: $voting-round-image-width;
   }
 
   h2 {
     z-index: 1;
     position: absolute;
-    right: 20%;
+    right: $grid-unit * 4;
     margin: 0;
     color: white;
   }
@@ -52,17 +54,16 @@
 
 .question-text {
   overflow:hidden;
-  height: 40px;
   font-weight: 400;
   font-size: 20px;
   line-height: 28px;
-  margin: 5px;
+  margin: $grid-unit/2;
 
   .author {
     position: absolute;
     bottom: 0px;
     right: 0px;
-    padding: $crowded-room;
+    padding: $grid-unit/2;
     margin: 0px;
   }
 }
@@ -74,7 +75,7 @@
   overflow: hidden;
   position: absolute;
   top: 25%;
-  left: 230px;
+  left: $voting-round-image-width - $grid-unit*2;
   display: inline-block;
   cursor: pointer;
   background-image: url(votebutton.png);
