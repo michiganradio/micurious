@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131010182247) do
+ActiveRecord::Schema.define(version: 20131021145606) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -62,6 +62,9 @@ ActiveRecord::Schema.define(version: 20131010182247) do
     t.datetime "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "label",      limit: 50
   end
+
+  add_index "voting_rounds", ["label"], name: "index_voting_rounds_on_label", using: :btree
 
 end

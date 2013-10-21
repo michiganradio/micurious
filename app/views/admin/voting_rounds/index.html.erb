@@ -4,6 +4,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Label</th>
       <th>Start time</th>
       <th>End time</th>
       <th></th>
@@ -14,6 +15,7 @@
   <tbody>
     <% @voting_rounds.each do |voting_round| %>
       <tr>
+        <td><%= voting_round.label %></td>
         <td><%= voting_round.start_time %></td>
         <td><%= voting_round.end_time %></td>
         <td><%= link_to 'Show', admin_voting_round_path(voting_round) %></td>

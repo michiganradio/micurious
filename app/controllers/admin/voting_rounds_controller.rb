@@ -45,7 +45,7 @@ module Admin
     end
 
     def add_question
-      VotingRoundQuestion.create(voting_round_id: VotingRound.find(params[:id]).id, question_id: params[:question_id])
+      VotingRoundQuestion.create(voting_round_id: params[:id], question_id: params[:question_id])
       render :action => :show
     end
 
@@ -57,7 +57,7 @@ module Admin
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def voting_round_params
-        params.require(:voting_round).permit(:start_time, :end_time, :question_id)
+        params.require(:voting_round).permit(:start_time, :end_time, :question_id, :label)
       end
   end
 end

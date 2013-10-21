@@ -10,6 +10,5 @@ describe "admin/voting_rounds/index" do
 
   it "renders a list of voting_rounds" do
     render
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
   end
 end
