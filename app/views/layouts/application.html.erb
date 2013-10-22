@@ -13,7 +13,6 @@
     <div class="container-padding">
         <%= link_to image_tag("cc-logo.gif", class: "image-logo"), root_url, :class=> "image-logo" %>
         <% if @ask %>
-          <div class="modal"></div>
           <div class="submit-wrap">
             <div class="carrot"></div>
             <div class="submit-question-container">
@@ -32,17 +31,6 @@
     <%= debug(params) if Rails.env.development? %>
     </div>
   </div>
+          <div id="ask-question-modal"></div>
 </body>
-<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-      </div>
-      <div class="modal-body">
-      </div>
-      <div class="modal-footer">
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 </html>

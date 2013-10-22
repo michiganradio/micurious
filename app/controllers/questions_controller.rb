@@ -33,7 +33,7 @@ class QuestionsController < ApplicationController
 
 
     respond_to do |format|
-      format.js { render 'confirm.js.erb' }
+      format.js { render @question.valid? ? 'confirm.js.erb' : 'new.js.erb' }
     end
   end
 

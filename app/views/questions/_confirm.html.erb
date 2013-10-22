@@ -1,24 +1,40 @@
-<label>Question</label><br>
-<%= @question.display_text %><br><br>
-<label>Name</label><br>
-<%= @question.name %><br><br>
-<label>Anonymous</label><br>
-<%= @question.anonymous %><br><br>
-<label>Email</label><br>
-<%= @question.email %><br><br>
-<label>Neighborhood</label><br>
-<%= @question.neighbourhood %><br><br>
-<label>Categories</label><br>
-<% @question.categories.each do |category| %>
-  <%= category.label %><br>
-<% end %>
-<br>
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+        <h4 class='modal-title'>Double check that your question looks good</h4>
+      </div>
+      <div class="modal-body">
+        <label>Question</label><br>
+        <%= @question.display_text %><br><br>
+        <label>Name</label><br>
+        <%= @question.name %><br><br>
+        <label>Anonymous</label><br>
+        <%= @question.anonymous %><br><br>
+        <label>Email</label><br>
+        <%= @question.email %><br><br>
+        <label>Neighborhood</label><br>
+        <%= @question.neighbourhood %><br><br>
+        <label>Categories</label><br>
+        <% @question.categories.each do |category| %>
+          <%= category.label %><br>
+        <% end %>
+        <br>
 
-<%= form_for(@question) do |f| %>
-  <%= f.hidden_field :display_text, value: @question.display_text %>
-  <%= f.hidden_field :name, value: @question.name %>
-  <%= f.hidden_field :anonymous, value: @question.anonymous %>
-  <%= f.hidden_field :email, value: @question.email %>
-  <%= f.hidden_field :neighbourhood, value: @question.neighbourhood %>
-  <%= f.hidden_field :categories, value: @question.categories %>
-<% end %>
+        <%= form_for(@question) do |f| %>
+          <%= f.hidden_field :display_text, value: @question.display_text %>
+          <%= f.hidden_field :name, value: @question.name %>
+          <%= f.hidden_field :anonymous, value: @question.anonymous %>
+          <%= f.hidden_field :email, value: @question.email %>
+          <%= f.hidden_field :neighbourhood, value: @question.neighbourhood %>
+          <%= f.hidden_field :categories, value: @question.categories %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <%= button_to 'GO BACK', new_question_path(@question.attributes), id: 'modal-form-back',  class: 'btn', method: 'get', remote: true %>
+        <a id='modal-form-submit' class='btn btn-primary inline' href='#'>SUBMIT</a>
+      </div>
+    </div>
+  </div>
+</div>

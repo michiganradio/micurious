@@ -1,21 +1,9 @@
-if (<%= @question.valid? %>) {
-  $('document').ready(function() {
-    $('.modal-header').html("<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button> \
-                            <h4 class='modal-title'>Double check that your question looks good</h4>");
-    $('.modal-body').html("<%= escape_javascript(render "confirm") %>");
-    $('.modal-footer').html("<%= escape_javascript(button_to 'GO BACK', new_question_path(@question.attributes), class: 'btn', id: 'modal-form-back', method: 'get', remote: true) %> \
-                            <a id='modal-form-submit' class='btn btn-primary inline' href='#'>SUBMIT</a>");
-
-    $('#modal-form-submit').on('click', function(e){
-      e.preventDefault();
-      $('#new_question').submit();
-    });
-
-    $('#myModal').modal('show');
+$('document').ready(function() {
+  $('.modal-backdrop').remove();
+  $('#ask-question-modal').html("<%= escape_javascript(render "confirm") %>");
+  $('#modal-form-submit').on('click', function(e){
+    e.preventDefault();
+    $('#new_question').submit();
   });
-} else {
-  $('document').ready(function() {
-    $('.modal-body').html("<%= escape_javascript(render "new") %>");
-    $('#myModal').modal('show');
-  });
-}
+  $('#myModal').modal('show');
+});

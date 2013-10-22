@@ -1,14 +1,10 @@
 $('document').ready(function() {
-  $('.modal-header').html("<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button> \
-                           <h4 class='modal-title'>Submit your question to Curious City</h4>");
-  $('.modal-body').html("<%= escape_javascript(render "new") %>");
-  $('.modal-footer').html("<a id='modal-form-next' class='btn btn-primary' href='#'>NEXT</a>");
-
+  $('.modal-backdrop').remove();
+  $('#ask-question-modal').html("<%= escape_javascript(render('new')) %>");
   $('#modal-form-next').on('click', function(e){
     e.preventDefault();
     $('#new_question').submit();
   });
-
   $('#myModal').modal('show');
 });
 

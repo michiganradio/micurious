@@ -62,22 +62,26 @@ describe QuestionsController do
   describe "POST confirm" do
     describe "with valid params" do
       it "assigns the new question as @question" do
+        Question.any_instance.stub(:valid?).and_return(true)
         post :confirm, question: valid_attributes, format: 'js'
         assigns(:question).should be_a_new(Question)
+      end
+      it "renders the 'confirm' template" do
+        Question.any_instance.stub(:valid?).and_return(true)
+        post :confirm, question: { "original_text" => "invalid value" }, format: 'js'
+        response.should render_template("confirm.js.erb")
       end
     end
     describe "with invalid params" do
       it "assigns a newly created but unsaved question as @question" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Question.any_instance.stub(:save).and_return(false)
+        Question.any_instance.stub(:valid?).and_return(false)
         post :confirm, question: { "original_text" => "invalid value" }, format: 'js'
         assigns(:question).should be_a_new(Question)
       end
-      it "renders the 'confirm' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Question.any_instance.stub(:save).and_return(false)
+      it "renders the 'new' template" do
+        Question.any_instance.stub(:valid?).and_return(false)
         post :confirm, question: { "original_text" => "invalid value" }, format: 'js'
-        response.should render_template("confirm.js.erb")
+        response.should render_template("new.js.erb")
       end
     end
   end
