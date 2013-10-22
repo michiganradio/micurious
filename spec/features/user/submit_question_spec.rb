@@ -3,40 +3,22 @@ require 'features/features_spec_helper'
 describe 'Ask a question', js: true do
   subject { page }
 
-  before do
-    DatabaseCleaner.clean
-    visit root_path
-    find_by_id("display_text").set("Why is the sky blue?")
-    click_button "Ask"
-  end
-
   describe "new question modal" do
+    before do
+      visit root_path
+      find_by_id("display_text").set("Why is the sky blue?")
+      click_button "Ask"
+    end
+
     it "has title" do
       within('#myModal') do
         should have_content "Submit your question to Curious City"
       end
     end
 
-    it "has question fields" do
-      within('#myModal') do
-        should have_field("question_display_text")
-        should have_field("question_name")
-        should have_field("question_email")
-        should have_field("question_email_confirmation")
-        should have_field("question_neighbourhood")
-        should have_unchecked_field("question_anonymous")
-      end
-    end
-
     it "prepopulates display text field" do
       within('#myModal') do
         find_by_id("question_display_text").should have_content "Why is the sky blue?"
-      end
-    end
-
-    it "has next button" do
-      within('#myModal') do
-        should have_selector("#modal-form-next")
       end
     end
 
