@@ -17,7 +17,7 @@ describe "Navigation" do
   end
 
   it "has New and Unanswered link" do
-    @home.new_and_unanswered_link.text.should == "New and Unanswered"
+    @home.new_and_unanswered_link.text.should == "New & Unanswered"
   end
 
   it "has categories dropdown" do
