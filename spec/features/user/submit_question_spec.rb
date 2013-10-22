@@ -64,6 +64,11 @@ describe 'Ask a question', js: true do
       @confirm_question_modal.modal_form_submit.click
       @question_received_modal = @home.question_received_modal
       @question_received_modal.title.text.should == "Thanks for submitting your question!"
+      @question_received_modal.archive_link.text.should == "new + unanswered archive"
+      @question_received_modal.public_vote_link.text.should =="public vote"
+      @question_received_modal.online_link.text.should =="online"
+      @question_received_modal.wbez_link.text.should =="WBEZ 91.5 FM"
+
     end
   end
 end
