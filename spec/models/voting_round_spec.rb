@@ -1,6 +1,16 @@
 require 'spec_helper'
 
 describe VotingRound do
+  describe "after save" do
+    context "label is empty" do
+      it "creates default label" do
+        voting_round = VotingRound.new
+        voting_round.stub(:id).and_return(1)
+        voting_round.should_receive(:update_attributes).with(label: "Voting Round " + voting_round.id.to_s)
+        voting_round.save
+      end
+    end
+  end
 
   context "voting round question" do
     context "add_question" do
@@ -20,5 +30,5 @@ describe VotingRound do
         voting_round.voting_round_questions.size.should == 1
       end
     end
-  end    
+  end
 end
