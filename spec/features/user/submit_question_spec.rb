@@ -1,8 +1,4 @@
 require 'features/features_spec_helper'
-require 'capybara/rails'
-
-require 'selenium-webdriver'
-Capybara.current_driver = :selenium
 
 describe 'Ask a question', js: true do
   subject { page }
