@@ -12,6 +12,9 @@ describe Admin::QuestionsController do
   let(:categories) { [FactoryGirl.create(:category),
                       FactoryGirl.create(:category)]}
 
+  let(:voting_rounds) { [FactoryGirl.create(:voting_round),
+                      FactoryGirl.create(:voting_round)]}
+
   context "not signed in" do
     describe "GET index" do
       it "redirects to sign in page" do
@@ -66,6 +69,12 @@ describe Admin::QuestionsController do
         get :edit, {:id => question.to_param}
         assigns(:categories).should == categories
       end
+
+      it "assigns voting rounds" do
+        question = FactoryGirl.create(:question)
+        get :edit, {:id => question.to_param}
+        assigns(:voting_rounds).should == voting_rounds
+      end
     end
 
     describe "POST create" do
@@ -107,20 +116,21 @@ describe Admin::QuestionsController do
 
     describe "POST add_question_to_voting_round" do
       before do
-        @voting_round = double(VotingRound)
+        @voting_round = VotingRound.new()
+        @voting_round.stub(:id).and_return(an_instance_of(String))
         @voting_round.stub(:add_question)
         @voting_round.stub(:save!)
 
         @question = Question.new(valid_attributes)
         @question.stub(:id).and_return(an_instance_of(String))
 
-        VotingRound.stub(:last).and_return(@voting_round)
+        VotingRound.stub(:find).with(@voting_round.id).and_return(@voting_round)
         Question.stub(:find).with(@question.id).and_return(@question)
       end
 
       context "active question" do
         before do
-          put :add_question_to_voting_round, id: @question.id
+          put :add_question_to_voting_round, id: @question.id, voting_round_id: @voting_round.id
         end
 
         it "render 'index' template" do
@@ -130,7 +140,7 @@ describe Admin::QuestionsController do
         it "create a voting_round_question" do
           @voting_round.should_receive(:add_question).with(@question)
           @voting_round.should_receive(:save!)
-          put :add_question_to_voting_round, id: @question.id
+          put :add_question_to_voting_round, id: @question.id, voting_round_id: @voting_round.id
         end
 
         it "flash success notice" do
@@ -145,7 +155,7 @@ describe Admin::QuestionsController do
       context "deactivated question" do
         before do
           @question.active = false
-          put :add_question_to_voting_round, id: @question.id
+          put :add_question_to_voting_round, id: @question.id, voting_round_id: @voting_round.id
         end
 
         it "render 'index' template" do
@@ -155,7 +165,8 @@ describe Admin::QuestionsController do
         it "not create a voting_round_question" do
           @voting_round.should_not_receive(:add_question).with(@question)
           @voting_round.should_not_receive(:save!)
-          put :add_question_to_voting_round, id: @question.id
+          put :add_question_to_voting_round, id: @question.id, voting_round_id: @voting_round.id
+
         end
 
         it "flash error notice" do

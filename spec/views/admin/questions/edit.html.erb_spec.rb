@@ -4,6 +4,7 @@ describe "admin/questions/edit" do
   before(:each) do
     @question = assign(:question, FactoryGirl.build(:question))
     @categories = assign(:categories, [FactoryGirl.build(:category)])
+    @voting_rounds = assign(:voting_rounds, [FactoryGirl.build(:voting_round)])
   end
 
   it "renders the edit question form" do

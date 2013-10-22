@@ -3,6 +3,7 @@ module Admin
     before_action :set_question, only: [:show, :edit, :update, :deactivate]
     before_action :signed_in_admin, only: [:index]
     before_action :load_categories, only: [:new, :edit]
+    before_action :load_voting_rounds, only: [:edit]
 
     # GET /questions
     def index
@@ -57,7 +58,7 @@ module Admin
     end
 
     def add_question_to_voting_round
-      voting_round = VotingRound.last
+      voting_round = VotingRound.find(params[:voting_round_id])
       raise "No voting round exists!" unless voting_round
       question = Question.find(params[:id])
 
@@ -90,6 +91,10 @@ module Admin
 
       def load_categories
         @categories = Category.all
+      end
+
+      def load_voting_rounds
+        @voting_rounds = VotingRound.all
       end
   end
 end

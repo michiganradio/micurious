@@ -6,6 +6,11 @@
 <form name="add_to_voting_round_form" method="post" action="add_question_to_voting_round">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" >
   <input type="hidden" value="<%= @question.id %>">
+  <select id="voting_round_id" name="voting_round_id">
+    <% @voting_rounds.each do |voting_round| %>
+      <option value="<%= voting_round.id %>"> <%= voting_round.label %> </option>
+    <% end %>
+  </select>
   <input type="submit" value="Add question to voting round">
 </form>
 
