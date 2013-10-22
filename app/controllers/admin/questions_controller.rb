@@ -60,9 +60,15 @@ module Admin
       voting_round = VotingRound.last
       raise "No voting round exists!" unless voting_round
       question = Question.find(params[:id])
-      voting_round.add_question(question)
-      voting_round.save!
-      flash.now[:notice] = 'Question was successfully added to the voting round'
+
+      if (question.active)
+        voting_round.add_question(question)
+        voting_round.save!
+        flash.now[:notice] = 'Question was successfully added to the voting round'
+      else
+        flash.now[:error] = 'Deactivated question can not be added to voting round'
+      end
+
       @questions = Question.all
       render 'index'
     end

@@ -106,11 +106,65 @@ describe Admin::QuestionsController do
     end
 
     describe "POST add_question_to_voting_round" do
-      it "creates a voting_round_question" do
-        voting_round = FactoryGirl.create(:voting_round)
-        question = Question.create! valid_attributes
-        put :add_question_to_voting_round, id: question.id
-        response.should render_template("index")
+      before do
+        @voting_round = double(VotingRound)
+        @voting_round.stub(:add_question)
+        @voting_round.stub(:save!)
+
+        @question = Question.new(valid_attributes)
+        @question.stub(:id).and_return(an_instance_of(String))
+
+        VotingRound.stub(:last).and_return(@voting_round)
+        Question.stub(:find).with(@question.id).and_return(@question)
+      end
+
+      context "active question" do
+        before do
+          put :add_question_to_voting_round, id: @question.id
+        end
+
+        it "render 'index' template" do
+          response.should render_template("index")
+        end
+
+        it "create a voting_round_question" do
+          @voting_round.should_receive(:add_question).with(@question)
+          @voting_round.should_receive(:save!)
+          put :add_question_to_voting_round, id: @question.id
+        end
+
+        it "flash success notice" do
+          flash.now[:notice].should eq "Question was successfully added to the voting round"
+        end
+
+        it "assigns all questions as @questions" do
+          assigns(:questions).should eq([])
+        end
+      end
+
+      context "deactivated question" do
+        before do
+          @question.active = false
+          put :add_question_to_voting_round, id: @question.id
+        end
+
+        it "render 'index' template" do
+          response.should render_template("index")
+        end
+
+        it "not create a voting_round_question" do
+          @voting_round.should_not_receive(:add_question).with(@question)
+          @voting_round.should_not_receive(:save!)
+          put :add_question_to_voting_round, id: @question.id
+        end
+
+        it "flash error notice" do
+          flash.now[:error].should eq "Deactivated question can not be added to voting round"
+        end
+
+        it "assigns all questions as @questions" do
+          assigns(:questions).should eq([])
+        end
       end
     end
 
