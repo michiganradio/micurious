@@ -6,10 +6,12 @@
         <h4 class='modal-title'>Thanks for submitting your question!</h4> 
       </div>
       <div class="modal-body">
-        <%= link_to "new + unanswered archive", "#", :id => 'archive-link' %> 
-        <%= link_to "public vote", "#", :id => 'public-vote-link' %> 
-        <%= link_to "online", "#", :id => 'online-link' %> 
-        <%= link_to "WBEZ 91.5 FM", "#", :id => 'wbez-link' %>
+        <h4>So what happens now?</h4>
+        <ul>
+          <li>Your question will now live in the <%= link_to "new + unanswered archive", "#", :id => 'archive-link' %>.</li> 
+          <li>We mine that archive and select questions for <%= link_to "public vote", "#", :id => 'public-vote-link' %>. If your question is selected we'll contact you via the email address you provided.</li> 
+          <li>Winning questions are then investigated by you and WBEZ reporters both <%= link_to "online", "#", :id => 'online-link' %> and on air at <%= link_to "WBEZ 91.5 FM", "#", :id => 'wbez-link' %>.</li>
+        </ul>
       </div>
     </div>
   </div>
