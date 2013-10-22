@@ -83,6 +83,8 @@ $navbar-height: $grid-unit*2;
     display: inline-block;
     border-right: 2px solid white;
     height: $navbar-height;
+    min-width: $grid-unit * 15;
+    text-align: center;
     padding: $grid-unit/3 $grid-unit; //5px 10px;
     color: white;
     margin-bottom: $grid-unit/2;
