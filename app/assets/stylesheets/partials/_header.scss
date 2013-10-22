@@ -14,11 +14,13 @@ $navbar-height: $grid-unit*2;
   float: left;
   width: $logo-size;
   padding: $grid-unit/2;
+  padding-left: 0px;
+  margin-left: -4px;
 }
 
 .submit-wrap {
   position: relative;
-  padding: $grid-unit $grid-unit $grid-unit $logo-size;
+  padding: $grid-unit 0 $grid-unit $logo-size;
   
   .carrot {
     position: absolute;

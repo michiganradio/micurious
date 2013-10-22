@@ -11,7 +11,6 @@
       <%= link_to image_tag("wbez.png", class: "header-logo container-padding"), "http://www.wbez.org" %>
     </div>
     <div class="container-padding">
-      <div class="row">
         <%= link_to image_tag("cc-logo.gif", class: "image-logo"), root_url, :class=> "image-logo" %>
         <% if @ask %>
           <div class="modal"></div>
@@ -25,7 +24,6 @@
             </div>
           </div>
         <% end %>
-      </div>
     </div>
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>"><%= value %></div>
