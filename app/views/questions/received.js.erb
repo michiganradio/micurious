@@ -1,0 +1,5 @@
+$('document').ready(function() {
+  $('.modal-backdrop').remove();
+  $('#ask-question-modal').html("<%= escape_javascript(render "received") %>");
+  $('#question-received-modal').modal('show');
+});

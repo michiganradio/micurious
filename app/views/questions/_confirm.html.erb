@@ -1,4 +1,4 @@
-<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="confirm-question-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -22,7 +22,7 @@
         <% end %>
         <br>
 
-        <%= form_for(@question) do |f| %>
+        <%= form_for(@question, :url => questions_path, :method => :post, :remote => true) do |f| %>
           <%= f.hidden_field :display_text, value: @question.display_text %>
           <%= f.hidden_field :name, value: @question.name %>
           <%= f.hidden_field :anonymous, value: @question.anonymous %>

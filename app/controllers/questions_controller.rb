@@ -19,10 +19,10 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to question_url(@question), notice: 'Question was successfully created.' }
+        format.js { render "received.js.erb" }
       else
         @categories = Category.all
-        format.html { render action: 'new' }
+        format.js { render "new.js.erb" }
       end
     end
   end

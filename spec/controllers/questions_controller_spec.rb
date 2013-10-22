@@ -42,21 +42,26 @@ describe QuestionsController do
 
   describe "POST create" do
     it "creates a new Question" do
-      expect {
-        post :create, {:question => valid_attributes}
-      }.to change(Question, :count).by(1)
+      Question.any_instance.should_receive(:save).and_return(true)
+      post :create, :question => valid_attributes, format: 'js'
     end
 
-    it "assigns a newly created question as @question" do
-      post :create, {:question => valid_attributes}
-      assigns(:question).should be_a(Question)
-      assigns(:question).should be_persisted
+    describe "with valid params" do
+      it "renders the received template" do
+        Question.any_instance.stub(:save).and_return(true)
+        post :create, :question => valid_attributes, format: 'js'
+        response.should render_template("received.js.erb")
+      end
     end
 
-    it "redirects to the created question" do
-      post :create, {:question => valid_attributes}
-      response.should redirect_to(question_url(Question.last))
+    describe "with invalid params" do
+      it "renders the new template" do
+        Question.any_instance.stub(:save).and_return(false)
+        post :create, :question => valid_attributes, format: 'js'
+        response.should render_template("new.js.erb")
+      end
     end
+
   end
 
   describe "POST confirm" do

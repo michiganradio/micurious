@@ -4,6 +4,7 @@ require 'capybara/rspec'
 require 'capybara/rails'
 require 'site_prism'
 
+$LOAD_PATH.unshift(Rails.root.join("spec/pages"))
 Dir[Rails.root.join("spec/pages/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
