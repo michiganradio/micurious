@@ -2,6 +2,22 @@ require 'features/features_spec_helper'
 
 describe "Manage voting round" do
   let(:voting_round) { FactoryGirl.create(:voting_round) }
+  let(:label_text) { "label text" }
+
+  it "create new voting" do
+    @new_admin_voting_round_page = Admin::NewVotingRound.new
+    @new_admin_voting_round_page.load
+    @new_admin_voting_round_page.label.set label_text
+    @new_admin_voting_round_page.create_button.click
+
+    @show_admin_voting_round_page = Admin::ShowVotingRound.new
+    @show_admin_voting_round_page.load(id: VotingRound.last.id)
+    @show_admin_voting_round_page.label.text.should == label_text
+
+    @admin_voting_rounds_page = Admin::VotingRounds.new
+    @admin_voting_rounds_page.load
+    @admin_voting_rounds_page.has_label? /voting-round#{VotingRound.last.id}.+#{Regexp.escape(label_text)}/
+  end
 
   it "edit voting round label" do
     @edit_admin_voting_round_page = Admin::EditVotingRound.new
