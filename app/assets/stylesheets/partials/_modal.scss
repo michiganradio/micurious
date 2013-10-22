@@ -1,0 +1,20 @@
+#ask-question-modal {
+  top: 50%;
+}
+
+#question-received-modal {
+  margin-top: 145px; //this is half the height of the modal. hard-coded. 
+}
+
+.modal-footer a {
+  color: white;
+  &:visited {
+    color: white;
+  }
+}
+.modal-body a {
+  color: $hot-pink;
+  &:visited {
+    color: $bold-blue;
+  }
+}
