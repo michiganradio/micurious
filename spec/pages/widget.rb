@@ -1,6 +1,6 @@
 class Widget < SitePrism::Page
   set_url "/widget"
-  elements :questions, "div .question"
+  elements :questions, "div .widget-question"
   element :widget_prompt, ".widget-prompt"
 
   def has_number_of_questions? size_to_expect

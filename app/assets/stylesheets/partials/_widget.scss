@@ -1,7 +1,7 @@
 $widget-width: 310px;
-$widget-height: 395px;
-$logo-height: 70px;
-$logo-width: 295px;
+$widget-height: 370px;
+$logo-height: 50px;
+$logo-width: 260px;
 
 .widget-container {
   max-height: $widget-height;
@@ -25,9 +25,14 @@ a {
   }
 }
 
+.border-container {
+  text-align: center;
+}
 .widget-image-logo {
   @include set-size($logo-width, $logo-height);
+  padding: 2px;
 }
+
 
 .questions-container {
   height: $widget-height - $logo-height; 
@@ -41,3 +46,11 @@ a {
   line-height: 30px;
 }
 
+.widget-question {
+  height: 95px;
+}
+
+.widget-container .vote {
+  top: auto;
+  z-index: 0;
+}

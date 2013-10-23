@@ -10,6 +10,7 @@ describe WidgetController do
       voting_round.should_receive(:questions).and_return(questions)
       get :widget
       assigns(:questions).should eq questions
+      assigns(:voting_round).should eq voting_round
     end
   end
 end

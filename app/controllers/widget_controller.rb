@@ -1,6 +1,7 @@
 class WidgetController < ApplicationController
   def widget
-    @questions = VotingRound.last.questions
+    @voting_round = VotingRound.last
+    @questions = @voting_round.questions[0..2]
     render layout: "widget"
   end
 end
