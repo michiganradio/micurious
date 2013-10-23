@@ -48,9 +48,12 @@ a {
 
 .widget-question {
   height: 95px;
+  background-image: url('bg_dots.png');
 }
 
+
 .widget-container .vote {
-  top: auto;
+  top: 10px;
+  position: relative;
   z-index: 0;
 }
