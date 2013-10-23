@@ -109,6 +109,7 @@ describe "QuestionEditPage" do
         end
 
         it "displays error message" do
+          @edit_admin_question_page.label_dropdown.select("label text")
           @edit_admin_question_page_deactivated.add_question_to_voting_round_button.click
           @edit_admin_question_page_deactivated.add_question_to_voting_round_error.text.should ==
             "Deactivated question can not be added to voting round"
