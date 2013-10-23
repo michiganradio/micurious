@@ -7,6 +7,14 @@ class VotingRound < ActiveRecord::Base
   validates :label, uniqueness: { case_sensitive: false }
   validate :only_one_live_status
 
+  module Status
+    New = "New"
+    Live = "Live"
+    Completed = "Completed"
+    Deactivated = "Deactivated"
+    All = [New, Live, Completed, Deactivated]
+  end
+
   def add_question(question)
     self.questions.push(question)
   end
@@ -18,7 +26,7 @@ class VotingRound < ActiveRecord::Base
   end
 
   def only_one_live_status
-    if self.status == "Live" and (VotingRound.where(status:"Live") - [self]).any?
+    if self.status == VotingRound::Status::Live and (VotingRound.where(status:VotingRound::Status::Live) - [self]).any?
       errors.add(:base, "Only one voting round can have live status")
     end
   end

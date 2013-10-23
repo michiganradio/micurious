@@ -25,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label :status %>
-    <%= f.select :status, [["New", "New"], ["Live", "Live"]]%>
+    <%= f.select :status, VotingRound::Status::All%>
   </div>
   <div class="actions">
     <%= f.submit %>

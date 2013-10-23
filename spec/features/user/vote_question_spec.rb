@@ -6,7 +6,7 @@ describe "Vote on a question" do
   before do
     @question = FactoryGirl.create(:question)
     @question2 = FactoryGirl.create(:question, :other)
-    @voting_round = FactoryGirl.create(:voting_round, status: "Live")
+    @voting_round = FactoryGirl.create(:voting_round, status: VotingRound::Status::Live)
     @voting_round.add_question(@question)
     @voting_round.add_question(@question2)
     visit root_path
@@ -38,10 +38,10 @@ describe "Vote on a question" do
     before do
       click_link('vote' + @question.id.to_s)
       # FIXME: change this step when the complete voting round is done
-      @voting_round.status = "Completed"
+      @voting_round.status = VotingRound::Status::Completed
       @voting_round.save!
       @new_question = FactoryGirl.create(:question, display_text: "hi")
-      new_voting_round = FactoryGirl.create(:voting_round, status: "Live")
+      new_voting_round = FactoryGirl.create(:voting_round, status: VotingRound::Status::Live)
       new_voting_round.add_question(@new_question)
       visit(current_path)
     end
