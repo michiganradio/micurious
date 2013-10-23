@@ -135,13 +135,22 @@ describe Admin::QuestionsController do
         end
       end
 
+      context "question already added to the voting round" do
+        it "flashes error" do
+          duplication_error = RuntimeError.new("some error")
+          @voting_round.stub(:add_question).and_raise(duplication_error)
+          put :add_question_to_voting_round, id: @question.id, voting_round_id:@voting_round.id
+          flash.now[:error].should eq "some error"
+
+        end
+      end
+
       context "no voting round exists" do
         it "raises error" do
           VotingRound.stub(:find).with(@voting_round.id).and_return(nil)
 
-          expect {
-            put :add_question_to_voting_round, id: @question.id, voting_round_id:@voting_round.id
-          }.to raise_error
+          put :add_question_to_voting_round, id: @question.id, voting_round_id:@voting_round.id
+          flash.now[:error].should eq "No voting round exists!"
         end
       end
 

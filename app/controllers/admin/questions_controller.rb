@@ -58,9 +58,7 @@ module Admin
     end
 
     def add_question_to_voting_round
-      unless params[:voting_round_id].present?
-        redirect_to edit_admin_question_url(@question), flash: {error:"Please select a voting round to add"}  and return
-      end
+      raise "Please select a voting round to add" unless params[:voting_round_id].present?
       voting_round = VotingRound.find(params[:voting_round_id])
       raise "No voting round exists!" unless voting_round
 
@@ -74,6 +72,8 @@ module Admin
 
       @questions = Question.all
       render 'index'
+    rescue Exception => error
+        redirect_to edit_admin_question_url(@question), flash: {error: error.message}
     end
 
     private
