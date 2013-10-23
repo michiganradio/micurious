@@ -1,0 +1,10 @@
+<div class="widget-prompt">
+Which would you rather know?    
+</div>
+<div class="questions-container">
+  <% @questions.each do |question| %>
+    <div class="question">
+      <%= question.display_text %>
+    </div>
+  <% end %>
+</div>

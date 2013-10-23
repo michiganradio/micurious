@@ -1,0 +1,43 @@
+$widget-width: 310px;
+$widget-height: 395px;
+$logo-height: 70px;
+$logo-width: 295px;
+
+.widget-container {
+  max-height: $widget-height;
+  max-width: $widget-width;
+  overflow: hidden;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.border-container{
+  border: 1px dotted black;
+  max-height: $widget-height - 10px;
+  overflow: hidden;
+}
+
+a {
+  color: white;
+
+  &:hover {
+    background-color: white;
+  }
+}
+
+.widget-image-logo {
+  @include set-size($logo-width, $logo-height);
+}
+
+.questions-container {
+  height: $widget-height - $logo-height; 
+}
+
+.widget-prompt{
+  font-weight: 500;
+  font-size: 18px;
+  color: $purple;
+  text-align: center;
+  line-height: 30px;
+}
+
