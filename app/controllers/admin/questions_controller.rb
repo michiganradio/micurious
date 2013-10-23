@@ -1,6 +1,6 @@
 module Admin
   class QuestionsController < ApplicationController
-    before_action :set_question, only: [:show, :edit, :update, :deactivate]
+    before_action :set_question, only: [:show, :edit, :update, :deactivate, :add_question_to_voting_round]
     before_action :signed_in_admin, only: [:index]
     before_action :load_categories, only: [:new, :edit]
     before_action :load_voting_rounds, only: [:edit]
@@ -58,12 +58,14 @@ module Admin
     end
 
     def add_question_to_voting_round
+      unless params[:voting_round_id].present?
+        redirect_to edit_admin_question_url(@question), flash: {error:"Please select a voting round to add"}  and return
+      end
       voting_round = VotingRound.find(params[:voting_round_id])
       raise "No voting round exists!" unless voting_round
-      question = Question.find(params[:id])
 
-      if (question.active)
-        voting_round.add_question(question)
+      if (@question.active)
+        voting_round.add_question(@question)
         voting_round.save!
         flash.now[:notice] = 'Question was successfully added to the voting round'
       else

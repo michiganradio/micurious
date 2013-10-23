@@ -3,17 +3,17 @@ require 'spec_helper'
 describe Admin::QuestionsController do
 
   let(:valid_attributes) {
-                           { :display_text => "display text",
-                             :name => "name",
-                             :email => "email@email.com",
-                             :email_confirmation => "email@email.com"
-                            }
-                          }
+    { :display_text => "display text",
+      :name => "name",
+      :email => "email@email.com",
+      :email_confirmation => "email@email.com"
+     }
+  }
   let(:categories) { [FactoryGirl.create(:category),
                       FactoryGirl.create(:category)]}
 
   let(:voting_rounds) { [FactoryGirl.create(:voting_round),
-                      FactoryGirl.create(:voting_round)]}
+                         FactoryGirl.create(:voting_round)]}
 
   context "not signed in" do
     describe "GET index" do
@@ -126,6 +126,23 @@ describe Admin::QuestionsController do
 
         VotingRound.stub(:find).with(@voting_round.id).and_return(@voting_round)
         Question.stub(:find).with(@question.id).and_return(@question)
+      end
+
+      context "no voting round selected" do
+        it "flashes error" do
+          put :add_question_to_voting_round, id: @question.id, voting_round_id:""
+          flash.now[:error].should eq "Please select a voting round to add"
+        end
+      end
+
+      context "no voting round exists" do
+        it "raises error" do
+          VotingRound.stub(:find).with(@voting_round.id).and_return(nil)
+
+          expect {
+            put :add_question_to_voting_round, id: @question.id, voting_round_id:@voting_round.id
+          }.to raise_error
+        end
       end
 
       context "active question" do
@@ -247,9 +264,9 @@ describe Admin::QuestionsController do
   end
 
   private
-    def sign_in(admin)
-      remember_token = User.new_remember_token
-      cookies[:remember_token] = remember_token
-      admin.update_attribute(:remember_token, User.encrypt(remember_token))
-    end
+  def sign_in(admin)
+    remember_token = User.new_remember_token
+    cookies[:remember_token] = remember_token
+    admin.update_attribute(:remember_token, User.encrypt(remember_token))
+  end
 end
