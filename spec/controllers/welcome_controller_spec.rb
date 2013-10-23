@@ -10,6 +10,14 @@ describe WelcomeController do
       assigns(:ask).should eq true
       assigns(:categories).should eq categories
     end
+
+    it "assigns active voting round" do
+      voting_round = double(:voting_round)
+      VotingRound.stub(:where).with(status: "Live").and_return([voting_round])
+      Category.stub(:all).and_return([])
+      get :home, {}, {}
+      assigns(:voting_round).should eq voting_round
+    end
   end
 
   describe "POST vote" do

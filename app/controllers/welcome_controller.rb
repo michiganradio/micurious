@@ -2,8 +2,8 @@ class WelcomeController < ApplicationController
 
   def home
     @ask = true
-    @voting_round = VotingRound.last
     @categories = Category.all
+    @voting_round = VotingRound.where(status: "Live").first
   end
 
   def vote

@@ -1,6 +1,7 @@
 require 'ask_question_section'
 require 'question_received_section'
 require 'confirm_question_section'
+require 'voting_round_section'
 
 class Home < SitePrism::Page
   set_url "/{#anchor}"
@@ -13,6 +14,7 @@ class Home < SitePrism::Page
   element :display_text, "#display_text"
   element :ask_button, "input[value='Ask']"
 
+  section :voting_round, VotingRoundSection, ".voting-round"
   section :ask_question_modal, AskQuestionSection, "#myModal"
   section :confirm_question_modal, ConfirmQuestionSection, "#confirm-question-modal"
   section :question_received_modal, QuestionReceivedSection, "#question-received-modal"

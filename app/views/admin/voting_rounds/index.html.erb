@@ -5,6 +5,7 @@
   <thead>
     <tr>
       <th>Label</th>
+      <th>Status</th>
       <th>Start time</th>
       <th>End time</th>
       <th></th>
@@ -17,7 +18,8 @@
       <tr id="voting-round<%= voting_round.id %>">
         <td class="label-display">
             <%= voting_round.label %>
-        </td>
+          </td>
+        <td><%= voting_round.status %></td>
         <td><%= voting_round.start_time %></td>
         <td><%= voting_round.end_time %></td>
         <td><%= link_to 'Show', admin_voting_round_path(voting_round) %></td>

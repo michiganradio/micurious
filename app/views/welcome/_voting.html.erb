@@ -1,17 +1,17 @@
-<div class="voting-round">
 <% if @voting_round %>
-  <div class="row">
-    <div class="col-lg-4">
-    </div>
-    <div class="col-lg-8 right-col">
-      <div class="super">
-        <h1>Which should we investigate next?</h1>
+  <div class="voting-round">
+    <div class="row">
+      <div class="col-lg-4">
       </div>
-      <div class="sub">
-        <h5>Select the question you’d most like answered.</h5>
+      <div class="col-lg-8 right-col">
+        <div class="super">
+          <h1>Which should we investigate next?</h1>
+        </div>
+        <div class="sub">
+          <h5>Select the question you’d most like answered.</h5>
+        </div>
       </div>
     </div>
-  </div>
     <div class="questions">
       <% (@voting_round.questions.sort &sort_proc).each_with_index do |question, index| %>
         <div class="row">
@@ -22,15 +22,15 @@
               <% end %>
               <img src="http://farm2.staticflickr.com/1437/1238664937_4d7dc8aace.jpg" alt="question image">
               <%= if !voted? then link_to "", vote_path(question_id: question.id, voting_round_id: @voting_round.id), method: :post, class: "vote", id: "vote"+question.id.to_s end %>
-              <%= if voted? and last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted") end %>
-            </div>  
-            <div class="question-text">
-              <%= question.display_text %>
-              <p class="author">Asked by <%=question.display_author%></p>
+                <%= if voted? and last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted") end %>
+                </div>  
+                <div class="question-text">
+                  <%= question.display_text %>
+                  <p class="author">Asked by <%=question.display_author%></p>
+                </div>
+              </div>
             </div>
-          </div>
+          <% end %>
         </div>
-      <% end %>
-    </div>
+      </div>
 <% end %>
-</div>

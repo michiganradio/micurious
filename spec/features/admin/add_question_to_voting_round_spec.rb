@@ -1,6 +1,6 @@
 require 'features/features_spec_helper'
 
-describe "Add questiont to voting round" do
+describe "Add question to voting round" do
   before do
     @question = FactoryGirl.create(:question)
     @voting_round = FactoryGirl.create(:voting_round)

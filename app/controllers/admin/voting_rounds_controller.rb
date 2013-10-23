@@ -57,7 +57,7 @@ module Admin
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def voting_round_params
-        params.require(:voting_round).permit(:start_time, :end_time, :question_id, :label)
+        params.require(:voting_round).permit(:start_time, :end_time, :question_id, :label, :status)
       end
   end
 end
