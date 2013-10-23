@@ -59,7 +59,7 @@ describe WelcomeController do
 
     describe "voting in new voting round" do
       before do
-        @new_voting_round = FactoryGirl.create(:voting_round, :other)
+        @new_voting_round = FactoryGirl.create(:voting_round)
         @new_question = FactoryGirl.create(:question, :other)
         @new_voting_round_question = FactoryGirl.create(:voting_round_question,
                                           question_id: @new_question.id,

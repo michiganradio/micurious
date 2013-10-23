@@ -38,7 +38,7 @@ describe "Vote on a question" do
     before do
       click_link('vote' + @question.id.to_s)
       @new_question = FactoryGirl.create(:question, display_text: "hi")
-      new_voting_round = FactoryGirl.create(:voting_round, :other)
+      new_voting_round = FactoryGirl.create(:voting_round)
       new_voting_round.add_question(@new_question)
       visit(current_path)
     end

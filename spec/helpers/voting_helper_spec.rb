@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe VotingHelper do
 
-  before(:each) do 
+  before do
     @question = FactoryGirl.create(:question)
     @voting_round = FactoryGirl.create(:voting_round)
   end
@@ -20,23 +20,22 @@ describe VotingHelper do
   end
 
   describe "#sort_proc" do
-    before do
+    before(:each) do
       @question2 = FactoryGirl.create(:question)
       @voting_round.add_question(@question)
       @voting_round.add_question(@question2)
-      VotingRoundQuestion.find_by(question_id: @question2.id).update_attributes(vote_number: 1) 
+      VotingRoundQuestion.find_by(question_id: @question2.id).update_attributes(vote_number: 1)
     end
-   
+
     context "if voted?" do
       specify "orders by greatest voting number" do
         cookies.permanent[:voting_round_id] = VotingRound.last.id
         expect(@voting_round.questions.sort &sort_proc).to eq [@question2, @question]
       end
-    end 
+    end
 
     context "if not voted?" do
       specify "orders by least id" do
-        FactoryGirl.create(:voting_round)
         expect(@voting_round.questions.sort &sort_proc).to eq [@question, @question2]
       end
     end

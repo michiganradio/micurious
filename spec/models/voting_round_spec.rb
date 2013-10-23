@@ -12,6 +12,8 @@ describe VotingRound do
     end
   end
 
+  it {should validate_uniqueness_of(:label).case_insensitive}
+
   context "voting round question" do
     context "add_question" do
       it "adds a new question to the voting round" do

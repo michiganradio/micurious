@@ -4,6 +4,8 @@ class VotingRound < ActiveRecord::Base
 
   after_save :add_default_label_if_empty
 
+  validates :label, uniqueness: { case_sensitive: false }
+
   def add_question(question)
     self.questions.push(question)
   end
