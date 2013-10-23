@@ -8,7 +8,7 @@ describe "Make voting round live" do
     expect(@home_page.has_voting_round?).to be_false
   end
 
-  it "shows the active voting round on the home page" do
+  it "shows the live voting round on the home page" do
     voting_round = FactoryGirl.create(:voting_round)
     @edit_voting_round_page = Admin::EditVotingRound.new
     @edit_voting_round_page.load(id: voting_round.id)
@@ -17,5 +17,15 @@ describe "Make voting round live" do
     @home_page = Home.new
     @home_page.load
     expect(@home_page.has_voting_round?).to be_true
+  end
+
+  it "does not allow multiple live voting rounds" do
+    live_voting_round = FactoryGirl.create(:voting_round, status: "Live")
+    voting_round = FactoryGirl.create(:voting_round)
+    @edit_voting_round_page = Admin::EditVotingRound.new
+    @edit_voting_round_page.load(id: voting_round.id)
+    @edit_voting_round_page.status_dropdown.select("Live")
+    @edit_voting_round_page.update_button.click
+    @edit_voting_round_page.body.should include "Only one voting round can have live status"
   end
 end

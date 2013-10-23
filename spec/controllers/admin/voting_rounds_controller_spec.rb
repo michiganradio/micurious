@@ -77,14 +77,14 @@ describe Admin::VotingRoundsController do
         new_attributes = { "start_time" => "2113-10-03 11:03:52", "label" => "new label text"}
         voting_round = VotingRound.new(id: 1)
         VotingRound.stub(:find).and_return(voting_round)
-        voting_round.should_receive(:update).with(new_attributes)
+        voting_round.should_receive(:update!).with(new_attributes)
         put :update, {:id => voting_round.to_param, :voting_round => new_attributes}, valid_session
       end
 
       it "redirects to the voting_round index" do
         voting_round = VotingRound.new(id: 1)
         VotingRound.stub(:find).and_return(voting_round)
-        voting_round.stub(:update).and_return(true)
+        voting_round.stub(:update!)
         put :update, {:id => voting_round.to_param, :voting_round => valid_attributes}, valid_session
         response.should redirect_to(admin_voting_rounds_url)
       end
@@ -95,7 +95,7 @@ describe Admin::VotingRoundsController do
         voting_round = VotingRound.new(id: 1)
         VotingRound.stub(:find).and_return(voting_round)
         # Trigger the behavior that occurs when invalid params are submitted
-        VotingRound.any_instance.stub(:update).and_return(false)
+        VotingRound.any_instance.stub(:update!).and_raise("Error")
         put :update, {:id => voting_round.to_param, :voting_round => { "start_time" => "invalid value" }}, valid_session
         assigns(:voting_round).should eq(voting_round)
       end
@@ -104,7 +104,7 @@ describe Admin::VotingRoundsController do
         voting_round = VotingRound.new(id: 1)
         VotingRound.stub(:find).and_return(voting_round)
         # Trigger the behavior that occurs when invalid params are submitted
-        VotingRound.any_instance.stub(:update).and_return(false)
+        VotingRound.any_instance.stub(:update!).and_raise("Error")
         put :update, {:id => voting_round.to_param, :voting_round => { "start_time" => "invalid value" }}, valid_session
         response.should render_template("edit")
       end

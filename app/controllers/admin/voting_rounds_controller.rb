@@ -35,13 +35,10 @@ module Admin
 
     # PATCH/PUT /voting_rounds/1
     def update
-      respond_to do |format|
-        if @voting_round.update(voting_round_params)
-          format.html { redirect_to admin_voting_rounds_url, notice: 'Voting round was successfully updated.' }
-        else
-          format.html { render action: 'edit' }
-        end
-      end
+      @voting_round.update!(voting_round_params)
+      redirect_to admin_voting_rounds_url, notice: 'Voting round was successfully updated.'
+    rescue
+      render action: 'edit'
     end
 
     def add_question

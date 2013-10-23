@@ -5,9 +5,8 @@ describe VotingRound do
     context "label is empty" do
       it "creates default label" do
         voting_round = VotingRound.new
-        voting_round.stub(:id).and_return(1)
-        voting_round.should_receive(:update_attributes).with(label: "Voting Round " + voting_round.id.to_s)
         voting_round.save
+        voting_round.reload.label.should == "Voting Round #{voting_round.id}"
       end
     end
   end
@@ -31,6 +30,18 @@ describe VotingRound do
         voting_round.reload.questions.size.should ==  1
         voting_round.voting_round_questions.size.should == 1
       end
+    end
+  end
+
+  context "validation" do
+    it "disallows two live voting rounds" do
+      FactoryGirl.create(:voting_round, status:"Live")
+      expect { FactoryGirl.create(:voting_round, status:"Live") }.to raise_error
+    end
+
+    it "only validates the status when the new status is live" do
+      FactoryGirl.create(:voting_round, status:"Live")
+      expect { FactoryGirl.create(:voting_round) }.not_to raise_error
     end
   end
 end
