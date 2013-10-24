@@ -31,12 +31,14 @@ describe QuestionsController do
     end
 
     it "assigns passed params into the question" do
-      post :new, {:display_text => 'display', :name => 'name', :anonymous => 'true', :email => 'lkj@lkj.com', :format=> 'js'}
+      post :new, {:display_text => 'display', :name => 'name', :anonymous => 'true',
+                  :email => 'lkj@lkj.com', :email_confirmation => 'confirm@lkj.com', :format=> 'js'}
       question = assigns(:question)
       expect(question.display_text).to eq 'display'
       expect(question.name).to eq 'name'
       expect(question.anonymous).to eq true
       expect(question.email).to eq 'lkj@lkj.com'
+      expect(question.email_confirmation).to eq 'confirm@lkj.com'
     end
   end
 

@@ -8,7 +8,8 @@ class QuestionsController < ApplicationController
   def new
     @question = Question.new
     @categories = Category.all
-    @question.attributes = params.permit(:display_text, :name, :anonymous, :email, :neighbourhood, :category_ids)
+    @question.attributes = params.permit(:display_text, :name, :anonymous,
+                                         :email, :email_confirmation, :neighbourhood, :category_ids)
     respond_to do |format|
       format.js
     end
