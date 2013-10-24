@@ -17,7 +17,7 @@ $logo-width: 260px;
   overflow: hidden;
 }
 
-a {
+.border-container a {
   color: white;
 
   &:hover {
@@ -33,12 +33,11 @@ a {
   padding: 2px;
 }
 
-
-.questions-container {
+.widget-container .questions-container {
   height: $widget-height - $logo-height; 
 }
 
-.widget-prompt{
+.widget-prompt {
   font-weight: 500;
   font-size: 18px;
   color: $purple;
