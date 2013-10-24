@@ -21,7 +21,6 @@ describe WelcomeController do
   end
 
   describe "POST vote" do
-
     context "vote success" do
       it "redirects to root path" do
         Voting.stub(:vote).and_return(true)
