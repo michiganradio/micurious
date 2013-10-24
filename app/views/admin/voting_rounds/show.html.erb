@@ -37,7 +37,9 @@
           <%= voting_round_question.vote_number %>
         </td>
         <td>
-          <%= link_to 'Remove', remove_question_admin_voting_round_path(@voting_round, question_id: voting_round_question.question.id), method: :post, data: { confirm: 'Are you sure?' } %>
+          <% if can_remove_question? %>
+            <%= link_to 'Remove', remove_question_admin_voting_round_path(@voting_round, question_id: voting_round_question.question.id), method: :post, data: { confirm: 'Are you sure?' } %>
+          <% end %>
         </td>
       </tr>
     <% end %>
