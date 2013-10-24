@@ -1,6 +1,8 @@
 <%= render 'admin/layouts/header' %>
 <h1>Listing questions</h1>
 
+
+<%= link_to 'New Question', new_admin_question_path %>
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -41,4 +43,3 @@
 
 <br>
 
-<%= link_to 'New Question', new_admin_question_path %>
