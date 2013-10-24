@@ -249,25 +249,42 @@ describe Admin::QuestionsController do
       end
     end
 
-    describe "DELETE deactive" do
-      it "marks the requested question inactive" do
-        question = Question.create! valid_attributes
-        expect {
-          delete :deactivate, {:id => question.to_param}
-        }.to change{Question.where(active: true).count}.by(-1)
+    describe "POST deactivate" do
+      context "success" do
+        it "marks the requested question inactive" do
+          question = Question.create! valid_attributes
+          expect {
+            post :deactivate, {:id => question.to_param}
+          }.to change{Question.where(active: true).count}.by(-1)
+        end
+
+        it "does not destroy the requested question" do
+          question = Question.create! valid_attributes
+          expect {
+            post :deactivate, {:id => question.to_param}
+          }.to_not change{Question.count}.by(-1)
+        end
+
+        it "redirects to the questions list" do
+          question = Question.create! valid_attributes
+          post :deactivate, {:id => question.to_param}
+          response.should redirect_to(admin_questions_url)
+        end
       end
 
-      it "does not destroy the requested question" do
-        question = Question.create! valid_attributes
-        expect {
-          delete :deactivate, {:id => question.to_param}
-        }.to_not change{Question.count}.by(-1)
-      end
+      context "question is in a voting round" do
+        context "voting round is new" do
+          it "can not deactivate question" do
+            question = FactoryGirl.create(:question)
+            voting_round = FactoryGirl.create(:voting_round, status: VotingRound::Status::New)
+            voting_round.add_question(question)
+            voting_round.save!
+            post :deactivate, id: question.id
+            question.reload.active?.should be_true
 
-      it "redirects to the questions list" do
-        question = Question.create! valid_attributes
-        delete :deactivate, {:id => question.to_param}
-        response.should redirect_to(admin_questions_url)
+           # flash.now[:error].should eq "Can not deactivate the question when it's in acitve(new, live) voting rounds"
+          end
+        end
       end
     end
   end

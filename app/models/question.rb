@@ -19,6 +19,10 @@ class Question < ActiveRecord::Base
     anonymous ? ANONYMOUS : name
   end
 
+  def in_active_voting_rounds?
+    ([VotingRound::Status::New, VotingRound::Status::Live] & self.voting_rounds.map(&:status)).any?
+  end
+
   private
     def copy_display_text_into_original_text
       self.original_text = self.display_text

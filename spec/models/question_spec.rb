@@ -112,4 +112,77 @@ describe Question do
     end
   end
 
+  describe "in_active_voting_rounds?" do
+    context "not in any voting round" do
+      it "returns false" do
+        @question = FactoryGirl.build(:question)
+        @question.in_active_voting_rounds?.should be_false
+      end
+    end
+
+    context "in one voting round" do
+      context "voting round is new" do
+        it "returns true" do
+          voting_round = FactoryGirl.build(:voting_round,  status:VotingRound::Status::New)
+          @question = FactoryGirl.build(:question)
+          @question.voting_rounds = [voting_round]
+
+          @question.in_active_voting_rounds?.should be_true
+        end
+      end
+      context "voting round is live" do
+        it "return true" do
+            voting_round = FactoryGirl.build(:voting_round,  status:VotingRound::Status::Live)
+            @question = FactoryGirl.build(:question)
+            @question.voting_rounds = [voting_round]
+
+            @question.in_active_voting_rounds?.should be_true
+        end
+      end
+      context "voting round is completed" do
+        it "return false" do
+            voting_round = FactoryGirl.build(:voting_round,  status:VotingRound::Status::Completed)
+            @question = FactoryGirl.build(:question)
+            @question.voting_rounds = [voting_round]
+
+            @question.in_active_voting_rounds?.should be_false
+        end
+      end
+      context "voting round is deactivated" do
+        it "return false" do
+            voting_round = FactoryGirl.build(:voting_round,  status:VotingRound::Status::Deactivated)
+            @question = FactoryGirl.build(:question)
+            @question.voting_rounds = [voting_round]
+
+            @question.in_active_voting_rounds?.should be_false
+        end
+      end
+    end
+
+    context "in multiple voting rounds" do
+      context "none of the voting rounds is new, or live" do
+        it "returns false" do
+          voting_round1 = FactoryGirl.build(:voting_round,  status:VotingRound::Status::Deactivated)
+          voting_round2 = FactoryGirl.build(:voting_round,  status:VotingRound::Status::Completed)
+          @question = FactoryGirl.build(:question)
+          @question.voting_rounds = [voting_round1, voting_round2]
+
+          @question.in_active_voting_rounds?.should be_false
+
+        end
+      end
+
+      context "one of the voting rounds is new" do
+        it "returns true" do
+          voting_round1 = FactoryGirl.build(:voting_round,  status:VotingRound::Status::Deactivated)
+          voting_round2 = FactoryGirl.build(:voting_round,  status:VotingRound::Status::New)
+          @question = FactoryGirl.build(:question)
+          @question.voting_rounds = [voting_round1, voting_round2]
+
+          @question.in_active_voting_rounds?.should be_true
+        end
+      end
+    end
+  end
 end
+

@@ -49,12 +49,10 @@ module Admin
       end
     end
 
-    # DELETE /questions/0
+    # POST /questions/0
     def deactivate
-      @question.update_attribute(:active, false)
-      respond_to do |format|
-        format.html { redirect_to admin_questions_url }
-      end
+      @question.update_attribute(:active, false) unless @question.in_active_voting_rounds?
+      redirect_to admin_questions_url
     end
 
     def add_question_to_voting_round
