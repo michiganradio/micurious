@@ -5,18 +5,17 @@ describe "admin/questions/index" do
     assign(:questions, [
       stub_model(Question,
         :original_text => "question",
-        :display_text => "display_question1"
+        :display_text => "display_question"
       ),
       stub_model(Question,
         :original_text => "question",
-        :display_text => "display_question2"
+        :display_text => "display_question"
       )
     ])
   end
 
   it "renders a list of questions" do
     render
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
-    assert_select "tr>td", :text => "question".to_s, :count => 2
+    assert_select "tr>td", :text => "display_question".to_s, :count => 2
   end
 end
