@@ -21,7 +21,7 @@
 
           <div class="row">
             <div class="field col-lg-12">
-              <%= f.label :your_question, "Your question*" %>
+              <%= f.label :display_text, "Your question*" %>
               <%= f.text_area :display_text, placeholder: "Enter your question here", rows: "4", maxlength: "140", class: "form-control no-changing" %> 
               <div class="submit-question-spec">
                 (140 character limit)
@@ -47,17 +47,13 @@
 
                            <div class="row">
                              <div class="field col-md-6">
-                               <br>
                                <%= f.label :name, "Name*" %>
                              </div>
                              <div class="field col-md-6">
-                               <label for="question_email">
-                                 Email*
-                                 <span class="little-writing">
-                                   (your email address is never shared)
-                                 </span>
-                               </label>
-                               <!--<%= f.label :email, "Email* (your email address is never shared)" %>-->
+                               <%= f.label :email, "Email*"%>
+                               <span class="little-writing">
+                                 (your email address is never shared)
+                               </span>
                              </div>
                            </div>
 
@@ -82,7 +78,7 @@
                            <div class="row">
                              <div class="field col-md-6">
                                <label for="question_neighbourhood">
-                                 Neighborhood*
+                                 Neighborhood
                                  <span class="little-writing">
                                    (e.g. Pilsen)
                                  </span>
