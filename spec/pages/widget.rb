@@ -1,6 +1,6 @@
-class Widget < SitePrism::Page
-  set_url "/widget"
-  set_url_matcher /\/widget/
+class VotingWidget < SitePrism::Page
+  set_url "/voting_widget"
+  set_url_matcher /\/voting_widget/
   elements :questions, "div .widget-question"
   element :widget_prompt, ".widget-prompt"
   elements :vote_buttons, "a.vote"
