@@ -1,6 +1,6 @@
 module Admin
   class VotingRoundsController < ApplicationController
-    before_action :set_voting_round, only: [:show, :edit, :update, :destroy]
+    before_action :set_voting_round, only: [:show, :edit, :update, :destroy, :remove_question]
 
     # GET /voting_rounds
     def index
@@ -44,6 +44,12 @@ module Admin
     def add_question
       VotingRoundQuestion.create(voting_round_id: params[:id], question_id: params[:question_id])
       render :action => :show
+    end
+
+    def remove_question
+      VotingRoundQuestion.where(voting_round_id: params[:id], question_id: params[:question_id]).first.destroy
+      flash.now[:notice] = "Question was successfully removed from the voting round"
+      render :show
     end
 
     private

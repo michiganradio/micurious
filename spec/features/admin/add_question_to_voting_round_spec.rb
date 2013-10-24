@@ -4,7 +4,6 @@ describe "Add question to voting round" do
   before do
     @question = FactoryGirl.create(:question)
     @voting_round = FactoryGirl.create(:voting_round)
-    FactoryGirl.create(:voting_round)
     @edit_admin_question_page = Admin::EditQuestion.new
   end
 

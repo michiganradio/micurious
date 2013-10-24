@@ -16,6 +16,7 @@ Curiouscity::Application.routes.draw do
     resources :voting_rounds, except: [:destroy] do
       member do
         post :add_question
+        post :remove_question
       end
     end
     resources :users

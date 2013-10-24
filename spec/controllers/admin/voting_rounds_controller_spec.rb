@@ -114,7 +114,32 @@ describe Admin::VotingRoundsController do
   describe "add question to voting round" do
     it "saves the voting round question" do
       VotingRoundQuestion.should_receive(:create).with(voting_round_id:"1", question_id:"2")
-      put :add_question, {:question_id => 2, :id => 1}
+      put :add_question, {:id => 1, :question_id => 2}
+    end
+  end
+
+  describe "remove question from voting round" do
+    let(:voting_round) { double(VotingRound) }
+    let(:voting_round_question) { double(VotingRoundQuestion) }
+
+    before do
+      VotingRound.stub(:find).with("1").and_return(voting_round)
+      VotingRoundQuestion.stub(:where).with(voting_round_id: "1", question_id: "2").and_return([voting_round_question])
+      voting_round_question.stub(:destroy)
+      put :remove_question, {:id => 1, :question_id => 2}
+    end
+
+    it "assigns the voting round as @voting_round" do
+      assigns(:voting_round).should eq voting_round
+    end
+
+    it "destroys the voting round question" do
+      voting_round_question.should_receive(:destroy)
+      put :remove_question, {:id => 1, :question_id => 2}
+    end
+
+    it "flashes confirmation" do
+      flash.now[:notice].should eq "Question was successfully removed from the voting round"
     end
   end
 end
