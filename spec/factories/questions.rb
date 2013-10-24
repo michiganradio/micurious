@@ -4,6 +4,7 @@ FactoryGirl.define do
     name "Questioner name"
     neighbourhood "lake view"
     email "a@email.com"
+    email_confirmation "a@email.com"
 
     categories []
 

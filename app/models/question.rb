@@ -13,7 +13,7 @@ class Question < ActiveRecord::Base
   validates :neighbourhood, length: { maximum: 255 }, format: { with: /\A[a-zA-Z\s]*\z/, message: "only allows letters and spaces" }
   validates :name, length: {maximum: 255, minimum: 1 }, format: { with: /\A[a-zA-Z\s\.\-'@]+\z/, message: "only allows letters, spaces, periods, hyphens, apostrophes, and @ signs" }
   validates :email, length: {maximum: 255}, confirmation: true, email: true
-
+  validates :email_confirmation, presence: true, on: :create
 
   def display_author
     anonymous ? ANONYMOUS : name
