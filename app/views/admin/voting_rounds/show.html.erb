@@ -17,33 +17,6 @@
       <%= @voting_round.label %>
     </div>
 </p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Question</th>
-      <th>Vote number</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @voting_round.voting_round_questions.each do |voting_round_question| %>
-      <tr class="voting-round-question">
-        <td class="display-text">
-          <%= voting_round_question.question.display_text %>
-        </td>
-        <td>
-          <%= voting_round_question.vote_number %>
-        </td>
-        <td>
-          <% if can_remove_question? %>
-            <%= link_to 'Remove', remove_question_admin_voting_round_path(@voting_round, question_id: voting_round_question.question.id), method: :post, data: { confirm: 'Are you sure?' } %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render 'questions' %>
 <%= link_to 'Edit', edit_admin_voting_round_path(@voting_round) %> |
 <%= link_to 'Back', admin_voting_rounds_path %>
