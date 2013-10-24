@@ -5,6 +5,9 @@ describe 'visit widget page' do
     @voting_round = FactoryGirl.create(:voting_round)
     @questions = [FactoryGirl.create(:question), FactoryGirl.create(:question, display_text: "another text"), FactoryGirl.create(:question, display_text: "third text"), FactoryGirl.create(:question, display_text: "fourth text")]
     @voting_round.questions = @questions
+    VotingRoundQuestion.where(question_id: @questions[0].id).first.update_attributes(vote_number: 10)
+    VotingRoundQuestion.where(question_id: @questions[1].id).first.update_attributes(vote_number: 0)
+    VotingRoundQuestion.where(question_id: @questions[2].id).first.update_attributes(vote_number: 5)
     @widget_page = VotingWidget.new
     @widget_page.load
   end
@@ -29,12 +32,22 @@ describe 'visit widget page' do
       @widget_page.vote_buttons[0].click
     end
 
-    it "stays on widget page" do
+    describe "shows voting results" do
+      it "hides vote buttons" do
+        @widget_page.should_not have_vote_buttons
+      end
 
-    end
+      it "shows ranks" do
+        @widget_page.questions[0].should have_text "1st"
+        @widget_page.questions[1].should have_text "2nd"
+        @widget_page.questions[2].should have_text "3rd"
+      end
 
-    it "hides vote buttons" do
-      @widget_page.should_not have_vote_buttons
+      it "orders questions by voting number" do
+        @widget_page.questions[0].should have_text @questions[0].display_text
+        @widget_page.questions[1].should have_text @questions[2].display_text
+        @widget_page.questions[2].should have_text @questions[1].display_text
+      end
     end
   end
 end

@@ -38,6 +38,7 @@ group :development, :test do
   gem "site_prism", "~> 2.4"
   gem "awesome_print", "~> 1.2.0"
   gem "js-test-driver-rails", "~> 0.4.3"
+  gem "jasmine"
   gem "launchy"
   gem "selenium-webdriver"
   gem "database_cleaner", '~> 1.2.0'
