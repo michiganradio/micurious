@@ -282,7 +282,7 @@ describe Admin::QuestionsController do
             post :deactivate, id: question.id
             question.reload.active?.should be_true
 
-           # flash.now[:error].should eq "Can not deactivate the question when it's in acitve(new, live) voting rounds"
+            flash.now[:error].should eq "Can not deactivate the question when it's in acitve(new, live) voting rounds"
           end
         end
       end

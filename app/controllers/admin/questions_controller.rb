@@ -51,8 +51,12 @@ module Admin
 
     # POST /questions/0
     def deactivate
-      @question.update_attribute(:active, false) unless @question.in_active_voting_rounds?
-      redirect_to admin_questions_url
+      if @question.in_active_voting_rounds?
+        redirect_to admin_questions_url, flash: { error: "Can not deactivate the question when it's in acitve(new, live) voting rounds"}
+      else
+        @question.update_attribute(:active, false)
+        redirect_to admin_questions_url
+      end
     end
 
     def add_question_to_voting_round
