@@ -12,8 +12,8 @@ describe Admin::QuestionsController do
   let(:categories) { [FactoryGirl.create(:category),
                       FactoryGirl.create(:category)]}
 
-  let(:voting_rounds) { [FactoryGirl.create(:voting_round),
-                         FactoryGirl.create(:voting_round)]}
+  let(:voting_rounds) { [FactoryGirl.create(:voting_round, status: VotingRound::Status::New),
+                         FactoryGirl.create(:voting_round, status: VotingRound::Status::Live)]}
 
   context "not signed in" do
     describe "GET index" do
@@ -70,10 +70,10 @@ describe Admin::QuestionsController do
         assigns(:categories).should == categories
       end
 
-      it "assigns voting rounds" do
+      it "assigns new voting rounds" do
         question = FactoryGirl.create(:question)
         get :edit, {:id => question.to_param}
-        assigns(:voting_rounds).should == voting_rounds
+        assigns(:voting_rounds).should == [voting_rounds.first]
       end
     end
 

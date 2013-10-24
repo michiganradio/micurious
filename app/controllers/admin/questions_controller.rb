@@ -96,7 +96,7 @@ module Admin
       end
 
       def load_voting_rounds
-        @voting_rounds = VotingRound.all
+        @voting_rounds = VotingRound.where(status: VotingRound::Status::New)
       end
   end
 end
