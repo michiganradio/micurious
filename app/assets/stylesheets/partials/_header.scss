@@ -11,7 +11,7 @@ $navbar-height: $grid-unit*2;
 }
 
 .image-logo {
-  position: absolute;
+  position: relative;
   z-index: 1;
   float: left;
   width: $logo-size;
@@ -122,6 +122,10 @@ $navbar-height: $grid-unit*2;
   height: 10px;
   top: -15px;
   left: 45%;
+}
+
+.nav-admin-links {
+  clear: both;
 }
 
 .nav-admin-links a{
