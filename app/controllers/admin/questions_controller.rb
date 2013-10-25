@@ -44,6 +44,8 @@ module Admin
         if @question.update(question_params)
           format.html { redirect_to admin_question_url(@question), notice: 'Question was successfully updated.' }
         else
+          load_categories
+          load_voting_rounds
           format.html { render action: 'edit' }
         end
       end

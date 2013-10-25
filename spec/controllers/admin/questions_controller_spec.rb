@@ -231,6 +231,11 @@ describe Admin::QuestionsController do
       end
 
       describe "with invalid params" do
+        before do
+          Category.stub(:all).and_return([])
+          VotingRound.stub(:where).and_return([])
+        end
+
         it "assigns the question as @question" do
           question = Question.create! valid_attributes
           # Trigger the behavior that occurs when invalid params are submitted
