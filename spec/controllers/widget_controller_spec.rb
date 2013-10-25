@@ -8,7 +8,7 @@ describe WidgetController do
       questions = [double(:question)]
       VotingRound.stub(:last).and_return(voting_round)
       voting_round.should_receive(:questions).and_return(questions)
-      get :voting_widget
+      get :vote_widget
       assigns(:questions).should eq questions
       assigns(:voting_round).should eq voting_round
     end
@@ -19,7 +19,7 @@ describe WidgetController do
       it "redirects to root path" do
         Voting.stub(:vote).and_return(true)
         post :vote
-        response.should redirect_to(voting_widget_path)
+        response.should redirect_to(vote_widget_path)
       end
     end
 

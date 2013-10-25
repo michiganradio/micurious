@@ -5,6 +5,7 @@ require 'voting_round_section'
 
 class Home < SitePrism::Page
   set_url "/{#anchor}"
+#  set_url_matcher /\//
 
   element :up_for_voting_link, "#up-for-voting-id"
   element :answered_and_investigating_link, "#answered-investigating-id"

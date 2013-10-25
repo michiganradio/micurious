@@ -3,7 +3,7 @@ Curiouscity::Application.routes.draw do
   match '/ask_question', to: 'questions#new',     via: 'post'
   match '/confirm_question', to: 'questions#confirm', via: 'post'
   match '/vote', to: 'welcome#vote', via: 'post'
-  match '/voting_widget', to: 'widget#voting_widget', via: 'get'
+  match '/vote_widget', to: 'widget#vote_widget', via: 'get'
   match '/widget_vote', to: 'widget#vote', via: 'post'
   match '/ask_widget', to: 'widget#ask_widget', via: 'get'
   resources :questions, except: [:index]
