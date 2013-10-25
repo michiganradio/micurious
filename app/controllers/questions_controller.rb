@@ -9,7 +9,7 @@ class QuestionsController < ApplicationController
     @question = Question.new
     @categories = Category.all
     @question.attributes = params.permit(:display_text, :name, :anonymous,
-                                         :email, :email_confirmation, :neighbourhood,:category_ids )
+                                         :email, :email_confirmation, :neighbourhood, :category_ids => [])
     respond_to do |format|
       format.js
     end

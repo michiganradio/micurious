@@ -36,7 +36,7 @@
                 <% @categories.each do |category| %>
                   <div class="checkbox-group">
                     <%=  check_box_tag('question[category_ids][]', category.id,
-                                       @question.categories.include?(category),
+                                       @question.category_ids.include?(category.id),
                                        { multiple: true, id: "question_category_id_#{category.id}" }) %> 
                                      <%= f.label "category_id_#{category.id}", category.label%> 
                                    </div>
