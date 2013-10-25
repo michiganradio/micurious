@@ -76,4 +76,25 @@ describe 'Ask a question', js: true do
 
     end
   end
+
+  describe "show question after submission" do
+    it "has new question content in admin" do
+      @category1 = FactoryGirl.create(:category)
+      @category2 = FactoryGirl.create(:category, label: "MyString2")
+      setup_ask_question_modal
+      setup_confirm_question_modal
+      @confirm_question_modal.modal_form_submit.click
+      @admin_show_question = Admin::ShowQuestion.new
+      @admin_show_question.load(id: Question.last.id)
+      @admin_show_question.body.should have_content "Why is the sky green?"
+      @admin_show_question.body.should have_content "Robert Johnson"
+      @admin_show_question.body.should have_content "rjohnson@a.com"
+      @admin_show_question.body.should have_content "Bucktown"
+      @admin_show_question.body.should have_content "true"
+      @admin_show_question.body.should have_content @category1.label
+      @admin_show_question.body.should have_content @category2.label
+    end
+
+  end
+
 end
