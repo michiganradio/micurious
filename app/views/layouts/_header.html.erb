@@ -1,0 +1,20 @@
+<header>
+<div class="header-logo">
+  <%= link_to image_tag("wbez.png", class: "header-logo container-padding"), "http://www.wbez.org" %>
+</div>
+<div class="container-padding">
+  <%= link_to image_tag("cc-logo.gif", class: "image-logo"), root_url, :class=> "image-logo" %>
+  <% if @ask %>
+    <div class="submit-wrap">
+      <div class="carrot"></div>
+      <div class="submit-question-container">
+        <%= form_tag ask_question_path, id: 'ask-question-form', remote: true do %>
+          <%= text_area_tag :display_text, nil, placeholder: "What do you wonder about Chicago, the region or its people that you want WBEZ to investigate?", class: "submit-question-text" %>
+          <%= submit_tag "Ask", class: "btn submit-question-btn", remote: true%>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= render "layouts/navigation" %>
+</header>

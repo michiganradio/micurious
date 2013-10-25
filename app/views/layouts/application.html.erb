@@ -1,37 +1,20 @@
 <html>
-<head>
+  <head>
     <title>Curiouscity</title>
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
-</head>
-<body>
-  <div class="container">
-    <div class="header-logo">
-      <%= link_to image_tag("wbez.png", class: "header-logo container-padding"), "http://www.wbez.org" %>
-    </div>
-    <div class="container-padding">
-        <%= link_to image_tag("cc-logo.gif", class: "image-logo"), root_url, :class=> "image-logo" %>
-        <% if @ask %>
-          <div class="submit-wrap">
-            <div class="carrot"></div>
-            <div class="submit-question-container">
-              <%= form_tag ask_question_path, id: 'ask-question-form', remote: true do %>
-                <%= text_area_tag :display_text, nil, placeholder: "What do you wonder about Chicago, the region or its people that you want WBEZ to investigate?", class: "submit-question-text" %>
-                <%= submit_tag "Ask", class: "btn submit-question-btn", remote: true%>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-    </div>
-    <%= render "navigation" %>
-    <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %>"><%= value %></div>
-    <% end %>
-    <%= yield %>
-    <%= debug(params) if Rails.env.development? %>
+  </head>
+  <body>
+    <div class="container">
+      <%= render "layouts/header" %>
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+      <%= yield %>
+      <%= debug(params) if Rails.env.development? %>
     </div>
   </div>
-          <div id="ask-question-modal"></div>
+  <div id="ask-question-modal"></div>
 </body>
 </html>

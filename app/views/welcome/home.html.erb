@@ -1,17 +1,10 @@
-<head>
-  <title>Curious City</title>
-</head>
-<body>
-  <div class="container">
-  <script>      
-    $( document ).ready(function() {
-      if(window.location.hash == '#ask') {
-        $('#ask-question-form').submit();
-      }
-    });
-  </script>
-  <div class="container-padding">
+<script>      
+  $( document ).ready(function() {
+  if(window.location.hash == '#ask') {
+  $('#ask-question-form').submit();
+  }
+  });
+</script>
+<div class="container-padding">
   <%= render "voting" %>
 </div>
-</div>
-</body>
