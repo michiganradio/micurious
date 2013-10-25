@@ -1,16 +1,18 @@
 <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
+      
       <div class="modal-header">
         <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
         <h4 class='modal-title'>Submit your question to Curious City</h4>
       </div>
+
       <div class="modal-body">
+
         <%= form_for(@question, :url => confirm_question_path, :remote => true) do |f| %>
           <% if @question.errors.any? %>
             <div id="error_explanation">
               <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
-
               <ul>
                 <% @question.errors.full_messages.each do |msg| %>
                   <li><%= msg %></li>
@@ -38,76 +40,77 @@
                     <%=  check_box_tag('question[category_ids][]', category.id,
                                        @question.category_ids.include?(category.id),
                                        { multiple: true, id: "question_category_id_#{category.id}" }) %> 
-                                     <%= f.label "category_id_#{category.id}", category.label%> 
-                                   </div>
-                                 <% end%>
-                               </div>
-                             </div>
-                           </div>
+                    <%= f.label "category_id_#{category.id}", category.label%> 
+                  </div>
+                <% end%>
+              </div>
+            </div>
+          </div>
 
-                           <div class="row">
-                             <div class="field col-md-6">
-                               <%= f.label :name, "Name*" %>
-                             </div>
-                             <div class="field col-md-6">
-                               <%= f.label :email, "Email*"%>
-                               <span class="little-writing">
-                                 (your email address is never shared)
-                               </span>
-                             </div>
-                           </div>
+          <div class="row">
+            <div class="field col-md-6">
+              <%= f.label :name, "Name*" %>
+            </div>
+            <div class="field col-md-6">
+              <%= f.label :email, "Email*"%>
+              <span class="little-writing">
+                (your email address is never shared)
+              </span>
+            </div>
+          </div>
 
-                           <div class="row">
-                             <div class="field col-md-6">
-                               <%= f.text_field :name, class: "form-control" %>
-                             </div>
-                             <div class="field col-md-6">
-                               <%= f.text_field :email, class: "form-control" %>
-                             </div>
-                           </div>
+          <div class="row">
+            <div class="field col-md-6">
+              <%= f.text_field :name, class: "form-control" %>
+            </div>
+            <div class="field col-md-6">
+              <%= f.text_field :email, class: "form-control" %>
+            </div>
+          </div>
 
-                           <div class="row">
-                             <div class="field col-md-6">
-                               <div class="checkbox-group">
-                                 <%= f.check_box :anonymous %>
-                                 <%= f.label "Remain anonymous" %>
-                               </div>
-                             </div>
-                           </div>
+          <div class="row">
+            <div class="field col-md-6">
+              <div class="checkbox-group">
+                <%= f.check_box :anonymous %>
+                <%= f.label "Remain anonymous" %>
+              </div>
+            </div>
+          </div>
 
-                           <div class="row">
-                             <div class="field col-md-6">
-                               <label for="question_neighbourhood">
-                                 Neighborhood
-                                 <span class="little-writing">
-                                   (e.g. Pilsen)
-                                 </span>
-                                 or town
-                                 <span class="little-writing">
-                                   (e.g. Berwyn)
-                                 </span>
-                               </label>
-                             </div>
-                             <div class="field col-md-6">
-                               <%= f.label :email_confirmation, "Confirm E-mail*" %><br>
-                             </div>
-                           </div>
+          <div class="row">
+            <div class="field col-md-6">
+              <label for="question_neighbourhood">
+                Neighborhood
+                <span class="little-writing">
+                  (e.g. Pilsen)
+                </span>
+                or town
+                <span class="little-writing">
+                  (e.g. Berwyn)
+                </span>
+              </label>
+            </div>
+            <div class="field col-md-6">
+              <%= f.label :email_confirmation, "Confirm E-mail*" %><br>
+            </div>
+          </div>
 
-                           <div class="row">
-                             <div class="field col-md-6">
-                               <%= f.text_field :neighbourhood, class: "form-control" %>
-                             </div>
-                             <div class="field col-md-6">
-                               <%= f.text_field :email_confirmation, class: "form-control" %>
-                             </div>
-                           </div>
+          <div class="row">
+            <div class="field col-md-6">
+              <%= f.text_field :neighbourhood, class: "form-control" %>
+            </div>
+            <div class="field col-md-6">
+              <%= f.text_field :email_confirmation, class: "form-control" %>
+            </div>
+          </div>
 
-                           <div class="row col-md-6 little-writing">* required fields</div>
-                         <% end %>
-                       </div>
-                       <div class="modal-footer">
-                         <a id='modal-form-next' class='btn btn-primary' href='#'>NEXT</a>
-                       </div>
-                     </div><!-- /.modal-content -->
-                   </div><!-- /.modal-dialog -->
-                 </div>
+          <div class="row col-md-6 little-writing">* required fields</div>
+        <% end %>
+      </div>
+
+      <div class="modal-footer">
+        <a id='modal-form-next' class='btn btn-primary' href='#'>NEXT</a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
