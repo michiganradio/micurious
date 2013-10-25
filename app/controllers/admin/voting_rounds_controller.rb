@@ -1,5 +1,5 @@
 module Admin
-  class VotingRoundsController < ApplicationController
+  class VotingRoundsController < Admin::AdminController
     before_action :set_voting_round, only: [:show, :edit, :update, :destroy, :remove_question]
 
     # GET /voting_rounds

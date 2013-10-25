@@ -1,4 +1,4 @@
-class Admin::CategoriesController < ApplicationController
+class Admin::CategoriesController < Admin::AdminController
   before_action :set_admin_category, only: [:show, :edit, :update, :deactivate]
 
   # GET /admin/categories

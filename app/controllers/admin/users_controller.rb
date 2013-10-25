@@ -1,5 +1,5 @@
 module Admin
-  class UsersController < ApplicationController
+  class UsersController < Admin::AdminController
     before_action :set_admin, only: [:show, :edit, :update, :destroy]
 
     # GET /admins

@@ -1,0 +1,25 @@
+<html>
+<head>
+    <title>Curiouscity</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container">
+    <div class="header-logo">
+      <%= link_to image_tag("wbez.png", class: "header-logo container-padding"), "http://www.wbez.org" %>
+    </div>
+    <div class="container-padding">
+      <%= render "admin/layouts/header" %>
+    </div>
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+    <%= yield %>
+    <%= debug(params) if Rails.env.development? %>
+    </div>
+  </div>
+  <div id="ask-question-modal"></div>
+</body>
+</html>

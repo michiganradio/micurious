@@ -1,5 +1,5 @@
 module Admin
-  class QuestionsController < ApplicationController
+  class QuestionsController < Admin::AdminController
     before_action :set_question, only: [:show, :edit, :update, :deactivate, :add_question_to_voting_round]
     before_action :signed_in_admin, only: [:index]
     before_action :load_categories, only: [:new, :edit]
