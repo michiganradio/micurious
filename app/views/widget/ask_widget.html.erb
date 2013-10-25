@@ -1,4 +1,4 @@
-<%= form_tag ask_question_path, id: 'ask-question-form', remote: true do %>
+<%= form_tag root_path(anchor:"ask"), id: 'ask-question-form', method: "get" do %>
   <%= text_area_tag :display_text, nil, placeholder: "What do you wonder about Chicago, the region or its people that you want WBEZ to investigate?", class: "submit-question-text" %>
-  <%= submit_tag "Ask", class: "btn submit-question-btn", remote: true %>
+  <%= submit_tag "Ask", class: "btn submit-question-btn" %>
 <% end %>
