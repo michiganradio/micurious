@@ -12,4 +12,8 @@ class WidgetController < ApplicationController
       render :text=>"Too bad.", status: 409
     end
   end
+
+  def ask_widget
+    render layout: "widget"
+  end
 end

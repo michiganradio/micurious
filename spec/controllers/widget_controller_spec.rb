@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe WidgetController do
 
-  describe "GET widget" do
+  describe "GET voting widget" do
     it "assigns questions" do
       voting_round = [double(:voting_round)]
       questions = [double(:question)]
@@ -29,6 +29,13 @@ describe WidgetController do
         post :vote
         response.status.should be 409
       end
+    end
+  end
+
+  describe "GET ask widget" do
+    it "gets the ask question widget page without issue" do
+      get :ask_widget
+      response.status.should be 200
     end
   end
 end
