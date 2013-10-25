@@ -20,6 +20,7 @@ describe 'Ask a question', js: true do
     @ask_question_modal.question_categories[0].click
     @ask_question_modal.question_categories[1].click
     @ask_question_modal.modal_form_next.click
+    @home.wait_for_confirm_question_modal
     @confirm_question_modal = @home.confirm_question_modal
   end
 
