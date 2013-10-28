@@ -5,7 +5,7 @@ describe "Admin main" do
 
   before do
     signin_as_admin
-    visit admin_main_path
+    visit admin_path
   end
 
   describe "links to voting round" do

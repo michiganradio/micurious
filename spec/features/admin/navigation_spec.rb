@@ -16,7 +16,7 @@ describe "Admin navigation" do
 
   describe "main page" do
     before do
-      visit admin_main_path
+      visit admin_path
     end
     it_should_behave_like 'all admin pages'
   end

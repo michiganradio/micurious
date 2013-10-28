@@ -9,7 +9,7 @@ module Admin
       admin = User.find_by(username: params[:session][:username].downcase)
       if admin && admin.authenticate(params[:session][:password])
         sign_in admin
-        redirect_to admin_main_path
+        redirect_to admin_path
       else
         flash.now[:error] = 'Invalid username/password combination'
         render 'new'
