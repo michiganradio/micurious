@@ -3,10 +3,10 @@
       <li><%= link_to "Up for Voting", root_url, id: "up-for-voting-id"%></li>
       <li class="dropdown" id="answered-investigating">
       <%= link_to("Answered & Investigating", root_url, id: "answered-investigating-id", class:"dropdown-toggle") %> 
-        <%= render "category_dropdown_menu" %>
+        <%= render "layouts/category_dropdown_menu" %>
       <li class="dropdown" id="new-unanswered">
-        <%= link_to("New & Unanswered", root_url, id: "new-unanswered-id", class:"dropdown-toggle") %>
-        <%= render "category_dropdown_menu" %>
+        <%= link_to("New & Unanswered", questions_url, id: "new-unanswered-id", class:"dropdown-toggle") %>
+        <%= render "layouts/category_dropdown_menu" %>
       </li>
     </ul>
 </nav>

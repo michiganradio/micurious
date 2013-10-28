@@ -4,17 +4,15 @@
 </div>
 <div class="container-padding">
   <%= link_to image_tag("cc-logo.gif", class: "image-logo"), root_url, :class=> "image-logo" %>
-  <% if @ask %>
-    <div class="submit-wrap">
-      <div class="carrot"></div>
-      <div class="submit-question-container">
-        <%= form_tag ask_question_path, id: 'ask-question-form', remote: true do %>
-          <%= text_area_tag :display_text, params[:display_text], placeholder: "What do you wonder about Chicago, the region or its people that you want WBEZ to investigate?", class: "submit-question-text" %>
-          <%= submit_tag "Ask", class: "btn submit-question-btn", remote: true%>
-        <% end %>
-      </div>
+  <div class="submit-wrap">
+    <div class="carrot"></div>
+    <div class="submit-question-container">
+      <%= form_tag ask_question_path, id: 'ask-question-form', remote: true do %>
+        <%= text_area_tag :display_text, params[:display_text], placeholder: "What do you wonder about Chicago, the region or its people that you want WBEZ to investigate?", class: "submit-question-text" %>
+        <%= submit_tag "Ask", class: "btn submit-question-btn", remote: true%>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </div>
 <%= render "layouts/navigation" %>
 </header>

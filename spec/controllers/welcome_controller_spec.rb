@@ -3,18 +3,18 @@ require 'spec_helper'
 describe WelcomeController do
 
   describe "GET home" do
-    it "gets the home page" do
-      categories = [double(:category)]
-      Category.stub(:all).and_return(categories)
+    before do
+      subject.stub(:load_categories)
+    end
+
+    it "loads the categories" do
+      subject.should_receive(:load_categories)
       get :home, {}, {}
-      assigns(:ask).should eq true
-      assigns(:categories).should eq categories
     end
 
     it "assigns active voting round" do
       voting_round = double(:voting_round)
       VotingRound.stub(:where).with(status: VotingRound::Status::Live).and_return([voting_round])
-      Category.stub(:all).and_return([])
       get :home, {}, {}
       assigns(:voting_round).should eq voting_round
     end

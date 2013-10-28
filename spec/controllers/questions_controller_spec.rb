@@ -14,7 +14,16 @@ describe QuestionsController do
       question = Question.create! valid_attributes
       get :show, {:id => question.to_param}
       assigns(:question).should eq(question)
-      assigns(:ask).should eq true
+    end
+  end
+
+  describe "GET filter" do
+    it "loads all question as @questions" do
+      subject.stub(:load_categories)
+      questions = [double(:question)]
+      Question.stub(:order).with("created_at DESC").and_return(questions)
+      get :filter, {}
+      assigns(:questions).should eq(questions)
     end
   end
 

@@ -2,10 +2,9 @@ require 'voting'
 
 class WelcomeController < ApplicationController
   include Voting
+  before_action :load_categories, only: [:home]
 
   def home
-    @ask = true
-    @categories = Category.all
     @voting_round = VotingRound.where(status: VotingRound::Status::Live).first
   end
 

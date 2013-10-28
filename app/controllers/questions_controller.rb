@@ -1,8 +1,13 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show]
+  before_action :load_categories, only: [:filter]
 
   def show
-    @ask = true
+  end
+
+  def filter
+    @questions = Question.order("created_at DESC")
+    render 'index'
   end
 
   def new
