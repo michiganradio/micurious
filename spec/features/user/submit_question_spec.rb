@@ -10,7 +10,7 @@ describe 'Ask a question', js: true do
     @ask_question_modal = @home.ask_question_modal
   end
 
-  def setup_confirm_question_modal
+  def setup_question_picture_modal
     @ask_question_modal.question_display_text.set("Why is the sky green?")
     @ask_question_modal.question_name.set("Robert Johnson")
     @ask_question_modal.question_anonymous.click
@@ -20,6 +20,12 @@ describe 'Ask a question', js: true do
     @ask_question_modal.question_categories[0].click
     @ask_question_modal.question_categories[1].click
     @ask_question_modal.modal_form_next.click
+    @home.wait_for_question_picture_modal
+    @question_picture_modal = @home.question_picture_modal
+  end
+
+  def setup_confirm_question_modal
+    @question_picture_modal.submit_button.click
     @home.wait_for_confirm_question_modal
     @confirm_question_modal = @home.confirm_question_modal
   end
@@ -38,11 +44,25 @@ describe 'Ask a question', js: true do
     @home.ask_question_modal.title.text.should == "Submit your question to Curious City"
   end
 
+  describe "flicker question modal" do
+    it "has picture question field" do
+      @category1 = FactoryGirl.create(:category)
+      @category2 = FactoryGirl.create(:category, label: "MyString2")
+      setup_ask_question_modal
+      setup_question_picture_modal
+      @question_picture_modal = @home.question_picture_modal
+      @question_picture_modal.should have_field('Search')
+      @question_picture_modal.search_button.click
+      @question_picture_modal.submit_button.click
+    end
+  end
+
   describe "confirm question modal" do
     it "has expected content" do
       @category1 = FactoryGirl.create(:category)
       @category2 = FactoryGirl.create(:category, label: "MyString2")
       setup_ask_question_modal
+      setup_question_picture_modal
       setup_confirm_question_modal
       @confirm_question_modal.title.should have_content "Double check that your question looks good"
       @confirm_question_modal.body.should have_content "Why is the sky green?"
@@ -61,6 +81,7 @@ describe 'Ask a question', js: true do
       @category1 = FactoryGirl.create(:category)
       @category2 = FactoryGirl.create(:category, label: "MyString2")
       setup_ask_question_modal
+      setup_question_picture_modal
       setup_confirm_question_modal
       @confirm_question_modal.modal_form_submit.click
       @question_received_modal = @home.question_received_modal
@@ -82,6 +103,7 @@ describe 'Ask a question', js: true do
       @category1 = FactoryGirl.create(:category)
       @category2 = FactoryGirl.create(:category, label: "MyString2")
       setup_ask_question_modal
+      setup_question_picture_modal
       setup_confirm_question_modal
       @confirm_question_modal.modal_form_submit.click
       signin_as_admin

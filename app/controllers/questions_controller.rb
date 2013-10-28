@@ -28,11 +28,17 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def picture
+    @question = Question.new(question_params)
+    @categories = Category.all
+    respond_to do |format|
+      format.js { render @question.valid? ? 'picture.js.erb' : 'new.js.erb' }
+    end
+  end
+
   def confirm
     @question = Question.new(question_params)
     @categories = Category.all
-
-
     respond_to do |format|
       format.js { render @question.valid? ? 'confirm.js.erb' : 'new.js.erb' }
     end
