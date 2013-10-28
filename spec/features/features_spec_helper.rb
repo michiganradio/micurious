@@ -28,3 +28,7 @@ RSpec.configure do |config|
 
   config.include Capybara::DSL
 end
+
+def switch_to_popup
+  page.driver.browser.switch_to.window(page.driver.browser.window_handles.last)
+end
