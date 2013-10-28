@@ -3,6 +3,8 @@ require 'features/features_spec_helper'
 describe "Admin navigation" do
   subject { page }
 
+  before { signin_as_admin }
+
   shared_examples_for "all admin pages" do
     describe "has navigation links" do
       it { should have_link("Sign In", href: admin_signin_path ) }

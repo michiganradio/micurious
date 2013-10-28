@@ -1,6 +1,8 @@
 require 'features/features_spec_helper'
 
 describe "Set voting round status" do
+  before {signin_as_admin }
+
   it "has no voting round on main page before making voting round live" do
     voting_round = FactoryGirl.create(:voting_round)
     @home_page = Home.new

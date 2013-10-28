@@ -5,6 +5,10 @@ describe Admin::UsersController do
   let(:valid_attributes) { { "username" => "MyString", "password" => "password", "password_confirmation" => "password" } }
   let(:valid_session) { {} }
 
+  before do
+    subject.stub(:signed_in_admin)
+  end
+
   describe "GET index" do
     it "assigns all admins as @admins" do
       admin = User.create! valid_attributes

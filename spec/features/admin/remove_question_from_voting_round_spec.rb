@@ -2,6 +2,7 @@ require 'features/features_spec_helper'
 
 describe "Remove question from voting round" do
   before do
+    signin_as_admin
     @question = FactoryGirl.create(:question)
     @voting_round = FactoryGirl.create(:voting_round)
     @voting_round.add_question(@question)

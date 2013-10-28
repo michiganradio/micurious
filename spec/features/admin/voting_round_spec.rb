@@ -2,6 +2,8 @@ require 'features/features_spec_helper'
 
 describe "Manage voting round" do
 
+  before { signin_as_admin }
+
   describe "create new voting round" do
     before do
       @new_admin_voting_round_page = Admin::NewVotingRound.new

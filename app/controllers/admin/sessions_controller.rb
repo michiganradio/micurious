@@ -1,5 +1,6 @@
 module Admin
   class SessionsController < Admin::AdminController
+    skip_before_action :signed_in_admin
     def new
 
     end

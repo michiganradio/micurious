@@ -84,6 +84,7 @@ describe 'Ask a question', js: true do
       setup_ask_question_modal
       setup_confirm_question_modal
       @confirm_question_modal.modal_form_submit.click
+      signin_as_admin
       @admin_show_question = Admin::ShowQuestion.new
       @admin_show_question.load(id: Question.last.id)
       @admin_show_question.body.should have_content "Why is the sky green?"
@@ -94,7 +95,6 @@ describe 'Ask a question', js: true do
       @admin_show_question.body.should have_content @category1.label
       @admin_show_question.body.should have_content @category2.label
     end
-
   end
 
 end

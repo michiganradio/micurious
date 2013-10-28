@@ -2,7 +2,6 @@ module Admin
   class QuestionsController < Admin::AdminController
 
     before_action :set_question, only: [:show, :edit, :update, :deactivate, :add_question_to_voting_round]
-    before_action :signed_in_admin, only: [:index]
     before_action :load_categories, only: [:new, :edit]
     before_action :load_voting_rounds, only: [:edit]
 
@@ -87,9 +86,6 @@ module Admin
         @question = Question.find(params[:id])
       end
 
-      def signed_in_admin
-         redirect_to admin_signin_path, notice: "Please sign in." unless signed_in?
-      end
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def question_params

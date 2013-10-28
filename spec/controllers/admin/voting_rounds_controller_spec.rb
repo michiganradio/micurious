@@ -3,6 +3,10 @@ require 'spec_helper'
 describe Admin::VotingRoundsController do
   let(:valid_attributes) { { "start_time" => "2013-10-03 11:03:52", "label" => "label text" } }
   let(:valid_session) { {} }
+  before do
+    subject.stub(:signed_in_admin)
+  end
+
 
   describe "GET index" do
     it "assigns all voting_rounds as @voting_rounds" do
