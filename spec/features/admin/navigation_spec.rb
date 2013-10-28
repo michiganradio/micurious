@@ -7,7 +7,6 @@ describe "Admin navigation" do
 
   shared_examples_for "all admin pages" do
     describe "has navigation links" do
-      it { should have_link("Sign In", href: admin_signin_path ) }
       it { should have_link("Categories", href: admin_categories_path) }
       it { should have_link("Questions", href: admin_questions_path) }
       it { should have_link("Voting Rounds", href: admin_voting_rounds_path) }
