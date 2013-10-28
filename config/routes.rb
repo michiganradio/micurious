@@ -7,6 +7,7 @@ Curiouscity::Application.routes.draw do
   match '/widget_vote', to: 'widget#vote', via: 'post'
   match '/ask_widget', to: 'widget#ask_widget', via: 'get'
   match '/picture_question', to: 'questions#picture', via: 'post'
+  match '/find_pictures', to: 'questions#find_pictures', via: 'post'
   resources :questions, except: [:index]
 
   namespace :admin do

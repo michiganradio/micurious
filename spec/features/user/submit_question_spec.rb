@@ -45,17 +45,27 @@ describe 'Ask a question', js: true do
   end
 
   describe "flicker question modal" do
-    it "has picture question field" do
+    before do
       @category1 = FactoryGirl.create(:category)
       @category2 = FactoryGirl.create(:category, label: "MyString2")
       setup_ask_question_modal
       setup_question_picture_modal
       @question_picture_modal = @home.question_picture_modal
-      @question_picture_modal.should have_field('Search')
+    end
+
+    it "has picture question field" do
+      @question_picture_modal.should have_field('search-field')
       @question_picture_modal.search_button.click
       @question_picture_modal.submit_button.click
     end
+
+    it "retrieves photos from flicker" do
+      @question_picture_modal.search_field.set("chicago")
+      @question_picture_modal.photos.size > 0
+    end
   end
+
+
 
   describe "confirm question modal" do
     it "has expected content" do

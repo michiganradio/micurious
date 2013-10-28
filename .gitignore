@@ -18,3 +18,5 @@
 # Ignore all swapfiles
 *.swp
 .*
+
+/config/api-key.yml

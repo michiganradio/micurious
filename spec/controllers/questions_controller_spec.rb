@@ -42,6 +42,23 @@ describe QuestionsController do
     end
   end
 
+  describe "POST picture" do
+    it "keeps the question" do
+      post :picture, :question => valid_attributes, format: 'js'
+      response.should render_template("picture.js.erb")
+    end
+  end
+
+  describe "POST find_pictures" do
+    it "returns pictures" do
+      mock_flickr_service = double(FlickrService)
+      mock_flickr_service.stub(:find_pictures).and_return("some photos")
+      FlickrService.stub(:new).and_return(mock_flickr_service)
+      post :find_pictures, :question => valid_attributes, :searchfield => "chicago", format: 'js'
+      assigns(:pictures).should == "some photos"
+    end
+  end
+
   describe "POST create" do
     it "creates a new Question" do
       Question.any_instance.should_receive(:save).and_return(true)

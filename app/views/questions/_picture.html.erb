@@ -6,8 +6,11 @@
         <h4 class='modal-title'>header here </h4>
       </div>
       <div class="modal-body">
-        <input type="text" name="Search" id="Search">
-        <button id="search-flicker" name="search" >Search</button>
+        <%= form_tag find_pictures_path, id: "picture-search-form", remote: true do %>
+          <%= text_field_tag "Search", nil, { id: "search-field"} %>
+          <%= submit_tag "Search", id: "search-flicker" %>
+        <% end %>
+        <div class="photo"></div>
         <%= form_for(@question, :url => confirm_question_path, :method => :post, :remote => true) do |f| %>
           <%= f.hidden_field :display_text, value: @question.display_text %>
           <%= f.hidden_field :name, value: @question.name %>

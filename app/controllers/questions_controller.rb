@@ -36,6 +36,13 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def find_pictures
+    @pictures = FlickrService.new.find_pictures params["searchfield"]
+    respond_to do |format|
+      format.js { render 'find_pictures.js.erb' }
+    end
+  end
+
   def confirm
     @question = Question.new(question_params)
     @categories = Category.all
@@ -46,7 +53,7 @@ class QuestionsController < ApplicationController
 
   private
     def question_params
-      params.require(:question).permit(:original_text, :display_text, :name, :anonymous, :email, :email_confirmation, :neighbourhood, :category_ids => [] )
+      params.require(:question).permit(:searchfield, :original_text, :display_text, :name, :anonymous, :email, :email_confirmation, :neighbourhood, :category_ids => [] )
     end
 
     def set_question
