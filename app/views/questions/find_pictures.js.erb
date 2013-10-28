@@ -1,0 +1,9 @@
+$('document').ready(function() {
+  pictures_html = "";
+  <% @pictures.each do |picture| %>
+    <% url = "http://farm#{picture.farm}.staticflickr.com/#{picture.server}/#{picture.id}_#{picture.secret}.jpg" %>
+     pictures_html +=  "<span> <img src='<%= url %>'/></span>";
+     pictures_html +="<span>br</span>";
+  <% end %>
+  $('#pictures').html(pictures_html);
+});

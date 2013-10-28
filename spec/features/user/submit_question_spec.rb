@@ -46,6 +46,14 @@ describe 'Ask a question', js: true do
 
   describe "flicker question modal" do
     before do
+      @mock_pictures=[double(Flickrie::Photo)]
+      @mock_pictures[0].stub(:id).and_return("10542729043")
+      @mock_pictures[0].stub(:secret).and_return("af2c52cac9")
+      @mock_pictures[0].stub(:farm).and_return(4)
+      @mock_pictures[0].stub(:server).and_return("5477")
+      mock_flickr_service = double(FlickrService)
+      mock_flickr_service.stub(:find_pictures).and_return(@mock_pictures)
+      FlickrService.stub(:new).and_return(mock_flickr_service)
       @category1 = FactoryGirl.create(:category)
       @category2 = FactoryGirl.create(:category, label: "MyString2")
       setup_ask_question_modal
@@ -55,17 +63,15 @@ describe 'Ask a question', js: true do
 
     it "has picture question field" do
       @question_picture_modal.should have_field('search-field')
-      @question_picture_modal.search_button.click
       @question_picture_modal.submit_button.click
     end
 
-    it "retrieves photos from flicker" do
+    it "retrieves pictures from flicker" do
       @question_picture_modal.search_field.set("chicago")
-      @question_picture_modal.photos.size > 0
+      @question_picture_modal.search_button.click
+      @question_picture_modal.pictures.find('img').should_not be_nil
     end
   end
-
-
 
   describe "confirm question modal" do
     it "has expected content" do

@@ -10,7 +10,7 @@
           <%= text_field_tag "Search", nil, { id: "search-field"} %>
           <%= submit_tag "Search", id: "search-flicker" %>
         <% end %>
-        <div class="photo"></div>
+        <div id="pictures"></div>
         <%= form_for(@question, :url => confirm_question_path, :method => :post, :remote => true) do |f| %>
           <%= f.hidden_field :display_text, value: @question.display_text %>
           <%= f.hidden_field :name, value: @question.name %>
