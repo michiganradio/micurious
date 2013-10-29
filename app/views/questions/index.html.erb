@@ -4,7 +4,7 @@
       <div class="row">
         <div class="question", id="question<%= question.id.to_s %>">
           <div class="question-image">
-            <img src="http://farm2.staticflickr.com/1437/1238664937_4d7dc8aace.jpg" alt="question image">
+            <img src="<%= question.picture_url %>" alt="question image">
           </div>
           <div class="question-text">
            <%= link_to(question.display_text, question_url(question), class: "question-link" ) %>
