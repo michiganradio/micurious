@@ -25,8 +25,8 @@ describe "browse questions" do
         question3 = FactoryGirl.create(:question,
                                        display_text: "display text 3",
                                        created_at: Time.now)
-        @questions_in_category = Questions.new()
-        @questions_in_category.load(category_id: category.id)
+        @questions_in_category = Questions.new
+        @questions_in_category.load(category_name: category.name)
         @questions_in_category.should have(2).questions
         @questions_in_category.questions[0].text.should include question2.display_text
         @questions_in_category.questions[1].text.should include question.display_text

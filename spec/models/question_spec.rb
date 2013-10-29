@@ -184,5 +184,15 @@ describe Question do
       end
     end
   end
+
+  describe "with_category" do
+    it "filters by category, and order by created_at desc" do
+      category =  FactoryGirl.create(:category)
+      question1 = FactoryGirl.create(:question, categories: [category], created_at: 1.day.ago)
+      question2 = FactoryGirl.create(:question, categories: [category])
+      question3 = FactoryGirl.create(:question, categories: [FactoryGirl.create(:category, name: "some other")])
+      Question.with_category(category.name).should == [question2, question1]
+    end
+  end
 end
 

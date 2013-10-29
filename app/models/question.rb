@@ -15,9 +15,12 @@ class Question < ActiveRecord::Base
   validates :email, length: {maximum: 255}, confirmation: true, email: true
   validates :email_confirmation, presence: true, on: :create
 
+  scope :with_category, ->(category_name) { includes(:categories).where(categories: {name: category_name}).order(created_at: :desc) }
+
   def display_author
     anonymous ? ANONYMOUS : name
   end
+
 
   def in_active_voting_rounds?
     ([VotingRound::Status::New, VotingRound::Status::Live] & self.voting_rounds.map(&:status)).any?

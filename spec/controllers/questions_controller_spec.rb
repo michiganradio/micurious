@@ -18,11 +18,14 @@ describe QuestionsController do
   end
 
   describe "GET filter" do
+    before do
+      subject.stub(:load_categories)
+    end
+
     context "no category id given" do
       it "loads all question as @questions" do
-        subject.stub(:load_categories)
         questions = [double(:question)]
-        Question.stub(:order).with("created_at DESC").and_return(questions)
+        Question.stub(:order).with(created_at: :desc).and_return(questions)
         get :filter, {}
         assigns(:questions).should eq(questions)
       end
@@ -30,15 +33,10 @@ describe QuestionsController do
 
     context "category id given" do
       it "loads all questions with category as @questions" do
-        subject.stub(:load_categories)
-        questions = [double(:question)]
-        Question.stub(:includes).with(:categories).and_return(a = double)
-        a.stub(:where).with("categories.id = ?", "4").and_return(b = double)
-        b.stub(:references).with(:categories).and_return(c = double)
-        c.stub(:sort_by).and_return(d = double)
-        d.stub(:reverse).and_return(questions)
-        get :filter, category_id: 4
-        assigns(:questions).should eq(questions)
+        question = double(:question)
+        Question.should_receive(:with_category).with("category name").and_return([question])
+        get :filter, category_name: "category name"
+        assigns(:questions).should eq([question])
       end
     end
   end
