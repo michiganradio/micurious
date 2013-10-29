@@ -2,7 +2,17 @@ $('document').ready(function() {
   pictures_html = "";
   <% @pictures.each do |picture| %>
     <% url = "http://farm#{picture.farm}.staticflickr.com/#{picture.server}/#{picture.id}_#{picture.secret}.jpg" %>
-    pictures_html +=  '<span><%= image_tag url, :size => "#{picture.width}x#{picture.height}" %></span>';
+    pictures_html +=  '<span class="thumbnail"><%= image_tag url, :size => "#{picture.width}x#{picture.height}" %></span>';
   <% end %>
   $('#pictures').html(pictures_html);
+
+  var selected;
+  
+  $('span.thumbnail').click(function ( e ) {
+    if (selected !== undefined) {
+      selected.setAttribute("class", "thumbnail");
+    }
+    selected = this;
+    this.setAttribute("class", "selected-thumbnail");
+  });
 });

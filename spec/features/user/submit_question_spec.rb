@@ -46,13 +46,19 @@ describe 'Ask a question', js: true do
 
   describe "flicker question modal" do
     before do
-      @mock_pictures=[double(Flickrie::Photo)]
+      @mock_pictures=[double(Flickrie::Photo), double(Flickrie::Photo)]
       @mock_pictures[0].stub(:id).and_return("10542729043")
       @mock_pictures[0].stub(:secret).and_return("af2c52cac9")
       @mock_pictures[0].stub(:farm).and_return(4)
       @mock_pictures[0].stub(:server).and_return("5477")
       @mock_pictures[0].stub(:width).and_return(1)
       @mock_pictures[0].stub(:height).and_return(2)
+      @mock_pictures[1].stub(:id).and_return("10542729043")
+      @mock_pictures[1].stub(:secret).and_return("af2c52cac9")
+      @mock_pictures[1].stub(:farm).and_return(4)
+      @mock_pictures[1].stub(:server).and_return("5477")
+      @mock_pictures[1].stub(:width).and_return(1)
+      @mock_pictures[1].stub(:height).and_return(2)
       mock_flickr_service = double(FlickrService)
       mock_flickr_service.stub(:find_pictures).and_return(@mock_pictures)
       FlickrService.stub(:new).and_return(mock_flickr_service)
@@ -68,10 +74,15 @@ describe 'Ask a question', js: true do
       @question_picture_modal.submit_button.click
     end
 
-    it "retrieves pictures from flicker" do
+    it "shows pictures from flicker that can be selected one at a time" do
       @question_picture_modal.search_field.set("chicago")
       @question_picture_modal.search_button.click
-      @question_picture_modal.pictures.find('img').should_not be_nil
+      @question_picture_modal.thumbnails[0][:class].should eq "thumbnail"
+      @question_picture_modal.thumbnails[0].click
+      @question_picture_modal.thumbnails[0][:class].should eq "selected-thumbnail"
+      @question_picture_modal.thumbnails[1].click
+      @question_picture_modal.thumbnails[0][:class].should eq "thumbnail"
+      @question_picture_modal.thumbnails[1][:class].should eq "selected-thumbnail"
     end
   end
 
