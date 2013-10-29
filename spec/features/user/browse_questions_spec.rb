@@ -37,12 +37,13 @@ describe "browse questions" do
   describe "navigate to question detail page" do
     it "display the question detail info" do
       category = FactoryGirl.create(:category)
-      question = FactoryGirl.create(:question, categories: [category])
+      question = FactoryGirl.create(:question, categories: [category], picture_url: "url")
       @questions_in_category = Questions.new
       @questions_in_category.load(category_name: category.name)
       @questions_in_category.question_links.first.click
       @question = ShowQuestion.new
       @question.should be_displayed
+      @question.image[:src].should eq question.picture_url
     end
   end
 end
