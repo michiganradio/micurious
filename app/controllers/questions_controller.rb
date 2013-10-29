@@ -46,7 +46,7 @@ class QuestionsController < ApplicationController
   end
 
   def find_pictures
-    @pictures = FlickrService.new.find_pictures params["searchfield"]
+    @pictures = FlickrService.new.find_pictures params["Search"]
     respond_to do |format|
       format.js { render 'find_pictures.js.erb' }
     end

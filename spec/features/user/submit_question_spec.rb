@@ -51,6 +51,8 @@ describe 'Ask a question', js: true do
       @mock_pictures[0].stub(:secret).and_return("af2c52cac9")
       @mock_pictures[0].stub(:farm).and_return(4)
       @mock_pictures[0].stub(:server).and_return("5477")
+      @mock_pictures[0].stub(:width).and_return(1)
+      @mock_pictures[0].stub(:height).and_return(2)
       mock_flickr_service = double(FlickrService)
       mock_flickr_service.stub(:find_pictures).and_return(@mock_pictures)
       FlickrService.stub(:new).and_return(mock_flickr_service)
