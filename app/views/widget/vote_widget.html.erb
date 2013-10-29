@@ -3,7 +3,7 @@
 </div>
 <div class="questions-container">
   <% (@questions.sort &sort_proc).each_with_index do |question, index| %>
-    <div class="widget-question">
+    <div class="widget-question" style="background-image: url(<%= question.picture_url %>)">
       <% if voted? %>
         <h2 class = "rank" id="rank<%= question.id.to_s %>"><%= (index + 1).ordinalize %></h2>
       <% end %>

@@ -1,7 +1,7 @@
 $widget-width: 310px;
 $widget-height: 370px;
 $logo-height: 25px;
-$logo-width: 200px;
+$logo-width: 150px;
 $prompt: 25px;
 
 .widget-container {
@@ -10,6 +10,7 @@ $prompt: 25px;
   overflow: hidden;
   border: 1px solid black;
   padding: 5px;
+  box-sizing: border-box;
 }
 
 .border-container{
@@ -35,7 +36,8 @@ $prompt: 25px;
 }
 
 .widget-container .questions-container {
-  height: $widget-height - $logo-height - $prompt; 
+  height: $widget-height - $logo-height - $prompt - 60px; 
+  box-sizing: border-box;
 }
 
 .widget-prompt {
@@ -45,10 +47,11 @@ $prompt: 25px;
   line-height: $prompt;
   padding-left: 12px;
   padding-right: 12px;
+  box-sizing: border-box;
 }
 
 .widget-question {
-  background-image: url('http://farm2.staticflickr.com/1437/1238664937_4d7dc8aace.jpg');
+//  background-image: url('http://farm2.staticflickr.com/1437/1238664937_4d7dc8aace.jpg');
   height: 85px;
   position: relative;
   padding: 5px 5px 5px 30px;
