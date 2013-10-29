@@ -6,7 +6,11 @@ class QuestionsController < ApplicationController
   end
 
   def filter
-    @questions = Question.order("created_at DESC")
+    unless (params[:category_id])
+      @questions = Question.order("created_at DESC")
+    else
+      @questions = Question.includes(:categories).where("categories.id = ?", params[:category_id]).references(:categories).sort_by(&:created_at).reverse
+    end
     render 'index'
   end
 

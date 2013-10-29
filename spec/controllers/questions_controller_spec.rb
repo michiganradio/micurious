@@ -18,12 +18,28 @@ describe QuestionsController do
   end
 
   describe "GET filter" do
-    it "loads all question as @questions" do
-      subject.stub(:load_categories)
-      questions = [double(:question)]
-      Question.stub(:order).with("created_at DESC").and_return(questions)
-      get :filter, {}
-      assigns(:questions).should eq(questions)
+    context "no category id given" do
+      it "loads all question as @questions" do
+        subject.stub(:load_categories)
+        questions = [double(:question)]
+        Question.stub(:order).with("created_at DESC").and_return(questions)
+        get :filter, {}
+        assigns(:questions).should eq(questions)
+      end
+    end
+
+    context "category id given" do
+      it "loads all questions with category as @questions" do
+        subject.stub(:load_categories)
+        questions = [double(:question)]
+        Question.stub(:includes).with(:categories).and_return(a = double)
+        a.stub(:where).with("categories.id = ?", "4").and_return(b = double)
+        b.stub(:references).with(:categories).and_return(c = double)
+        c.stub(:sort_by).and_return(d = double)
+        d.stub(:reverse).and_return(questions)
+        get :filter, category_id: 4
+        assigns(:questions).should eq(questions)
+      end
     end
   end
 
@@ -31,12 +47,6 @@ describe QuestionsController do
     it "assigns a new question as @question" do
       post :new, {:format => 'js'}
       assigns(:question).should be_a_new(Question)
-    end
-
-    it "assigns categories" do
-      category = FactoryGirl.create(:category)
-      post :new, {:format => 'js'}
-      assigns(:categories).should == [category]
     end
 
     it "assigns passed params into the question" do

@@ -1,6 +1,6 @@
 <ul class="dropdown-menu">
   <li class="carrot"></li>
   <% @categories.each do |category| %>
-    <li><%= link_to(category.label, category.name)%></li>
+    <li><%= link_to(category.label, questions_path(category_id: category.id)) %></li>
   <% end %>  
 </ul>
