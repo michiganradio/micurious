@@ -1,7 +1,7 @@
 $widget-width: 310px;
 $widget-height: 370px;
 $logo-height: 25px;
-$logo-width: 150px;
+$logo-width: 140px;
 $prompt: 25px;
 
 .widget-container {
@@ -45,20 +45,20 @@ $prompt: 25px;
   color: $blue;
   text-align: left;
   line-height: $prompt;
-  padding-left: 12px;
-  padding-right: 12px;
+  margin-left: 12px;
+  margin-right: 12px;
   box-sizing: border-box;
+  border-bottom: 1px dotted black;
+
 }
 
 .widget-question {
-//  background-image: url('http://farm2.staticflickr.com/1437/1238664937_4d7dc8aace.jpg');
   height: 85px;
   position: relative;
   padding: 5px 5px 5px 30px;
   margin: 1px 2px 1px 2px;
   box-sizing: border-box;
 }
-
 
 .widget-question .display-text {
   font-size: 12px;
@@ -83,4 +83,8 @@ $prompt: 25px;
     background-position:-51px 0;
     background-color: transparent;
   }
+}
+
+.ranking-legend {
+  float: left;
 }

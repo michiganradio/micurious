@@ -5,10 +5,12 @@
   <% (@questions.sort &sort_proc).each_with_index do |question, index| %>
     <div class="widget-question" style="background-image: url(<%= question.picture_url %>)">
       <% if voted? %>
-        <h2 class = "rank" id="rank<%= question.id.to_s %>"><%= (index + 1).ordinalize %></h2>
+        <div class="ranking-legend">
+        <h3 class="rank" id="rank<%= question.id.to_s %>"><%= (index + 1).ordinalize %></h3>
+        </div>
       <% end %>
         <%= if !voted? then link_to "", widget_vote_path(question_id: question.id, voting_round_id: @voting_round.id), method: :post, class: "vote", id: "vote"+question.id.to_s end %>
-      <div class = "display-text">
+      <div class="display-text">
         <%= question.display_text %>
       </div>
     </div>
