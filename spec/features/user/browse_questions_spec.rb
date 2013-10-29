@@ -8,9 +8,9 @@ describe "browse questions" do
         question2 = FactoryGirl.create(:question, :other, created_at:Time.now)
         @questions = Questions.new
         @questions.load
-        @questions.should have(2).questions
-        @questions.questions[0].text.should include question2.display_text
-        @questions.questions[1].text.should include question.display_text
+        @questions.should have(2).question_links
+        @questions.question_links[0].text.should include question2.display_text
+        @questions.question_links[1].text.should include question.display_text
       end
     end
 
@@ -27,10 +27,22 @@ describe "browse questions" do
                                        created_at: Time.now)
         @questions_in_category = Questions.new
         @questions_in_category.load(category_name: category.name)
-        @questions_in_category.should have(2).questions
-        @questions_in_category.questions[0].text.should include question2.display_text
-        @questions_in_category.questions[1].text.should include question.display_text
+        @questions_in_category.should have(2).question_links
+        @questions_in_category.question_links[0].text.should include question2.display_text
+        @questions_in_category.question_links[1].text.should include question.display_text
       end
+    end
+  end
+
+  describe "navigate to question detail page" do
+    it "display the question detail info" do
+      category = FactoryGirl.create(:category)
+      question = FactoryGirl.create(:question, categories: [category])
+      @questions_in_category = Questions.new
+      @questions_in_category.load(category_name: category.name)
+      @questions_in_category.question_links.first.click
+      @question = ShowQuestion.new
+      @question.should be_displayed
     end
   end
 end

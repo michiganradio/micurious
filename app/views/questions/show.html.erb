@@ -1,23 +1,11 @@
-<!--<p id="notice"><%= notice %></p>-->
-
-<p>
-  <strong>Question:</strong>
-  <%= @question.display_text %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @question.display_author %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @question.email %>
-</p>
-
-<p>
-  <strong>Neighborhood:</strong>
-  <%= @question.neighbourhood %>
-</p>
-
-<%= button_to 'Back', questions_path, method: "get", class: "btn" %>
+<div class="container-padding">
+  <div class="row question">
+    <div class="question-image">
+      <img src="http://farm2.staticflickr.com/1437/1238664937_4d7dc8aace.jpg" alt="question image">
+    </div>
+    <div class="question-text">
+      <%= @question.display_text %>
+      <p class="author">Asked by <%=@question.display_author%></p>
+    </div>
+  </div>
+</div>

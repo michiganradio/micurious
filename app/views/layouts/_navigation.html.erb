@@ -2,10 +2,10 @@
     <ul class="nav navbar-nav container-padding">
       <li><%= link_to "Up for Voting", root_url, id: "up-for-voting-id"%></li>
       <li class="dropdown" id="answered-investigating">
-      <%= link_to("Answered & Investigating", root_url, id: "answered-investigating-id", class:"dropdown-toggle") %> 
+      <%= link_to("Answered & Investigating", filter_questions_url, id: "answered-investigating-id", class:"dropdown-toggle") %> 
         <%= render "layouts/category_dropdown_menu" %>
       <li class="dropdown" id="new-unanswered">
-        <%= link_to("New & Unanswered", questions_url, id: "new-unanswered-id", class:"dropdown-toggle") %>
+        <%= link_to("New & Unanswered", filter_questions_url, id: "new-unanswered-id", class:"dropdown-toggle") %>
         <%= render "layouts/category_dropdown_menu" %>
       </li>
     </ul>

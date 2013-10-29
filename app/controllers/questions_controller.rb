@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show]
-  before_action :load_categories, only: [:filter]
+  before_action :load_categories, only: [:filter, :show]
 
   def show
   end
