@@ -2,6 +2,27 @@ require 'features/features_spec_helper'
 
 describe 'Ask a question', js: true do
 
+  before(:each) do
+    @mock_pictures=[double(Flickrie::Photo), double(Flickrie::Photo)]
+    @mock_pictures[0].stub(:id).and_return("10542729043")
+    @mock_pictures[0].stub(:secret).and_return("af2c52cac9")
+    @mock_pictures[0].stub(:farm).and_return(4)
+    @mock_pictures[0].stub(:server).and_return("5477")
+    @mock_pictures[0].stub(:width).and_return(1)
+    @mock_pictures[0].stub(:height).and_return(2)
+    @mock_pictures[0].stub_chain(:owner, :username).and_return("owner")
+    @mock_pictures[1].stub(:id).and_return("10542729043")
+    @mock_pictures[1].stub(:secret).and_return("af2c52cac9")
+    @mock_pictures[1].stub(:farm).and_return(4)
+    @mock_pictures[1].stub(:server).and_return("5477")
+    @mock_pictures[1].stub(:width).and_return(1)
+    @mock_pictures[1].stub(:height).and_return(2)
+    @mock_pictures[1].stub_chain(:owner, :username).and_return("owner")
+    @mock_flickr_service = double(FlickrService)
+    @mock_flickr_service.stub(:find_pictures).and_return(@mock_pictures)
+    FlickrService.stub(:new).and_return(@mock_flickr_service)
+  end
+
   def setup_ask_question_modal
     @home = Home.new
     @home.load
@@ -25,6 +46,9 @@ describe 'Ask a question', js: true do
   end
 
   def setup_confirm_question_modal
+    @question_picture_modal.search_field.set("chicago")
+    @question_picture_modal.search_button.click
+    @question_picture_modal.thumbnails[0].click
     @question_picture_modal.submit_button.click
     @home.wait_for_confirm_question_modal
     @confirm_question_modal = @home.confirm_question_modal
@@ -46,22 +70,6 @@ describe 'Ask a question', js: true do
 
   describe "flicker question modal" do
     before do
-      @mock_pictures=[double(Flickrie::Photo), double(Flickrie::Photo)]
-      @mock_pictures[0].stub(:id).and_return("10542729043")
-      @mock_pictures[0].stub(:secret).and_return("af2c52cac9")
-      @mock_pictures[0].stub(:farm).and_return(4)
-      @mock_pictures[0].stub(:server).and_return("5477")
-      @mock_pictures[0].stub(:width).and_return(1)
-      @mock_pictures[0].stub(:height).and_return(2)
-      @mock_pictures[1].stub(:id).and_return("10542729043")
-      @mock_pictures[1].stub(:secret).and_return("af2c52cac9")
-      @mock_pictures[1].stub(:farm).and_return(4)
-      @mock_pictures[1].stub(:server).and_return("5477")
-      @mock_pictures[1].stub(:width).and_return(1)
-      @mock_pictures[1].stub(:height).and_return(2)
-      mock_flickr_service = double(FlickrService)
-      mock_flickr_service.stub(:find_pictures).and_return(@mock_pictures)
-      FlickrService.stub(:new).and_return(mock_flickr_service)
       @category1 = FactoryGirl.create(:category)
       @category2 = FactoryGirl.create(:category, label: "MyString2")
       setup_ask_question_modal
@@ -101,6 +109,8 @@ describe 'Ask a question', js: true do
       @confirm_question_modal.body.should have_content "Bucktown"
       @confirm_question_modal.body.should have_content @category1.label
       @confirm_question_modal.body.should have_content @category2.label
+      picture = @mock_pictures[0]
+      @confirm_question_modal.picture[:src].should eq "http://farm#{picture.farm}.staticflickr.com/#{picture.server}/#{picture.id}_#{picture.secret}.jpg"
       @confirm_question_modal.modal_form_submit
     end
   end

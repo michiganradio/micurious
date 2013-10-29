@@ -2,7 +2,7 @@ $('document').ready(function() {
   pictures_html = "";
   <% @pictures.each do |picture| %>
     <% url = "http://farm#{picture.farm}.staticflickr.com/#{picture.server}/#{picture.id}_#{picture.secret}.jpg" %>
-    pictures_html +=  '<span class="thumbnail"><%= image_tag url, :size => "#{picture.width}x#{picture.height}" %></span>';
+    pictures_html +=  '<span class="thumbnail"><%= image_tag url, :size => "#{picture.width}x#{picture.height}", :data => { :owner => picture.owner.username } %></span>';
   <% end %>
   $('#pictures').html(pictures_html);
 
@@ -14,5 +14,7 @@ $('document').ready(function() {
     }
     selected = this;
     this.setAttribute("class", "selected-thumbnail");
+    $('#question_picture_url').val( $(".selected-thumbnail img").attr('src') );
+    $('#question_picture_owner').val( $(".selected-thumbnail img").attr('data-owner') );
   });
 });
