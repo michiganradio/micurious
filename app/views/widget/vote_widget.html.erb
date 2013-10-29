@@ -1,5 +1,5 @@
 <div class="widget-prompt">
-  Which would you rather know?    
+  Which question should WBEZ investigate next?    
 </div>
 <div class="questions-container">
   <% (@questions.sort &sort_proc).each_with_index do |question, index| %>
@@ -7,8 +7,10 @@
       <% if voted? %>
         <h2 class = "rank" id="rank<%= question.id.to_s %>"><%= (index + 1).ordinalize %></h2>
       <% end %>
-      <%= question.display_text %>
-      <%= if !voted? then link_to "", widget_vote_path(question_id: question.id, voting_round_id: @voting_round.id), method: :post, class: "vote", id: "vote"+question.id.to_s end %>
+        <%= if !voted? then link_to "", widget_vote_path(question_id: question.id, voting_round_id: @voting_round.id), method: :post, class: "vote", id: "vote"+question.id.to_s end %>
+      <div class = "display-text">
+        <%= question.display_text %>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
+ </div>

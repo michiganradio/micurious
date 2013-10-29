@@ -1,7 +1,8 @@
 $widget-width: 310px;
 $widget-height: 370px;
-$logo-height: 50px;
-$logo-width: 260px;
+$logo-height: 25px;
+$logo-width: 200px;
+$prompt: 25px;
 
 .widget-container {
   max-height: $widget-height;
@@ -34,25 +35,49 @@ $logo-width: 260px;
 }
 
 .widget-container .questions-container {
-  height: $widget-height - $logo-height; 
+  height: $widget-height - $logo-height - $prompt; 
 }
 
 .widget-prompt {
-  font-weight: 500;
-  font-size: 18px;
-  color: $purple;
-  text-align: center;
-  line-height: 30px;
+  font-size: 16px;
+  color: $blue;
+  text-align: left;
+  line-height: $prompt;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 .widget-question {
-  height: 95px;
-  background-image: url('bg_dots.png');
+  background-image: url('http://farm2.staticflickr.com/1437/1238664937_4d7dc8aace.jpg');
+  height: 85px;
+  position: relative;
+  padding: 5px 5px 5px 30px;
+  margin: 1px 2px 1px 2px;
+  box-sizing: border-box;
 }
 
 
-.widget-container .vote {
-  top: 10px;
-  position: relative;
-  z-index: 0;
+.widget-question .display-text {
+  font-size: 12px;
+  line-height: 14px;
+  background-image: url('bg_dots.png');
+  padding: 3px 5px 3px 30px;
+  text-align: left;
+  min-height: 70px;
+  vertical-align: middle;
+}
+
+.widget-question .vote {
+  float: left;
+  overflow: hidden;
+  display: inline-block;
+  top: 12px;
+  position: absolute;
+  cursor: pointer;
+  left: 5px;
+  
+  &:hover {
+    background-position:-51px 0;
+    background-color: transparent;
+  }
 }
