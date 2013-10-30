@@ -1,7 +1,7 @@
 $('document').ready(function() {
   $('.modal-backdrop').remove();
   $('#ask-question-modal').html("<%= escape_javascript(render "picture") %>");
-  $('#modal-form-submit').on('click', function(e){
+  $('#modal-form-next').on('click', function(e){
     e.preventDefault();
     $('#new_question').submit();
   });

@@ -49,7 +49,7 @@ describe 'Ask a question', js: true do
     @question_picture_modal.search_field.set("chicago")
     @question_picture_modal.search_button.click
     @question_picture_modal.thumbnails[0].click
-    @question_picture_modal.submit_button.click
+    @question_picture_modal.next_button.click
     @home.wait_for_confirm_question_modal
     @confirm_question_modal = @home.confirm_question_modal
   end
@@ -79,7 +79,7 @@ describe 'Ask a question', js: true do
 
     it "has picture question field" do
       @question_picture_modal.should have_field('search-field')
-      @question_picture_modal.submit_button.click
+      @question_picture_modal.next_button.click
     end
 
     it "shows pictures from flicker that can be selected one at a time" do

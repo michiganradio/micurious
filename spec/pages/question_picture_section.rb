@@ -2,7 +2,7 @@ require 'modal_section'
 
 class QuestionPictureSection < ModalSection
   element :search_button, '#search-flickr'
-  element :submit_button, '#modal-form-submit'
+  element :next_button, '#modal-form-next'
   element :modal_form_back, "#modal-form-back"
   element :search_field, '#search-field'
   element :pictures, '#pictures'
