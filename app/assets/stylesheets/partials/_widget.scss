@@ -5,8 +5,8 @@ $logo-width: 140px;
 $prompt: 25px;
 
 .widget-container {
-  max-height: $widget-height;
-  max-width: $widget-width;
+  height: $widget-height;
+  width: $widget-width;
   overflow: hidden;
   border: 1px solid black;
   padding: 5px;
@@ -15,7 +15,7 @@ $prompt: 25px;
 
 .border-container{
   border: 1px dotted black;
-  max-height: $widget-height - 10px;
+  height: $widget-height - 10px;
   overflow: hidden;
 }
 
@@ -36,7 +36,7 @@ $prompt: 25px;
 }
 
 .widget-container .questions-container {
-  height: $widget-height - $logo-height - $prompt - 60px; 
+  height: 245px; 
   box-sizing: border-box;
 }
 
@@ -53,31 +53,38 @@ $prompt: 25px;
 }
 
 .widget-question {
-  height: 85px;
+  height: 80px;
   position: relative;
   padding: 5px 5px 5px 30px;
-  margin: 1px 2px 1px 2px;
+  margin: 1px 2px 0px 2px;
   box-sizing: border-box;
+  display: table;
 }
 
 .widget-question .display-text {
-  font-size: 12px;
-  line-height: 14px;
   background-image: url('bg_dots.png');
   padding: 3px 5px 3px 30px;
+  height: 70px;
+  display: table-cell;
+  margin: 0px 0px 0px 0px;
+  font-size: 11px;
+  line-height: 13px;
   text-align: left;
-  min-height: 70px;
   vertical-align: middle;
 }
+
+
 
 .widget-question .vote {
   float: left;
   overflow: hidden;
   display: inline-block;
-  top: 12px;
+  top: 15px;
   position: absolute;
   cursor: pointer;
   left: 5px;
+  z-index: 1;
+  width: 55px;
   
   &:hover {
     background-position:-51px 0;
