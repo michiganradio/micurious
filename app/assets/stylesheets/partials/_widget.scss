@@ -2,6 +2,7 @@ $widget-width: 310px;
 $widget-height: 370px;
 $logo-height: 31px;
 $logo-width: 140px;
+$rank-width: 20px;
 $prompt: 25px;
 
 .widget-container {
@@ -51,10 +52,10 @@ $prompt: 25px;
   color: $blue;
   text-align: center;
   line-height: $prompt;
-  margin-left: 12px;
-  margin-right: 12px;
   box-sizing: border-box;
   border-bottom: 1px dotted black;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .widget-subtitle {
@@ -62,10 +63,12 @@ $prompt: 25px;
   color: $blue;
   text-align: center;
 }
-.widget-question {
+
+.widget-question-text {
   height: 80px;
   position: relative;
-  padding: 5px 5px 5px 30px;
+  padding: 5px 0px 5px 30px;
+  width: $widget-width - $rank-width - $grid-unit * 2;
   margin: 1px 2px 0px 2px;
   box-sizing: border-box;
   -moz-box-sizing:border-box;
@@ -73,13 +76,26 @@ $prompt: 25px;
   display: table;
 }
 
-.widget-question .display-text {
+.widget-question {
+  width: 95%;
+  margin: 0 $grid-unit/2;
+  border-radius: $grid-unit;
+  
+  .rank {
+    z-index: 1;
+    padding: $grid-unit/2;
+    margin: 0;
+    font-size: 14px;
+    position: absolute;
+  }
+}
+
+.widget-question-text .display-text {
   background-image: url('bg_dots.png');
   padding: 3px 5px 3px 30px;
   height: 70px;
-  width: 100%;
+  width: 98%;
   display: table-cell;
-  margin: 0px 0px 0px 0px;
   font-size: 11px;
   line-height: 13px;
   text-align: left;
@@ -88,7 +104,7 @@ $prompt: 25px;
 
 
 
-.widget-question .vote {
+.widget-question-text .vote {
   float: left;
   overflow: hidden;
   display: inline-block;
@@ -105,6 +121,7 @@ $prompt: 25px;
 }
 
 .ranking-legend {
+  width: 0;
   float: left;
 }
 
@@ -116,9 +133,8 @@ $prompt: 25px;
 
     .submit-question-btn {
       right: $grid-unit * 1.5;
+    }
   }
-
-}
 }
 
 .ask-widget .footer {
