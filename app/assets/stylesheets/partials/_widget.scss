@@ -20,7 +20,7 @@ $prompt: 25px;
 }
 
 .border-container a {
-  color: white;
+  color: $bold-blue;
 
   &:hover {
     background-color: white;
@@ -118,3 +118,8 @@ $prompt: 25px;
 
   }
 }
+
+.ask-widget .footer {
+  color: $nice-blue;
+}
+

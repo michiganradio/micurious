@@ -52,16 +52,23 @@ describe "widgets" do
       end
     end
   end
-  describe "visit ask widget page", js: true do
-    it "allows user to submit a question" do
+  describe "visit ask widget page" do
+    before do
       @ask_widget = AskWidget.new
       @ask_widget.load
-      @ask_widget.submit_question_text.set("What should this question be?")
+    end
+
+    it "allows user to submit a question", js:true do
+     @ask_widget.submit_question_text.set("What should this question be?")
       @ask_widget.submit_button.click
       switch_to_popup
       @home = Home.new
       @home.should be_displayed
       @home.ask_question_modal.question_display_text.text.should == "What should this question be?"
+    end
+    it "allows user to browse answers and questions" do
+      @ask_widget.answers_link[:href].should == filter_questions_url
+      @ask_widget.questions_link[:href].should == filter_questions_url
     end
   end
 end
