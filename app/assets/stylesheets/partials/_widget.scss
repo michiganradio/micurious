@@ -32,7 +32,7 @@ $prompt: 25px;
 }
 .widget-image-logo {
   @include set-size($logo-width, $logo-height);
-  padding: 2px;
+  margin: 5px;
 }
 
 .widget-container .questions-container {
@@ -49,9 +49,13 @@ $prompt: 25px;
   margin-right: 12px;
   box-sizing: border-box;
   border-bottom: 1px dotted black;
-
 }
 
+.widget-subtitle {
+  font-size: 14px;
+  color: $blue;
+  text-align: center;
+}
 .widget-question {
   height: 80px;
   position: relative;
