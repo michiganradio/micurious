@@ -5,5 +5,10 @@ $('document').ready(function() {
     e.preventDefault();
     $('#new_question').submit();
   });
+  $('#modal-form-back').on('click', function(e){
+    e.preventDefault();
+    $('#new_question').attr('action', '<%= picture_question_path %>');
+    $('#new_question').submit();
+  });
   $('#confirm-question-modal').modal('show');
 });

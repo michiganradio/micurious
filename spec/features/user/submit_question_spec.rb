@@ -92,15 +92,26 @@ describe 'Ask a question', js: true do
       @question_picture_modal.thumbnails[0][:class].should eq "thumbnail"
       @question_picture_modal.thumbnails[1][:class].should eq "thumbnail selected-thumbnail"
     end
+
+    context "when back button is clicked" do
+      it "shows ask question modal" do
+        @question_picture_modal.modal_form_back.click
+        @home.wait_for_ask_question_modal
+        @home.should have_ask_question_modal
+      end
+    end
   end
 
   describe "confirm question modal" do
-    it "has expected content" do
+    before do
       @category1 = FactoryGirl.create(:category)
       @category2 = FactoryGirl.create(:category, label: "MyString2")
       setup_ask_question_modal
       setup_question_picture_modal
       setup_confirm_question_modal
+    end
+
+    it "has expected content" do
       @confirm_question_modal.title.should have_content "Double check that your question looks good"
       @confirm_question_modal.body.should have_content "Why is the sky green?"
       @confirm_question_modal.body.should have_content "Robert Johnson"
@@ -112,6 +123,14 @@ describe 'Ask a question', js: true do
       picture = @mock_pictures[0]
       @confirm_question_modal.picture[:src].should eq "http://farm#{picture.farm}.staticflickr.com/#{picture.server}/#{picture.id}_#{picture.secret}.jpg"
       @confirm_question_modal.modal_form_submit
+    end
+
+    context "when back button is clicked" do
+      it "shows question picture modal" do
+        @confirm_question_modal.modal_form_back.click
+        @home.wait_for_question_picture_modal
+        @home.should have_question_picture_modal
+      end
     end
   end
 
