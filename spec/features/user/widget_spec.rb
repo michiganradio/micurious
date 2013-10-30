@@ -57,7 +57,7 @@ describe "widgets" do
       @ask_widget = AskWidget.new
       @ask_widget.load
       @ask_widget.submit_question_text.set("What should this question be?")
-      @ask_widget.ask_button.click
+      @ask_widget.submit_button.click
       switch_to_popup
       @home = Home.new
       @home.should be_displayed
