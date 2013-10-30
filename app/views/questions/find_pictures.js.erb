@@ -13,7 +13,7 @@ $('document').ready(function() {
       selected.setAttribute("class", "thumbnail");
     }
     selected = this;
-    this.setAttribute("class", "selected-thumbnail");
+    this.setAttribute("class", "thumbnail selected-thumbnail");
     $('#question_picture_url').val( $(".selected-thumbnail img").attr('src') );
     $('#question_picture_owner').val( $(".selected-thumbnail img").attr('data-owner') );
   });

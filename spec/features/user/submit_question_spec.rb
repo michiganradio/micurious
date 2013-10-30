@@ -87,10 +87,10 @@ describe 'Ask a question', js: true do
       @question_picture_modal.search_button.click
       @question_picture_modal.thumbnails[0][:class].should eq "thumbnail"
       @question_picture_modal.thumbnails[0].click
-      @question_picture_modal.thumbnails[0][:class].should eq "selected-thumbnail"
+      @question_picture_modal.thumbnails[0][:class].should eq "thumbnail selected-thumbnail"
       @question_picture_modal.thumbnails[1].click
       @question_picture_modal.thumbnails[0][:class].should eq "thumbnail"
-      @question_picture_modal.thumbnails[1][:class].should eq "selected-thumbnail"
+      @question_picture_modal.thumbnails[1][:class].should eq "thumbnail selected-thumbnail"
     end
   end
 

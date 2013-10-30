@@ -10,11 +10,37 @@
   color: white;
   &:visited {
     color: white;
-  }
+}
 }
 .modal-body a {
   color: $hot-pink;
   &:visited {
     color: $bold-blue;
+}
+}
+#pictures {
+  overflow-y: scroll;
+  @include set-size(540px, 300px);
+  margin: 0 auto;
+}
+.thumbnail {
+  box-sizing: content-box;
+  display: inline-block;
+  @include set-size(100px, 100px);
+  margin: $grid-unit/2;
+  position: relative;
+  img {
+    padding: 5% 0%;
+    max-height: 100px;
+    max-width: 100px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
   }
+}
+.selected-thumbnail {
+  background-color: $nice-blue;
 }
