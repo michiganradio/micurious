@@ -8,7 +8,7 @@
     <div class="carrot"></div>
     <div class="submit-question-container">
       <%= form_tag ask_question_path, id: 'ask-question-form', remote: true do %>
-        <%= text_area_tag :display_text, params[:display_text], placeholder: "What do you wonder about Chicago, the region or its people that you want WBEZ to investigate?", class: "submit-question-text" %>
+        <%= text_area_tag :display_text, params[:display_text], placeholder: "What do you wonder about Chicago, the region or its people that you want WBEZ to investigate?", class: "submit-question-text", maxlength: 140 %>
         <%= submit_tag "Ask", class: "btn submit-question-btn", remote: true%>
       <% end %>
     </div>

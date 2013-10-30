@@ -33,6 +33,12 @@ $prompt: 25px;
 .widget-image-logo {
   @include set-size($logo-width, $logo-height);
   margin: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px dotted black;
+}
+
+.ask-widget .widget-image-logo {
+  @include set-size(250px, 50px); 
 }
 
 .widget-container .questions-container {
@@ -97,4 +103,17 @@ $prompt: 25px;
 
 .ranking-legend {
   float: left;
+}
+
+.ask-widget .submit-wrap {
+  padding: $grid-unit;
+
+  .submit-question-container {
+    height: 180px;
+
+    .submit-question-btn {
+      right: $grid-unit * 1.5;
+    }
+
+  }
 }
