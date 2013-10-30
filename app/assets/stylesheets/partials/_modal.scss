@@ -6,6 +6,20 @@
   margin-top: 145px; //this is half the height of the modal. hard-coded. 
 }
 
+#confirm-question-modal {
+  .confirm-question-image {
+    height: $question-height;
+    width: $question-image-width;
+    position:relative;
+    background-position: 0 50%;
+    overflow: hidden;
+
+    img {
+      width: inherit;
+    }
+  }
+}
+
 .modal-footer a {
   color: white;
   &:visited {

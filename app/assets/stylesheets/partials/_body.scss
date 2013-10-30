@@ -1,4 +1,6 @@
 $voting-round-image-width: $grid-unit * 20;
+$question-height: $grid-unit * 8;
+$question-image-width: $voting-round-image-width + $grid-unit * 3;
 
 .categories-group {
   clear: right;
@@ -21,7 +23,7 @@ $voting-round-image-width: $grid-unit * 20;
 .question {
   background-image: url(bg_dots.png);
   position: relative;
-  height: $grid-unit * 8;
+  height: $question-height; 
   border-top: 1px dotted darkgray;
   @include smooth-transitions();
 
@@ -33,7 +35,7 @@ $voting-round-image-width: $grid-unit * 20;
 .question-image {
   float: left;
   height: 100%;
-  width: $voting-round-image-width + $grid-unit * 3;
+  width: $question-image-width;
   position:relative;
   background-position: 0 50%;
   overflow: hidden;

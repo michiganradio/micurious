@@ -6,22 +6,27 @@
         <h4 class='modal-title'>Double check that your question looks good</h4>
       </div>
       <div class="modal-body">
-        <img src= "<%= @question.picture_url %>"><br>
-        <label>Question</label><br>
-        <%= @question.display_text %><br><br>
-        <label>Name</label><br>
-        <%= @question.name %><br><br>
-        <label>Anonymous</label><br>
-        <%= @question.anonymous %><br><br>
-        <label>Email</label><br>
-        <%= @question.email %><br><br>
-        <label>Neighborhood</label><br>
-        <%= @question.neighbourhood %><br><br>
-        <label>Categories</label><br>
-        <% @question.categories.each do |category| %>
-          <%= category.label %><br>
-        <% end %>
+        <div class="confirm-question-image">
+          <img src= "<%= @question.picture_url %>">
+        </div>
         <br>
+        <div class="question-details">
+          <label>Question</label><br>
+          <%= @question.display_text %><br><br>
+          <label>Name</label><br>
+          <%= @question.name %><br><br>
+          <label>Anonymous</label><br>
+          <%= @question.anonymous %><br><br>
+          <label>Email</label><br>
+          <%= @question.email %><br><br>
+          <label>Neighborhood</label><br>
+          <%= @question.neighbourhood %><br><br>
+          <label>Categories</label><br>
+          <% @question.categories.each do |category| %>
+            <%= category.label %><br>
+          <% end %>
+          <br>
+        </div>
 
         <%= form_for(@question, :url => questions_path, :method => :post, :remote => true) do |f| %>
           <%= f.hidden_field :display_text, value: @question.display_text %>
