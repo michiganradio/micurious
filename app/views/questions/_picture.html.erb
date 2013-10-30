@@ -7,10 +7,18 @@
         Enter a keyword or two related to your question, search Flickr and select a photo.
       </div>
       <div class="modal-body">
-        <%= form_tag find_pictures_path, id: "picture-search-form", remote: true do %>
-          <%= text_field_tag "Search", nil, { id: "search-field"} %>
-          <%= submit_tag "Search Flickr", id: "search-flicker" %>
-        <% end %>
+        <div class="row">
+          <div class="col-md-8">
+            <%= form_tag find_pictures_path, id: "picture-search-form", remote: true do %>
+              <div class="input-group">
+                <%= text_field_tag "Search", nil, { id: "search-field", class: "form-control" } %>
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-sm btn-search" id="search-flickr">Search Flickr</button>
+                </span>
+              </div>
+            <% end %>
+          </div>
+        </div>
         <div id="pictures"></div>
         <%= form_for(@question, :url => confirm_question_path, :method => :post, :remote => true) do |f| %>
           <%= f.hidden_field :display_text, value: @question.display_text %>

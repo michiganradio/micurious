@@ -1,10 +1,10 @@
 require 'modal_section'
 
 class QuestionPictureSection < ModalSection
-  element :search_button, '#search-flicker'
+  element :search_button, '#search-flickr'
   element :submit_button, '#modal-form-submit'
   element :modal_form_back, "#modal-form-back"
   element :search_field, '#search-field'
   element :pictures, '#pictures'
-  elements :thumbnails, 'span'
+  elements :thumbnails, '.thumbnail'
 end
