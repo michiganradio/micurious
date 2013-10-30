@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131029211444) do
+ActiveRecord::Schema.define(version: 20131030161830) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -22,16 +22,16 @@ ActiveRecord::Schema.define(version: 20131029211444) do
   end
 
   create_table "questions", force: true do |t|
-    t.string   "original_text", limit: 140,                                           null: false
-    t.string   "display_text",  limit: 140,                                           null: false
+    t.string   "original_text", limit: 140,                                                  null: false
+    t.string   "display_text",  limit: 140,                                                  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "active",                    default: true,                            null: false
+    t.boolean  "active",                    default: true,                                   null: false
     t.string   "neighbourhood"
     t.string   "name"
     t.string   "email"
     t.boolean  "anonymous"
-    t.string   "picture_url",               default: "/default-question-picture.jpg"
+    t.string   "picture_url",               default: "/assets/default-question-picture.jpg"
     t.string   "picture_owner",             default: "Curious City"
   end
 
