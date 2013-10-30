@@ -16,6 +16,11 @@ describe "Vote on a question" do
     should have_link('vote' + @question.id.to_s)
   end
 
+  specify "display question image" do
+    expect(page.all(:css, ".question-image img")[0][:src]).to eq @question.picture_url
+    expect(page.all(:css, ".question-image img")[1][:src]).to eq @question2.picture_url
+  end
+
   context "after voting" do
     before { click_link('vote' + @question.id.to_s) }
 
