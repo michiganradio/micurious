@@ -143,10 +143,6 @@ describe 'Ask a question', js: true do
       setup_confirm_question_modal
       @confirm_question_modal.modal_form_submit.click
       @question_received_modal = @home.question_received_modal
-      @question_received_modal.body.should have_content "Why is the sky green?"
-      @question_received_modal.body.should have_content "Robert Johnson"
-      @question_received_modal.body.should have_content "rjohnson@a.com"
-      @question_received_modal.body.should have_content "Bucktown"
       @question_received_modal.title.text.should == "Thanks for submitting your question!"
       @question_received_modal.archive_link.text.should == "new + unanswered archive" #todo: add link test.
       @question_received_modal.should have_link("public vote", href: root_path)

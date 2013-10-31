@@ -6,14 +6,6 @@
         <h4 class='modal-title'>Thanks for submitting your question!</h4> 
       </div>
       <div class="modal-body">
-        <label>Question:</label>
-        <%= @question.display_text %><br>
-        <label>Name:</label>
-        <%= @question.name %><br>
-        <label>Email:</label>
-        <%= @question.email %><br>
-        <label>Neighborhood:</label>
-        <%= @question.neighbourhood %><br>
         <h4>So what happens now?</h4>
         <ul>
           <li>Your question will now live in the <%= link_to "new + unanswered archive", "#", :id => 'archive-link' %>.</li> 
