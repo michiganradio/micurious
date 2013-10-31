@@ -21,12 +21,9 @@ pre {
 }
 
 a {
-  color: $nice-blue;
-  &:visited {
-    color: black;
-  }
+  color: black;
   &:hover {
-    color: $hot-pink;
+    color: $bold-blue;
   }
 }
 
