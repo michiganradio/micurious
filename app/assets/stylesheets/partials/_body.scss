@@ -1,14 +1,12 @@
-$voting-round-image-width: $grid-unit * 20;
+$voting-round-image-width: $grid-unit * 30;
 $question-height: $grid-unit * 8;
 $question-image-width: $voting-round-image-width + $grid-unit * 3;
 
 .categories-group {
   clear: right;
-
   .checkbox-group {
     float:left;
     padding: 0 3px;
-
     label {
       font-weight: normal;
     }
@@ -29,6 +27,19 @@ $question-image-width: $voting-round-image-width + $grid-unit * 3;
   &:hover {
     color: $bold-blue;
   }
+
+  .rank-triangle {
+    height: 0;
+    width: 0;
+    border-bottom: 50px solid transparent;
+    border-left: 50px solid transparent;
+    border-top: 50px solid black;
+    border-right: 50px solid black;
+    position: absolute;
+    opacity: 0.7;
+    right: 40;
+    top: 0;
+  }
 }
 
 .question-image {
@@ -42,15 +53,15 @@ $question-image-width: $voting-round-image-width + $grid-unit * 3;
   img {
     position: absolute;
     width: $voting-round-image-width;
-  }
+}
 
-  h2 {
-    z-index: 1;
-    position: absolute;
-    right: $grid-unit * 4;
-    margin: 0;
-    color: white;
-  }
+h2 {
+  z-index: 1;
+  position: absolute;
+  right: $grid-unit * 4;
+  margin: 0;
+  color: white;
+ }
 }
 
 .question-text {
@@ -66,17 +77,18 @@ $question-image-width: $voting-round-image-width + $grid-unit * 3;
     right: 0px;
     padding: $grid-unit/2;
     margin: 0px;
-  }
+}
 }
 
 .vote {
+  z-index: 1;
   float: left;
   background-position: 0px 0;
   @include set-size(50px, 50px);
   overflow: hidden;
   position: absolute;
   top: 25%;
-  left: $voting-round-image-width - $grid-unit*2;
+  left: $voting-round-image-width - 25px;
   display: inline-block;
   cursor: pointer;
   background-image: url(votebutton.png);
@@ -88,11 +100,12 @@ $question-image-width: $voting-round-image-width + $grid-unit * 3;
 }
 
 .voted {
+  z-index: 1;
   background-position: -51px 0;
   background-color: transparent;
   @include set-size(50px, 50px);
   top: 25%;
-  left: 230px;
+  left: $voting-round-image-width - 25px;
   overflow: hidden;
   position: relative;
   display:inline-block;
