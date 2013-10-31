@@ -1,13 +1,13 @@
 <% if voted? then %>
   <script> 
-    var count = 2;
+/*    var count = 2;
     countdown = setInterval(function(){
       count--;
       if (count == 0) {
       $("body").fadeOut(1000,  function() {window.location = '/ask_widget' });  
              }
     }, 1000);
-  </script>
+ */ </script>
 <% end %>
 <div class="widget-prompt">
   <%= voted? ? "Thanks for voting!" : "Which question should WBEZ investigate next?" %>
@@ -18,7 +18,6 @@
       <span class="ranking-legend">
         <% if voted? %>
           <h3 class="rank" id="rank<%= question.id.to_s %>"><%= (index + 1).ordinalize %></h3>
-          <%= if last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted") end %>
           <% end %>
         </span>
         <div class="widget-question-text">
@@ -28,7 +27,9 @@
           <div class="display-text">
             <%= question.display_text %>
           </div>
-          <% if voted? then %><span class="rank-triangle"></span><% end %>
+          <% if voted? %><span class="rank-triangle"></span>
+            <%= if last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted") end %>
+          <% end %>
         </div>
       </div>
     <% end %>
