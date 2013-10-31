@@ -60,6 +60,13 @@ describe 'Ask a question', js: true do
       @ask_question_modal.title.text.should == "Submit your question to Curious City"
       @ask_question_modal.question_display_text.text.should == "Why is the sky blue?"
     end
+
+    it "has a pop up modal when the link is clicked" do
+        setup_ask_question_modal
+        @ask_question_modal.examples_link.click
+        @ask_question_modal.wait_for_example_popup
+        @ask_question_modal.should have_example_popup
+    end
   end
 
   it "is shown when root_path is visited with anchor '#ask'" do

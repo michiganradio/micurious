@@ -38,6 +38,11 @@ a#modal-form-back:hover {
   background-color: ButtonShadow;
 }
 
+.modal-body .popover {
+  max-width: 500px;
+  width: 500px;
+}
+
 .modal-body a {
   color: $hot-pink;
   &:visited {

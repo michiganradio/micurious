@@ -24,6 +24,7 @@
           <div class="row">
             <div class="field col-lg-12">
               <%= f.label :display_text, "Your question*" %>
+              <%= render 'guidelines' %>
               <%= f.text_area :display_text, placeholder: "Enter your question here", rows: "4", maxlength: "140", class: "form-control no-changing" %> 
               <div class="submit-question-spec">
                 (140 character limit)
