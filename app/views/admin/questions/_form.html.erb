@@ -4,36 +4,44 @@
       <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
 
       <ul>
-      <% @question.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @question.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-  
+
   <% unless @question.new_record? %>
     <div class="row">
+      <div class="field col-lg-8">
+        <%= f.label :original_text %>
+        <%= f.text_area :original_text, :disabled => true, class:"submit-question-text form-control" %>
+      </div>
+    </div>
+  <% end %>
+  <div class="row">
     <div class="field col-lg-8">
-      <%= f.label :original_text %>
-      <%= f.text_area :original_text, :disabled => true, class:"submit-question-text form-control" %>
+      <%= f.label :display_text %>
+      <%= f.text_area :display_text, class:"form-control" %>
     </div>
   </div>
-<% end %>
-<div class="row">
-  <div class="field col-lg-8">
-    <%= f.label :display_text %>
-    <%= f.text_area :display_text, class:"form-control" %>
+  <div class="row">
+    <div class="field col-lg-8">
+      <%= f.label :category %><br>
+      <% @categories.each do |category| %>
+        <%=  check_box_tag 'question[category_ids][]', category.id, @question.categories.include?(category), { multiple: true } %> 
+        <%= h category.label %> 
+      <% end%>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="field col-lg-8">
-    <%= f.label :category %><br>
-    <% @categories.each do |category| %>
-      <%=  check_box_tag 'question[category_ids][]', category.id, @question.categories.include?(category), { multiple: true } %> 
-      <%= h category.label %> 
-    <% end%>
+
+  <div class="row">
+    <div class="field col-lg-8">
+      <%= f.label :picture_url %>
+      <%= f.text_field :picture_url, class:"form-control" %>
+    </div>
   </div>
-</div>
+
   <div class="row">
     <div class="field col-md-5">
       <%= f.label :name %>
@@ -45,23 +53,23 @@
     </div>
   </div>
   <div class="row">
-  <div class="field col-md-5">
-    <%= f.check_box :anonymous %>
-    <%= f.label "Remain anonymous" %>
+    <div class="field col-md-5">
+      <%= f.check_box :anonymous %>
+      <%= f.label "Remain anonymous" %>
+    </div>
   </div>
-</div>
- <div class="row">
-  <div class="field col-md-5">
-    <%= f.label :neighborhood %>
-    <%= f.text_field :neighbourhood, class: "form-control" %>
+  <div class="row">
+    <div class="field col-md-5">
+      <%= f.label :neighborhood %>
+      <%= f.text_field :neighbourhood, class: "form-control" %>
+    </div>
+    <div class="field col-md-5">
+      <% if @question.new_record? %>
+        <%= f.label :email_confirmation%>
+        <%= f.text_field :email_confirmation, class: "form-control" %>
+      <% end %>
+    </div>
   </div>
-  <div class="field col-md-5">
-    <% if @question.new_record? %>
-      <%= f.label :email_confirmation%>
-      <%= f.text_field :email_confirmation, class: "form-control" %>
-    <% end %>
-  </div>
-</div>
   <div class="actions">
     <%= f.submit %>
   </div>
