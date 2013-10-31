@@ -1,13 +1,13 @@
 <% if voted? then %>
   <script> 
-/*    var count = 2;
+    var count = 2;
     countdown = setInterval(function(){
       count--;
       if (count == 0) {
       $("body").fadeOut(1000,  function() {window.location = '/ask_widget' });  
              }
     }, 1000);
- */ </script>
+  </script>
 <% end %>
 <div class="widget-prompt">
   <%= voted? ? "Thanks for voting!" : "Which question should WBEZ investigate next?" %>
