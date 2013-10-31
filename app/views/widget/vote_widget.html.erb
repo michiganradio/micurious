@@ -1,3 +1,14 @@
+<% if voted? then %>
+  <script> 
+    var count = 2;
+    countdown = setInterval(function(){
+      count--;
+      if (count == 0) {
+      $("body").fadeOut(1000,  function() {window.location = '/ask_widget' });  
+             }
+    }, 1000);
+  </script>
+<% end %>
 <div class="widget-prompt">
   <%= voted? ? "Thanks for Voting!" : "Which question should WBEZ investigate next?" %>
 </div>
@@ -8,21 +19,21 @@
         <% if voted? %>
           <h3 class="rank" id="rank<%= question.id.to_s %>"><%= (index + 1).ordinalize %></h3>
           <%= if last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted") end %>
-        <% end %>
-      </span>
-      <div class="widget-question-text">
-        <%unless voted? %>
-          <%=link_to "", widget_vote_path(question_id: question.id, voting_round_id: @voting_round.id), method: :post, class: "vote", id: "vote"+question.id.to_s %> 
-        <% end %>
-        <div class="display-text">
-          <%= question.display_text %>
+          <% end %>
+        </span>
+        <div class="widget-question-text">
+          <%unless voted? %>
+            <%=link_to "", widget_vote_path(question_id: question.id, voting_round_id: @voting_round.id), method: :post, class: "vote", id: "vote"+question.id.to_s %> 
+          <% end %>
+          <div class="display-text">
+            <%= question.display_text %>
+          </div>
+          <% if voted? then %><span class="rank-triangle"></span><% end %>
         </div>
-      <span class="rank-triangle"></span>
       </div>
-    </div>
-  <% end %>
-</div>
-<%= link_to image_tag("cc-logo.png", class: "widget-image-logo", alt: "WBEZ CuriousCity" ), root_url%>
-<div class="widget-subtitle">
-  What do you wonder about Chicago?
-</div>
+    <% end %>
+  </div>
+  <%= link_to image_tag("cc-logo.png", class: "widget-image-logo", alt: "WBEZ CuriousCity" ), root_url%>
+  <div class="widget-subtitle">
+    What do you wonder about Chicago?
+  </div>
