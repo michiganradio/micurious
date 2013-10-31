@@ -1,9 +1,17 @@
 <script>
 
   $(document).ready(function(){ 
-  
-  $('#examples_link').popover({trigger: 'click', placement: 'bottom', html : true });
+    $('#examples_link').popover({trigger: 'click', placement: 'bottom', html : true });
+   });
 
+  $('#examples_link').click(function (e) {
+    e.stopPropagation();
+  });
+
+  $(document).click(function (e) {
+    if (($('.popover').has(e.target).length == 0) || $(e.target).is('.close')) {
+      $('#examples_link').popover('hide');
+    }
   });
 </script>
 
@@ -32,5 +40,5 @@
     <li>promote a business or person</li>
     <li>try to raise money</li>
     <li>show bias</li>
-</ul>"data-original-title="<h4>Guidelines</h4>">Show some good question examples</a>
+</ul>"data-original-title='<strong>Guidelines</strong><a class="close" href="javascript:void(0);">&times;</a>'>Show some good question examples</a>
 
