@@ -17,7 +17,6 @@ $question-image-width: $voting-round-image-width + $grid-unit * 3;
 
 .questions {
   padding: $grid-unit;
-  padding-top: $grid-unit/2;
 }
 
 .question {
@@ -26,7 +25,7 @@ $question-image-width: $voting-round-image-width + $grid-unit * 3;
   height: $question-height; 
   border-top: 1px dotted darkgray;
   @include smooth-transitions();
-
+  margin: 2px 0px 2px 0px;
   &:hover {
     color: $bold-blue;
   }

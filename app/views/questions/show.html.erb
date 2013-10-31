@@ -1,11 +1,13 @@
 <div class="container-padding">
-  <div class="row question">
-    <div class="question-image">
-      <img src="<%= @question.picture_url %>" alt="question image">
-    </div>
-    <div class="question-text">
-      <%= @question.display_text %>
-      <p class="author">Asked by <%=@question.display_author%></p>
+  <div class="questions">
+    <div class="row question">
+      <div class="question-image">
+        <img src="<%= @question.picture_url %>" alt="question image">
+      </div>
+      <div class="question-text">
+        <%= @question.display_text %>
+        <p class="author">Asked by <%=@question.display_author%></p>
+      </div>
     </div>
   </div>
 </div>
