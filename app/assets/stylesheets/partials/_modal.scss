@@ -38,6 +38,12 @@
   }
 }
 
+.submit-question-spec {
+  position: absolute;
+  bottom: 5;
+  right: 21;
+}
+
 #pictures {
   overflow-y: scroll;
   @include set-size(540px, 300px);
