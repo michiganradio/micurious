@@ -36,7 +36,7 @@ describe "widgets" do
       describe "shows voting results" do
         it "hides vote buttons, shows ranks, thanks user, and orders questions by voting number" do
           @vote_widget.should_not have_vote_buttons
-          @vote_widget.widget_prompt.should have_text "Thanks for Voting!"
+          @vote_widget.widget_prompt.should have_text "Thanks for voting!"
 
           @vote_widget.questions[0].should have_text "1st"
           @vote_widget.questions[1].should have_text "2nd"
