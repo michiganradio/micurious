@@ -10,6 +10,11 @@
   height: 30px;
 } 
 
+.back-form {
+  float: left;
+  overflow: hidden;
+}
+
 #confirm-question-modal {
   .confirm-question-image {
     height: $question-height;
@@ -24,11 +29,13 @@
   }
 }
 
-.modal-footer a {
-  color: white;
-  &:visited {
-    color: white;
- }
+a#modal-form-back {
+  color: ButtonText;
+  background-color: ButtonFace;
+}
+
+a#modal-form-back:hover {
+  background-color: ButtonShadow;
 }
 
 .modal-body a {

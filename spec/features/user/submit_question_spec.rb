@@ -172,5 +172,4 @@ describe 'Ask a question', js: true do
       @admin_show_question.body.should have_content @category2.label
     end
   end
-
 end

@@ -44,7 +44,11 @@
 
       </div>
       <div class="modal-footer">
-        <%= button_to 'BACK', picture_question_path(@question.attributes.merge(email_confirmation: @question.email_confirmation, category_ids: @question.category_ids)), id: 'modal-form-back', class: 'btn', method: 'post', remote: true %>
+        <%= link_to 'BACK', picture_question_path(params: { question: { display_text: @question.display_text, name: @question.name, anonymous: @question.anonymous,
+                                                                        email: @question.email, email_confirmation: @question.email_confirmation,
+                                                                        neighbourhood: @question.neighbourhood, picture_url: @question.picture_url,
+                                                                        picture_owner: @question, category_ids: @question.category_ids} }), id: 'modal-form-back',
+                    class: 'btn', method: 'post', remote: true %>
         <a id='modal-form-submit' class='btn btn-primary inline' href='#'>SUBMIT</a>
       </div>
     </div>
