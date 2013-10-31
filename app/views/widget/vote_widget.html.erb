@@ -7,7 +7,8 @@
       <span class="ranking-legend">
         <% if voted? %>
           <h3 class="rank" id="rank<%= question.id.to_s %>"><%= (index + 1).ordinalize %></h3>
-        <% end%>&nbsp;
+          <%= if last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted") end %>
+        <% end %>
       </span>
       <div class="widget-question-text">
         <%unless voted? %>
@@ -16,6 +17,7 @@
         <div class="display-text">
           <%= question.display_text %>
         </div>
+      <span class="rank-triangle"></span>
       </div>
     </div>
   <% end %>
@@ -24,4 +26,3 @@
 <div class="widget-subtitle">
   What do you wonder about Chicago?
 </div>
-

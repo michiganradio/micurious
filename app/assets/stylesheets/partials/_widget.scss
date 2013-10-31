@@ -1,3 +1,4 @@
+$question-height: 80px;
 $widget-width: 310px;
 $widget-height: 370px;
 $logo-height: 31px;
@@ -25,7 +26,7 @@ $prompt: 25px;
 
   &:hover {
     background-color: white;
-}
+  }
 }
 
 .border-container {
@@ -65,11 +66,10 @@ $prompt: 25px;
 }
 
 .widget-question-text {
-  height: 80px;
+  height: $question-height;
   position: relative;
   padding: 5px 0px 5px 30px;
   width: $widget-width - $rank-width - $grid-unit * 2;
-  margin: 1px 2px 0px 2px;
   box-sizing: border-box;
   -moz-box-sizing:border-box;
   -webkit-box-sizing:border-box;
@@ -78,15 +78,37 @@ $prompt: 25px;
 
 .widget-question {
   width: 95%;
-  margin: 0 $grid-unit/2;
+  margin: 1 $grid-unit/2;
   border-radius: $grid-unit;
-  
-  .rank {
-    z-index: 1;
-    padding: $grid-unit/2;
-    margin: 0;
-    font-size: 14px;
+
+  .rank-triangle {
+    float: right;
+    height: 0;
+    width: 0;
+    border-top: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 30px solid black;
+    border-left: 30px solid black;
+    border-radius: 0 $grid-unit;
+    z-index: 2;
     position: absolute;
+    opacity: 0.8;
+    left: 0;
+    bottom: 0;
+  }
+  .rank {
+    z-index: 3;
+    padding: $grid-unit/2;
+    font-size: 14px;
+    color: white;
+    position: absolute;
+    margin-top: $question-height - $grid-unit*2.5;
+  }
+  .voted {
+    position: absolute;
+    left: 20px;
+    z-index: 1;
+    top: 12%;
   }
 }
 
@@ -120,11 +142,6 @@ $prompt: 25px;
 }
 }
 
-.ranking-legend {
-  width: 0;
-  float: left;
-}
-
 .ask-widget .submit-wrap {
   padding: $grid-unit;
 
@@ -133,8 +150,8 @@ $prompt: 25px;
 
     .submit-question-btn {
       right: $grid-unit * 1.5;
-    }
   }
+}
 }
 
 .ask-widget .footer {
