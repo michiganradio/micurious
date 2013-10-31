@@ -9,6 +9,7 @@ describe "Vote on a question" do
     @voting_round = FactoryGirl.create(:voting_round, status: VotingRound::Status::Live)
     @voting_round.add_question(@question)
     @voting_round.add_question(@question2)
+    Array.any_instance.stub(:shuffle).and_return([@question, @question2])
     visit root_path
   end
 
@@ -49,6 +50,7 @@ describe "Vote on a question" do
       @new_question = FactoryGirl.create(:question, display_text: "hi")
       new_voting_round = FactoryGirl.create(:voting_round, status: VotingRound::Status::Live)
       new_voting_round.add_question(@new_question)
+      Array.any_instance.stub(:shuffle).and_return([@new_question])
       visit(current_path)
     end
 
@@ -63,10 +65,6 @@ describe "Vote on a question" do
 
   context "ordering" do
     context "before voting" do
-      specify "by id from least to greatest" do
-        body.should =~ /question#{@question.id}.*question#{@question2.id}/m
-      end
-
       specify "ranks not displayed" do
         should_not have_selector("h2#rank#{@question.id}")
         should_not have_selector("h2#rank#{@question2.id}")
@@ -76,7 +74,7 @@ describe "Vote on a question" do
     context "after voting" do
       before { click_link('vote' + @question2.id.to_s) }
 
-      specify "by number of votes from greatest to least" do
+      specify "order by number of votes from greatest to least" do
         body.should =~ /question#{@question2.id}.*question#{@question.id}/m
       end
 

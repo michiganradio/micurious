@@ -9,6 +9,7 @@ describe "widgets" do
       VotingRoundQuestion.where(question_id: @questions[0].id).first.update_attributes(vote_number: 10)
       VotingRoundQuestion.where(question_id: @questions[1].id).first.update_attributes(vote_number: 0)
       VotingRoundQuestion.where(question_id: @questions[2].id).first.update_attributes(vote_number: 5)
+      Array.any_instance.stub(:shuffle).and_return(@questions[0..2])
       @vote_widget = VoteWidget.new
       @vote_widget.load
     end

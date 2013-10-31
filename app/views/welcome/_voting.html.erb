@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="questions">
-      <% (@voting_round.questions.sort &sort_proc).each_with_index do |question, index| %>
+      <% (display_order(@voting_round.questions)).each_with_index do |question, index| %>
         <div class="row">
           <div class="question", id="question<%= question.id.to_s %>">
             <div class="question-image">

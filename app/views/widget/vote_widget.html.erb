@@ -13,7 +13,7 @@
   <%= voted? ? "Thanks for voting!" : "Which question should WBEZ investigate next?" %>
 </div>
 <div class="questions-container">
-  <% (@questions.sort &sort_proc).each_with_index do |question, index| %>
+  <% display_order(@questions).each_with_index do |question, index| %>
     <div class="widget-question" style="background-image: url(<%= question.picture_url %>)">
       <span class="ranking-legend">
         <% if voted? %>
