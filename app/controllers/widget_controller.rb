@@ -1,6 +1,10 @@
+require 'voting'
+
 class WidgetController < ApplicationController
+  include Voting
+
   def vote_widget
-    @voting_round = VotingRound.last
+    @voting_round = VotingRound.where(status: VotingRound::Status::Live).first
     @questions = @voting_round.questions[0..2]
     render layout: "widget"
   end

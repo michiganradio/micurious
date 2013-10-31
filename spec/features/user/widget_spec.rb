@@ -3,7 +3,7 @@ require 'features/features_spec_helper'
 describe "widgets" do
   describe 'visit voting widget page' do
     before do
-      @voting_round = FactoryGirl.create(:voting_round)
+      @voting_round = FactoryGirl.create(:voting_round, status: VotingRound::Status::Live)
       @questions = [FactoryGirl.create(:question), FactoryGirl.create(:question, display_text: "another text"), FactoryGirl.create(:question, display_text: "third text"), FactoryGirl.create(:question, display_text: "fourth text")]
       @voting_round.questions = @questions
       VotingRoundQuestion.where(question_id: @questions[0].id).first.update_attributes(vote_number: 10)

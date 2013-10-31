@@ -4,9 +4,10 @@ describe WidgetController do
 
   describe "GET voting widget" do
     it "assigns questions" do
-      voting_round = [double(:voting_round)]
+      voting_round = double(:voting_round)
+      voting_rounds = [voting_round]
       questions = [double(:question)]
-      VotingRound.stub(:last).and_return(voting_round)
+      VotingRound.stub(:where).and_return(voting_rounds)
       voting_round.should_receive(:questions).and_return(questions)
       get :vote_widget
       assigns(:questions).should eq questions
