@@ -50,7 +50,7 @@ $prompt: 25px;
 
 .widget-prompt {
   font-size: 16px;
-  color: $blue;
+  color: $bold-blue;
   text-align: center;
   line-height: $prompt;
   box-sizing: border-box;
@@ -61,7 +61,7 @@ $prompt: 25px;
 
 .widget-subtitle {
   font-size: 13px;
-  color: $blue;
+  color: $bold-blue;
   text-align: center;
 }
 
@@ -145,6 +145,12 @@ $prompt: 25px;
 .ask-widget .submit-wrap {
   padding: $grid-unit;
 
+  .char-limit {
+    bottom: 20px;
+    left: 47px;
+    position: absolute;
+  }
+
   .submit-question-container {
     height: 180px;
 
@@ -155,6 +161,7 @@ $prompt: 25px;
 }
 
 .ask-widget .footer {
-  color: $nice-blue;
+  color: $bold-blue;
+  font-weight: bold;
 }
 

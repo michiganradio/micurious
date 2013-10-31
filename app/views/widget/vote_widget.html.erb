@@ -10,7 +10,7 @@
   </script>
 <% end %>
 <div class="widget-prompt">
-  <%= voted? ? "Thanks for Voting!" : "Which question should WBEZ investigate next?" %>
+  <%= voted? ? "Thanks for voting!" : "Which question should WBEZ investigate next?" %>
 </div>
 <div class="questions-container">
   <% (@questions.sort &sort_proc).each_with_index do |question, index| %>
