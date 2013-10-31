@@ -1,16 +1,19 @@
 <script>
 
+  var isPopoverVisible = false;
   $(document).ready(function(){ 
-    $('#examples_link').popover({trigger: 'click', placement: 'bottom', html : true });
+    $('#examples_link').popover({trigger: 'manual', placement: 'bottom', html : true });
    });
 
   $('#examples_link').click(function (e) {
+    $(this).popover('toggle');
     e.stopPropagation();
   });
 
   $(document).click(function (e) {
     if (($('.popover').has(e.target).length == 0) || $(e.target).is('.close')) {
-      $('#examples_link').popover('hide');
+      $('#examples_link').popover('show');
+      $('#examples_link').click();
     }
   });
 </script>
