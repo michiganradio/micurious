@@ -22,7 +22,7 @@ class Question < ActiveRecord::Base
   end
 
   def picture_url
-    if read_attribute(:picture_url).to_s == ''
+    if !new_record? and read_attribute(:picture_url).to_s == ''
       "/assets/default-question-picture.jpg"
     else
       read_attribute(:picture_url)
