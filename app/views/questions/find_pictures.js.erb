@@ -1,8 +1,7 @@
 $('document').ready(function() {
   pictures_html = "";
   <% @pictures.each do |picture| %>
-    <% url = "http://farm#{picture.farm}.staticflickr.com/#{picture.server}/#{picture.id}_#{picture.secret}.jpg" %>
-    pictures_html +=  '<span class="thumbnail"><%= image_tag url, :size => "#{picture.width}x#{picture.height}", :data => { :owner => picture.owner.username, :attributionurl => picture.url } %></span>';
+    pictures_html +=  '<span class="thumbnail"><%= image_tag picture.url, :size => "#{picture.width}x#{picture.height}", :data => { :owner => picture.owner, :attributionurl => picture.attribution_url } %></span>';
   <% end %>
   $('#pictures').html(pictures_html);
 

@@ -21,7 +21,8 @@ describe 'Ask a question', js: true do
     @mock_pictures[1].stub_chain(:owner, :username).and_return("owner")
     @mock_pictures[1].stub(:url).and_return("url2")
     @mock_flickr_service = double(FlickrService)
-    @mock_flickr_service.stub(:find_pictures).and_return(@mock_pictures)
+    @pictures = @mock_pictures.map{|p| FlickrPicture.new(p)}
+    @mock_flickr_service.stub(:find_pictures).and_return(@pictures)
     FlickrService.stub(:new).and_return(@mock_flickr_service)
   end
 
@@ -50,6 +51,7 @@ describe 'Ask a question', js: true do
   def setup_confirm_question_modal
     @question_picture_modal.search_field.set("chicago")
     @question_picture_modal.search_button.click
+    @question_picture_modal.wait_for_thumbnails
     @question_picture_modal.thumbnails[0].click
     @question_picture_modal.next_button.click
     @home.wait_for_confirm_question_modal
