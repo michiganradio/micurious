@@ -21,6 +21,13 @@ class Question < ActiveRecord::Base
     anonymous ? ANONYMOUS : name
   end
 
+  def picture_url
+    if read_attribute(:picture_url).to_s == ''
+      "/assets/default-question-picture.jpg"
+    else
+      read_attribute(:picture_url)
+    end
+  end
 
   def in_active_voting_rounds?
     ([VotingRound::Status::New, VotingRound::Status::Live] & self.voting_rounds.map(&:status)).any?
