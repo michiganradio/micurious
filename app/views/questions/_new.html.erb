@@ -103,6 +103,7 @@
                            <div class="row col-md-6 little-writing">* required fields</div>
                            <%= f.hidden_field :picture_url, value: @question.picture_url %>
                            <%= f.hidden_field :picture_owner, value: @question.picture_owner %>
+                           <%= f.hidden_field :picture_attribution_url, value: @question.picture_attribution_url %>
                          <% end %>
                        </div>
                        <div class="modal-footer">

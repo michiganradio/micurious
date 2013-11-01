@@ -19,7 +19,7 @@ class QuestionsController < ApplicationController
     @categories = Category.all
     @question.attributes = params.permit(:display_text, :name, :anonymous,
                                          :email, :email_confirmation, :neighbourhood,
-                                         :picture_url, :picture_owner, :category_ids => [])
+                                         :picture_url, :picture_owner, :picture_attribution_url, :category_ids => [])
     respond_to do |format|
       format.js
     end
@@ -63,7 +63,7 @@ class QuestionsController < ApplicationController
 
   private
     def question_params
-      params.require(:question).permit(:searchfield, :original_text, :display_text, :name, :anonymous, :email, :email_confirmation, :neighbourhood, :picture_url, :picture_owner, :category_ids => [] )
+      params.require(:question).permit(:searchfield, :original_text, :display_text, :name, :anonymous, :email, :email_confirmation, :neighbourhood, :picture_url, :picture_owner, :picture_attribution_url, :category_ids => [] )
     end
 
     def set_question

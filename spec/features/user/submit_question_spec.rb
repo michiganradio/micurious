@@ -11,6 +11,7 @@ describe 'Ask a question', js: true do
     @mock_pictures[0].stub(:width).and_return(1)
     @mock_pictures[0].stub(:height).and_return(2)
     @mock_pictures[0].stub_chain(:owner, :username).and_return("owner")
+    @mock_pictures[0].stub(:url).and_return("url1")
     @mock_pictures[1].stub(:id).and_return("10542729043")
     @mock_pictures[1].stub(:secret).and_return("af2c52cac9")
     @mock_pictures[1].stub(:farm).and_return(4)
@@ -18,6 +19,7 @@ describe 'Ask a question', js: true do
     @mock_pictures[1].stub(:width).and_return(1)
     @mock_pictures[1].stub(:height).and_return(2)
     @mock_pictures[1].stub_chain(:owner, :username).and_return("owner")
+    @mock_pictures[1].stub(:url).and_return("url2")
     @mock_flickr_service = double(FlickrService)
     @mock_flickr_service.stub(:find_pictures).and_return(@mock_pictures)
     FlickrService.stub(:new).and_return(@mock_flickr_service)
@@ -81,7 +83,6 @@ describe 'Ask a question', js: true do
       @category2 = FactoryGirl.create(:category, label: "MyString2")
       setup_ask_question_modal
       setup_question_picture_modal
-      @question_picture_modal = @home.question_picture_modal
     end
 
     it "has picture question field" do
@@ -92,6 +93,7 @@ describe 'Ask a question', js: true do
     it "shows pictures from flicker that can be selected one at a time" do
       @question_picture_modal.search_field.set("chicago")
       @question_picture_modal.search_button.click
+      @question_picture_modal.wait_for_thumbnails
       @question_picture_modal.thumbnails[0][:class].should eq "thumbnail"
       @question_picture_modal.thumbnails[0].click
       @question_picture_modal.thumbnails[0][:class].should eq "thumbnail selected-thumbnail"
