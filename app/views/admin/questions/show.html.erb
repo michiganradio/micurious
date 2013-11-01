@@ -11,7 +11,18 @@
 <p>
   <strong>Image:</strong>
   <%= link_to @question.picture_url, @question.picture_url %>
-  </p>
+</p>
+
+<p>
+  <strong>Image Owner:</strong>
+  @question.picture_owner  
+</p>
+
+<p>
+  <strong>Image Attribution URL:</strong>
+  <%= link_to @question.picture_attribution_url, @question.picture_attribution_url %>
+</p>
+
 <p>
   <strong>Name:</strong>
   <%= @question.name %>

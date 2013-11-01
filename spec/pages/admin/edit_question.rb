@@ -5,4 +5,8 @@ class Admin::EditQuestion < SitePrism::Page
   element :add_question_to_voting_round_error, ".alert-error"
   element :add_question_to_voting_round_confirmation, ".alert-notice"
   element :label_dropdown, "select[id='voting_round_id']"
+  element :picture_url, "#question_picture_url"
+  element :picture_owner, "#question_picture_owner"
+  element :picture_attribution_url, "#question_picture_attribution_url"
+  element :update_question_button, "input[value='Update Question']"
 end
