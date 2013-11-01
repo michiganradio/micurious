@@ -12,6 +12,7 @@ describe "browse questions" do
         @questions.question_links[0].text.should include question2.display_text
         @questions.question_links[1].text.should include question.display_text
         @questions.question_images[1][:src].should eq question.picture_url
+        @questions.question_image_attribution_links[0][:href].should == question2.picture_attribution_url
       end
     end
 
@@ -45,6 +46,7 @@ describe "browse questions" do
       @question = ShowQuestion.new
       @question.should be_displayed
       @question.image[:src].should eq question.picture_url
+      @question.attribution_link[:href].should == question.picture_attribution_url
     end
   end
 end

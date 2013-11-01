@@ -9,8 +9,8 @@ $question-image-width: $voting-round-image-width + $grid-unit * 3;
     padding: 0 3px;
     label {
       font-weight: normal;
-    }
   }
+}
 }
 
 .questions {
@@ -26,20 +26,20 @@ $question-image-width: $voting-round-image-width + $grid-unit * 3;
   margin: 2px 0px 2px 0px;
   &:hover {
     color: $bold-blue;
-  }
+}
 
-  .rank-triangle {
-    height: 0;
-    width: 0;
-    border-bottom: 50px solid transparent;
-    border-left: 50px solid transparent;
-    border-top: 50px solid black;
-    border-right: 50px solid black;
-    position: absolute;
-    opacity: 0.7;
-    right: 40;
-    top: 0;
-  }
+.rank-triangle {
+  height: 0;
+  width: 0;
+  border-bottom: 50px solid transparent;
+  border-left: 50px solid transparent;
+  border-top: 50px solid black;
+  border-right: 50px solid black;
+  position: absolute;
+  opacity: 0.7;
+  right: 40;
+  top: 0;
+}
 }
 
 .question-image {
@@ -62,6 +62,21 @@ h2 {
   margin: 0;
   color: white;
  }
+
+ .image-credits {
+   position: absolute;
+   bottom: 0;
+   padding: 0 5px;
+   width: $voting-round-image-width;
+   background-image: url("bg_black-transparent.png"); 
+
+   a{ 
+     &:link, &:visited, &:hover{
+       color: white;
+     }
+   }
+  }
+
 }
 
 .question-text {
@@ -96,7 +111,7 @@ h2 {
   &:hover {
     background-position:-51px 0;
     background-color: transparent;
-  }
+}
 }
 
 .voted {

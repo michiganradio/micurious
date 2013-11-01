@@ -16,6 +16,7 @@ describe "Vote on a question" do
   specify "have links" do
     should have_link('vote' + @question.id.to_s)
     should have_link(@question.display_text, question_path(@question.id))
+    should have_link(@question.picture_owner, @question.picture_attribution_url)
   end
 
   specify "display question image" do

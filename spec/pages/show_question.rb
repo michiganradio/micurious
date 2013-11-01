@@ -3,4 +3,5 @@ class ShowQuestion < SitePrism::Page
   set_url_matcher /\/questions\/\d+/
   element :question, ".question"
   element :image, ".question img"
+  element :attribution_link, ".question-image .image-credits a"
 end

@@ -7,6 +7,7 @@ FactoryGirl.define do
     email_confirmation "a@email.com"
     picture_url "url"
     picture_owner "owner"
+    picture_attribution_url "attribution_url"
     categories []
 
     trait :anonymous do
@@ -22,6 +23,7 @@ FactoryGirl.define do
       email_confirmation "b@email.com"
       picture_url "url2"
       picture_owner "owner2"
+      picture_attribution_url "attribution_url2"
     end
   end
 end
