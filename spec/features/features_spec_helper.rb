@@ -8,7 +8,7 @@ $LOAD_PATH.unshift(Rails.root.join("spec/pages"))
 Dir[Rails.root.join("spec/pages/**/*.rb")].each { |f| require f }
 
 # expand Capybara default wait time out to 10 seconds to make Snap happy
-Capybara.default_wait_time=10
+Capybara.default_wait_time=30
 
 RSpec.configure do |config|
   config.use_transactional_fixtures = false
