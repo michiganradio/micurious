@@ -10,7 +10,9 @@
           <p class="author">Asked by <%=@question.display_author%></p>
         </div>
       </div>
-    </div>
+    <% @question.answers.each do |answer| %>
+          <%= link_to answer.label, answer.url %>
+        <% end %>
   </div>
   <h4 id="comments-prompt"> If WBEZ investigates this question, what should we consider? What's your experience with this? </h4>
   <%= render partial:'comments' unless Rails.env.test?%>

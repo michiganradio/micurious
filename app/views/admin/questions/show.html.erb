@@ -50,9 +50,11 @@
 
 <p>
   <strong>Answers:</strong>
-  <%= @question.answers.each do |answer| %>
-    <span class="answer_label"><%= answer.label %></span>
-    <span class="answer_url"><%= answer.url %></span>
+  <% @question.answers.each do |answer| %>
+    <div>
+      <span class="answer_label"><%= answer.label %></span>
+      <span class="answer_url"><%= answer.url %></span>
+    </div>
   <% end %>
 </p>
 

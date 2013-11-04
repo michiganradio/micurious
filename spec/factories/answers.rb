@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :answer do
-    label "MyString"
-    url "MyString"
+    label "label"
+    url "url"
     question nil
   end
 end
