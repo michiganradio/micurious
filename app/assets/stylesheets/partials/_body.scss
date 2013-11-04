@@ -139,6 +139,7 @@ h2 {
   line-height: 24px;
   font-weight: normal;
   width: $comments-width;
+  font-size: 18px; 
 }
 
 .comment-count-link {
@@ -148,4 +149,23 @@ h2 {
   padding: $grid-unit/2;
   margin: 0px;
   font-size: 13px;
+}
+
+.popover-test {
+  color: $bold-blue;
+}
+
+.popover {
+  max-width: 500px;
+  width: 500px;
+}
+
+.comment-guideline {
+  position: relative;
+  right: $grid-unit;
+  color: black;
+  font-size: 12px; 
+  a#examples_link {
+  float: right;
+ } 
 }
