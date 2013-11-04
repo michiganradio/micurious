@@ -1,5 +1,6 @@
 $question-height: $grid-unit * 8;
 $question-image-width: $voting-round-image-width + $grid-unit * 3;
+$comments-width: 580px;
 
 .categories-group {
   clear: right;
@@ -93,11 +94,18 @@ h2 {
   padding-top: 20px;
   padding-left: 20px;
   padding-right: 40px;
-  width: 580px;
+  width: $comments-width;
 }
 
 .clearfix {
   clear: both;
 }
 
+#comments-prompt {
+  float: right;
+  color: #999;
+  line-height: 24px;
+  font-weight: normal;
+  width: $comments-width;
+}
 
