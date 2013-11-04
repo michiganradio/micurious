@@ -6,16 +6,10 @@
           <div class="question-image">
             <%= render partial: "questions/question_image", locals:{ question: question} %>
           </div>
-          <div class="question-text">
-           <%= link_to(question.display_text, question_url(question), class: "question-link" ) %>
-            <p class="author">Asked by <%=question.display_author%></p>
-            <% unless Rails.env.test? %>  
-              <a href="<%=question_url(question, anchor: 'disqus_thread')%>" class="comment-count-link", data-disqus-identifier=<%="question-#{question.id}"%>> &nbsp;</a>  
-            <% end %>      
-          </div>
+          <%= render partial:'shared/question_text', locals:{question:question} %>
         </div>
       </div>
     <% end %>
   </div>
 </div>
-<%= render 'comment_count' unless Rails.env.test?%>
+<%= render 'shared/comment_count' unless Rails.env.test?%>
