@@ -4,6 +4,8 @@ class Question < ActiveRecord::Base
   has_many :voting_rounds, through: :voting_round_questions
   has_many :voting_round_questions
 
+  has_many :answers
+
   has_and_belongs_to_many :categories, -> { readonly }, join_table: :questions_categories
 
   attr_readonly :original_text

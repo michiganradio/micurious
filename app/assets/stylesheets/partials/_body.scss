@@ -8,8 +8,8 @@ $question-image-width: $voting-round-image-width + $grid-unit * 3;
     padding: 0 3px;
     label {
       font-weight: normal;
+    }
   }
-}
 }
 
 .questions {
@@ -25,6 +25,7 @@ $question-image-width: $voting-round-image-width + $grid-unit * 3;
   margin: 2px 0px 2px 0px;
   &:hover {
     color: $bold-blue;
+  }
 }
 
 .rank-triangle {
@@ -44,6 +45,7 @@ $question-image-width: $voting-round-image-width + $grid-unit * 3;
   img {
     position: absolute;
     width: $voting-round-image-width;
+  }
 }
 
 h2 {
@@ -52,22 +54,20 @@ h2 {
   right: $grid-unit * 4;
   margin: 0;
   color: white;
- }
+}
 
- .image-credits {
-   position: absolute;
-   bottom: 0;
-   padding: 0 5px;
-   width: $voting-round-image-width;
-   background-image: url("bg_black-transparent.png"); 
+.image-credits {
+  position: absolute;
+  bottom: 0;
+  padding: 0 5px;
+  width: $voting-round-image-width;
+  background-image: url("bg_black-transparent.png"); 
 
-   a{ 
-     &:link, &:visited, &:hover{
-       color: white;
-     }
-   }
+  a { 
+    &:link, &:visited, &:hover {
+      color: white;
+    }
   }
-
 }
 
 .question-text {
@@ -83,30 +83,5 @@ h2 {
     right: 0px;
     padding: $grid-unit/2;
     margin: 0px;
-<<<<<<< HEAD
-}
-}
-
-.vote {
-  z-index: 1;
-  float: left;
-  background-position: 0px 0;
-  @include set-size(50px, 50px);
-  overflow: hidden;
-  position: absolute;
-  top: 25%;
-  left: $voting-round-image-width - 25px;
-  display: inline-block;
-  cursor: pointer;
-  background-image: url(votebutton.png);
-
-  &:hover {
-    background-position:-51px 0;
-    background-color: transparent;
-}
-=======
   }
->>>>>>> rl - refactoring sass
 }
-
-
