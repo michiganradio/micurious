@@ -3,10 +3,9 @@ class Question < ActiveRecord::Base
 
   has_many :voting_rounds, through: :voting_round_questions
   has_many :voting_round_questions
-
   has_many :answers
-
   has_and_belongs_to_many :categories, -> { readonly }, join_table: :questions_categories
+  accepts_nested_attributes_for :answers
 
   attr_readonly :original_text
   attr_accessor :email_confirmation

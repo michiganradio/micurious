@@ -48,5 +48,13 @@
   <%= @question.categories.map(&:label).join(',') %>
 </p>
 
+<p>
+  <strong>Answers:</strong>
+  <%= @question.answers.each do |answer| %>
+    <span class="answer_label"><%= answer.label %></span>
+    <span class="answer_url"><%= answer.url %></span>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_admin_question_path(@question) %> |
 <%= link_to 'Back', admin_questions_path %>
