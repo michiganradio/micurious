@@ -1,12 +1,21 @@
+@import "modules/all";
+@import "modules/common_features";
 $nice-blue: #0ecbff;
 $hot-pink: #ff0066; 
 $bold-blue: #00bff3;
 $light_nice_blue: #3dcef6;
-$grid-unit: 13px;
-$crowded-room: 2%;
-$container-padding: 10%;
 $purple: #662d91;
 $blue: #6dcff6;
+
+$grid-unit: 13px;
+
+$crowded-room: 2%;
+$container-padding: 10%;
+$voting-round-image-width: $grid-unit * 30;
+
+$logo-size: 350px;
+$carrot-width: 20px;
+
 .container {
   padding: 0px;
   margin: 0 auto;
@@ -23,4 +32,58 @@ $blue: #6dcff6;
 .no-changing {
   resize: none;
 }
-@import "modules/all"
+
+.submit-wrap {
+  position: relative;
+  padding: $grid-unit 0 $grid-unit $logo-size;
+  
+  .carrot {
+    position: absolute;
+    top: 40%;
+    @include set-size($carrot-width, 24px);
+    background: url(carrot.png) no-repeat;
+  }
+
+  .submit-question-container {
+    border: hot-pink-border();
+    height: 90px;
+    padding: $crowded-room;
+    border-radius: 12px;
+    margin-left: $carrot-width - 3px;
+  }
+}
+.submit-question-text {
+  height: 100%;
+  border-style:none;
+  overflow: hidden;
+  resize: none;
+  outline: none;
+  font-size: 16;
+  line-height: 18px;
+  width: 90%;
+}
+
+.vote-button {
+  z-index: 1;
+  @include set-size(50px, 50px);
+  overflow: hidden;
+  top: 25%;
+  left: $voting-round-image-width - 25px;
+  display: inline-block;
+  background-image: url(votebutton.png);
+}
+.vote {
+  @extend .vote-button;
+  cursor: pointer;
+  background-position: 0px 0;
+  position: absolute;
+
+  &:hover {
+    background-position:-51px 0;
+  }
+}
+.voted {
+  @extend .vote-button;
+  background-position: -51px 0;
+  position: relative;
+}

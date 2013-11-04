@@ -1,0 +1,9 @@
+@mixin right-triangle($side-length, $side1, $side2) {
+    height: 0;
+    width: 0;
+    border: $side-length solid transparent;
+    border-#{$side1}: $side-length solid black;
+    border-#{$side2}: $side-length solid black;
+    position: absolute;
+    opacity: 0.7;
+}

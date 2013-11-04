@@ -1,3 +1,4 @@
+@import 'base';
 $question-height: 80px;
 $widget-width: 310px;
 $widget-height: 370px;
@@ -6,37 +7,34 @@ $logo-width: 140px;
 $rank-width: 20px;
 $prompt: 25px;
 
+@mixin dotted-line($location) {
+  #{$location}: 1px dotted black;
+}
+
 .widget-container {
-  height: $widget-height;
-  width: $widget-width;
+  @include set-size($widget-width, $widget-height);
   overflow: hidden;
   border: 1px solid black;
   padding: 5px;
-  box-sizing: border-box;
+  @include box-sizing(border-box);
 }
 
 .border-container{
-  border: 1px dotted black;
+  @include dotted-line(border); 
   height: $widget-height - 10px;
   overflow: hidden;
+  text-align: center;
 }
 
 .border-container a {
   color: $bold-blue;
-
-  &:hover {
-    background-color: white;
-  }
 }
 
-.border-container {
-  text-align: center;
-}
 .widget-image-logo {
   @include set-size($logo-width, $logo-height);
   margin: 5px;
   padding-bottom: 5px;
-  border-bottom: 1px dotted black;
+  @include dotted-line(border-bottom);
 }
 
 .ask-widget .widget-image-logo {
@@ -45,7 +43,7 @@ $prompt: 25px;
 
 .widget-container .questions-container {
   height: 245px; 
-  box-sizing: border-box;
+  @include box-sizing(border-box);
 }
 
 .widget-prompt {
@@ -53,14 +51,14 @@ $prompt: 25px;
   color: $bold-blue;
   text-align: center;
   line-height: $prompt;
-  box-sizing: border-box;
-  border-bottom: 1px dotted black;
+  @include box-sizing(border-box);
+  @include dotted-line(border-bottom);
   width: 80%;
   margin: 0 auto;
 }
 
 .widget-subtitle {
-  font-size: 13px;
+  font-size: $grid-unit;
   color: $bold-blue;
   text-align: center;
 }
@@ -70,9 +68,7 @@ $prompt: 25px;
   position: relative;
   padding: 5px 0px 5px 30px;
   width: $widget-width - $rank-width - $grid-unit * 2;
-  box-sizing: border-box;
-  -moz-box-sizing:border-box;
-  -webkit-box-sizing:border-box;
+  @include box-sizing(border-box);
   display: table;
 }
 
@@ -82,22 +78,16 @@ $prompt: 25px;
   border-radius: $grid-unit;
 
   .rank-triangle {
-    width: 0;
-    border-top: 30px solid transparent;
-    border-right: 30px solid transparent;
-    border-bottom: 30px solid black;
-    border-left: 30px solid black;
+    @include right-triangle(30px, bottom, left);
     border-radius: 0 $grid-unit;
     z-index: 2;
-    position: absolute;
-    opacity: 0.7;
     left: 0;
     bottom: 0;
   }
   .rank {
     z-index: 3;
     padding: $grid-unit/2;
-    font-size: 14px;
+    font-size: $grid-unit;
     color: white;
     position: absolute;
     margin-top: $question-height - $grid-unit*2.5;
@@ -117,12 +107,10 @@ $prompt: 25px;
   width: 98%;
   display: table-cell;
   font-size: 11px;
-  line-height: 13px;
+  line-height: $grid-unit;
   text-align: left;
   vertical-align: middle;
 }
-
-
 
 .widget-question-text .vote {
   float: left;
@@ -133,11 +121,10 @@ $prompt: 25px;
   cursor: pointer;
   left: 5px;
   z-index: 1;
-
   &:hover {
     background-position:-51px 0;
     background-color: transparent;
-}
+  }
 }
 
 .ask-widget .submit-wrap {
@@ -154,12 +141,11 @@ $prompt: 25px;
 
     .submit-question-btn {
       right: $grid-unit * 1.5;
+    }
   }
-}
 }
 
 .ask-widget .footer {
   color: $bold-blue;
   font-weight: bold;
 }
-

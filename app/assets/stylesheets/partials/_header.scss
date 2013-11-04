@@ -1,7 +1,5 @@
 @import "base";
 $user-navigation-menu-height: 30px;
-$logo-size: 350px;
-$carrot-width: 20px;
 $navbar-height: $grid-unit*2;
 
 .header-logo {
@@ -23,27 +21,7 @@ $navbar-height: $grid-unit*2;
   }
 }
 
-.submit-wrap {
-  position: relative;
-  padding: $grid-unit 0 $grid-unit $logo-size;
   
-  .carrot {
-    position: absolute;
-    top: 40%;
-    @include set-size($carrot-width, 24px);
-    background: url(carrot.png) no-repeat;
-  }
-
-  .submit-question-container {
-    border: hot-pink-border();
-    height: 90px;
-    padding: $crowded-room;
-    border-radius: 12px;
-    margin-left: $carrot-width - 3px;
-  }
-  
-  }
-    
 @include faded-placeholder();
 
 .submit-question-btn {
@@ -56,17 +34,6 @@ $navbar-height: $grid-unit*2;
   &:hover {
     background-color: $nice-blue;
   }
-}
-
-.submit-question-text {
-  height: 100%;
-  border-style:none;
-  overflow: hidden;
-  resize: none;
-  outline: none;
-  font-size: 16;
-  line-height: 18px;
-  width: 90%;
 }
 
 .navbar {
