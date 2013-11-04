@@ -85,3 +85,19 @@ h2 {
     margin: 0px;
   }
 }
+
+#disqus_thread {
+  float: right;
+  background: white;
+  background-image: url(bg_dots.png);
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 40px;
+  width: 580px;
+}
+
+.clearfix {
+  clear: both;
+}
+
+

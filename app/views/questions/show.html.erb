@@ -1,14 +1,17 @@
 <div class="container-padding">
   <div class="questions">
-    <div class="row question">
-      <div class="question-image">
-         <%= render partial: "questions/question_image", locals:{ question: @question} %>
-      </div>
-      <div class="question-text">
-        <%= @question.display_text %>
-        <p class="author">Asked by <%=@question.display_author%></p>
+    <div class="row">
+      <div class="question">
+        <div class="question-image">
+          <%= render partial: "questions/question_image", locals:{ question: @question} %>
+        </div>
+        <div class="question-text">
+          <%= @question.display_text %>
+          <p class="author">Asked by <%=@question.display_author%></p>
+        </div>
       </div>
     </div>
   </div>
   <%= render partial:'comments' unless Rails.env.test?%>
+  <div class="clearfix"></div>
 </div>
