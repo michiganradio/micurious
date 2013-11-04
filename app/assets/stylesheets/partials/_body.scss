@@ -36,9 +36,7 @@ $comments-width: 580px;
 }
 
 .question-image {
-  float: left;
-  height: 100%;
-  width: $question-image-width;
+  @extend .image-to-left-of-row;
   position:relative;
   background-position: 0 50%;
   overflow: hidden;
@@ -54,16 +52,12 @@ $comments-width: 580px;
 }
 
 .answer-image {
-  display: block;
-  float: left;
+  @extend .image-to-left-of-row;
   padding: $grid-unit $grid-unit * 2;
-  width: $question-image-width;
   position: absolute;
-  overflow: auto;
 }
 
 .answer-text {
-  display: block;
   margin-left: $question-image-width - $grid-unit;
   padding-top: $grid-unit;
   float: left;

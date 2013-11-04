@@ -12,6 +12,7 @@ $grid-unit: 13px;
 $crowded-room: 2%;
 $container-padding: 10%;
 $voting-round-image-width: $grid-unit * 30;
+$question-image-width: $voting-round-image-width + $grid-unit * 3;
 
 $logo-size: 350px;
 $carrot-width: 20px;
@@ -87,3 +88,10 @@ $carrot-width: 20px;
   background-position: -51px 0;
   position: relative;
 }
+.image-to-left-of-row {
+  float: left;
+  height: 100%;
+  width: $question-image-width;
+}
+
+

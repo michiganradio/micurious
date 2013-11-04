@@ -8,7 +8,7 @@
   <%= select_tag "voting_round_id", options_from_collection_for_select(@voting_rounds, "id", "label"), prompt: "Please select" %>
   <input type="submit" value="Add question to voting round">
 </form>
-<%= link_to 'Add Answer', new_admin_answer_path(question_id: @question.id), id: "add-answer-button" %>
-
+<%= link_to 'Add Answer', new_admin_answer_path(question_id: @question.id), id: "add-answer-button", class: "btn-default btn" %>
+<br>
 <%= link_to 'Show', admin_question_path(@question) %> |
 <%= link_to 'Back', admin_questions_path %>
