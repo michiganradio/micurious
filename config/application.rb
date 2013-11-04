@@ -21,3 +21,5 @@ module Curiouscity
     # config.i18n.default_locale = :de
   end
 end
+
+DISQUS_SHORTNAME='whoawhoa'
