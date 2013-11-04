@@ -3,7 +3,7 @@
     <div class="row">
       <div class="question">
         <div class="question-image">
-          <%= render partial: "questions/question_image", locals:{ question: @question} %>
+          <%= render partial: "shared/question_image", locals:{ question: @question} %>
         </div>
         <div class="question-text">
           <%= @question.display_text %>
