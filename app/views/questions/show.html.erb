@@ -10,12 +10,22 @@
           <p class="author">Asked by <%=@question.display_author%></p>
         </div>
       </div>
-      <img class="checkmark" src="/assets/sprites.png">
-    <% @question.answers.each do |answer| %>
-          <%= link_to answer.label, answer.url %>
-        <% end %>
+    </div>
+      <div class="answers">
+        <div class="answer-image">
+          <div class="checkmark"></div>
+        </div>
+        <div class="answer-text">
+          <h4><%= "Our answer" if @question.answers.any? %></h4>
+          <% @question.answers.each do |answer| %>
+            <p>
+            <%= link_to answer.label, answer.url %>
+            </p>
+          <% end %>
+        </div>
+    </div>
+    <h4 id="comments-prompt"> If WBEZ investigates this question, what should we consider? What's your experience with this? </h4>
+    <%= render partial:'comments' unless Rails.env.test?%>
+    <div class="clearfix"></div>
   </div>
-  <h4 id="comments-prompt"> If WBEZ investigates this question, what should we consider? What's your experience with this? </h4>
-  <%= render partial:'comments' unless Rails.env.test?%>
-  <div class="clearfix"></div>
 </div>

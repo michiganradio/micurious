@@ -49,6 +49,44 @@ $comments-width: 580px;
   }
 }
 
+.answers {
+  position: relative; 
+}
+
+.answer-image {
+  display: block;
+  float: left;
+  padding: $grid-unit $grid-unit * 2;
+  width: $question-image-width;
+  position: absolute;
+  overflow: auto;
+}
+
+.answer-text {
+  display: block;
+  margin-left: $question-image-width - $grid-unit;
+  padding-top: $grid-unit;
+  float: left;
+  position: relative;
+  h4 {
+    font-size: $grid-unit * 3;
+  }
+  p {
+  line-height: $grid-unit * 3;
+    font-size: $grid-unit * 2;
+  }
+}
+
+.checkmark {
+  float: right;
+  margin: $grid-unit $grid-unit*3;
+  @include set-size(50px, 50px);
+  overflow: hidden;
+  background-image: url("sprites.png");
+  background-position:-101px 0px;
+  background-repeat: no-repeat;
+}
+
 h2 {
   z-index: 1;
   position: absolute;
