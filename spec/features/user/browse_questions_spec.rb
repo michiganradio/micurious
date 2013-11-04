@@ -49,6 +49,7 @@ describe "browse questions" do
       @question.image[:src].should eq question.picture_url
       @question.attribution_link[:href].should == question.picture_attribution_url
       @question.should have_link(answer.label, href: answer.url)
+      @question.should have_checkmark
     end
   end
 end

@@ -10,6 +10,7 @@
           <p class="author">Asked by <%=@question.display_author%></p>
         </div>
       </div>
+      <img class="checkmark" src="/assets/sprites.png">
     <% @question.answers.each do |answer| %>
           <%= link_to answer.label, answer.url %>
         <% end %>
