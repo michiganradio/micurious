@@ -80,8 +80,8 @@ h2 {
 
   .author {
     position: absolute;
-    bottom: 0px;
-    right: 0px;
+    bottom: 5px;
+    left: $question-image-width;
     padding: $grid-unit/2;
     margin: 0px;
   }
@@ -109,3 +109,11 @@ h2 {
   width: $comments-width;
 }
 
+.comment-count-link {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  padding: $grid-unit/2;
+  margin: 0px;
+  font-size: 13px;
+}
