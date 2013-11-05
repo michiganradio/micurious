@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131105190822) do
+ActiveRecord::Schema.define(version: 20131105202905) do
+
+  create_table "answers", force: true do |t|
+    t.string   "label",       null: false
+    t.string   "url",         null: false
+    t.integer  "question_id", null: false
+    t.string   "type",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -40,17 +51,6 @@ ActiveRecord::Schema.define(version: 20131105190822) do
     t.integer "question_id"
     t.integer "category_id"
   end
-
-  create_table "responses", force: true do |t|
-    t.string   "label",       null: false
-    t.string   "url",         null: false
-    t.integer  "question_id", null: false
-    t.string   "type",        null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "responses", ["question_id"], name: "index_responses_on_question_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username"

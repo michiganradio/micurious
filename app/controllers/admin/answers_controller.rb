@@ -14,7 +14,7 @@ module Admin
 
     private
       def answer_params
-        params.require(:answer).permit(:label, :url, :question_id)
+        params.require(:answer).permit(:label, :url, :question_id, :type)
       end
   end
 end

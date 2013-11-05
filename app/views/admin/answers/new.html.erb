@@ -12,5 +12,11 @@
   <div class="field">
     <%= f.hidden_field :question_id %>
   </div>
+  <div class="field">
+    <%= f.radio_button :type, 'Answer' %>
+    <%= f.label :type, 'Answer', value: 'Answer' %>
+    <%= f.radio_button :type, 'Update' %>
+    <%= f.label :type, 'Update', value: 'Update' %>
+  </div>
   <%= f.submit "Add answer to question"%> 
 <% end %>
