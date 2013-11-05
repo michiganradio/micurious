@@ -82,11 +82,11 @@ $comments-width: 580px;
   float: left;
   position: relative;
   h4 {
-    font-size: $grid-unit * 3;
-  }
-  p {
-  line-height: $grid-unit * 3;
     font-size: $grid-unit * 2;
+  }
+  a {
+  line-height: $grid-unit * 3;
+    font-size: $grid-unit * 1.5;
   }
 }
 

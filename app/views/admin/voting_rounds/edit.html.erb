@@ -1,6 +1,10 @@
 <h1>Editing voting_round</h1>
 
 <%= render 'form', :url => admin_voting_round_path(@voting_round) %>
+<p>
 <%= render 'questions' %>
-<%= link_to 'Show', admin_voting_round_path(@voting_round) %> |
-<%= link_to 'Back', admin_voting_rounds_path %>
+</p>
+<p>
+  <%= link_to 'Show', admin_voting_round_path(@voting_round) %> |
+  <%= link_to 'Back', admin_voting_rounds_path %>
+</p>
