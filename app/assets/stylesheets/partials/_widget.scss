@@ -83,6 +83,7 @@ $prompt: 25px;
   width: 95%;
   margin: 1 $grid-unit/2;
   border-radius: $grid-unit;
+  background-position-y: -38px;
 
   .rank-triangle {
     @include right-triangle(30px, bottom, left);

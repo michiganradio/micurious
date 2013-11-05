@@ -49,10 +49,10 @@ $comments-width: 580px;
   position:relative;
   background-position: 0 50%;
   overflow: hidden;
-
   img {
     position: absolute;
     width: $voting-round-image-width;
+    margin-top: -38px;
   }
 }
 
