@@ -67,9 +67,9 @@ describe 'Ask a question', js: true do
 
     it "has a pop up modal when the link is clicked" do
         setup_ask_question_modal
-        @ask_question_modal.examples_link.click
-        @ask_question_modal.wait_for_example_popup
-        @ask_question_modal.should have_example_popup
+        @ask_question_modal.question_guideline_link.click
+        @ask_question_modal.wait_for_popup
+        @ask_question_modal.should have_popup
     end
   end
 

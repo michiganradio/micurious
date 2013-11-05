@@ -2,22 +2,22 @@
 
   var isPopoverVisible = false;
   $(document).ready(function(){ 
-  $('#examples_link').popover({trigger: 'manual', placement: '<%= placement %>', html : true });
+  $('#<%= popover_id %>').popover({trigger: 'manual', placement: '<%= placement %>', html : true });
    });
 
-  $('#examples_link').click(function (e) {
+  $('#<%= popover_id %>').click(function (e) {
     $(this).popover('toggle');
     e.stopPropagation();
   });
 
   $(document).click(function (e) {
     if (($('.popover').has(e.target).length == 0) || $(e.target).is('.close')) {
-      $('#examples_link').popover('show');
-      $('#examples_link').click();
+      $('#<%= popover_id %>').popover('show');
+      $('#<%= popover_id %>').click();
     }
   });
 </script>
 
-<a href="javascript:void(0);" role="button" class="popover-test" id="examples_link" title="" 
+<a href="javascript:void(0);" role="button" class="popover-link" id="<%= popover_id %>" title="" 
   data-content="<%= render guideline_content_partial%>" data-original-title='<strong>Guidelines</strong><a class="close" href="javascript:void(0);">&times;</a>'><%=link_label%></a>
 

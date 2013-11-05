@@ -10,6 +10,6 @@ class AskQuestionSection < ModalSection
   elements :question_categories, ".categories-group .checkbox-group input"
   element :modal_form_next, "#modal-form-next"
   element :modal_form_back, "#modal-form-back"
-  element :examples_link, "#examples_link"
-  element :example_popup, ".popover"
+  element :question_guideline_link, "#question-guideline-link"
+  element :popup, ".popover"
 end
