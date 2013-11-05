@@ -6,7 +6,10 @@ describe Admin::QuestionsController do
     { :display_text => "display text",
       :name => "name",
       :email => "email@email.com",
-      :email_confirmation => "email@email.com"
+      :email_confirmation => "email@email.com",
+      :picture_owner => "owner",
+      :picture_attribution_url => "attribution_url",
+      :picture_url => "url"
      }
   }
   let(:categories) { [FactoryGirl.create(:category),
