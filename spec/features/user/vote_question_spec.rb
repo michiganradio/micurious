@@ -10,78 +10,81 @@ describe "Vote on a question" do
     @voting_round.add_question(@question)
     @voting_round.add_question(@question2)
     Array.any_instance.stub(:shuffle).and_return([@question, @question2])
-    visit root_path
+    @home = Home.new
+    @home.load
   end
 
   specify "have links" do
-    should have_link('vote' + @question.id.to_s)
-    should have_link(@question.display_text, question_path(@question.id))
-    should have_link(@question.picture_owner, @question.picture_attribution_url)
+    @home.voting_round.vote_links[0][:href].should eq vote_path(question_id: @question.id, voting_round_id: @voting_round.id)
+    @home.voting_round.vote_links[1][:href].should eq vote_path(question_id: @question2.id, voting_round_id: @voting_round.id)
+
+    @home.voting_round.question_links[0].text.should eq @question.display_text
+    @home.voting_round.question_links[0][:href].should eq question_url(@question.id)
+    @home.voting_round.question_links[1].text.should eq @question2.display_text
+    @home.voting_round.question_links[1][:href].should eq question_url(@question2.id)
+
+    @home.voting_round.picture_links[0].text.should eq @question.picture_owner
+    @home.voting_round.picture_links[0][:href].should eq @question.picture_attribution_url
+    @home.voting_round.picture_links[1].text.should eq @question2.picture_owner
+    @home.voting_round.picture_links[1][:href].should eq @question2.picture_attribution_url
   end
 
   specify "display question image" do
-    expect(page.all(:css, ".question-image img")[0][:src]).to eq @question.picture_url
-    expect(page.all(:css, ".question-image img")[1][:src]).to eq @question2.picture_url
+    @home.voting_round.pictures[0][:src].should eq @question.picture_url
+    @home.voting_round.pictures[1][:src].should eq @question2.picture_url
   end
 
   context "after voting" do
-    before { click_link('vote' + @question.id.to_s) }
-
-    specify "error when try to vote twice" do
-      page.driver.post(vote_path(question_id: @question.id))
-      page.driver.status_code.should_not eq 200
-    end
+    before { @home.voting_round.vote_links[0].click }
 
     specify "vote icons hidden" do
-      should have_no_selector('vote' + @question.id.to_s)
-      should have_no_selector('vote' + @question2.id.to_s)
+      @home.voting_round.should_not have_vote_links
     end
 
     specify "voted icon displayed next to voted-on question" do
-      should have_selector('div#vote_confirm' + @question.id.to_s)
+      @home.voting_round.vote_confirm[:id].should eq "vote_confirm" + @question.id.to_s
     end
   end
 
   context "new voting round" do
     before do
-      click_link('vote' + @question.id.to_s)
-      # FIXME: change this step when the complete voting round is done
+      @home.voting_round.vote_links[0].click
       @voting_round.status = VotingRound::Status::Completed
       @voting_round.save!
       @new_question = FactoryGirl.create(:question, display_text: "hi")
-      new_voting_round = FactoryGirl.create(:voting_round, status: VotingRound::Status::Live)
-      new_voting_round.add_question(@new_question)
+      @new_voting_round = FactoryGirl.create(:voting_round, status: VotingRound::Status::New)
+      @new_voting_round.add_question(@new_question)
+      @new_voting_round.status = VotingRound::Status::Live
+      @new_voting_round.save
       Array.any_instance.stub(:shuffle).and_return([@new_question])
-      visit(current_path)
+      @home.load
     end
 
     specify "have vote link" do
-      should have_link('vote' + @new_question.id.to_s)
+      @home.voting_round.vote_links[0][:href].should eq vote_path(question_id: @new_question.id, voting_round_id: @new_voting_round.id)
     end
 
     specify "voted icon not displayed" do
-      should_not have_selector('div#vote_confirm' + @new_question.id.to_s)
+      @home.voting_round.should_not have_vote_confirm
     end
   end
 
   context "ordering" do
     context "before voting" do
       specify "ranks not displayed" do
-        should_not have_selector("h2#rank#{@question.id}")
-        should_not have_selector("h2#rank#{@question2.id}")
+        @home.voting_round.should_not have_ranks
       end
     end
 
     context "after voting" do
-      before { click_link('vote' + @question2.id.to_s) }
+      before { @home.voting_round.vote_links[1].click }
 
-      specify "order by number of votes from greatest to least" do
-        body.should =~ /question#{@question2.id}.*question#{@question.id}/m
-      end
-
-      specify "ranks displayed" do
-        should have_selector("h2#rank#{@question.id}", text: "2nd")
-        should have_selector("h2#rank#{@question2.id}", text: "1st")
+      specify "ranks displayed in order by vote number" do
+        @home.voting_round.ranks.size.should eq 2
+        @home.voting_round.ranks[0][:id].should eq "rank#{@question2.id}"
+        @home.voting_round.ranks[0].text.should eq "1st"
+        @home.voting_round.ranks[1][:id].should eq "rank#{@question.id}"
+        @home.voting_round.ranks[1].text.should eq "2nd"
       end
     end
   end
