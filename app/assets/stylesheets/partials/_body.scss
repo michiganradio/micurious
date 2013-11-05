@@ -29,6 +29,25 @@ $comments-width: 580px;
   }
 }
 
+.question.hover,.image-container.hover{
+  -webkit-transition: color,background-color .50s linear;
+  -webkit-transition-property: color, background-color;
+  -webkit-transition-duration: initial, 0.50s;
+  -webkit-transition-timing-function: initial, linear;
+  -webkit-transition-delay: initial, initial;
+  transition: color,background-color .50s linear;
+  transition-property: color, background-color;
+  transition-duration: initial, 0.50s;
+  transition-timing-function: initial, linear;
+  transition-delay: initial, initial;
+  background-image: none;
+  background-color: #49BEE8;
+  color: white;
+}
+
+.image-container.hover{
+  opacity: 0.5;
+}
 .rank-triangle {
   @include right-triangle(50px, top, right);
   right: 40;
