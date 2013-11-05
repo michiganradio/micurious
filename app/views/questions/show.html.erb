@@ -19,7 +19,9 @@
         <div class="answer-text">
           <h4>Our answer</h4>
           <% @question.answers.each do |answer| %>
+            <p>
             <%= link_to answer.label, answer.url %>
+            </p>
           <% end %>
         </div>
       </div>
