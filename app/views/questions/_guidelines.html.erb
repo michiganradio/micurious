@@ -1,21 +1,22 @@
 <script>
 
-  var isPopoverVisible = false;
   $(document).ready(function(){ 
-  $('#<%= popover_id %>').popover({trigger: 'manual', placement: '<%= placement %>', html : true });
-   });
-
-  $('#<%= popover_id %>').click(function (e) {
-    $(this).popover('toggle');
-    e.stopPropagation();
+    $('#<%= popover_id %>').popover({trigger: 'manual', placement: '<%= placement %>', html : true });
+     
+    $('#<%= popover_id %>').click(function (e) {
+      $(this).popover('toggle');
+      e.stopPropagation();
+    });
+    
+    $(document).click(function (e) {
+      if (($('.popover').has(e.target).length == 0) || $(e.target).is('.close')) {
+        $('#<%= popover_id %>').popover('show');
+        $('#<%= popover_id %>').click();
+      }
+    });
+      
   });
 
-  $(document).click(function (e) {
-    if (($('.popover').has(e.target).length == 0) || $(e.target).is('.close')) {
-      $('#<%= popover_id %>').popover('show');
-      $('#<%= popover_id %>').click();
-    }
-  });
 </script>
 
 <a href="javascript:void(0);" role="button" class="popover-link" id="<%= popover_id %>" title="" 
