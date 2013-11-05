@@ -72,6 +72,13 @@ $prompt: 25px;
   display: table;
 }
 
+.widget-blue-hover {
+  background-image: url('bg_dots.png');
+}
+
+.display-text.hover{
+  @extend .blue-hover; 
+}
 .widget-question {
   width: 95%;
   margin: 1 $grid-unit/2;
@@ -101,10 +108,9 @@ $prompt: 25px;
 }
 
 .widget-question-text .display-text {
-  background-image: url('bg_dots.png');
   padding: 3px 5px 3px 30px;
   height: 70px;
-  width: 98%;
+  width: 234px;
   display: table-cell;
   font-size: 11px;
   line-height: $grid-unit;

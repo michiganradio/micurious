@@ -1,14 +1,29 @@
 <% if voted? then %>
   <script> 
-    var count = 2;
-    countdown = setInterval(function(){
-      count--;
-      if (count == 0) {
-      $("body").fadeOut(1000,  function() {window.location = '/ask_widget' });  
-             }
-    }, 1000);
+    $(document).ready(function(){
+      var count = 2;
+      countdown = setInterval(function(){
+        count--;
+        if (count == 0) {
+          $("body").fadeOut(1000,  function() {window.location = '/ask_widget' });  
+        }
+      }, 1000);
+    });
   </script>
 <% end %>
+
+<script>
+  $(document).ready(function(){
+   $('.widget-question').on('mouseenter','.vote', function(){
+      $(this).closest('.widget-question').find('.display-text').addClass('hover');    
+    });
+
+    $('.widget-question').on('mouseleave','.vote', function(){
+      $(this).closest('.widget-question').find('.display-text').removeClass('hover');    
+    });
+  });
+</script>
+    
 <div class="widget-prompt">
   <%= voted? ? "Thanks for voting!" : "Which question should WBEZ investigate next?" %>
 </div>
@@ -24,8 +39,10 @@
           <%unless voted? %>
             <%=link_to "", widget_vote_path(question_id: question.id, voting_round_id: @voting_round.id), method: :post, class: "vote", id: "vote"+question.id.to_s %> 
           <% end %>
-          <div class="display-text">
-            <%= question.display_text %>
+          <div class="widget-blue-hover">
+            <div class="display-text">
+              <%= question.display_text %>
+            </div>
           </div>
           <% if voted? %><span class="rank-triangle"></span>
             <%= if last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted") end %>

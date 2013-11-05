@@ -6,6 +6,8 @@ class QuestionsController < ApplicationController
   end
 
   def filter
+    @categories = Category.where(active: true)
+
     if (params[:category_name])
       @questions = Question.with_category(params[:category_name])
     else

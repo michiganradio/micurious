@@ -94,4 +94,17 @@ $carrot-width: 20px;
   width: $question-image-width;
 }
 
-
+.blue-hover {
+  -webkit-transition: color,background-color .50s linear;
+  -webkit-transition-property: color, background-color;
+  -webkit-transition-duration: initial, 0.50s;
+  -webkit-transition-timing-function: initial, linear;
+  -webkit-transition-delay: initial, initial;
+  transition: color,background-color .50s linear;
+  transition-property: color, background-color;
+  transition-duration: initial, 0.50s;
+  transition-timing-function: initial, linear;
+  transition-delay: initial, initial;
+  background-color: $bold-blue;
+  color: white;
+}

@@ -29,6 +29,13 @@ describe QuestionsController do
         get :filter, {}
         assigns(:questions).should eq(questions)
       end
+
+      it "loads active categories as @categories" do
+        categories = [double(:category)]
+        Category.stub(:where).with(active: true).and_return(categories)
+        get :filter, {}
+        assigns(:categories).should eq(categories)
+      end
     end
 
     context "category id given" do

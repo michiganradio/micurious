@@ -1,4 +1,7 @@
 <div class="container-padding">
+  <% @categories.each do |category| %>
+    <%= link_to category.label, filter_questions_path(category.name) %>
+  <% end %>
   <div class="questions">
     <% @questions.each do |question| %>
       <div class="row">
