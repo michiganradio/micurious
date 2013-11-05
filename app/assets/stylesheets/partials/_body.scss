@@ -38,12 +38,6 @@ $comments-width: 580px;
   @extend .blue-hover;
   opacity: 0.5;
 }
-.rank-triangle {
-  @include right-triangle(50px, top, right);
-  right: 40;
-  top: 0;
-}
-
 .question-image {
   @extend .image-to-left-of-row;
   position:relative;
@@ -54,6 +48,13 @@ $comments-width: 580px;
     width: $voting-round-image-width;
     margin-top: -38px;
   }
+  .rank-triangle {
+  @include right-triangle(50px, top, right);
+  right: 40;
+  top: 0;
+}
+
+
 }
 
 .answers {
