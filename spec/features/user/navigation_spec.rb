@@ -32,6 +32,7 @@ describe "Navigation" do
     end
     shared_examples_for "question browsing pages" do
       describe "has navigation links" do
+        it { should have_link("All", href: filter_questions_path) }
         it { should have_link(@category1.label, href: filter_questions_path(@category1.name)) }
         it { should have_link(@category2.label, href: filter_questions_path(@category2.name)) }
       end
@@ -40,6 +41,13 @@ describe "Navigation" do
     describe "main question browsing page" do
       before do
         visit filter_questions_path
+      end
+      it_should_behave_like 'question browsing pages'
+    end
+
+    describe "filtered question browsing page" do
+      before do
+        visit filter_questions_path(@category1.name)
       end
       it_should_behave_like 'question browsing pages'
     end

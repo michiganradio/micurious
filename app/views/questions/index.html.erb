@@ -1,7 +1,10 @@
 <div class="container-padding">
-  <% @categories.each do |category| %>
-    <%= link_to category.label, filter_questions_path(category.name) %>
-  <% end %>
+  <div class="category-links">
+    <%= link_to "All", filter_questions_path %>
+    <% @categories.each do |category| %>
+      <%= link_to category.label, filter_questions_path(category.name) %>
+    <% end %>
+  </div>
   <div class="questions">
     <% @questions.each do |question| %>
       <div class="row">
