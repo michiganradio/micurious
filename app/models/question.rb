@@ -4,6 +4,8 @@ class Question < ActiveRecord::Base
   has_many :voting_rounds, through: :voting_round_questions
   has_many :voting_round_questions
   has_many :answers
+  has_many :completed_answers, -> { where type: Answer::Type::Answer }, class_name: 'Answer'
+  has_many :updates, -> { where type: Answer::Type::Update }, class_name: 'Answer'
   has_and_belongs_to_many :categories, -> { readonly }, join_table: :questions_categories
   accepts_nested_attributes_for :answers
 
@@ -35,8 +37,8 @@ class Question < ActiveRecord::Base
   end
 
   private
-    def copy_display_text_into_original_text
-      self.original_text = self.display_text
-    end
 
+  def copy_display_text_into_original_text
+    self.original_text = self.display_text
+  end
 end

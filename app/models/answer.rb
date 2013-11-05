@@ -3,6 +3,7 @@ class Answer < ActiveRecord::Base
 
   validates :label, length: { maximum: 255, minimum: 1}
   validates :url, length: { maximum: 255, minimum: 1}
+
   self.inheritance_column = :_type_disabled
 
   module Type
@@ -10,5 +11,4 @@ class Answer < ActiveRecord::Base
     Update = "Update"
     All = [Answer, Update]
   end
-
 end

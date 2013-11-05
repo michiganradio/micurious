@@ -49,11 +49,21 @@
 </p>
 
 <p>
-  <strong>Our answer:</strong>
-  <% @question.answers.each do |answer| %>
+  <strong>Answers:</strong>
+  <% @question.completed_answers.each do |answer| %>
     <div>
       <span class="answer_label"><%= answer.label %></span>
       <span class="answer_url"><%= answer.url %></span>
+    </div>
+  <% end %>
+</p>
+
+<p>
+  <strong>Updates:</strong>
+  <% @question.updates.each do |update| %>
+    <div>
+      <span class="update_label"><%= update.label %></span>
+      <span class="update_url"><%= update.url %></span>
     </div>
   <% end %>
 </p>

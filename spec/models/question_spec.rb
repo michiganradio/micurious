@@ -221,4 +221,3 @@ describe Question do
     end
   end
 end
-

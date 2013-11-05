@@ -43,7 +43,7 @@ describe "Add answer to question" do
     @show_admin_question_page = Admin::ShowQuestion.new
     @show_admin_question_page.should be_displayed
     @show_admin_question_page.load(id: @question.id)
-    @show_admin_question_page.answer_urls[0].text.should eq "url"
-    @show_admin_question_page.answer_labels[0].text.should eq "label"
+    @show_admin_question_page.update_urls[0].text.should eq "url"
+    @show_admin_question_page.update_labels[0].text.should eq "label"
   end
 end
