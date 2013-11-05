@@ -5,6 +5,6 @@ FactoryGirl.define do
     label "label"
     url "url"
     question nil
-    type "Answer"
+    type Answer::Type::Answer
   end
 end

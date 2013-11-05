@@ -13,10 +13,10 @@
     <%= f.hidden_field :question_id %>
   </div>
   <div class="field">
-    <%= f.radio_button :type, 'Answer' %>
-    <%= f.label :type, 'Answer', value: 'Answer' %>
-    <%= f.radio_button :type, 'Update' %>
-    <%= f.label :type, 'Update', value: 'Update' %>
+    <%= f.radio_button :type, Answer::Type::Answer %>
+    <%= f.label :type, 'Answer', value: Answer::Type::Answer %>
+    <%= f.radio_button :type, Answer::Type::Update %>
+    <%= f.label :type, 'Update', value: Answer::Type::Update %>
   </div>
   <%= f.submit "Add answer to question"%> 
 <% end %>
