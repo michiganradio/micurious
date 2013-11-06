@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'therubyracer', '0.12.0'
 gem "email_validator", "~> 1.4.0"
+gem "roo", "~> 1.12.2" # To do data migration from the spreadsheet
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
