@@ -12,7 +12,6 @@
       <th>Category</th>
       <th></th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -25,7 +24,6 @@
         <td><%= question.categories.map(&:label).join(',') %></td>
         <td><%= link_to 'Show', admin_question_path(question) %></td>
         <td><%= link_to 'Edit', edit_admin_question_path(question) %></td>
-        <td><%= link_to 'Deactivate', deactivate_admin_question_path(question), method: :post, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
