@@ -100,8 +100,8 @@ $carrot-width: 20px;
 
 .response-image {
   float: left;
-  width: $question-image-width;
-  padding: $grid-unit $grid-unit * 2;
+  width: $voting-round-image-width;
+  //padding: $grid-unit $grid-unit * 2;
   position: relative;
 }
 

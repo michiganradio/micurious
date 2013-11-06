@@ -39,7 +39,8 @@ $comments-width: 580px;
   opacity: 0.5;
 }
 .question-image {
-  @extend .image-to-left-of-row;
+  float: left;
+  width: $question-image-width;
   height: 100%;
   position:relative;
   background-position: 0 50%;
