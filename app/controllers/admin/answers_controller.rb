@@ -8,8 +8,11 @@ module Admin
 
     def create
       @answer = Answer.new(answer_params)
-      @answer.save
-      redirect_to(admin_question_url(@answer.question_id))
+      if @answer.save
+        redirect_to(admin_question_url(@answer.question_id))
+      else
+        render "new"
+      end
     end
 
     private

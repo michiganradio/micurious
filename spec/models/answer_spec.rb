@@ -13,5 +13,9 @@ describe Answer do
            is_at_least(1).
            is_at_most(255) }
     end
+
+    context "type" do
+      it { should validate_presence_of(:type) }
+    end
   end
 end

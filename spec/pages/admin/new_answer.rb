@@ -7,4 +7,5 @@ class Admin::NewAnswer < SitePrism::Page
   element :add_answer_button, "input[value='Add answer to question']"
   element :answer_type_answer_radio_button, "input#answer_type_answer"
   element :answer_type_update_radio_button, "input#answer_type_update"
+  elements :add_answer_to_question_errors, ".error-message"
 end

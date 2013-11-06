@@ -5,7 +5,7 @@ describe "Add answer to question" do
     @new_admin_answer_page = Admin::NewAnswer.new
     @new_admin_answer_page.answer_url_field.set "url"
     @new_admin_answer_page.answer_label_field.set "label"
-    page.choose(answer_type)
+    page.choose(answer_type) if (answer_type)
     @new_admin_answer_page.add_answer_button.click
   end
 
@@ -23,17 +23,27 @@ describe "Add answer to question" do
     @edit_admin_question_page.new_answer_button.click
   end
 
-  it "adds answer to question as admin" do
-    add_answer(Answer::Type::Answer)
-    setup_show_question_page
-    @show_admin_question_page.answer_urls[0].text.should eq "url"
-    @show_admin_question_page.answer_labels[0].text.should eq "label"
+  context "no type selected" do
+    it "displays error message" do
+      add_answer(nil)
+      @new_admin_answer_page.add_answer_to_question_errors[0].text.should ==
+        "Type can't be blank"
+    end
   end
 
-  it "adds update to question as admin" do
-    add_answer(Answer::Type::Update)
-    setup_show_question_page
-    @show_admin_question_page.update_urls[0].text.should eq "url"
-    @show_admin_question_page.update_labels[0].text.should eq "label"
+  context "type selected" do
+    it "adds answer" do
+      add_answer(Answer::Type::Answer)
+      setup_show_question_page
+      @show_admin_question_page.answer_urls[0].text.should eq "url"
+      @show_admin_question_page.answer_labels[0].text.should eq "label"
+    end
+
+    it "adds update" do
+      add_answer(Answer::Type::Update)
+      setup_show_question_page
+      @show_admin_question_page.update_urls[0].text.should eq "url"
+      @show_admin_question_page.update_labels[0].text.should eq "label"
+    end
   end
 end
