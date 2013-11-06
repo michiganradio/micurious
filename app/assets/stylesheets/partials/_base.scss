@@ -89,11 +89,6 @@ $carrot-width: 20px;
   position: relative;
 }
 
-.image-to-left-of-row {
-  float: left;
-  width: $question-image-width;
-}
-
 .responses {
   position: relative;
 }
@@ -116,8 +111,12 @@ $carrot-width: 20px;
   padding-top: $grid-unit;
   float: left;
   position: relative;
+  width: 60%;
   h4 {
     font-size: $grid-unit * 2;
+  }
+  p {
+    word-wrap: break-word;
   }
   a {
     line-height: $grid-unit * 3;
