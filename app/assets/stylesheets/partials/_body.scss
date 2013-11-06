@@ -40,6 +40,7 @@ $comments-width: 580px;
 }
 .question-image {
   @extend .image-to-left-of-row;
+  height: 100%;
   position:relative;
   background-position: 0 50%;
   overflow: hidden;
@@ -52,23 +53,59 @@ $comments-width: 580px;
   @include right-triangle(50px, top, right);
   right: 40;
   top: 0;
-}
-
-
+  }
 }
 
 .answers {
-  position: relative; 
+  position: relative;
 }
 
 .answer-image {
-  @extend .image-to-left-of-row;
+  float: left;
+  width: $question-image-width;
   padding: $grid-unit $grid-unit * 2;
-  position: absolute;
+  position: relative;
 }
 
 .answer-text {
-  margin-left: $question-image-width - $grid-unit;
+  padding-top: $grid-unit;
+  float: left;
+  position: relative;
+  h4 {
+    font-size: $grid-unit * 2;
+  }
+  a {
+    line-height: $grid-unit * 3;
+    font-size: $grid-unit * 1.5;
+  }
+}
+
+.splitter {
+  clear:both;
+}
+
+.checkmark {
+  float: right;
+  margin: $grid-unit $grid-unit*3;
+  @include set-size(50px, 50px);
+  overflow: hidden;
+  background-image: url("sprites.png");
+  background-position:-101px 0px;
+  background-repeat: no-repeat;
+}
+
+.updates {
+  position: relative; 
+}
+
+.update-image {
+  float: left;
+  width: $question-image-width;
+  padding: $grid-unit $grid-unit * 2;
+  position: relative;
+}
+
+.update-text {
   padding-top: $grid-unit;
   float: left;
   position: relative;
@@ -81,13 +118,12 @@ $comments-width: 580px;
   }
 }
 
-.checkmark {
+.notepad {
   float: right;
   margin: $grid-unit $grid-unit*3;
-  @include set-size(50px, 50px);
+  @include set-size(39px, 78px);
   overflow: hidden;
-  background-image: url("sprites.png");
-  background-position:-101px 0px;
+  background-image: url("reporter_notebook.png");
   background-repeat: no-repeat;
 }
 
