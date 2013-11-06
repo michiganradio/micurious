@@ -220,4 +220,18 @@ describe Question do
       Question.with_category(category.name).should == [question2, question1]
     end
   end
+
+  describe "active?" do
+    it "is true when the status is New, Investigating, and Answered" do
+      [Question::Status::New, Question::Status::Investigating, Question::Status::Answered].each do |status|
+        question = FactoryGirl.build(:question, status: status)
+        question.active?.should be_true
+      end
+    end
+
+    it "is false when the status is Removed" do
+      question = FactoryGirl.build(:question, status: Question::Status::Removed)
+      question.active?.should be_false
+    end
+  end
 end

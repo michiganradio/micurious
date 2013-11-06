@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131106160411) do
+ActiveRecord::Schema.define(version: 20131106161028) do
 
   create_table "answers", force: true do |t|
     t.string   "label",       null: false
@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 20131106160411) do
     t.string   "display_text",            limit: 140,                          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "active",                              default: true,           null: false
     t.string   "neighbourhood"
     t.string   "name"
     t.string   "email"

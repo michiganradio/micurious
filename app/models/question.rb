@@ -20,6 +20,18 @@ class Question < ActiveRecord::Base
 
   scope :with_category, ->(category_name) { includes(:categories).where(categories: {name: category_name}).order(created_at: :desc) }
 
+ module Status
+   New = "New"
+   Answered = "Answered"
+   Investigating = "Investigating"
+   Removed = "Removed"
+   All = [New, Answered, Investigating, Removed]
+ end
+
+  def active?
+    status != Question::Status::Removed
+  end
+
   def display_author
     anonymous ? ANONYMOUS : name
   end

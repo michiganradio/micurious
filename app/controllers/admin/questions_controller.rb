@@ -40,25 +40,14 @@ module Admin
 
     # PATCH/PUT /questions/1
     def update
-      respond_to do |format|
-        if @question.update(question_params)
-          format.html { redirect_to admin_question_url(@question), notice: 'Question was successfully updated.' }
-        else
-          load_categories
-          load_voting_rounds
-          format.html { render action: 'edit' }
-        end
-      end
-    end
-
-    # POST /questions/0
-    def deactivate
       if @question.in_active_voting_rounds?
-        redirect_to admin_questions_url, flash: { error: "Can not deactivate the question when it's in acitve(new, live) voting rounds"}
-      else
-        @question.update_attribute(:active, false)
-        redirect_to admin_questions_url
+        flash.now[:error] = "Can not remove the question when it's in acitve(new, live) voting rounds"
+      elsif @question.update(question_params)
+        redirect_to admin_question_url(@question), notice: 'Question was successfully updated.' and return
       end
+      load_categories
+      load_voting_rounds
+      render action: 'edit'
     end
 
     def add_question_to_voting_round
@@ -66,39 +55,39 @@ module Admin
       voting_round = VotingRound.find(params[:voting_round_id])
       raise "No voting round exists!" unless voting_round
 
-      if (@question.active)
+      if (@question.active?)
         voting_round.add_question(@question)
         voting_round.save!
         flash.now[:notice] = 'Question was successfully added to the voting round'
       else
-        flash.now[:error] = 'Deactivated question can not be added to voting round'
+        flash.now[:error] = 'A removed question can not be added to voting round'
       end
 
       @questions = Question.all
       render 'index'
     rescue Exception => error
-        redirect_to edit_admin_question_url(@question), flash: {error: error.message}
+      redirect_to edit_admin_question_url(@question), flash: {error: error.message}
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_question
-        @question = Question.find(params[:id])
-      end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_question
+      @question = Question.find(params[:id])
+    end
 
 
-      # Never trust parameters from the scary internet, only allow the white list through.
-      def question_params
-        params.require(:question).permit(:original_text, :display_text, :name, :anonymous, :email,
-                                         :email_confirmation, :neighbourhood, :picture_url, :picture_owner, :picture_attribution_url, :reporter, :category_ids => [])
-      end
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def question_params
+      params.require(:question).permit(:original_text, :display_text, :name, :anonymous, :email,
+                                       :email_confirmation, :neighbourhood, :picture_url, :picture_owner, :picture_attribution_url, :reporter, :status, :category_ids => [])
+    end
 
-      def load_categories
-        @categories = Category.all
-      end
+    def load_categories
+      @categories = Category.all
+    end
 
-      def load_voting_rounds
-        @voting_rounds = VotingRound.where(status: VotingRound::Status::New)
-      end
+    def load_voting_rounds
+      @voting_rounds = VotingRound.where(status: VotingRound::Status::New)
+    end
   end
 end

@@ -29,7 +29,9 @@ describe Admin::QuestionsController do
   end
 
   context "signed in admin" do
-    before { sign_in FactoryGirl.create(:user) }
+    before do
+      subject.stub(:signed_in_admin)
+    end
 
     describe "GET index" do
       it "assigns all questions as @questions" do
@@ -181,9 +183,9 @@ describe Admin::QuestionsController do
         end
       end
 
-      context "deactivated question" do
+      context "removed question" do
         before do
-          @question.active = false
+          @question.status = Question::Status::Removed
           put :add_question_to_voting_round, id: @question.id, voting_round_id: @voting_round.id
         end
 
@@ -199,7 +201,7 @@ describe Admin::QuestionsController do
         end
 
         it "flash error notice" do
-          flash.now[:error].should eq "Deactivated question can not be added to voting round"
+          flash.now[:error].should eq "A removed question can not be added to voting round"
         end
 
         it "assigns all questions as @questions" do
@@ -209,7 +211,7 @@ describe Admin::QuestionsController do
     end
 
     describe "PUT update" do
-      describe "with valid params" do
+      context "with valid params" do
         it "updates the requested question" do
           question = Question.create! valid_attributes
           # Assuming there are no other questions in the database, this
@@ -233,7 +235,7 @@ describe Admin::QuestionsController do
         end
       end
 
-      describe "with invalid params" do
+      context "with invalid params" do
         before do
           Category.stub(:all).and_return([])
           VotingRound.stub(:where).and_return([])
@@ -255,46 +257,21 @@ describe Admin::QuestionsController do
           response.should render_template("edit")
         end
       end
-    end
 
-    describe "POST deactivate" do
-      context "success" do
-        it "marks the requested question inactive" do
-          question = Question.create! valid_attributes
-          expect {
-            post :deactivate, {:id => question.to_param}
-          }.to change{Question.where(active: true).count}.by(-1)
-        end
+      context "question is in a new voting round" do
+        it "can not remove the question" do
+          question = FactoryGirl.create(:question)
+          voting_round = FactoryGirl.create(:voting_round, status: VotingRound::Status::New)
+          voting_round.add_question(question)
+          voting_round.save!
+          post :update, {:id => question.id, :question => { :status => Question::Status::Removed}}
+          question.reload.active?.should be_true
 
-        it "does not destroy the requested question" do
-          question = Question.create! valid_attributes
-          expect {
-            post :deactivate, {:id => question.to_param}
-          }.to_not change{Question.count}.by(-1)
-        end
-
-        it "redirects to the questions list" do
-          question = Question.create! valid_attributes
-          post :deactivate, {:id => question.to_param}
-          response.should redirect_to(admin_questions_url)
-        end
-      end
-
-      context "question is in a voting round" do
-        context "voting round is new" do
-          it "can not deactivate question" do
-            question = FactoryGirl.create(:question)
-            voting_round = FactoryGirl.create(:voting_round, status: VotingRound::Status::New)
-            voting_round.add_question(question)
-            voting_round.save!
-            post :deactivate, id: question.id
-            question.reload.active?.should be_true
-
-            flash.now[:error].should eq "Can not deactivate the question when it's in acitve(new, live) voting rounds"
-          end
+          flash.now[:error].should eq "Can not remove the question when it's in acitve(new, live) voting rounds"
         end
       end
     end
+
   end
 
   private
