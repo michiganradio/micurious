@@ -88,9 +88,41 @@ $carrot-width: 20px;
   background-position: -51px 0;
   position: relative;
 }
+
 .image-to-left-of-row {
   float: left;
   width: $question-image-width;
+}
+
+.responses {
+  position: relative;
+}
+
+.response-image {
+  float: left;
+  width: $question-image-width;
+  padding: $grid-unit $grid-unit * 2;
+  position: relative;
+}
+
+.response-image-graphic {
+  float: right;
+  margin: $grid-unit $grid-unit*3;
+  overflow: hidden;
+  background-repeat: no-repeat;
+}
+
+.response-text {
+  padding-top: $grid-unit;
+  float: left;
+  position: relative;
+  h4 {
+    font-size: $grid-unit * 2;
+  }
+  a {
+    line-height: $grid-unit * 3;
+    font-size: $grid-unit * 1.5;
+  }
 }
 
 .blue-hover {
