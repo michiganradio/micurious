@@ -11,16 +11,31 @@
         </div>
       </div>
     </div>
-    <% if @question.answers.any? %>
+    <% if @question.completed_answers.any? %>
       <div class="answers">
         <div class="answer-image">
           <div class="checkmark"></div>
         </div>
         <div class="answer-text">
           <h4>Our answer</h4>
-          <% @question.answers.each do |answer| %>
+          <% @question.completed_answers.each do |answer| %>
             <p>
-            <%= link_to answer.label, answer.url %>
+            <%= link_to answer.label, answer.url, class: "answer-link" %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <% if @question.updates.any? %>
+      <div class="updates">
+        <div class="update-image">
+          <div class="notepad"></div>
+        </div>
+        <div class="update-text">
+          <h4>Reporting updates:</h4>
+          <% @question.updates.each do |update| %>
+            <p>
+            <%= link_to update.label, update.url, class: "update-link" %>
             </p>
           <% end %>
         </div>

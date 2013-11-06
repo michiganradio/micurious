@@ -41,6 +41,7 @@ describe "browse questions" do
       category = FactoryGirl.create(:category)
       question = FactoryGirl.create(:question, categories: [category])
       answer = FactoryGirl.create(:answer, question_id: question.id)
+      update = FactoryGirl.create(:answer, :update, question_id: question.id)
       @questions_in_category = Questions.new
       @questions_in_category.load(category_name: category.name)
       @questions_in_category.question_links.first.click
@@ -48,7 +49,10 @@ describe "browse questions" do
       @question.should be_displayed
       @question.image[:src].should eq question.picture_url
       @question.attribution_link[:href].should == question.picture_attribution_url
-      @question.should have_link(answer.label, href: answer.url)
+      @question.answer_links[0].text.should eq answer.label
+      @question.answer_links[0][:href].should eq answer.url
+      @question.update_links[0].text.should eq update.label
+      @question.update_links[0][:href].should eq update.url
       @question.should have_checkmark
     end
   end

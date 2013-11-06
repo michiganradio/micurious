@@ -6,5 +6,9 @@ FactoryGirl.define do
     url "url"
     question nil
     type Answer::Type::Answer
+
+    trait :update do
+      type Answer::Type::Update
+    end
   end
 end

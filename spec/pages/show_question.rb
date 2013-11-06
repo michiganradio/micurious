@@ -5,4 +5,6 @@ class ShowQuestion < SitePrism::Page
   element :image, ".question img"
   element :attribution_link, ".question-image .image-credits a"
   element :checkmark, ".checkmark"
+  elements :answer_links, "a.answer-link"
+  elements :update_links, "a.update-link"
 end
