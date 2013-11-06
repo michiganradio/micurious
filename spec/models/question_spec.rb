@@ -211,14 +211,38 @@ describe Question do
     end
   end
 
-  describe "with_category" do
-    it "filters by category, and order by created_at desc" do
-      category =  FactoryGirl.create(:category)
-      question1 = FactoryGirl.create(:question, categories: [category], created_at: 1.day.ago)
-      question2 = FactoryGirl.create(:question, categories: [category])
-      question3 = FactoryGirl.create(:question, categories: [FactoryGirl.create(:category, name: "some other")])
-      Question.with_category(category.name).should == [question2, question1]
+  describe "with_status_and_category" do
+    it "filters by status, category, and order by created_at desc" do
+      category1 =  FactoryGirl.create(:category)
+      category2 = FactoryGirl.create(:category, name: "some other")
+      question1 = FactoryGirl.create(:question, categories: [category1],
+                                     status: Question::Status::New,  created_at: 1.day.ago)
+      question2 = FactoryGirl.create(:question,
+                                     status: Question::Status::New, categories: [category1])
+      question3 = FactoryGirl.create(:question,
+                                     status: Question::Status::Investigating,
+                                     categories: [category1])
+      question4 = FactoryGirl.create(:question,
+                                     status: Question::Status::New, categories: [category2])
+      Question.with_status_and_category([Question::Status::New ], category1.name).should == [question2, question1]
     end
+
+    it "filters by status and order" do
+      category1 = FactoryGirl.create(:category)
+      category2 = FactoryGirl.create(:category, name: "some other")
+
+      question1= FactoryGirl.create(:question, categories: [category1],
+                                   status: Question::Status::Investigating)
+
+      question2= FactoryGirl.create(:question, categories: [category2],
+                                   status: Question::Status::Investigating)
+
+      question3= FactoryGirl.create(:question, categories: [category2],
+                                   status: Question::Status::New)
+
+      Question.with_status_and_category([Question::Status::Investigating], nil).should == [question1, question2]
+    end
+
   end
 
   describe "active?" do

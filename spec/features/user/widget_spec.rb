@@ -65,8 +65,8 @@ describe "widgets" do
       @home.ask_question_modal.question_display_text.text.should == "What should this question be?"
     end
     it "allows user to browse answers and questions" do
-      @ask_widget.answers_link[:href].should == filter_questions_url
-      @ask_widget.questions_link[:href].should == filter_questions_url
+      @ask_widget.answers_link[:href].should == filter_questions_url(status: "answered_investigating")
+      @ask_widget.questions_link[:href].should == filter_questions_url(status: "new_unanswered")
     end
   end
 end

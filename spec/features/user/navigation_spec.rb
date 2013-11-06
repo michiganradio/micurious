@@ -29,25 +29,27 @@ describe "Navigation" do
     before do
       @category1 = FactoryGirl.create(:category, active: true)
       @category2 = FactoryGirl.create(:category, :other)
+        @status = "new_unanswered"
     end
+
     shared_examples_for "question browsing pages" do
       describe "has navigation links" do
-        it { should have_link("All", href: filter_questions_path) }
-        it { should have_link(@category1.label, href: filter_questions_path(@category1.name)) }
-        it { should have_link(@category2.label, href: filter_questions_path(@category2.name)) }
+        it { should have_link("All", href: filter_questions_path(status: @status)) }
+        it { should have_link(@category1.label, href: filter_questions_path(status: @status, category_name: @category1.name)) }
+        it { should have_link(@category2.label, href: filter_questions_path(status: @status, category_name: @category2.name)) }
       end
     end
 
     describe "main question browsing page" do
       before do
-        visit filter_questions_path
+        visit filter_questions_path(status: @status)
       end
       it_should_behave_like 'question browsing pages'
     end
 
     describe "filtered question browsing page" do
       before do
-        visit filter_questions_path(@category1.name)
+        visit filter_questions_path(status: @status, category_name: @category1.name)
       end
       it_should_behave_like 'question browsing pages'
     end

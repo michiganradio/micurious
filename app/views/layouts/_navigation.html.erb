@@ -2,11 +2,11 @@
     <ul class="nav navbar-nav container-padding">
       <li><%= link_to "Up for Voting", root_url, id: "up-for-voting-id"%></li>
       <li class="dropdown" id="answered-investigating">
-      <%= link_to("Answered & Investigating", filter_questions_url, id: "answered-investigating-id", class:"dropdown-toggle") %> 
-        <%= render "layouts/category_dropdown_menu" %>
+      <%= link_to("Answered & Investigating", filter_questions_url(status: "answered_investigating"), id: "answered-investigating-id", class:"dropdown-toggle") %> 
+      <%= render partial: "layouts/category_dropdown_menu", locals:{status: "answered_investigating"} %>
       <li class="dropdown" id="new-unanswered">
-        <%= link_to("New & Unanswered", filter_questions_url, id: "new-unanswered-id", class:"dropdown-toggle") %>
-        <%= render "layouts/category_dropdown_menu" %>
+        <%= link_to("New & Unanswered", filter_questions_url(status: "new_unanswered"), id: "new-unanswered-id", class:"dropdown-toggle") %>
+        <%= render partial: "layouts/category_dropdown_menu", locals:{status: "new_unanswered"} %>
       </li>
     </ul>
 </nav>

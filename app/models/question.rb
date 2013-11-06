@@ -18,7 +18,13 @@ class Question < ActiveRecord::Base
   validates :email, length: {maximum: 255}, confirmation: true, email: true
   validates :email_confirmation, presence: true, on: :create
 
-  scope :with_category, ->(category_name) { includes(:categories).where(categories: {name: category_name}).order(created_at: :desc) }
+  def self.with_status_and_category(status, category_name)
+    if category_name.present?
+      includes(:categories).where(categories: {name: category_name}, status: status).order(created_at: :desc)
+    else
+      where(status: status).order(created_at: :desc)
+    end
+  end
 
  module Status
    New = "New"

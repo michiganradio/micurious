@@ -22,30 +22,26 @@ describe QuestionsController do
       subject.stub(:load_categories)
     end
 
-    context "no category id given" do
-      it "loads all question as @questions" do
-        questions = [double(:question)]
-        Question.stub(:order).with(created_at: :desc).and_return(questions)
-        get :filter, {}
-        assigns(:questions).should eq(questions)
-      end
-
-      it "loads active categories as @categories" do
-        categories = [double(:category)]
-        Category.stub(:where).with(active: true).and_return(categories)
-        get :filter, {}
-        assigns(:categories).should eq(categories)
+    context "new_unanswered status " do
+      it "filters questions with new status" do
+        questions = double(:question)
+        statuses = [Question::Status::New]
+        Question.should_receive(:with_status_and_category).with(statuses, 'somecategory').and_return(questions)
+        get :filter, {:status => 'new_unanswered', :category_name => 'somecategory'}
+        assigns(:questions).should eq questions
       end
     end
 
-    context "category id given" do
-      it "loads all questions with category as @questions" do
-        question = double(:question)
-        Question.should_receive(:with_category).with("category name").and_return([question])
-        get :filter, category_name: "category name"
-        assigns(:questions).should eq([question])
+    context "answered_investigating" do
+      it "filters questions with answered and investigating"  do
+        questions = double(:question)
+        statuses = [Question::Status::Answered, Question::Status::Investigating]
+        Question.should_receive(:with_status_and_category).with(statuses,'somecategory').and_return(questions)
+        get :filter, {:status => 'answered_investigating', :category_name => 'somecategory'}
+        assigns(:questions).should eq questions
       end
     end
+
   end
 
   describe "POST new" do

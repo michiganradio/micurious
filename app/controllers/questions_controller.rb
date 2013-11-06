@@ -6,13 +6,13 @@ class QuestionsController < ApplicationController
   end
 
   def filter
-    @categories = Category.where(active: true)
-
-    if (params[:category_name])
-      @questions = Question.with_category(params[:category_name])
-    else
-      @questions = Question.order(created_at: :desc)
+    if params[:status] == 'new_unanswered'
+      statuses = [Question::Status::New]
+    elsif params[:status] == 'answered_investigating'
+      statuses = [Question::Status::Answered, Question::Status::Investigating]
     end
+
+    @questions = Question.with_status_and_category(statuses, params[:category_name])
     render 'index'
   end
 
