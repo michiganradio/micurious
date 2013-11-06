@@ -90,7 +90,7 @@ module Admin
       # Never trust parameters from the scary internet, only allow the white list through.
       def question_params
         params.require(:question).permit(:original_text, :display_text, :name, :anonymous, :email,
-                                         :email_confirmation, :neighbourhood, :picture_url, :picture_owner, :picture_attribution_url, :category_ids => [])
+                                         :email_confirmation, :neighbourhood, :picture_url, :picture_owner, :picture_attribution_url, :reporter, :category_ids => [])
       end
 
       def load_categories

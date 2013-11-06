@@ -8,6 +8,7 @@ class Admin::EditQuestion < SitePrism::Page
   element :picture_url, "#question_picture_url"
   element :picture_owner, "#question_picture_owner"
   element :picture_attribution_url, "#question_picture_attribution_url"
+  element :reporter, "#question_reporter"
   element :update_question_button, "input[value='Update Question']"
   element :new_answer_button, "#add-answer-button"
 end

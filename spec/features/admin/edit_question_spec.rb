@@ -11,7 +11,11 @@ describe 'admin edit question' do
     @admin_edit_question.picture_url.set("new picture_url")
     @admin_edit_question.picture_owner.set("new owner")
     @admin_edit_question.picture_attribution_url.set("new attribution_url")
+    @admin_edit_question.reporter.set("reporter_name")
     @admin_edit_question.update_question_button.click
+
+    @admin_show_question = Admin::ShowQuestion.new
+    @admin_show_question.should have_content("reporter_name")
 
     @admin_edit_question.load(id: @question.id)
     @admin_edit_question.picture_url[:value].should == "new picture_url"

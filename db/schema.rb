@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131105202905) do
+ActiveRecord::Schema.define(version: 20131106032357) do
 
   create_table "answers", force: true do |t|
     t.string   "label",       null: false
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20131105202905) do
     t.string   "picture_url"
     t.string   "picture_owner",                       default: "Curious City"
     t.string   "picture_attribution_url"
+    t.string   "reporter"
   end
 
   create_table "questions_categories", id: false, force: true do |t|
