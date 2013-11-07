@@ -138,3 +138,23 @@ $carrot-width: 20px;
   background-color: $bold-blue;
   color: white;
 }
+
+.sponsor-logos {
+  margin: 0px 10%;
+}
+
+.logo-small {
+  img {
+    float: right;
+    width: 50px;
+    height: auto;
+    margin: 3px;
+  }
+}
+
+.logo-small.tw-logo {
+  img {
+    margin-top: 20px;
+    width: 100px;
+  }
+}

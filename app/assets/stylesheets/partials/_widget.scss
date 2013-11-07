@@ -21,7 +21,7 @@ $prompt: 25px;
 
 .border-container{
   @include dotted-line(border); 
-  height: $widget-height - 10px;
+  
   overflow: hidden;
   text-align: center;
 }
@@ -155,4 +155,25 @@ $prompt: 25px;
 .ask-widget .footer {
   color: $bold-blue;
   font-weight: bold;
+}
+
+.logo-widget {
+  @extend .logo-small;
+  img {
+    width: 25px;
+  }
+}
+
+.sponsor-logos-widget {
+  @extend .sposor-logos;
+  margin: 0;
+  margin-bottom: 72px;
+}
+
+.logo-small.tw-logo-widget {
+  @extend .logo-small.tw-logo;
+  img {
+    margin-top: 12px;
+    width: 60px;
+  }
 }
