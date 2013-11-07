@@ -29,7 +29,6 @@ Curiouscity::Application.routes.draw do
     resources :questions do
       member do
         post :add_question_to_voting_round
-        post :deactivate
       end
     end
     resources :answers, only: [:index, :new, :create]
