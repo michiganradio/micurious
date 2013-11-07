@@ -2,10 +2,11 @@ require 'roo'
 def migrate_question(filepath = "./../ccdata.xls")
   s = Roo::Excel.new(filepath)
   question_sheet = s.sheet(0)
-  spreadsheet_to_question_attributes = { "id"=>"id", "Name"=>"name", "Question"=>"display_text", "Anonymous"=>"anonymous"}
+  spreadsheet_to_question_attributes = { "id"=>"id", "Question"=>"display_text", "Date Uploaded"=>"created_at", "Neighborhood"=>"neighbourhood", "Name"=>"name", "Email"=>"email", "Anonymous"=>"anonymous", "Image Url"=>"picture_url", "Image Attribution"=>"picture_attribution_url", "Image Username"=>"picture_owner", "Reporter"=>"reporter" }
+  column_indices_names = spreadsheet_to_question_attributes.keys.push("Badge").push("Approved")
 
-  column_indices = get_spreadsheet_column_indices(spreadsheet_to_question_attributes.keys, question_sheet)
-  models = get_spreadsheet_models(Question, spreadsheet_to_question_attributes, question_sheet, column_indices)
+  column_indices = get_spreadsheet_column_indices(column_indices_names, question_sheet)
+  models = get_question_models(spreadsheet_to_question_attributes, question_sheet, column_indices)
   save_models(models)
 end
 
@@ -13,29 +14,36 @@ def get_spreadsheet_column_indices(column_names, sheet)
   question_sheet_attributes = sheet.row(1)
   attribute_to_column = {}
   column_names.each do |name|
-    attribute_to_column[name] = question_sheet_attributes.find_index(name)+1
+    attribute_to_column[name] = question_sheet_attributes.find_index(name)
   end
   return attribute_to_column
 end
 
-def get_spreadsheet_models(model_class, spreadsheet_to_model_attribute_names, spreadsheet, attribute_column_indices)
+def get_question_models(spreadsheet_to_model_attribute_names, spreadsheet, attribute_column_indices)
   i=2
-  models = []
-  while !spreadsheet.cell(i, 1).nil?
-    new_model = model_class.new
-    propagate_spreadsheet_data_to_model(spreadsheet, new_model, i, spreadsheet_to_model_attribute_names, attribute_column_indices)
-    models.push new_model
+  questions = []
+  while !spreadsheet.cell(i, 1).nil? && i < 5
+    question = Question.new
+    map_generic_data(spreadsheet.row(i), question, spreadsheet_to_model_attribute_names, attribute_column_indices)
+    map_question_data(spreadsheet.row(i), question, attribute_column_indices)
+    questions.push question
     i+=1
   end
-  return models
+  return questions
 end
 
-def propagate_spreadsheet_data_to_model(spreadsheet, model, model_index, spreadsheet_to_model_attribute_names, attribute_column_indices)
+def map_generic_data(row, model, spreadsheet_to_model_attribute_names, attribute_column_indices)
   for column_name in spreadsheet_to_model_attribute_names.keys do
-    model.send("#{spreadsheet_to_model_attribute_names[column_name]}=", spreadsheet.cell(model_index, attribute_column_indices[column_name]))
+    model.send("#{spreadsheet_to_model_attribute_names[column_name]}=", row[attribute_column_indices[column_name]])
   end
+end
+
+def map_question_data(row, question, attribute_column_indices)
+  question.status = row[attribute_column_indices["Badge"]].presence || (row[attribute_column_indices["Approved"]]==1 ? "new" : "removed")
+  question.email_confirmation = question.email
 end
 
 def save_models(models)
-  models.each { |model| model.save }
+  models.each { |model|  model.valid? ? model.save : (p model.errors) }
 end
+#migrate_question("./../ccdata.xls")

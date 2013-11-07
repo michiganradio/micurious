@@ -3,7 +3,7 @@ class Question < ActiveRecord::Base
 
   has_many :voting_rounds, through: :voting_round_questions
   has_many :voting_round_questions
-  has_many :answers
+  has_many :answers, autosave: true
   has_many :completed_answers, -> { where type: Answer::Type::Answer }, class_name: 'Answer'
   has_many :updates, -> { where type: Answer::Type::Update }, class_name: 'Answer'
   has_and_belongs_to_many :categories, -> { readonly }, join_table: :questions_categories
@@ -13,7 +13,7 @@ class Question < ActiveRecord::Base
   attr_accessor :email_confirmation
   before_create :copy_display_text_into_original_text
   validates :display_text, length: { maximum: 140 , minimum: 1}
-  validates :neighbourhood, length: { maximum: 255 }, format: { with: /\A[a-zA-Z\s]*\z/, message: "only allows letters and spaces" }
+  validates :neighbourhood, length: { maximum: 255 }, format: { with: /\A[a-zA-Z\.\s]*\z/, message: "only allows letters and spaces" }
   validates :name, length: {maximum: 255, minimum: 1 }, format: { with: /\A[a-zA-Z\s\.\-'@]+\z/, message: "only allows letters, spaces, periods, hyphens, apostrophes, and @ signs" }
   validates :email, length: {maximum: 255}, confirmation: true, email: true
   validates :email_confirmation, presence: true, on: :create

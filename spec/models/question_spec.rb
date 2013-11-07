@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Question do
-  subject {@question}
+  subject { @question }
 
   context "original_text" do
     before do
@@ -64,8 +64,8 @@ describe Question do
         @question.should_not be_valid
       end
 
-      it "is valid with letters and spaces" do
-        @question.neighbourhood = "Ddddd D"
+      it "is valid with letters, spaces, and periods" do
+        @question.neighbourhood = "Ddddd. D"
         @question.should be_valid
       end
     end
