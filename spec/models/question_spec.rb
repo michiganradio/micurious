@@ -84,8 +84,8 @@ describe Question do
         @question.should be_valid
       end
 
-      it "is valid with period" do
-        @question.name = "abc."
+      it "is valid with period and parentheses" do
+        @question.name = "abc.()"
         @question.should be_valid
       end
 
