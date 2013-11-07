@@ -43,6 +43,51 @@ describe Admin::AnswersController do
     end
   end
 
+  describe "GET edit" do
+    it "renders 'edit' template" do
+      answer = double(Answer)
+      Answer.stub(:find).with("1").and_return(answer)
+      get :edit, { id: 1 }, valid_session
+      response.should render_template('edit')
+    end
+
+    it "assigns answer from id param as @answer" do
+      answer = double(Answer)
+      Answer.stub(:find).with("1").and_return(answer)
+      get :edit, { id: 1 }, valid_session
+      assigns(:answer).should eq answer
+    end
+  end
+
+  describe "PUT update" do
+    context "valid params" do
+      it "redirects to answers index for question id param" do
+        answer = double(Answer)
+        answer.stub(:update_attributes).and_return(true)
+        Answer.stub(:find).with("0").and_return(answer)
+        put :update, :id => 0, :answer => { :label => "label", :url => "url", :question_id => 0, :type => Answer::Type::Answer }, :session => valid_session
+        response.should redirect_to admin_answers_url(question_id: 0)
+      end
+
+      it "updates requested answer" do
+        answer = double(Answer)
+        Answer.should_receive(:find).with("0").and_return(answer)
+        answer.should_receive(:update_attributes)
+        put :update, :id => 0, :answer => { :label => "label", :url => "url", :question_id => 0, :type => Answer::Type::Answer }, :session => valid_session
+      end
+    end
+
+    context "invalid params" do
+      it "re-renders 'edit template'" do
+        answer = double(Answer)
+        Answer.stub(:find).with("0").and_return(answer)
+        answer.stub(:update_attributes).and_return(false)
+        put :update, :id => 0, :answer => { :label => "", :url => "", :question_id => 0, :type => "" }, :session => valid_session
+        response.should render_template('edit')
+      end
+    end
+  end
+
   describe "POST create" do
     context "valid answer params" do
       it "creates a new Answer" do
@@ -51,6 +96,15 @@ describe Admin::AnswersController do
         answer.should_receive(:save).and_return(true)
         answer.should_receive(:question_id).and_return(0)
         post :create, { answer: { label: "label", url: "url", question_id: 0, type: Answer::Type::Answer} }, valid_session
+      end
+
+      it "redirects to answers index for question id param" do
+        answer = double(Answer)
+        Answer.should_receive(:new).and_return(answer)
+        answer.should_receive(:save).and_return(true)
+        answer.should_receive(:question_id).and_return(0)
+        post :create, { answer: { label: "label", url: "url", question_id: 0, type: Answer::Type::Answer} }, valid_session
+        response.should redirect_to admin_answers_url(question_id: 0)
       end
     end
 

@@ -6,12 +6,13 @@
       <th>Label</th>
       <th>Url</th>
       <th>Type</th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @question.answers.each do |answer| %>
-      <tr id="answer<%= answer.id %>">
+      <tr class="answer-row">
         <td class="answer-label">
           <%= answer.label %>
         </td>
@@ -19,7 +20,10 @@
           <%= answer.url %>
         </td>
         <td class="answer-type">
-          <%= answer.type%>
+          <%= answer.type %>
+        </td>
+        <td class="answer-edit-link">
+          <%= link_to 'Edit', edit_admin_answer_path(answer) %>
         </td>
       </tr>
     <% end %>

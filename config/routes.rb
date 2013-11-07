@@ -31,7 +31,7 @@ Curiouscity::Application.routes.draw do
         post :add_question_to_voting_round
       end
     end
-    resources :answers, only: [:index, :new, :create]
+    resources :answers, except: [:destroy]
 
     match '/signup',       to: 'users#new',        via: 'get'
     match '/signin',       to: 'sessions#new',      via: 'get'

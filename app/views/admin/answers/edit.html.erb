@@ -1,0 +1,33 @@
+<h1>Edit answer</h1>
+
+<%= form_for(@answer, :url => admin_answer_path(question_id: @answer.question_id)) do |f| %>
+  <% if @answer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
+
+      <ul>
+      <% @answer.errors.full_messages.each do |msg| %>
+        <li class="error-message"><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :label %><br>
+    <%= f.text_field :label %>
+  </div>
+  <div class="field">
+    <%= f.label :url %><br>
+    <%= f.text_field :url %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :question_id, value: @answer.question_id %>
+  </div>
+  <div class="field">
+    <%= f.radio_button :type, Answer::Type::Answer %>
+    <%= f.label :type, 'Answer', value: Answer::Type::Answer %>
+    <%= f.radio_button :type, Answer::Type::Update %>
+    <%= f.label :type, 'Update', value: Answer::Type::Update %>
+  </div>
+  <%= f.submit "Update Answer"%> 
+<% end %>
