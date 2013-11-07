@@ -12,9 +12,54 @@
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
       <%= yield %>
-      <%= debug(params) if Rails.env.development? %>
+       <footer>
+          <div class="partners">
+          <div class="footer-head">Partners</div>
+          <div class="sponsor-logos">
+            <a href="http://www.zeega.org/" target = "blank" >
+              <div class="logo-small">
+                <img src="/assets/zeega_bw.png">
+              </div>
+            </a>
+            <a href="http://www.wyncotefoundation.org/" target = "blank" >
+              <div class="logo-small">
+                <img src="/assets/wyncote_bw.png">
+              </div>
+            </a>
+            <a href="http://www.arts.gov/artworks/" target = "blank" >
+              <div class="logo-small">
+                <img src="/assets/art-works_bw.png">
+              </div>
+            </a>
+            <a href="http://www.macfound.org/" target = "blank" >
+              <div class="logo-small">
+                <img src="/assets/macarthur_bw.gif">
+              </div>
+            </a>
+            <a href="http://www.cpb.org/" target = "blank" >
+              <div class="logo-small">
+                <img src="/assets/cpb_bw.png">
+              </div>
+            </a>
+            <a href="http://www.airmedia.org/" target = "blank" >
+              <div class="logo-small">
+                <img src="/assets/air_bw.png">
+              </div>
+            </a>
+            <a href="http://airmediaworks.org/localore" target = "blank" >
+              <div class="logo-small">
+                <img src="/assets/localore_bw.png">
+              </div>
+            </a>
+          </div>
+
+        </div>
+        <div class="clearfix"> </div>
+     </footer>
+        <%= debug(params) if Rails.env.development? %>
     </div>
   </div>
+
   <div id="ask-question-modal"></div>
 </body>
 </html>
