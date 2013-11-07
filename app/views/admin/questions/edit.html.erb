@@ -1,5 +1,5 @@
 <h1>Editing question</h1>
-
+<%= link_to 'Answers', admin_answers_path(question_id: @question.id), class: "btn btn-default" %>
 <%= render 'form', :url => admin_question_path(@question) %>
 
 <form name="add_to_voting_round_form" method="post" action="add_question_to_voting_round">

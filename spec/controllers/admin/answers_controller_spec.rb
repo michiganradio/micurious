@@ -6,6 +6,31 @@ describe Admin::AnswersController do
     subject.stub(:signed_in_admin)
   end
 
+  describe "GET index" do
+    context "no question_id param given" do
+      it "raises error" do
+        expect {
+          get :index, {}, valid_session
+        }.to raise_error(ActionController::ParameterMissing)
+      end
+    end
+
+    context "question_id param given" do
+      it "renders 'index' template" do
+        Question.stub(:find).with("0")
+        get :index, { question_id: 0 }, valid_session
+        response.should render_template('index')
+      end
+
+      it "assigns @question using question_id" do
+        question = double(Question)
+        Question.should_receive(:find).with("0").and_return(question)
+        get :index, { question_id: 0 }, valid_session
+        assigns(:question).should eq question
+      end
+    end
+  end
+
   describe "GET new" do
     it "assigns a new answer as @answer" do
       get :new, { question_id: 0 }, valid_session

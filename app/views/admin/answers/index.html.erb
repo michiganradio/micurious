@@ -1,0 +1,29 @@
+<h1>Listing answers and updates</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Label</th>
+      <th>Url</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @question.answers.each do |answer| %>
+      <tr id="answer<%= answer.id %>">
+        <td class="answer-label">
+          <%= answer.label %>
+        </td>
+        <td class="answer-url">
+          <%= answer.url %>
+        </td>
+        <td class="answer-type">
+          <%= answer.type%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Answer or Update', new_admin_answer_path(question_id: @question.id), class: "btn-default btn" %>

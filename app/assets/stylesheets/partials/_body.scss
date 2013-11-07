@@ -67,6 +67,10 @@ $comments-width: 580px;
 
 .answer-text {
   @extend .response-text;
+  a {
+    color: $nice-blue;
+    text-decoration: underline;
+  }
 }
 
 .splitter {
@@ -90,6 +94,14 @@ $comments-width: 580px;
 
 .update-text {
   @extend .response-text;
+  a {
+    color: gray;
+  }
+
+  a:hover {
+    color: #767676;    
+    text-decoration: none;
+  }
 }
 
 .notepad {

@@ -73,10 +73,13 @@ describe "Admin navigation" do
   end
 
   describe "edit question page" do
+    let(:question) { FactoryGirl.create(:question) }
+
     before do
-      question = FactoryGirl.create(:question)
       visit edit_admin_question_path(question.id)
     end
+
+    it { should have_link("Answers", href: admin_answers_path(question_id: question.id)) }
     it_should_behave_like 'all admin pages'
   end
 
@@ -86,6 +89,7 @@ describe "Admin navigation" do
       visit admin_question_path(question.id)
     end
     it_should_behave_like 'all admin pages'
+  end
 
   describe "voting rounds page" do
     before do
@@ -116,6 +120,7 @@ describe "Admin navigation" do
     end
     it_should_behave_like 'all admin pages'
   end
+
   describe "users page" do
     before do
       visit admin_users_path
@@ -145,5 +150,4 @@ describe "Admin navigation" do
     end
     it_should_behave_like 'all admin pages'
   end
- end
 end

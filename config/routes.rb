@@ -32,7 +32,7 @@ Curiouscity::Application.routes.draw do
         post :deactivate
       end
     end
-    resources :answers, only: [:new, :create]
+    resources :answers, only: [:index, :new, :create]
 
     match '/signup',       to: 'users#new',        via: 'get'
     match '/signin',       to: 'sessions#new',      via: 'get'

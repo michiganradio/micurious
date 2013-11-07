@@ -1,5 +1,10 @@
 module Admin
   class AnswersController < Admin::AdminController
+    def index
+      params.require(:question_id)
+      @question = Question.find(params[:question_id])
+    end
+
     def new
       params.require(:question_id)
       @answer = Answer.new

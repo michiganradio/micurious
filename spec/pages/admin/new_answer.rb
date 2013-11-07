@@ -1,5 +1,5 @@
 class Admin::NewAnswer < SitePrism::Page
-  set_url "/admin/answers/new"
+  set_url "/admin/answers/new{?question_id*}"
   set_url_matcher /\/admin\/answers\/new/
 
   element :answer_url_field, "#answer_url"
