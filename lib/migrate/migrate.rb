@@ -1,5 +1,6 @@
 require 'roo'
 def migrate_question(filepath = "./../ccdata.xls")
+  end
   s = Roo::Excel.new(filepath)
   question_sheet = s.sheet(0)
   spreadsheet_to_question_attributes = { "id"=>"id", "Name"=>"name", "Question"=>"display_text", "Anonymous"=>"anonymous"}
@@ -32,8 +33,6 @@ end
 
 def propagate_spreadsheet_data_to_model(spreadsheet, model, model_index, spreadsheet_to_model_attribute_names, attribute_column_indices)
   for column_name in spreadsheet_to_model_attribute_names.keys do
-    p "attribute setting:" + spreadsheet_to_model_attribute_names[column_name]
-    p spreadsheet.cell(model_index, attribute_column_indices[column_name])
     model.send("#{spreadsheet_to_model_attribute_names[column_name]}=", spreadsheet.cell(model_index, attribute_column_indices[column_name]))
   end
 end
