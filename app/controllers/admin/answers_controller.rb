@@ -33,6 +33,13 @@ module Admin
       end
     end
 
+    def destroy
+      answer = Answer.find(params[:id])
+      @question = Question.find(answer.question_id)
+      answer.destroy
+      render "index"
+    end
+
     private
       def answer_params
         params.require(:answer).permit(:label, :url, :question_id, :type)

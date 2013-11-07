@@ -65,4 +65,15 @@ describe "Question answers" do
       @admin_answers_page.answers[0].type.text.should eq Answer::Type::Update
     end
   end
+
+  describe "delete answer" do
+    it "removes answer" do
+      answer = FactoryGirl.create(:answer, label: "label!!!", question_id: @question.id)
+      @admin_answers_page = Admin::Answers.new
+      @admin_answers_page.load(question_id: @question.id)
+      @admin_answers_page.answers[0].delete_link.click
+      @admin_answers_page.load(question_id: @question.id)
+      @admin_answers_page.should_not have_answers
+    end
+  end
 end

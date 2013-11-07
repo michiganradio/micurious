@@ -121,5 +121,26 @@ describe Admin::AnswersController do
         response.should render_template('new')
       end
     end
+
+    describe "DELETE destroy"do
+      it "destroys the requested answer" do
+        answer = double(Answer)
+        answer.stub(:question_id).and_return(1)
+        Question.stub(:find).and_return(double(Question))
+        Answer.stub(:find).with("0").and_return(answer)
+        answer.should_receive(:destroy)
+        delete :destroy, {id: 0}, valid_session
+      end
+
+      it "re-renders 'index' template" do
+        answer = double(Answer)
+        answer.stub(:question_id).and_return(1)
+        Question.stub(:find).and_return(double(Question))
+        Answer.stub(:find).with("0").and_return(answer)
+        answer.stub(:destroy)
+        delete :destroy, {id: 0}, valid_session
+        response.should render_template('index')
+      end
+    end
   end
 end

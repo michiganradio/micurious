@@ -3,4 +3,5 @@ class Admin::AnswerSection < SitePrism::Section
   element :label, ".answer-label"
   element :type, ".answer-type"
   element :edit_link, ".answer-edit-link"
+  element :delete_link, ".answer-delete-link > a"
 end

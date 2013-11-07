@@ -7,6 +7,7 @@
       <th>Url</th>
       <th>Type</th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -24,6 +25,9 @@
         </td>
         <td class="answer-edit-link">
           <%= link_to 'Edit', edit_admin_answer_path(answer) %>
+        </td>
+        <td class="answer-delete-link">
+          <%= link_to 'Delete', admin_answer_path(answer), :method => :delete %>
         </td>
       </tr>
     <% end %>
