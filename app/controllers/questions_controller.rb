@@ -3,6 +3,7 @@ class QuestionsController < ApplicationController
   before_action :load_categories, only: [:filter, :show]
 
   def show
+      redirect_to root_url if @question.nil?
   end
 
   def filter
@@ -69,6 +70,6 @@ class QuestionsController < ApplicationController
     end
 
     def set_question
-      @question = Question.find(params[:id])
+      @question = Question.where("id = ? AND status != 'Removed'", params[:id]).first
     end
 end

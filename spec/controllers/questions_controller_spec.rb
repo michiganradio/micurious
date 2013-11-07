@@ -10,10 +10,18 @@ describe QuestionsController do
                           }
 
   describe "GET show" do
-    it "assigns the requested question as @question" do
-      question = Question.create! valid_attributes
-      get :show, {:id => question.to_param}
-      assigns(:question).should eq(question)
+
+    it "retrieves a question that is not removed" do
+      questions = [double(:question)]
+      Question.should_receive(:where).with("id = ? AND status != 'Removed'", "1" ).and_return(questions)
+      get :show, {:id => 1}
+      assigns(:question).should eq(questions.first)
+    end
+
+    it "does not retrieve a question that is removed" do
+      Question.stub_chain(:where,:first).and_return(nil)
+      get :show, {:id => 1}
+      response.should redirect_to(root_url)
     end
   end
 
