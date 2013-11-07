@@ -1,6 +1,5 @@
 require 'roo'
 def migrate_question(filepath = "./../ccdata.xls")
-  end
   s = Roo::Excel.new(filepath)
   question_sheet = s.sheet(0)
   spreadsheet_to_question_attributes = { "id"=>"id", "Name"=>"name", "Question"=>"display_text", "Anonymous"=>"anonymous"}
