@@ -22,7 +22,7 @@ end
 def get_question_models(spreadsheet_to_model_attribute_names, spreadsheet, attribute_column_indices)
   i=2
   questions = []
-  while !spreadsheet.cell(i, 1).nil? && i < 5
+  while !spreadsheet.cell(i, 1).nil?
     question = Question.new
     map_generic_data(spreadsheet.row(i), question, spreadsheet_to_model_attribute_names, attribute_column_indices)
     map_question_data(spreadsheet.row(i), question, attribute_column_indices)

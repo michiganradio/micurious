@@ -64,8 +64,8 @@ describe Question do
         @question.should_not be_valid
       end
 
-      it "is valid with letters, spaces, and periods" do
-        @question.neighbourhood = "Ddddd. D"
+      it "is valid with letters, spaces,slashes, commas, apostrophes, parentheses, dashes,  and periods" do
+        @question.neighbourhood = "Ddddd.(),'-/ D"
         @question.should be_valid
       end
     end
