@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131108203238) do
+ActiveRecord::Schema.define(version: 20131108205126) do
 
   create_table "answers", force: true do |t|
     t.text     "label",       null: false
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20131108203238) do
   end
 
   create_table "questions", force: true do |t|
-    t.string   "original_text",           limit: 140,                          null: false
-    t.string   "display_text",            limit: 140,                          null: false
+    t.string   "original_text",                                               null: false
+    t.string   "display_text",                                                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "neighbourhood"
@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(version: 20131108203238) do
     t.string   "email"
     t.boolean  "anonymous"
     t.string   "picture_url"
-    t.string   "picture_owner",                       default: "Curious City"
+    t.string   "picture_owner",                      default: "Curious City"
     t.string   "picture_attribution_url"
     t.string   "reporter"
-    t.string   "status",                  limit: 50,  default: "New",          null: false
+    t.string   "status",                  limit: 50, default: "New",          null: false
   end
 
   add_index "questions", ["status"], name: "index_questions_on_status", using: :btree
