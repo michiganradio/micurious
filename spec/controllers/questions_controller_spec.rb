@@ -30,22 +30,22 @@ describe QuestionsController do
       subject.stub(:load_categories)
     end
 
-    context "new_unanswered status " do
+    context "archive status " do
       it "filters questions with new status" do
         questions = double(:question)
         statuses = [Question::Status::New]
         Question.should_receive(:with_status_and_category).with(statuses, 'somecategory').and_return(questions)
-        get :filter, {:status => 'new_unanswered', :category_name => 'somecategory'}
+        get :filter, {:status => 'archive', :category_name => 'somecategory'}
         assigns(:questions).should eq questions
       end
     end
 
-    context "answered_investigating" do
+    context "answered" do
       it "filters questions with answered and investigating"  do
         questions = double(:question)
         statuses = [Question::Status::Answered, Question::Status::Investigating]
         Question.should_receive(:with_status_and_category).with(statuses,'somecategory').and_return(questions)
-        get :filter, {:status => 'answered_investigating', :category_name => 'somecategory'}
+        get :filter, {:status => 'answered', :category_name => 'somecategory'}
         assigns(:questions).should eq questions
       end
     end

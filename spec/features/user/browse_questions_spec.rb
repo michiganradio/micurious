@@ -7,7 +7,7 @@ describe "browse questions" do
         question = FactoryGirl.create(:question, created_at:1.day.ago)
         question2 = FactoryGirl.create(:question, :other, created_at:Time.now)
         @questions = Questions.new
-        @questions.load(status: "new_unanswered")
+        @questions.load(status: "archive")
         @questions.should have(2).question_links
         @questions.question_links[0].text.should include question2.display_text
         @questions.question_links[1].text.should include question.display_text
@@ -28,7 +28,7 @@ describe "browse questions" do
                                        display_text: "display text 3",
                                        created_at: Time.now)
         @questions_in_category = Questions.new
-        @questions_in_category.load(category_name: category.name, status: "new_unanswered")
+        @questions_in_category.load(category_name: category.name, status: "archive")
         @questions_in_category.should have(2).question_links
         @questions_in_category.question_links[0].text.should include question2.display_text
         @questions_in_category.question_links[1].text.should include question.display_text
@@ -43,7 +43,7 @@ describe "browse questions" do
       answer = FactoryGirl.create(:answer, question_id: question.id)
       update = FactoryGirl.create(:answer, :update, question_id: question.id)
       @questions_in_category = Questions.new
-      @questions_in_category.load(status: "new_unanswered", category_name: category.name)
+      @questions_in_category.load(status: "archive", category_name: category.name)
       @questions_in_category.question_links.first.click
       @question = ShowQuestion.new
       @question.should be_displayed
@@ -64,7 +64,7 @@ describe "browse questions" do
         question2 = FactoryGirl.create(:question, status: Question::Status::Answered)
         question3 = FactoryGirl.create(:question, status: Question::Status::New)
         @questions = Questions.new
-        @questions.load(status: "answered_investigating")
+        @questions.load(status: "answered")
         @questions.should have(2).question_links
       end
     end

@@ -7,9 +7,9 @@ class QuestionsController < ApplicationController
   end
 
   def filter
-    if params[:status] == 'new_unanswered'
+    if params[:status] == 'archive'
       statuses = [Question::Status::New]
-    elsif params[:status] == 'answered_investigating'
+    elsif params[:status] == 'answered'
       statuses = [Question::Status::Answered, Question::Status::Investigating]
     end
 

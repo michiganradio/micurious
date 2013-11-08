@@ -29,7 +29,7 @@ describe "Navigation" do
     before do
       @category1 = FactoryGirl.create(:category, active: true)
       @category2 = FactoryGirl.create(:category, :other)
-        @status = "new_unanswered"
+        @status = "archive"
     end
 
     shared_examples_for "question browsing pages" do
