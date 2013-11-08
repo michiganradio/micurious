@@ -12,4 +12,5 @@ class Admin::EditQuestion < SitePrism::Page
   element :update_question_button, "input[value='Update Question']"
   element :new_answer_button, "#add-answer-button"
   element :status_dropdown, "#question_status"
+  element :featured, "#question_featured"
 end
