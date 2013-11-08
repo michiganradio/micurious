@@ -12,7 +12,7 @@ class Question < ActiveRecord::Base
   attr_readonly :original_text
   attr_accessor :email_confirmation
   before_create :copy_display_text_into_original_text
-  validates :display_text, length: { maximum: 255, minimum: 1}
+  validates :display_text, length: { maximum: 1000, minimum: 1}
   validates :neighbourhood, length: { maximum: 255 }, format: { with: /\A[a-zA-Z\/\,\'\(\)\-\.\s]*\z/, message: "only allows letters and spaces" }
   validates :name, length: {maximum: 255, minimum: 1 }, format: { with: /\A[a-zA-Z\s\.\(\)\-'@]+\z/, message: "only allows letters, spaces, periods, hyphens, apostrophes, and @ signs" }
   validates :email, length: {maximum: 255}, confirmation: true, email: true

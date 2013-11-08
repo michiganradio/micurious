@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131108205126) do
+ActiveRecord::Schema.define(version: 20131108210746) do
 
   create_table "answers", force: true do |t|
     t.text     "label",       null: false
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20131108205126) do
   end
 
   create_table "questions", force: true do |t|
-    t.string   "original_text",                                               null: false
-    t.string   "display_text",                                                null: false
+    t.text     "original_text",                                               null: false
+    t.text     "display_text",                                                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "neighbourhood"
