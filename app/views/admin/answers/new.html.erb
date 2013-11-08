@@ -14,11 +14,11 @@
   <% end %>
   <div class="field">
     <%= f.label :label %><br>
-    <%= f.text_field :label %>
+    <%= f.text_area :label, size: "100x10" %>
   </div>
   <div class="field">
     <%= f.label :url %><br>
-    <%= f.text_field :url %>
+    <%= f.text_area :url, size: "100x3" %>
   </div>
   <div class="field">
     <%= f.hidden_field :question_id %>

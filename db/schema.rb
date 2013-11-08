@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131106161028) do
+ActiveRecord::Schema.define(version: 20131108203238) do
 
   create_table "answers", force: true do |t|
-    t.string   "label",       null: false
-    t.string   "url",         null: false
+    t.text     "label",       null: false
+    t.text     "url",         null: false
     t.integer  "question_id", null: false
     t.string   "type",        null: false
     t.datetime "created_at"
