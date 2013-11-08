@@ -1,7 +1,9 @@
 <div class="question-text">
-  <%= link_to(question.display_text, question_url(question), class: "question-link" ) %>
+    <%= link_to(question.display_text, question_url(question), class: "question-link" ) %>
   <p class="author">Asked by <%=question.display_author%></p>
   <% unless Rails.env.test? %>  
     <a href="<%=question_url(question, anchor: 'disqus_thread')%>" class="comment-count-link", data-disqus-identifier=<%="question-#{question.id}"%>> &nbsp;</a>  
   <% end %>      
+  <div class="<%=badge_class question%>">
+  </div>
 </div>

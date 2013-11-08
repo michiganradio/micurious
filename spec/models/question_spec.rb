@@ -258,4 +258,37 @@ describe Question do
       question.active?.should be_false
     end
   end
+
+  describe "answered?" do
+    context "the status is Answered" do
+      it "is true" do
+        question = Question.new(status: Question::Status::Answered)
+        question.answered?.should be_true
+      end
+    end
+
+    context "the status is not Answered" do
+      it "is false" do
+        question = Question.new(status: "something else")
+        question.answered?.should be_false
+      end
+    end
+  end
+
+  describe "investigating?" do
+    context "the status is Investigating" do
+      it "is true" do
+        question = Question.new(status: Question::Status::Investigating)
+        question.investigating?.should be_true
+      end
+    end
+
+    context "the status is not Investigating" do
+      it "is false" do
+        question = Question.new(status: "something else")
+        question.investigating?.should be_false
+      end
+    end
+
+  end
 end

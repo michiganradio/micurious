@@ -38,6 +38,14 @@ class Question < ActiveRecord::Base
     status != Question::Status::Removed
   end
 
+  def answered?
+    status == Question::Status::Answered
+  end
+
+  def investigating?
+    status == Question::Status::Investigating
+  end
+
   def display_author
     anonymous ? ANONYMOUS : name
   end

@@ -78,7 +78,7 @@ $comments-width: 580px;
 }
 
 .checkmark {
-  @extend .response-image-graphic;
+  @extend %response-image-graphic;
   @include set-size(50px, 50px);
   background-image: url("sprites.png");
   background-position:-101px 0px;
@@ -105,7 +105,7 @@ $comments-width: 580px;
 }
 
 .notepad {
-  @extend .response-image-graphic;
+  @extend %response-image-graphic;
   @include set-size(39px, 78px);
   background-image: url("reporter_notebook.png");
 }
@@ -145,6 +145,25 @@ h2 {
     left: $question-image-width;
     padding: $grid-unit/2 $grid-unit/2 0 $grid-unit/2;
     margin: 0px;
+  }
+
+  .question-link {
+    position: absolute;
+    left: $question-image-width;
+    right: 50px;
+  }
+
+  .checkmark {
+    margin: $grid-unit;
+  }
+ 
+  .questionmark {
+    @extend %response-image-graphic;
+    @include set-size(50px, 50px);
+    background-image: url("sprites.png");
+    background-position: -150px 0px;
+    left: 300px;
+    margin: $grid-unit !important;
   }
 }
 

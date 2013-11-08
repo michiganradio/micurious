@@ -100,7 +100,7 @@ $carrot-width: 20px;
   position: relative;
 }
 
-.response-image-graphic {
+%response-image-graphic {
   float: right;
   margin: $grid-unit $grid-unit*3;
   overflow: hidden;
