@@ -32,7 +32,7 @@ describe QuestionsController do
 
     context "archive status " do
       it "filters questions with new status" do
-        questions = double(:question)
+        questions = [double(:question, featured?:false)]
         statuses = [Question::Status::New]
         Question.should_receive(:with_status_and_category).with(statuses, 'somecategory').and_return(questions)
         get :filter, {:status => 'archive', :category_name => 'somecategory'}
@@ -42,11 +42,13 @@ describe QuestionsController do
 
     context "answered" do
       it "filters questions with answered and investigating"  do
-        questions = double(:question)
+        question1 = double(:question, featured?: true)
+        question2 = double(:question, featured?:false)
         statuses = [Question::Status::Answered, Question::Status::Investigating]
-        Question.should_receive(:with_status_and_category).with(statuses,'somecategory').and_return(questions)
+        Question.should_receive(:with_status_and_category).with(statuses,'somecategory').and_return([question1, question2])
         get :filter, {:status => 'answered', :category_name => 'somecategory'}
-        assigns(:questions).should eq questions
+        assigns(:questions).should eq [question1, question2]
+        assigns(:featured_answers).should eq [question1]
       end
     end
 

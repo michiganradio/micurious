@@ -14,6 +14,7 @@ class QuestionsController < ApplicationController
     end
 
     @questions = Question.with_status_and_category(statuses, params[:category_name])
+    @featured_answers = @questions.select{|q| q.featured?}
     render 'index'
   end
 
