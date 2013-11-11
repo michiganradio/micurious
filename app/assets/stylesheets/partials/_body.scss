@@ -18,7 +18,7 @@ $comments-width: 580px;
 }
 
 .question {
-  background-image: url(bg_dots.png);
+  background-image: image_url("bg_dots.png");
   position: relative;
   height: $question-height; 
   border-top: 1px dotted darkgray;
@@ -80,7 +80,7 @@ $comments-width: 580px;
 .checkmark {
   @extend %response-image-graphic;
   @include set-size(50px, 50px);
-  background-image: url("sprites.png");
+  background-image: image_url("sprites.png");
   background-position:-101px 0px;
 }
 
@@ -107,7 +107,7 @@ $comments-width: 580px;
 .notepad {
   @extend %response-image-graphic;
   @include set-size(39px, 78px);
-  background-image: url("reporter_notebook.png");
+  background-image: image_url("reporter_notebook.png");
 }
 
 h2 {
@@ -123,7 +123,7 @@ h2 {
   bottom: 0;
   padding: 0 5px;
   width: $voting-round-image-width;
-  background-image: url("bg_black-transparent.png"); 
+  background-image: image_url("bg_black-transparent.png"); 
 
   a { 
     &:link, &:visited, &:hover {
@@ -160,7 +160,7 @@ h2 {
   .questionmark {
     @extend %response-image-graphic;
     @include set-size(50px, 50px);
-    background-image: url("sprites.png");
+    background-image: image_url("sprites.png");
     background-position: -150px 0px;
     left: 300px;
     margin: $grid-unit !important;
@@ -170,7 +170,7 @@ h2 {
 #disqus_thread {
   float: right;
   background: white;
-  background-image: url(bg_dots.png);
+  background-image: image_url("bg_dots.png");
   padding-top: 20px;
   padding-left: 20px;
   padding-right: 40px;
@@ -236,12 +236,12 @@ h2 {
 
   }
     .slide-left {
-      background: url(slide-left.png) no-repeat;
+      background: image_url("slide-left.png") no-repeat;
       left: 40;
     }
 
     .slide-right{
-      background: url(slide-right.png) no-repeat;
+      background: image_url("slide-right.png") no-repeat;
       right: $grid-unit * 2;
     }
   .carousel-inner .item {

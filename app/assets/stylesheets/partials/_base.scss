@@ -42,7 +42,7 @@ $carrot-width: 20px;
     position: absolute;
     top: 40%;
     @include set-size($carrot-width, 24px);
-    background: url(carrot.png) no-repeat;
+    background: image_url("carrot.png") no-repeat;
   }
 
   .submit-question-container {
@@ -71,7 +71,7 @@ $carrot-width: 20px;
   top: 25%;
   left: $voting-round-image-width - 25px;
   display: inline-block;
-  background-image: url(votebutton.png);
+  background-image: image_url("votebutton.png");
 }
 .vote {
   @extend .vote-button;
