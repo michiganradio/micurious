@@ -7,6 +7,10 @@
   @return 3px solid $hot-pink;
 }
 
+@mixin dotted-line($location) {
+  #{$location}: 1px dotted black;
+}
+
 @mixin smooth-transitions() {
   transition: all 0.5s ease-in-out;
   -webkit-transition: all 0.5s linear;

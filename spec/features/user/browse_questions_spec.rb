@@ -69,4 +69,19 @@ describe "browse questions" do
       end
     end
   end
+  describe "answered carousel" do
+    describe "featured" do
+      it "displays featured questions on carousel" do
+        question1 = FactoryGirl.create(:question, display_text: "text1", status: Question::Status::Answered, featured: true , reporter: "reporter1")
+        question2 = FactoryGirl.create(:question, display_text: "text2", status: Question::Status::Investigating, featured: true, reporter: "reporter2" )
+        question3 = FactoryGirl.create(:question, display_text: "text3", status: Question::Status::Answered, featured: false )
+        @questions = Questions.new
+        @questions.load(status: "answered")
+        @questions.should have_content(question1.display_text)
+        @questions.should have_content(question1.reporter)
+        @questions.should have_content(question2.display_text)
+        @questions.should have_content(question2.reporter)
+      end
+    end
+  end
 end
