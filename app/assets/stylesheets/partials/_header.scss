@@ -118,4 +118,36 @@ p a {
   padding-right: 10px; 
 }
 
+#how-it-works {
+  background-image: url('bg_dots.png');
+  padding: 30px 0;
+  li {
+    float: left;
+    width: 200;
+    padding: 0 10px;
+  }
+}
 
+[class^="number-"] {
+  background-image: url(numbers.png);
+  height: 45px;
+  width: 34px;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: text-top;
+  background-repeat: no-repeat;
+  float: left;
+  margin-right: 10px;
+}
+
+.number-1{ background-position: 10px 0;}
+.number-2{ background-position:-44px 0;}
+.number-3{ background-position:-93px 0;}
+.number-4{ background-position:-143px 0;}
+.number-5{ background-position:-193px 0;}
+
+#instructions li.step-1{color:#00ccff;}
+#instructions li.step-2{color:#12d1bf;}
+#instructions li.step-3{color:#21d780;}
+#instructions li.step-4{color:#36dc40;}
+#instructions li.step-5{color:#48e100;}
