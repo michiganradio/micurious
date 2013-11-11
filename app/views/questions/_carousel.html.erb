@@ -1,0 +1,26 @@
+<% if !@featured_answers.empty? %>
+  <div id="questions-carousel" class="carousel slide" data-ride="carousel">
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <% @featured_answers.each do |question| %>
+        <div class="item <%= "active" if question == @featured_answers.first%>">
+        <img src="<%= question.picture_url %>" alt="<%= question.picture_owner %>">
+        <div class="carousel-caption">
+          <h2><%= question.display_text %></h2>
+          <p>Asked by <%= question.display_author %> | Reported by <%= question.reporter %></p> 
+        </div>
+      </div>
+    <% end %>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#questions-carousel" data-slide="prev">
+      <span class="slide-arrow slide-left"></span>
+    </a>
+    <a class="right carousel-control" href="#questions-carousel" data-slide="next">
+      <span class="slide-arrow slide-right"></span>
+    </a>
+  </div>
+<% end %>
+

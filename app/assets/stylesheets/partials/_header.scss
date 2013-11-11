@@ -6,6 +6,16 @@ $navbar-height: $grid-unit*2;
   background: black left center;
   border: $grid-unit/2 solid black;
   border-left: 0px;
+
+  a, & {
+    color: $nice-blue;
+  }
+
+  .header-links {
+    margin: $grid-unit/2;
+    font-size: $grid-unit;
+    float: right;
+  }
 }
 
 .image-logo {
@@ -98,3 +108,5 @@ $navbar-height: $grid-unit*2;
 .nav-admin-links a{
   padding-right: 10px; 
 }
+
+

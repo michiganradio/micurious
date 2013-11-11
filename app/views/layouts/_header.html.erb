@@ -1,6 +1,40 @@
 <header>
+<div id="how-it-works" class="collapse">
+  <div class="container-padding">
+    <ol id="instructions" style="display: block;">
+      <li class="step-1">
+      <i class="number-1"></i>
+      Questions come from the community
+      </li>
+      <li class="step-2">
+      <i class="number-2"></i>
+      You vote for your favorites 
+      </li>
+      <li class="step-3">
+      <i class="number-3"></i>
+      WBEZ investigates, posting updates in real time 
+      </li>
+      <li class="step-4">
+      <i class="number-4"></i>
+      Followers help shape the investigation
+      </li>
+      <li class="step-5">
+      <i class="number-5"></i>
+      We discover the answers together!
+      </li>
+    </ol>
+
+  </div>
+</div>
 <div class="header-logo">
-  <%= link_to image_tag("wbez.png", class: "header-logo container-padding"), "http://www.wbez.org" %>
+  <div class="container-padding">
+    <%= link_to image_tag("wbez.png", class: "header-logo"), "http://www.wbez.org" %>
+    <div class="header-links btn-group" data-toggle="buttons-checkbox">
+      <a class="collapse-data-btn" data-toggle="collapse" href="#how-it-works">How It Works</a> |
+      <a href="#">About</a> |
+      <a href="#">FAQ</a>
+    </div>
+  </div>
 </div>
 <div class="container-padding">
   <%= link_to image_tag("cc-logo.gif", class: "image-logo"), root_url, :class=> "image-logo" %>

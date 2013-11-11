@@ -1,35 +1,5 @@
-<% if !@featured_answers.empty? %>
 <div class="container-padding">
-  <div id="questions-carousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <% @featured_answers.each_with_index do |question, index| %>
-        <li data-target="#carousel-example-generic" data-slide-to="<%= index %>" <%= "class='active'" if index == 0 %>></li>
-      <% end %>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <% @featured_answers.each do |question| %>
-        <div class="item <%= "active" if question == @featured_answers.first%>">
-        <img src="<%= question.picture_url %>" alt="<%= question.picture_owner %>">
-        <div class="carousel-caption">
-          <h2><%= question.display_text %></h2>
-          <p>Asked by <%= question.display_author %> | Reported by <%= question.reporter %></p> 
-        </div>
-      </div>
-    <% end %>
-    </div>
-
-    <!-- Controls -->
-    <a class="left carousel-control" href="#questions-carousel" data-slide="prev">
-      <span class="slide-arrow slide-left"></span>
-    </a>
-    <a class="right carousel-control" href="#questions-carousel" data-slide="next">
-      <span class="slide-arrow slide-right"></span>
-    </a>
-  </div>
-<% end %>
+  <%= render 'carousel'  %>
   <br>
   <div class="category-links">
     <%= link_to "All", filter_questions_path %>
