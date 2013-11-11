@@ -120,11 +120,11 @@ p a {
 
 #how-it-works {
   background-image: url('bg_dots.png');
-  padding: 30px 0;
+  padding: $grid-unit 0;
   li {
     float: left;
     width: 200;
-    padding: 0 10px;
+    margin: 0 $grid-unit/2;
   }
 }
 

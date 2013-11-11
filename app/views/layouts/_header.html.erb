@@ -1,5 +1,13 @@
 <header>
-<div id="how-it-works" class="collapse">
+<script>
+  $(document).ready(function() {
+    $('#how-it-works').hide();
+    $('#how-it-works-link').click(function() {
+      $('#how-it-works').slideToggle();
+    });
+  });
+</script>
+<div id="how-it-works" >
     <ol id="instructions" style="display: block;">
       <div class="container-padding">
       <li class="step-1">
@@ -30,7 +38,7 @@
   <div class="container-padding">
     <%= link_to image_tag("wbez.png", class: "header-logo"), "http://www.wbez.org" %>
     <div class="header-links btn-group">
-      <a class="collapse-data-btn" data-toggle="collapse" href="#how-it-works">How It Works</a> |
+      <a class="collapse-data-btn" id = "how-it-works-link" href="#how-it-works">How It Works</a> |
       <%= link_to "About", about_path %>
     </div>
   </div>
