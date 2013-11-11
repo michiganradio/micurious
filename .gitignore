@@ -18,5 +18,6 @@
 # Ignore all swapfiles
 *.swp
 .*
+*/.DS_Store
 
 /config/api-key.yml

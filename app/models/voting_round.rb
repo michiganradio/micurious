@@ -1,6 +1,6 @@
 class VotingRound < ActiveRecord::Base
   has_many :voting_round_questions
-  has_many :questions, through: :voting_round_questions
+  has_many :questions, through: :voting_round_questions, autosave: true
 
   after_save :add_default_label_if_empty
 
