@@ -160,14 +160,15 @@ $prompt: 25px;
 .logo-widget {
   @extend .logo-small;
   img {
-    width: 25px;
+    width: 22px;
   }
 }
 
 .sponsor-logos-widget {
-  @extend .sposor-logos;
+  @extend .sponsor-logos;
   margin: 0;
-  margin-bottom: 72px;
+  margin-top: 15px;
+  margin-bottom: 57px;
 }
 
 .logo-small.tw-logo-widget {
@@ -175,5 +176,13 @@ $prompt: 25px;
   img {
     margin-top: 12px;
     width: 60px;
+  }
+}
+
+.logo-small.kf-logo-widget {
+  @extend .logo-small;
+  @extend .logo-small.kf-logo;
+  img {
+    width: 22px;
   }
 }
