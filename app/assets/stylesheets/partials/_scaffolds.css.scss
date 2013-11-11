@@ -21,10 +21,9 @@ pre {
 }
 
 a {
-  color: $bold-blue;
-  text-decoration: underline;
+  color: black;
   &:hover {
-    color: $blue;
+    color: $bold-blue;
   }
 }
 

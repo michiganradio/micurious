@@ -9,12 +9,21 @@ $navbar-height: $grid-unit*2;
 
   a, & {
     color: $nice-blue;
+    text-decoration: underline;
   }
 
   .header-links {
     margin: $grid-unit/2;
     font-size: $grid-unit;
     float: right;
+  }
+}
+
+p a {
+  text-decoration: underline;
+  color: $bold-blue;
+  &:hover {
+    color: $blue;
   }
 }
 
