@@ -264,11 +264,14 @@ h2 {
     padding: 30 100;
     h2 {
       position: relative;
+      left: 0;
+      line-height: 1.5;
     }
 
     p {
+      padding-top:$grid-unit;
       position: relative;
-
+      
     }
   }
 
