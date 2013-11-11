@@ -16,31 +16,6 @@ describe Question do
 
     its('original_text') { should eq @question.display_text }
 
-    describe "picture_url" do
-      context "question is not new" do
-        context "picture_url is blank" do
-          it "should be default" do
-            default_picture_url = "/assets/default-question-picture.jpg"
-            @question.update_attributes picture_url: ""
-            @question.reload.picture_url.should eq default_picture_url
-          end
-        end
-
-        context "picture_url is NOT blank" do
-          it "should be picture_url" do
-            @question.update_attributes picture_url: "url"
-            @question.reload.picture_url.should eq "url"
-          end
-        end
-      end
-
-      context "question is new" do
-        it "should be picture_url" do
-          question = Question.new
-          question.picture_url.should eq question.read_attribute(:picture_url)
-        end
-      end
-    end
   end
 
   context "validation" do
