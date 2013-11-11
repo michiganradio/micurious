@@ -6,11 +6,6 @@ $logo-height: 31px;
 $logo-width: 140px;
 $rank-width: 20px;
 $prompt: 25px;
-
-@mixin dotted-line($location) {
-  #{$location}: 1px dotted black;
-}
-
 .widget-container {
   @include set-size($widget-width, $widget-height);
   overflow: hidden;
