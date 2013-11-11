@@ -8,7 +8,7 @@ class MigrateVotingRound < Migrate
 
   def get_voting_round_models(vr_names)
     voting_rounds = []
-    for vr_names[1..-1] do |name, index|
+    vr_names[1..-1].each do |name, index|
       voting_round = VotingRound.new
       voting_round.label = name
       set_voting_round_dates(voting_round, label)
