@@ -121,6 +121,9 @@ p a {
 #how-it-works {
   background-image: url('bg_dots.png');
   padding: $grid-unit 0;
+  ul {
+    list-style: none;
+  }
   li {
     float: left;
     width: 200;
