@@ -137,7 +137,7 @@ describe "Admin navigation" do
 
   describe "edit user page" do
     before do
-      user = FactoryGirl.create(:user)
+      user = FactoryGirl.create(:user, username: "user2")
       visit edit_admin_user_path(user.id)
     end
     it_should_behave_like 'all admin pages'
@@ -145,7 +145,7 @@ describe "Admin navigation" do
 
   describe "show user page" do
     before do
-      user = FactoryGirl.create(:user)
+      user = FactoryGirl.create(:user, username: "user1")
       visit admin_user_path(user.id)
     end
     it_should_behave_like 'all admin pages'

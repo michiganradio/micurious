@@ -37,4 +37,15 @@ describe User do
     before { @admin.save }
     its(:remember_token) { should_not be_blank }
   end
+
+  describe "creating user" do
+    context "same username already exists" do
+      before { @admin.save }
+      it "username must be unique" do
+       @admin2 = User.create(username: "user1", password: "password", password_confirmation: "password")
+       @admin2.username = "user"
+       @admin2.should_not be_valid
+      end
+    end
+  end
 end
