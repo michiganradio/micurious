@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+require 'migrate/migrate_question'
+MigrateQuestion.new.migrate_question("./../ccdata.xls")

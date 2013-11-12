@@ -14,62 +14,65 @@ describe "question migration" do
   end
 
   describe "generates the Question-specific status from the spreadsheet" do
-
+    before do
+      @column_indices = { "Badge"=>0, "Approved"=>1, "Anonymous"=>2, "Categories"=>3,
+                         "Date Uploaded"=>4 }
+    end
     it "sets the status of the question to be answered" do
-      row = ["answered", 1, 0.0, ""]
+      row = ["answered", 1, 0.0, "", "1344395668"]
       question = Question.new
-      column_indices = {"Badge"=>0, "Approved"=>1, "Anonymous"=>2, "Categories"=>3}
-      @question_migrate.map_question_data(row, question,column_indices )
+      @question_migrate.map_question_data(row, question, @column_indices )
       question.status.should eq "answered"
     end
 
     it "sets the status of the question to be investigated" do
-      row = ["investigated", 1, 0.0, ""]
-      column_indices = {"Badge"=>0, "Approved"=>1, "Anonymous"=>2, "Categories"=>3}
+      row = ["investigated", 1, 0.0, "", "1344395668"]
       question = Question.new
-      @question_migrate.map_question_data(row, question, column_indices)
+      @question_migrate.map_question_data(row, question, @column_indices)
       question.status.should eq "investigated"
     end
 
     it "sets the status of the question to be new" do
-      row = ["", 1, 0.0, ""]
-      column_indices = {"Badge"=>0, "Approved"=>1, "Anonymous"=>2, "Categories"=>3}
+      row = ["", 1, 0.0, "", "1344395668"]
       question = Question.new
-      @question_migrate.map_question_data(row, question, column_indices)
+      @question_migrate.map_question_data(row, question, @column_indices)
       question.status.should eq "new"
     end
 
     it "sets the status of the question to be removed" do
-      row = ["", 0, 0.0, ""]
-      column_indices = {"Badge"=>0, "Approved"=>1, "Anonymous"=>2, "Categories"=>3}
+      row = ["", 0, 0.0, "", "1344395668"]
       question = Question.new
-      @question_migrate.map_question_data(row, question, column_indices)
+      @question_migrate.map_question_data(row, question, @column_indices)
       question.status.should eq "removed"
     end
 
     it "sets the email confirmation to be the email" do
-      row = ["", 1, 0.0, ""]
-      column_indices = {"Badge"=>0, "Approved"=>1, "Anonymous"=>2, "Categories"=>3}
+      row = ["", 1, 0.0, "", "1344395668"]
       question = Question.new
       question.email = "a@a.com"
-      @question_migrate.map_question_data(row, question, column_indices)
+      @question_migrate.map_question_data(row, question, @column_indices)
       question.email_confirmation.should eq "a@a.com"
     end
 
     it "sets anonymous to be true" do
-      row = ["", 1, 1.0, ""]
-      column_indices = {"Badge"=>0, "Approved"=>1, "Anonymous"=>2, "Categories"=>3}
+      row = ["", 1, 1.0, "", "1344395668"]
       question = Question.new
-      @question_migrate.map_question_data(row, question, column_indices)
+      @question_migrate.map_question_data(row, question, @column_indices)
       question.anonymous.should eq true
     end
 
     it "sets anonymous to be false" do
-      row = ["", 1, 0.0, ""]
-      column_indices = {"Badge"=>0, "Approved"=>1, "Anonymous"=>2, "Categories"=>3}
+      row = ["", 1, 0.0, "", "1344395668"]
       question = Question.new
-      @question_migrate.map_question_data(row, question, column_indices)
+      @question_migrate.map_question_data(row, question, @column_indices)
       question.anonymous.should eq false
+    end
+
+    it "sets created_at" do
+      row = ["", 1, 0.0, "", "1344395668"]
+      question = Question.new
+      @question_migrate.map_question_data(row, question, @column_indices)
+      question.created_at.should eq Time.at(1344395668)
     end
   end
 
