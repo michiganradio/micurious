@@ -44,4 +44,13 @@ describe VotingRound do
       expect { FactoryGirl.create(:voting_round) }.not_to raise_error
     end
   end
+
+  context "get previous voting round" do
+    it "gets voting round that is completed and previous" do
+      old_voting_round = FactoryGirl.create(:voting_round, :completed)
+      current_voting_round = FactoryGirl.create(:voting_round, :live, :other)
+      result = current_voting_round.get_previous()
+      result.should eq old_voting_round
+    end
+  end
 end

@@ -20,7 +20,7 @@ class VotingRound < ActiveRecord::Base
   end
 
   def get_previous
-    self
+   prev = VotingRound.where('status = "Completed" and start_time < "' + self.start_time.to_s + '"').order(start_time: :desc).first
   end
 
   private

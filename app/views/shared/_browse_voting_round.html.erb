@@ -1,1 +1,1 @@
-<%= "Voting for " + @past_voting_round.label unless @past_voting_round.nil? %>
+<%= link_to "Voting for " + @past_voting_round.label, voting_round_path(@past_voting_round) unless @past_voting_round.nil? %>

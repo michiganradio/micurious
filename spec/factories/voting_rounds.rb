@@ -10,6 +10,8 @@ FactoryGirl.define do
     label "Voting Round 1"
 
     trait :other do
+      start_time "2014-01-01 03:04:11"
+      end_time "2014-01-01 03:04:11"
       label "Other Voting Round"
     end
 
