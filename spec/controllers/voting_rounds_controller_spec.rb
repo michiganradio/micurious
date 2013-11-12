@@ -23,7 +23,7 @@ describe VotingRoundsController do
 
     it "assigns past voting round" do
       get :home, {}, {}
-      assigns(:past_voting_round).should eq @prev_voting_round
+      assigns(:previous_voting_round).should eq @prev_voting_round
     end
   end
 
