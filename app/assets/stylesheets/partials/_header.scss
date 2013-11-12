@@ -58,7 +58,7 @@ p a {
 .navbar {
   height: $navbar-height;
   min-height: $navbar-height;
-  background-color: $nice-blue;
+  background-color: $blue;
   border: 0;
   margin: 0;
 }
@@ -69,6 +69,10 @@ p a {
   #up-for-voting-id {
     border-left: 2px solid white;
   }
+ 
+  #up-for-voting-id.highlighted {
+    background-color: #03bef5;
+  } 
 
   & > li > a {
     display: inline-block;
@@ -79,7 +83,16 @@ p a {
     padding: $grid-unit/3 $grid-unit; //5px 10px;
     color: white;
     margin-bottom: $grid-unit/2;
+    background-color: $light-blue;
   }
+}
+
+#answered-investigating-id.highlighted{
+    background-color: #03bef5;
+}
+
+#new-unanswered-id.highlighted{
+    background-color: #03bef5;
 }
 
 .dropdown:hover .dropdown-toggle {

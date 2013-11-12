@@ -5,6 +5,7 @@ class VotingRoundsController < ApplicationController
   before_action :load_categories, only: [:home, :about, :show]
 
   def home
+    @up_for_voting_class = "highlighted"
     @voting_round = VotingRound.where(status: VotingRound::Status::Live).first
     @past_voting_round = @voting_round.get_previous unless @voting_round.nil?
   end

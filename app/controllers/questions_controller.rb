@@ -7,9 +7,12 @@ class QuestionsController < ApplicationController
   end
 
   def filter
+
     if params[:status] == 'archive'
+      @unanswered_class = "highlighted"
       statuses = [Question::Status::New]
     elsif params[:status] == 'answered'
+      @answered_class = "highlighted"
       statuses = [Question::Status::Answered, Question::Status::Investigating]
     end
 
