@@ -28,5 +28,5 @@ class MigrateAnswer < Migrate
     answer.type = Answer::Type::Answer
   end
 end
-#m = MigrateAnswer.new
-#m.migrate_answer("./../ccdata.xls")
+# m = MigrateAnswer.new
+# m.migrate_answer("./../ccdata.xls")

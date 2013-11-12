@@ -28,7 +28,7 @@ describe Question do
       it { should respond_to(:display_text) }
       it { should ensure_length_of(:display_text).
             is_at_least(1).
-            is_at_most(1000) }
+            is_at_most(2000) }
     end
 
     context "neighborhood" do
