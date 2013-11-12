@@ -57,6 +57,6 @@ class Question < ActiveRecord::Base
   private
 
   def copy_display_text_into_original_text
-    self.original_text = self.display_text
+    self.original_text = self.display_text unless self.original_text.present?
   end
 end

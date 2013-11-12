@@ -14,8 +14,17 @@ describe Question do
       @question.reload.original_text.should eql original_text
     end
 
-    its('original_text') { should eq @question.display_text }
+    context "empty" do
+      its('original_text') { should eq @question.display_text }
+    end
 
+    context "not empty" do
+      it "keeps original text" do
+        @question = FactoryGirl.create(:question, original_text: "original",
+                                      display_text: "display")
+        @question.original_text.should eq "original"
+      end
+    end
   end
 
   context "validation" do

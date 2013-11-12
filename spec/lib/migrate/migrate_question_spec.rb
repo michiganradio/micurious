@@ -5,6 +5,8 @@ describe "question migration" do
   before do
     @test_file = "./spec/lib/migrate/test.xls"
     @question_migrate = MigrateQuestion.new
+    @column_indices = { "Badge"=>0, "Approved"=>1, "Anonymous"=>2, "Categories"=>3,
+                        "Date Uploaded"=>4 }
   end
   it "gets column indices of wanted attributes" do
     sheet = Roo::Excel.new(@test_file)
@@ -14,36 +16,32 @@ describe "question migration" do
   end
 
   describe "generates the Question-specific status from the spreadsheet" do
-    before do
-      @column_indices = { "Badge"=>0, "Approved"=>1, "Anonymous"=>2, "Categories"=>3,
-                         "Date Uploaded"=>4 }
-    end
     it "sets the status of the question to be answered" do
       row = ["answered", 1, 0.0, "", "1344395668"]
       question = Question.new
       @question_migrate.map_question_data(row, question, @column_indices )
-      question.status.should eq "answered"
+      question.status.should eq Question::Status::Answered
     end
 
     it "sets the status of the question to be investigated" do
       row = ["investigated", 1, 0.0, "", "1344395668"]
       question = Question.new
       @question_migrate.map_question_data(row, question, @column_indices)
-      question.status.should eq "investigated"
+      question.status.should eq Question::Status::Investigating
     end
 
     it "sets the status of the question to be new" do
       row = ["", 1, 0.0, "", "1344395668"]
       question = Question.new
       @question_migrate.map_question_data(row, question, @column_indices)
-      question.status.should eq "new"
+      question.status.should eq Question::Status::New
     end
 
     it "sets the status of the question to be removed" do
       row = ["", 0, 0.0, "", "1344395668"]
       question = Question.new
       @question_migrate.map_question_data(row, question, @column_indices)
-      question.status.should eq "removed"
+      question.status.should eq Question::Status::Removed
     end
 
     it "sets the email confirmation to be the email" do
@@ -67,16 +65,9 @@ describe "question migration" do
       @question_migrate.map_question_data(row, question, @column_indices)
       question.anonymous.should eq false
     end
-
-    it "sets created_at" do
-      row = ["", 1, 0.0, "", "1344395668"]
-      question = Question.new
-      @question_migrate.map_question_data(row, question, @column_indices)
-      question.created_at.should eq Time.at(1344395668)
-    end
   end
 
-  describe "gets categories for question" do
+  describe "sets categories for question" do
     it "sets the categories for question listed in spreadsheet" do
       category1 = stub_model(Category, id: 1, name: "category1")
       category2 = stub_model(Category, id: 2, name: "category2")
@@ -90,6 +81,14 @@ describe "question migration" do
     end
   end
 
+  describe "sets created_at for question" do
+    it "sets created_at from date uploaded column" do
+      row = ["", 1, 0.0, "", "1344395668"]
+      question = Question.new
+      @question_migrate.map_question_data(row, question, @column_indices)
+      question.created_at.should eq Time.at(1344395668)
+    end
+  end
 
   it "migrates question" do
     category1 = stub_model(Category, id: 1, name: "how-we-live")

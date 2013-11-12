@@ -3,7 +3,7 @@ class MigrateQuestion < Migrate
   def migrate_question(filepath = "./../ccdata.xls")
     s = Roo::Excel.new(filepath)
     question_sheet = s.sheet(0)
-    spreadsheet_to_question_attributes = { "id"=>"id", "Question"=>"display_text", "Neighborhood"=>"neighbourhood", "Name"=>"name", "Email"=>"email", "Anonymous"=>"anonymous", "Image Url"=>"picture_url", "Image Attribution"=>"picture_attribution_url", "Image Username"=>"picture_owner", "Reporter"=>"reporter" }
+    spreadsheet_to_question_attributes = { "id"=>"id", "Question"=>"display_text", "Original Question"=>"original_text", "Neighborhood"=>"neighbourhood", "Name"=>"name", "Email"=>"email", "Anonymous"=>"anonymous", "Image Url"=>"picture_url", "Image Attribution"=>"picture_attribution_url", "Image Username"=>"picture_owner", "Reporter"=>"reporter" }
     column_indices_names = spreadsheet_to_question_attributes.keys.push("Badge").push("Approved").push("Categories").push("Date Uploaded")
 
     column_indices = get_spreadsheet_column_indices(column_indices_names, question_sheet)
@@ -28,11 +28,23 @@ class MigrateQuestion < Migrate
   end
 
   def map_question_data(row, question, attribute_column_indices)
-    question.status = row[attribute_column_indices["Badge"]].presence || (row[attribute_column_indices["Approved"]]==1 ? "new" : "removed")
+    map_question_status(row, question, attribute_column_indices)
     question.email_confirmation = question.email
     question.anonymous = (row[attribute_column_indices["Anonymous"]].to_i != 0)
     question.created_at = Time.at(row[attribute_column_indices["Date Uploaded"]].to_i)
     map_question_categories(row, question, attribute_column_indices)
+  end
+
+  def map_question_status(row, question, attribute_column_indices)
+    if row[attribute_column_indices["Badge"]] == "answered"
+      question.status = Question::Status::Answered
+    elsif row[attribute_column_indices["Badge"]] == "investigated"
+      question.status = Question::Status::Investigating
+    elsif row[attribute_column_indices["Approved"]]==1
+      question.status = Question::Status::New
+    else
+      question.status = Question::Status::Removed
+    end
   end
 
   def map_question_categories(row, question, attribute_column_indices)
