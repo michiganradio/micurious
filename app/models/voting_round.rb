@@ -27,6 +27,10 @@ class VotingRound < ActiveRecord::Base
    VotingRound.where('(status = "Live" or status = "Completed") and start_time > "' + self.start_time.to_s + '"').order(start_time: :asc).first
   end
 
+  def winner
+    winner = Question.where('id = ' + VotingRoundQuestion.where('voting_round_id = ' + self.id.to_s).order(vote_number: :desc).first.question_id.to_s).first
+  end
+
   private
 
   def add_default_label_if_empty

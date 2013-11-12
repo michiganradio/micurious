@@ -27,7 +27,7 @@ describe "browse past voting rounds" do
   it "shows voting round" do
     vr = ShowVotingRound.new
     vr.load(voting_round_id: @voting_round.id.to_s)
-#    vr.questions[0].should have_content @other_question.display_text
-#    vr.questions[1].should have_content @question.display_text
+    vr.questions[0].should have_content @other_question.display_text
+    vr.questions[1].should have_content @question.display_text
   end
 end

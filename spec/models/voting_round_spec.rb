@@ -62,4 +62,12 @@ describe VotingRound do
       result.should eq newer_voting_round
     end
   end
+
+  it "gives winner" do
+    question = FactoryGirl.create(:question)
+    question2 = FactoryGirl.create(:question, :other)
+    voting_round  = FactoryGirl.create(:voting_round, questions: [question, question2])
+    VotingRoundQuestion.where(question_id: question.id).first.update_attributes(vote_number: 5)
+    voting_round.winner.should eq question
+  end
 end

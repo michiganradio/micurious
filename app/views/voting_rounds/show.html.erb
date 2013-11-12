@@ -1,6 +1,11 @@
 <%= render partial:'shared/browse_voting_round' %>
-<% @voting_round.questions.each do |question| %>
-  <p>
-  <%= question.display_text %>
-  </p>
+<h1>Winning Question</h1>
+<div class="question">
+  <%= @voting_round.winner.display_text %>
+</div>
+<br>
+<% @voting_round.questions.order('vote_number').reverse[1..-1].each do |question| %>
+  <div class="question">
+    <%= question.display_text %>
+  </div>
 <% end %>
