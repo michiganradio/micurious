@@ -21,6 +21,7 @@ class MigrateQuestion < Migrate
       map_question_data(spreadsheet.row(i), question, attribute_column_indices)
       questions.push question
       print "."
+      # print "#{i-1} "
       i+=1
     end
 
@@ -48,7 +49,7 @@ class MigrateQuestion < Migrate
   end
 
   def map_question_categories(row, question, attribute_column_indices)
-    category_names = row[attribute_column_indices["Categories"]].to_s.split(/, |,/)
+    category_names = row[attribute_column_indices["Categories"]].to_s.rstrip.split(/, |,/)
     category_names.map! { |name| name.downcase.gsub(/like to/, "like").gsub(/ /, '-') }
     categories = category_names.map { |name| Category.where(name: name).first }
     question.categories = categories
