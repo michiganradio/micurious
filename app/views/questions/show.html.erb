@@ -1,6 +1,5 @@
 <div class="container-padding">
   <div class="questions">
-    <div class="row">
       <div class="question">
         <div class="question-image">
           <%= render partial: "shared/question_image", locals:{ question: @question} %>
@@ -9,7 +8,6 @@
           <%= @question.display_text %>
           <p class="author">Asked by <%=@question.display_author%></p>
         </div>
-      </div>
     </div>
     <% if @question.completed_answers.any? %>
       <div class="answers">

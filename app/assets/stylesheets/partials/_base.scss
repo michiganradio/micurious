@@ -95,23 +95,22 @@ $carrot-width: 20px;
 
 .response-image {
   float: left;
-  width: $voting-round-image-width;
-  //padding: $grid-unit $grid-unit * 2;
+  width: $question-image-width;
   position: relative;
 }
 
 %response-image-graphic {
   float: right;
-  margin: $grid-unit $grid-unit*3;
+  margin: $grid-unit $grid-unit*4;
   overflow: hidden;
   background-repeat: no-repeat;
 }
 
 .response-text {
+  margin-left: $voting-round-image-width; 
   padding-top: $grid-unit;
-  float: left;
   position: relative;
-  width: 60%;
+  display: inline;
   h4 {
     font-size: $grid-unit * 2;
   }

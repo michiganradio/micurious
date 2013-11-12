@@ -108,6 +108,7 @@ $comments-width: 580px;
   @extend %response-image-graphic;
   @include set-size(39px, 78px);
   background-image: image_url("reporter_notebook.png");
+  padding-right: 46px;
 }
 
 h2 {
@@ -183,6 +184,7 @@ h2 {
 
 #comments-prompt {
   float: right;
+  margin: 0 auto;
   color: #999;
   line-height: 24px;
   font-weight: normal;
