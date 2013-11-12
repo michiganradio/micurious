@@ -27,7 +27,7 @@ describe "Remove question from voting round" do
 
   context "question is in another voting round" do
     it "does not remove question from other voting round page" do
-      voting_round_other = FactoryGirl.create(:voting_round)
+      voting_round_other = FactoryGirl.create(:voting_round, :other)
       voting_round_other.add_question(@question)
 
       @admin_show_voting_round_page.load(id: @voting_round.id)

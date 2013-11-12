@@ -23,7 +23,7 @@ describe "Set voting round status" do
 
   it "does not allow multiple live voting rounds" do
     live_voting_round = FactoryGirl.create(:voting_round, status: VotingRound::Status::Live)
-    voting_round = FactoryGirl.create(:voting_round)
+    voting_round = FactoryGirl.create(:voting_round, :other)
     @edit_voting_round_page = Admin::EditVotingRound.new
     @edit_voting_round_page.load(id: voting_round.id)
     @edit_voting_round_page.status_dropdown.select(VotingRound::Status::Live)

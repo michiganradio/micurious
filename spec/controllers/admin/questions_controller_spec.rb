@@ -16,7 +16,7 @@ describe Admin::QuestionsController do
                       FactoryGirl.create(:category)]}
 
   let(:voting_rounds) { [FactoryGirl.create(:voting_round, status: VotingRound::Status::New),
-                         FactoryGirl.create(:voting_round, status: VotingRound::Status::Live)]}
+                         FactoryGirl.create(:voting_round, :other,  status: VotingRound::Status::Live)]}
 
   context "not signed in" do
     describe "GET index" do

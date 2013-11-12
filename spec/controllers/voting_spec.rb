@@ -56,7 +56,7 @@ describe Voting do
     describe "voting in new voting round" do
       before do
         Voting.vote(@cookies, @params)
-        @new_voting_round = FactoryGirl.create(:voting_round)
+        @new_voting_round = FactoryGirl.create(:voting_round, :other)
         @new_question = FactoryGirl.create(:question, :other)
         @new_voting_round_question = FactoryGirl.create(:voting_round_question,
                                                         question_id: @new_question.id,

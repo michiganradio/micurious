@@ -1,0 +1,22 @@
+<script>      
+  $( document ).ready(function() {
+    if(window.location.hash == '#ask') {
+      $('#ask-question-form').submit();
+    }
+
+    $('.question').on('mouseenter','.vote', function(){
+      $(this).closest('.question').addClass('hover');    
+      $(this).closest('.question').find('.image-container').addClass('hover');    
+    });
+
+    $('.question').on('mouseleave','.vote', function(){
+      $(this).closest('.question').removeClass('hover');    
+      $(this).closest('.question').find('.image-container').removeClass('hover');    
+    });
+
+  });
+</script>
+<%= render partial:'shared/browse_voting_round' %>
+<div class="container-padding">
+  <%= render "voting" %>
+</div>

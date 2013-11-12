@@ -40,7 +40,7 @@ describe VotingRound do
     end
 
     it "only validates the status when the new status is live" do
-      FactoryGirl.create(:voting_round, status:VotingRound::Status::Live)
+      FactoryGirl.create(:voting_round, status:VotingRound::Status::Live, label: "new label")
       expect { FactoryGirl.create(:voting_round) }.not_to raise_error
     end
   end

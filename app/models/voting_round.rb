@@ -19,6 +19,10 @@ class VotingRound < ActiveRecord::Base
     self.questions.push(question)
   end
 
+  def get_previous
+    self
+  end
+
   private
 
   def add_default_label_if_empty

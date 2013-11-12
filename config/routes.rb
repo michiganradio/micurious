@@ -1,9 +1,9 @@
 Curiouscity::Application.routes.draw do
-  root  'welcome#home'
-  match '/about', to: 'welcome#about', via: 'get'
+  root  'voting_rounds#home'
+  match '/about', to: 'voting_rounds#about', via: 'get'
   match '/ask_question', to: 'questions#new',     via: 'post'
   match '/confirm_question', to: 'questions#confirm', via: 'post'
-  match '/vote', to: 'welcome#vote', via: 'post'
+  match '/vote', to: 'voting_rounds#vote', via: 'post'
   match '/vote_widget', to: 'widget#vote_widget', via: 'get'
   match '/widget_vote', to: 'widget#vote', via: 'post'
   match '/ask_widget', to: 'widget#ask_widget', via: 'get'
@@ -11,6 +11,7 @@ Curiouscity::Application.routes.draw do
   match '/find_pictures', to: 'questions#find_pictures', via: 'post'
   match '/questions/:status(/:category_name)', to: 'questions#filter', via: 'get', as: 'filter_questions', constraints: { status: /answered|archive/}
   resources :questions, except: [:index]
+  resources :voting_rounds
 
   namespace :admin do
     resources :categories do

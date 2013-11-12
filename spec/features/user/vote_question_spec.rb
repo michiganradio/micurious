@@ -52,7 +52,7 @@ describe "Vote on a question" do
       @voting_round.status = VotingRound::Status::Completed
       @voting_round.save!
       @new_question = FactoryGirl.create(:question, display_text: "hi")
-      @new_voting_round = FactoryGirl.create(:voting_round, status: VotingRound::Status::New)
+      @new_voting_round = FactoryGirl.create(:voting_round, :other, status: VotingRound::Status::New)
       @new_voting_round.add_question(@new_question)
       @new_voting_round.status = VotingRound::Status::Live
       @new_voting_round.save
