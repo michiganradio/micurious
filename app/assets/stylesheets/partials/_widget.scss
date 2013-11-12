@@ -69,6 +69,7 @@ $prompt: 25px;
 
 .widget-blue-hover {
   background-image: image_url('bg_dots.png');
+  width: 234px;
 }
 
 .display-text.hover{
@@ -79,7 +80,7 @@ $prompt: 25px;
   margin: 1 $grid-unit/2;
   border-radius: $grid-unit;
   background-position-y: -38px;
-
+  height: 80px;
   .rank-triangle {
     @include right-triangle(30px, bottom, left);
     border-radius: 0 $grid-unit;
@@ -106,7 +107,7 @@ $prompt: 25px;
 .widget-question-text .display-text {
   padding: 3px 5px 3px 30px;
   height: 70px;
-  width: 234px;
+  width: inherit;
   display: table-cell;
   font-size: 11px;
   line-height: $grid-unit;
