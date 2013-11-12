@@ -20,7 +20,11 @@ class VotingRound < ActiveRecord::Base
   end
 
   def get_previous
-   prev = VotingRound.where('status = "Completed" and start_time < "' + self.start_time.to_s + '"').order(start_time: :desc).first
+   VotingRound.where('status = "Completed" and start_time < "' + self.start_time.to_s + '"').order(start_time: :desc).first
+  end
+
+  def get_next
+   VotingRound.where('(status = "Live" or status = "Completed") and start_time > "' + self.start_time.to_s + '"').order(start_time: :asc).first
   end
 
   private

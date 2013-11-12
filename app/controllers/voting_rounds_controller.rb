@@ -7,14 +7,17 @@ class VotingRoundsController < ApplicationController
   def home
     @up_for_voting_class = "highlighted"
     @voting_round = VotingRound.where(status: VotingRound::Status::Live).first
-    @past_voting_round = @voting_round.get_previous unless @voting_round.nil?
+    @previous_voting_round = @voting_round.get_previous unless @voting_round.nil?
   end
 
   def about
+
   end
 
   def show
     @voting_round = VotingRound.where("id = ?", params[:id]).first
+    @previous_voting_round = @voting_round.get_previous unless @voting_round.nil?
+    @next_voting_round = @voting_round.get_next unless @voting_round.nil?
   end
 
   def vote

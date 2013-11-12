@@ -1,0 +1,6 @@
+<%= render partial:'shared/browse_voting_round' %>
+<% @voting_round.questions.each do |question| %>
+  <p>
+  <%= question.display_text %>
+  </p>
+<% end %>
