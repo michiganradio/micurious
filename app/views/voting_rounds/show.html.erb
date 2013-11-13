@@ -10,35 +10,37 @@
     <%= render partial:'shared/browse_voting_round' %>
     </div>
     <div class="questions">
-      <div class="question">
-        <% winner = @voting_round.winner %>
-        <div class="question-image">
-          <h2 class = "percentage" id="percentage<%= winner.id.to_s %>"><%= @voting_round.vote_percentage(winner) %>%</h2>
-          <span class="image-container">
-            <%= render partial: "shared/question_image", locals:{ question: winner } %>
-          </span><span class="rank-triangle"></span>
-        </div>
+      <% @voting_round.winner.each do |winner| %>
+        <div class="question">
+          <div class="question-image">
+            <h2 class = "percentage" id="percentage<%= winner.id.to_s %>"><%= @voting_round.vote_percentage(winner) %>%</h2>
+            <span class="image-container">
+              <%= render partial: "shared/question_image", locals:{ question: winner } %>
+            </span><span class="rank-triangle"></span>
+          </div>
         <%= render partial:'shared/question_text', locals:{ question: winner } %>
-      </div>
-      <br>
-      <div class="row">
-      <div class="col-lg-4">
-      </div>
-      <div class="col-lg-8 right-col">
+      <% end %>
+    </div>
+    <br>
+    <div class="row">
+    <div class="col-lg-4">
+    </div>
+    <div class="col-lg-8 right-col">
       <h4>Runner-Ups</h4>
     </div>
   </div>
-      <% @voting_round.questions.order('vote_number').reverse[1..-1].each do |question| %>
-        <div class="question">
-          <div class="question-image">
-            <h2 class = "percentage" id="percentage<%= question.id.to_s %>"><%= @voting_round.vote_percentage(question) %>%</h2>
-            <span class="image-container">
-              <%= render partial: "shared/question_image", locals:{ question: question } %>
-            </span><span class="rank-triangle">
-          </div>
-        <%= render partial:'shared/question_text', locals:{ question: question } %>
-        </div>
-      <% end %>
+  <% @voting_round.questions.order('vote_number').reverse[@voting_round.winner.size..-1].each do |question| %>
+    <div class="question">
+      <div class="question-image">
+        <h2 class = "percentage" id="percentage<%= question.id.to_s %>"><%= @voting_round.vote_percentage(question) %>%</h2>
+        <span class="image-container">
+          <%= render partial: "shared/question_image", locals:{ question: question } %>
+        </span>
+        <span class="rank-triangle"></span>
+      </div>
+      <%= render partial:'shared/question_text', locals:{ question: question } %>
+    </div>
+  <% end %>
     </div>
   </div>
 </div>

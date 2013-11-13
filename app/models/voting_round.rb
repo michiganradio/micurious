@@ -28,7 +28,11 @@ class VotingRound < ActiveRecord::Base
   end
 
   def winner
-    winner = Question.where('id = ' + VotingRoundQuestion.where('voting_round_id = ' + self.id.to_s).order(vote_number: :desc).first.question_id.to_s).first
+    vr_questions = VotingRoundQuestion.where('voting_round_id = ' + self.id.to_s)
+    return [] if vr_questions.empty?
+    max_votes = vr_questions.maximum('vote_number')
+    winning_vr_questions = vr_questions.where('vote_number = ' + max_votes.to_s)
+    winners = winning_vr_questions.map{|vr_question| vr_question.question}
   end
 
   def vote_percentage(question)

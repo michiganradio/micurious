@@ -63,12 +63,28 @@ describe VotingRound do
     end
   end
 
-  it "gives winner" do
-    question = FactoryGirl.create(:question)
-    question2 = FactoryGirl.create(:question, :other)
-    voting_round  = FactoryGirl.create(:voting_round, questions: [question, question2])
-    VotingRoundQuestion.where(question_id: question.id).first.update_attributes(vote_number: 5)
-    voting_round.winner.should eq question
+  context "winner" do
+    it "gives winner" do
+      question = FactoryGirl.create(:question)
+      question2 = FactoryGirl.create(:question, :other)
+      voting_round  = FactoryGirl.create(:voting_round, questions: [question, question2])
+      VotingRoundQuestion.where(question_id: question.id).first.update_attributes(vote_number: 5)
+      voting_round.winner.should eq [question]
+    end
+
+    it "returns nil when there are no questions" do
+      voting_round = FactoryGirl.create(:voting_round)
+      voting_round.winner.should eq []
+    end
+
+    it "returns tied winners " do
+      question = FactoryGirl.create(:question)
+      question2 = FactoryGirl.create(:question, :other)
+      voting_round  = FactoryGirl.create(:voting_round, questions: [question, question2])
+      VotingRoundQuestion.where(question_id: question.id).first.update_attributes(vote_number: 5)
+      VotingRoundQuestion.where(question_id: question2.id).first.update_attributes(vote_number: 5)
+      voting_round.winner.should =~ [question, question2]
+    end
   end
 
   it "gets percentage" do
