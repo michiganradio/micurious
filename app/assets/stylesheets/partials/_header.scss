@@ -67,6 +67,7 @@ $navbar-height: $grid-unit*2;
   } 
 
   & > li > a {
+    text-decoration: none;
     display: inline-block;
     border-right: 2px solid white;
     height: $navbar-height;
