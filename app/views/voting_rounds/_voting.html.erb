@@ -1,17 +1,12 @@
 <% if @voting_round %>
   <div class="voting-round">
-    <div class="row">
-      <div class="col-lg-4">
-      <%= render partial:'shared/browse_voting_round' %>
-    </div>
-      <div class="col-lg-8 right-col">
+      <div class="voting-round-title">
           <h1>Which should we investigate next?</h1>
           <h5>Select the question you’d most like answered.</h5>
       </div>
-    </div>
+    <%= render partial:'shared/browse_voting_round' %>
     <div class="questions">
       <% (display_order(@voting_round.questions)).each_with_index do |question, index| %>
-        <div class="row">
           <div class="question", id="question<%= question.id.to_s %>">
             <div class="question-image">
               <% if voted? %>
@@ -24,10 +19,8 @@
                 <%= if voted? and last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted") end %>
                   <% if voted? %><span class="rank-triangle"></span><% end %>
                 </div>
-
                 <%= render partial:'shared/question_text', locals:{question:question} %>
               </div>
-            </div>
           <% end %>
         </div>
       </div>

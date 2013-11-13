@@ -14,7 +14,7 @@ $comments-width: 580px;
 }
 
 .questions {
-  padding: $grid-unit;
+  padding-top: $grid-unit;
 }
 
 .question {
@@ -57,7 +57,7 @@ $comments-width: 580px;
   }
   .rank-triangle {
     @include right-triangle(50px, top, right);
-    right: 40;
+    right: $grid-unit * 3;
     top: 0;
   }
 }
@@ -241,4 +241,8 @@ h2 {
 
 .category_links {
   display: block;
+}
+
+.voting-round-title {
+  margin-left: $question-image-width;
 }
