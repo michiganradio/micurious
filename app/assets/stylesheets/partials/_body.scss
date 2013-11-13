@@ -309,4 +309,22 @@ h2 {
   }
 }
 
-
+.arrow {
+  background-image: image_url("arrows.png");
+  height: 12px;
+  width: 12px;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: text-top;
+  margin-top: 3px;
+  &.left {
+    background-position: -45px 0;
+    width: 11px;
+    margin-right: 6px;
+  }
+  &.right {
+    background-position: -15px 0;
+    width: 11px;
+    margin-left: 6px;
+  }
+}
