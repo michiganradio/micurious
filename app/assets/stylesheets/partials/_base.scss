@@ -82,6 +82,7 @@ $carrot-width: 20px;
 
 .responses {
   position: relative;
+  
 }
 
 .response-image {
@@ -98,7 +99,6 @@ $carrot-width: 20px;
 }
 
 .response-text {
-  margin-left: $voting-round-image-width; 
   padding-top: $grid-unit;
   position: relative;
   display: inline;
@@ -112,6 +112,13 @@ $carrot-width: 20px;
     line-height: $grid-unit * 3;
     font-size: $grid-unit * 1.5;
   }
+}
+
+%response-link{
+  margin-left: $question-image-width;
+  display: inline;
+  position: relative;
+  float: left;
 }
 
 .blue-hover {

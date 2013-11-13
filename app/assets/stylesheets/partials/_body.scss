@@ -70,17 +70,19 @@ $comments-width: 580px;
   @extend .response-image;
 }
 
+.answer-link {
+  @extend %response-link;
+}
+
 .answer-text {
   @extend .response-text;
   a {
+    position: relative;
     color: $nice-blue;
     text-decoration: underline;
   }
 }
 
-.splitter {
-  clear:both;
-}
 
 .updates {
   @extend .responses;
@@ -93,9 +95,13 @@ $comments-width: 580px;
 .update-text {
   @extend .response-text;
   a {
+    position: relative;
     color: gray;
   }
 
+.update-link {
+  @extend %response-link;
+}
   a:hover {
     color: #767676;    
     text-decoration: none;
@@ -195,6 +201,7 @@ h2 {
 }
 
 #comments-prompt {
+  position: relative;
   float: right;
   margin: 0 auto;
   color: #999;
