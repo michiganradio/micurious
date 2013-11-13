@@ -41,12 +41,7 @@ describe Question do
     end
 
     context "neighborhood" do
-      it { should ensure_length_of(:neighbourhood).is_at_most(255) }
-
-      it "is not valid with special characters" do
-        @question.neighbourhood = "&dddd"
-        @question.should_not be_valid
-      end
+      it { should ensure_length_of(:neighbourhood).is_at_most(100) }
 
       it "is valid with letters, spaces,slashes, commas, apostrophes, parentheses, dashes,  and periods" do
         @question.neighbourhood = "Ddddd.(),'-/ D"
@@ -68,8 +63,8 @@ describe Question do
         @question.should be_valid
       end
 
-      it "is valid with period and parentheses" do
-        @question.name = "abc.()"
+      it "is valid with period" do
+        @question.name = "abc."
         @question.should be_valid
       end
 
