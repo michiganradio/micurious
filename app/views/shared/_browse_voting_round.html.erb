@@ -1,2 +1,4 @@
-<%= link_to raw("<span class='arrow left'></span>") + "Voting for " + @previous_voting_round.label, voting_round_path(@previous_voting_round) unless @previous_voting_round.nil? %>
+<br>
+<%= link_to raw("<span class='arrow left'></span>") + "Voting for " + @previous_voting_round.label, voting_round_path(@previous_voting_round), class: "pull-left" unless @previous_voting_round.nil? %>
 <%= link_to raw("Voting for " + @next_voting_round.label + "<span class='arrow right'></span>"), voting_round_path(@next_voting_round), class: "pull-right" unless @next_voting_round.nil? %>
+<br>

@@ -7,8 +7,8 @@
         <h1>Winning Question</h1>
         <h5>Week of <%= @voting_round.label %></h5>
       </div>
-    <%= render partial:'shared/browse_voting_round' %>
     </div>
+    <%= render partial:'shared/browse_voting_round' %>
     <div class="questions">
       <% @voting_round.winner.each do |winner| %>
         <div class="question">
