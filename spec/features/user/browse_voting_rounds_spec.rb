@@ -8,20 +8,31 @@ describe "browse past voting rounds" do
     @voting_round = FactoryGirl.create(:voting_round, :completed, questions: [@question, @other_question])
     VotingRoundQuestion.where(question_id: @question.id).first.update_attributes(vote_number: 0)
     VotingRoundQuestion.where(question_id: @other_question.id).first.update_attributes(vote_number: 10)
+    @newer_voting_round = FactoryGirl.create(:voting_round, :completed, start_time: "2013-11-01 11:11:11", label: "label2", questions: [@question, @other_question])
+    VotingRoundQuestion.where(question_id: @question.id)[1].update_attributes(vote_number: 0)
+    VotingRoundQuestion.where(question_id: @other_question.id)[1].update_attributes(vote_number: 10)
     @live_voting_round = FactoryGirl.create(:voting_round, :other, :live)
   end
 
   it "is linked to from the home page" do
     home = Home.new
     home.load
-    home.should have_link("Voting for " + @voting_round.label, href: voting_round_path(@voting_round.id))
+    home.should have_link("Voting for " + @newer_voting_round.label, href: voting_round_path(@newer_voting_round.id))
   end
 
   it "has links to previous and next voting rounds" do
     vr = ShowVotingRound.new
     vr.load(voting_round_id: @voting_round.id.to_s)
     vr.should have_link("Voting for " + @oldest_voting_round.label, href: voting_round_path(@oldest_voting_round.id))
-    vr.should have_link("Voting for " + @live_voting_round.label, href: voting_round_path(@live_voting_round.id))
+    vr.should have_link("Voting for " + @newer_voting_round.label, href: voting_round_path(@newer_voting_round.id))
+  end
+
+  it "shows the home page when navigating to live voting round" do
+    vr = ShowVotingRound.new
+    vr.load(voting_round_id: @newer_voting_round.id.to_s)
+    vr.should have_link("Voting for " + @live_voting_round.label)
+    home = Home.new
+    home.should be_displayed
   end
 
   it "shows voting round" do

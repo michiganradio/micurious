@@ -17,6 +17,9 @@ class VotingRoundsController < ApplicationController
   def show
     @voting_round = VotingRound.where("id = ?", params[:id]).first
     @previous_voting_round = @voting_round.get_previous unless @voting_round.nil?
+    if @voting_round.status == VotingRound::Status::Live
+      redirect_to root_path
+    end
     @next_voting_round = @voting_round.get_next unless @voting_round.nil?
   end
 
