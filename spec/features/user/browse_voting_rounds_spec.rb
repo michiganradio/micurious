@@ -32,6 +32,8 @@ describe "browse past voting rounds" do
   end
 
   it "shows percentage" do
+    vr = ShowVotingRound.new
+    vr.load(voting_round_id: @voting_round.id.to_s)
     vr.questions[0].should have_content "100%"
   end
 end
