@@ -6,7 +6,7 @@ describe "question migration" do
     @test_file = "./spec/lib/migrate/test.xls"
     @question_migrate = MigrateQuestion.new
     @column_indices = { "Badge"=>0, "Approved"=>1, "Anonymous"=>2, "Categories"=>3,
-                        "Date Uploaded"=>4 }
+                        "Date Uploaded"=>4, "Image Url"=>5 }
   end
   it "gets column indices of wanted attributes" do
     sheet = Roo::Excel.new(@test_file)
@@ -17,35 +17,35 @@ describe "question migration" do
 
   describe "generates the Question-specific status from the spreadsheet" do
     it "sets the status of the question to be answered" do
-      row = ["answered", 1, 0.0, "", "1344395668"]
+      row = ["answered", 1, 0.0, "", "1344395668", "images/default.jpg"]
       question = Question.new
       @question_migrate.map_question_data(row, question, @column_indices )
       question.status.should eq Question::Status::Answered
     end
 
     it "sets the status of the question to be investigated" do
-      row = ["investigated", 1, 0.0, "", "1344395668"]
+      row = ["investigated", 1, 0.0, "", "1344395668", "images/default.jpg"]
       question = Question.new
       @question_migrate.map_question_data(row, question, @column_indices)
       question.status.should eq Question::Status::Investigating
     end
 
     it "sets the status of the question to be new" do
-      row = ["", 1, 0.0, "", "1344395668"]
+      row = ["", 1, 0.0, "", "1344395668", "images/default.jpg"]
       question = Question.new
       @question_migrate.map_question_data(row, question, @column_indices)
       question.status.should eq Question::Status::New
     end
 
     it "sets the status of the question to be removed" do
-      row = ["", 0, 0.0, "", "1344395668"]
+      row = ["", 0, 0.0, "", "1344395668", "images/default.jpg"]
       question = Question.new
       @question_migrate.map_question_data(row, question, @column_indices)
       question.status.should eq Question::Status::Removed
     end
 
     it "sets the email confirmation to be the email" do
-      row = ["", 1, 0.0, "", "1344395668"]
+      row = ["", 1, 0.0, "", "1344395668", "images/default.jpg"]
       question = Question.new
       question.email = "a@a.com"
       @question_migrate.map_question_data(row, question, @column_indices)
@@ -53,14 +53,14 @@ describe "question migration" do
     end
 
     it "sets anonymous to be true" do
-      row = ["", 1, 1.0, "", "1344395668"]
+      row = ["", 1, 1.0, "", "1344395668", "images/default.jpg"]
       question = Question.new
       @question_migrate.map_question_data(row, question, @column_indices)
       question.anonymous.should eq true
     end
 
     it "sets anonymous to be false" do
-      row = ["", 1, 0.0, "", "1344395668"]
+      row = ["", 1, 0.0, "", "1344395668", "images/default.jpg"]
       question = Question.new
       @question_migrate.map_question_data(row, question, @column_indices)
       question.anonymous.should eq false
@@ -83,10 +83,30 @@ describe "question migration" do
 
   describe "sets created_at for question" do
     it "sets created_at from date uploaded column" do
-      row = ["", 1, 0.0, "", "1344395668"]
+      row = ["", 1, 0.0, "", "1344395668", "images/default.jpg"]
       question = Question.new
       @question_migrate.map_question_data(row, question, @column_indices)
       question.created_at.should eq Time.at(1344395668)
+    end
+  end
+
+  describe "sets picture_url for question" do
+    context "Image Url cell in row is 'images/default.jpg'" do
+      it "picture_url is nil" do
+        row = ["", 1, 0.0, "", "1344395668", "images/default.jpg"]
+        question = Question.new
+        @question_migrate.map_question_data(row, question, @column_indices)
+        question.picture_url.should eq nil
+      end
+    end
+
+    context "Image Url cell in row is not 'images/default.jpg'" do
+      it "picture_url is set to Image Url cell" do
+        row = ["", 1, 0.0, "", "1344395668", "image url"]
+        question = Question.new
+        @question_migrate.map_question_data(row, question, @column_indices)
+        question.picture_url.should eq "image url"
+      end
     end
   end
 
