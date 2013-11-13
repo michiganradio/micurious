@@ -40,4 +40,23 @@
 .number-4{ background-position:-143px 0;}
 .number-5{ background-position:-193px 0;}
 
-
+.arrow {
+  height: 12px;
+  width: 12px;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: text-top;
+  margin-top: 3px;
+  &.left {
+    background-image: image_url("arrows.png");
+    background-position: -45px 0;
+    width: 11px;
+    margin-right: 6px;
+    }
+  &.right {
+    background-image: image_url("arrows.png");
+    background-position: -15px 0;
+    width: 11px;
+    margin-left: 6px;
+  }
+}                  
