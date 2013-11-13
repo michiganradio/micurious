@@ -2,14 +2,11 @@
   <div class="voting-round">
     <div class="row">
       <div class="col-lg-4">
-      </div>
+      <%= render partial:'shared/browse_voting_round' %>
+    </div>
       <div class="col-lg-8 right-col">
-        <div class="super">
           <h1>Which should we investigate next?</h1>
-        </div>
-        <div class="sub">
           <h5>Select the question you’d most like answered.</h5>
-        </div>
       </div>
     </div>
     <div class="questions">
@@ -26,7 +23,7 @@
               <%= if !voted? then link_to "", vote_path(question_id: question.id, voting_round_id: @voting_round.id), method: :post, class: "vote", id: "vote"+question.id.to_s end %>
                 <%= if voted? and last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted") end %>
                   <% if voted? %><span class="rank-triangle"></span><% end %>
-                </div>  
+                </div>
 
                 <%= render partial:'shared/question_text', locals:{question:question} %>
               </div>

@@ -70,4 +70,13 @@ describe VotingRound do
     VotingRoundQuestion.where(question_id: question.id).first.update_attributes(vote_number: 5)
     voting_round.winner.should eq question
   end
+
+  it "gets percentage" do
+    question = FactoryGirl.create(:question)
+    question2 = FactoryGirl.create(:question, :other)
+    voting_round  = FactoryGirl.create(:voting_round, questions: [question, question2])
+    VotingRoundQuestion.where(question_id: question.id).first.update_attributes(vote_number: 5)
+    voting_round.vote_percentage(question).should eq 100
+    voting_round.vote_percentage(question2).should eq 0
+  end
 end

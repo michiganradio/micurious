@@ -6,7 +6,7 @@ describe "browse past voting rounds" do
     @other_question = FactoryGirl.create(:question, :other)
     @oldest_voting_round = FactoryGirl.create(:voting_round, :completed, start_time: "2000-01-01 11:11:11", label: "label")
     @voting_round = FactoryGirl.create(:voting_round, :completed, questions: [@question, @other_question])
-    VotingRoundQuestion.where(question_id: @question.id).first.update_attributes(vote_number: 5)
+    VotingRoundQuestion.where(question_id: @question.id).first.update_attributes(vote_number: 0)
     VotingRoundQuestion.where(question_id: @other_question.id).first.update_attributes(vote_number: 10)
     @live_voting_round = FactoryGirl.create(:voting_round, :other, :live)
   end
@@ -29,5 +29,9 @@ describe "browse past voting rounds" do
     vr.load(voting_round_id: @voting_round.id.to_s)
     vr.questions[0].should have_content @other_question.display_text
     vr.questions[1].should have_content @question.display_text
+  end
+
+  it "shows percentage" do
+    vr.questions[0].should have_content "100%"
   end
 end

@@ -51,9 +51,9 @@ $comments-width: 580px;
     margin-top: -38px;
   }
   .rank-triangle {
-  @include right-triangle(50px, top, right);
-  right: 40;
-  top: 0;
+    @include right-triangle(50px, top, right);
+    right: 40;
+    top: 0;
   }
 }
 
@@ -116,6 +116,23 @@ h2 {
   right: $grid-unit * 4;
   margin: 0;
   color: white;
+  &.rank {
+    float: right;
+    z-index: 2;
+    position: relative;
+    right: $grid-unit * 5;
+    font-size: 25px;
+    margin: 0;
+    margin-right: -10;
+  }
+  &.percentage {
+    float: right;
+    z-index: 2;
+    position: relative;
+    right: $grid-unit * 3;
+    font-size: 25px;
+    margin: 10 5px;
+  }
 }
 
 .image-credits {

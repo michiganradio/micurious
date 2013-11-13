@@ -31,6 +31,12 @@ class VotingRound < ActiveRecord::Base
     winner = Question.where('id = ' + VotingRoundQuestion.where('voting_round_id = ' + self.id.to_s).order(vote_number: :desc).first.question_id.to_s).first
   end
 
+  def vote_percentage(question)
+    votes = VotingRoundQuestion.where('voting_round_id = ' + self.id.to_s + ' and question_id = ' + question.id.to_s).first.vote_number
+    total_votes = VotingRoundQuestion.where('voting_round_id = ' + self.id.to_s).sum('vote_number')
+    return (votes * 100)/total_votes
+  end
+
   private
 
   def add_default_label_if_empty
