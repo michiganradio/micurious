@@ -135,25 +135,6 @@ $navbar-height: $grid-unit*2;
     margin: 0 $grid-unit/2;
   }
 }
-
-[class^="number-"] {
-  background-image: image_url("numbers.png");
-  height: 45px;
-  width: 34px;
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: text-top;
-  background-repeat: no-repeat;
-  float: left;
-  margin-right: 10px;
-}
-
-.number-1{ background-position: 10px 0;}
-.number-2{ background-position:-44px 0;}
-.number-3{ background-position:-93px 0;}
-.number-4{ background-position:-143px 0;}
-.number-5{ background-position:-193px 0;}
-
 #instructions li.step-1{color:#00ccff;}
 #instructions li.step-2{color:#12d1bf;}
 #instructions li.step-3{color:#21d780;}

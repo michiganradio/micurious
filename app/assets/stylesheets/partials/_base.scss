@@ -64,16 +64,6 @@ $carrot-width: 20px;
   line-height: 18px;
   width: 90%;
 }
-
-.vote-button {
-  z-index: 1;
-  @include set-size(50px, 50px);
-  overflow: hidden;
-  top: 25%;
-  left: $voting-round-image-width - 25px;
-  display: inline-block;
-  background-image: image_url("votebutton.png");
-}
 .vote {
   @extend .vote-button;
   cursor: pointer;

@@ -1,0 +1,43 @@
+.vote-button {
+  z-index: 1;
+  @include set-size(50px, 50px);
+  overflow: hidden;
+  top: 25%;
+  left: $voting-round-image-width - 25px;
+  display: inline-block;
+  background-image: image_url("votebutton.png");
+}
+
+.checkmark {
+  @extend %response-image-graphic;
+  @include set-size(50px, 50px);
+  background-image: image_url("sprites.png");
+  background-position:-101px 0px;
+}
+
+.notepad {
+  @extend %response-image-graphic;
+  @include set-size(39px, 78px);
+  background-image: image_url("reporter_notebook.png");
+  padding-right: 46px;
+}
+
+[class^="number-"] {
+  background-image: image_url("numbers.png");
+  height: 45px;
+  width: 34px;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: text-top;
+  background-repeat: no-repeat;
+  float: left;
+  margin-right: 10px;
+}
+
+.number-1{ background-position: 10px 0;}
+.number-2{ background-position:-44px 0;}
+.number-3{ background-position:-93px 0;}
+.number-4{ background-position:-143px 0;}
+.number-5{ background-position:-193px 0;}
+
+

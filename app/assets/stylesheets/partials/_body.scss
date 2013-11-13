@@ -77,13 +77,6 @@ $comments-width: 580px;
   clear:both;
 }
 
-.checkmark {
-  @extend %response-image-graphic;
-  @include set-size(50px, 50px);
-  background-image: image_url("sprites.png");
-  background-position:-101px 0px;
-}
-
 .updates {
   @extend .responses;
 }
@@ -102,13 +95,6 @@ $comments-width: 580px;
     color: #767676;    
     text-decoration: none;
   }
-}
-
-.notepad {
-  @extend %response-image-graphic;
-  @include set-size(39px, 78px);
-  background-image: image_url("reporter_notebook.png");
-  padding-right: 46px;
 }
 
 h2 {
