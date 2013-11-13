@@ -21,5 +21,5 @@ module Curiouscity
     # config.i18n.default_locale = :de
   end
 end
-
+DEFAULT_PICTURE='default-question-picture.jpg'
 DISQUS_SHORTNAME='whoawhoa'

@@ -34,7 +34,7 @@ describe ApplicationHelper do
     context "question picture_url not present" do
       it "returns default picture" do
         question = Question.new(picture_url: "")
-        helper.question_image_url(question).should == helper.image_url("default-question-picture.jpg")
+        helper.question_image_url(question).should == helper.image_url(DEFAULT_PICTURE)
       end
     end
   end

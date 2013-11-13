@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def question_image_url(question)
-    question.picture_url.present? ? question.picture_url : image_url("default-question-picture.jpg")
+    question.picture_url.present? ? question.picture_url : image_url(DEFAULT_PICTURE)
   end
 
   def question_display_text(question)
