@@ -38,6 +38,11 @@ $comments-width: 580px;
   @extend .blue-hover;
   opacity: 0.5;
 }
+
+.comment-count-link.hover {
+  color: white;
+}
+
 .question-image {
   float: left;
   width: $question-image-width;
