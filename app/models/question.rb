@@ -54,6 +54,14 @@ class Question < ActiveRecord::Base
     ([VotingRound::Status::New, VotingRound::Status::Live] & self.voting_rounds.map(&:status)).any?
   end
 
+  def previous_question
+    Question.where('status != "Removed" AND id<'+(self.id).to_s).order(id: :desc).first
+  end
+
+  def next_question
+    Question.where('status != "Removed" AND id>'+(self.id).to_s).order(id: :asc).first
+  end
+
   private
 
   def copy_display_text_into_original_text

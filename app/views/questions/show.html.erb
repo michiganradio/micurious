@@ -1,4 +1,8 @@
 <div class="container-padding">
+  <br>
+    <%= link_to raw("<span class='arrow left'></span>") + "Previous Question", question_path(@question.previous_question) unless @question.previous_question.nil?  %>
+    <%= link_to raw("Next Question<span class='arrow right'></span>"), question_path(@question.next_question), class: "pull-right" unless @question.next_question.nil? %>
+    <br>
   <div class="questions">
       <div class="question">
         <div class="question-image">

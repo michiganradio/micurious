@@ -270,4 +270,34 @@ describe Question do
     end
 
   end
+
+  describe "previous question" do
+    it "retrieves previous question" do
+      previous_question = FactoryGirl.create(:question, :other)
+      question = FactoryGirl.create(:question)
+      question.previous_question.should == previous_question
+    end
+
+    it "does not retrieve removed question" do
+      previous_question= FactoryGirl.create(:question, :other)
+      removed_question = FactoryGirl.create(:question, :other, status: Question::Status::Removed)
+      question = FactoryGirl.create(:question)
+      question.previous_question.should eq previous_question
+    end
+  end
+
+  describe "next question" do
+    it "retrieves next question" do
+      question = FactoryGirl.create(:question)
+      next_question = FactoryGirl.create(:question, :other)
+      question.next_question.should == next_question
+    end
+
+    it "does not retrieve removed question" do
+      question = FactoryGirl.create(:question)
+      removed_question = FactoryGirl.create(:question, :other, status: Question::Status::Removed)
+      next_question = FactoryGirl.create(:question, :other)
+      question.next_question.should eq next_question
+    end
+  end
 end

@@ -54,6 +54,26 @@ describe "browse questions" do
       @question.update_links[0].text.should eq update.label
       @question.update_links[0][:href].should eq update.url
       @question.should have_checkmark
+   end
+  end
+
+  describe "question detail page" do
+    it "has links to navigate to the other questions" do
+      question0 = FactoryGirl.create(:question, :other)
+      question1 = FactoryGirl.create(:question)
+      question2 = FactoryGirl.create(:question, :other)
+      @question = ShowQuestion.new
+      @question.load(question_id: question1.id)
+      @question.should have_link("Next Question", question_path(question1.id+1))
+      @question.should have_link("Previous Question", question_path(question1.id-1))
+
+      @question.load(question_id: question0.id)
+      @question.should_not have_link("Previous Question")
+      @question.should have_link("Next Question", question_path(question0.id+1))
+
+      @question.load(question_id: question2.id)
+      @question.should_not have_link("Next Question")
+      @question.should have_link("Previous Question", question_path(question2.id-1))
     end
   end
 
