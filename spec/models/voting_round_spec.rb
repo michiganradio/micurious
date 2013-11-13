@@ -79,4 +79,10 @@ describe VotingRound do
     voting_round.vote_percentage(question).should eq 100
     voting_round.vote_percentage(question2).should eq 0
   end
+
+  it "handles questions when there are no votes" do
+    question = FactoryGirl.create(:question)
+    voting_round = FactoryGirl.create(:voting_round, questions: [question])
+    voting_round.vote_percentage(question).should eq 0
+  end
 end
