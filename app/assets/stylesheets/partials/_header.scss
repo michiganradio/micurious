@@ -19,14 +19,6 @@ $navbar-height: $grid-unit*2;
   }
 }
 
-p a {
-  text-decoration: underline;
-  color: $bold-blue;
-  &:hover {
-    color: $blue;
-  }
-}
-
 .image-logo {
   position: relative;
   z-index: 1;

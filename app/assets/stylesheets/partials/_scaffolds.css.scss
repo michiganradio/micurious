@@ -67,12 +67,4 @@ div {
     font-size: 12px;
     list-style: square;
   }
-}.rank {
-    z-index: 3;
-    padding: $grid-unit/2;
-    font-size: $grid-unit;
-    color: white;
-    position: absolute;
-    margin-top: $question-height - $grid-unit*2.5;
-  }
-
+}

@@ -164,3 +164,11 @@ $carrot-width: 20px;
     margin-top: 7px;
   }
 }
+
+a {
+  text-decoration: underline;
+  color: $bold-blue;
+  &:hover {
+    color: $blue;
+  }
+}
