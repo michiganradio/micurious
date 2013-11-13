@@ -26,8 +26,8 @@ describe ApplicationHelper do
   describe "question_image_url" do
     context "question picture_url present" do
       it "returns question picture_url" do
-      question = Question.new(picture_url: "someurl")
-      helper.question_image_url(question).should == question.picture_url
+        question = Question.new(picture_url: "someurl")
+        helper.question_image_url(question).should == question.picture_url
       end
     end
 
@@ -37,7 +37,21 @@ describe ApplicationHelper do
         helper.question_image_url(question).should == helper.image_url("default-question-picture.jpg")
       end
     end
+  end
 
+  describe "question_display_text" do
+    context "question.display_text is over 140 characters" do
+      it "cuts the text to 140 and appends ..." do
+        question = Question.new(display_text: "a"*141)
+        helper.question_display_text(question).should == "a"*140+"..."
+      end
+    end
 
+    context "question.display_text is under 140 characters" do
+      it "keeps the text" do
+        question = Question.new(display_text: "a"*140)
+        helper.question_display_text(question).should == "a"*140
+      end
+    end
   end
 end
