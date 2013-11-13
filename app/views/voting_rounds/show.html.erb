@@ -1,11 +1,9 @@
 <div class="container-padding">
   <div class="voting-round">
-    <div class="row">
       <div class="voting-round-title">
         <h1>Winning Question</h1>
         <h5>Week of <%= @voting_round.label %></h5>
       </div>
-    </div>
     <%= render partial:'shared/browse_voting_round' %>
     <div class="questions">
       <% @voting_round.winner.each do |winner| %>
@@ -21,13 +19,9 @@
       <% end %>
     </div>
     <br>
-    <div class="row">
-    <div class="col-lg-4">
-    </div>
-    <div class="col-lg-8 right-col">
+    <div class="voting-round-title">
       <h4>Runner-Ups</h4>
     </div>
-  </div>
   <% @voting_round.questions.order('vote_number').reverse[@voting_round.winner.size..-1].each do |question| %>
     <div class="question">
       <div class="question-image">
