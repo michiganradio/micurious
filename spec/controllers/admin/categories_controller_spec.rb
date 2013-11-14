@@ -41,7 +41,7 @@ describe Admin::CategoriesController do
   end
 
   describe "POST create" do
-    describe "with valid params" do
+    context "with valid params" do
       it "creates a new Category" do
         expect {
           post :create, {:admin_category => valid_attributes}, valid_session
@@ -60,7 +60,7 @@ describe Admin::CategoriesController do
       end
     end
 
-    describe "with invalid params" do
+    context "with invalid params" do
       it "assigns a newly created but unsaved admin_category as @admin_category" do
         # Trigger the behavior that occurs when invalid params are submitted
         Category.any_instance.stub(:save).and_return(false)
@@ -78,7 +78,7 @@ describe Admin::CategoriesController do
   end
 
   describe "PUT update" do
-    describe "with valid params" do
+    context "with valid params" do
       it "updates the requested admin_category" do
         category = Category.create! valid_attributes
         # Assuming there are no other admin_categories in the database, this
@@ -102,7 +102,7 @@ describe Admin::CategoriesController do
       end
     end
 
-    describe "with invalid params" do
+    context "with invalid params" do
       it "assigns the admin_category as @admin_category" do
         category = Category.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
