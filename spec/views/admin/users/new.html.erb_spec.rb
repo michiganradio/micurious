@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "admin/users/new" do
+describe "admin's create admin page" do
   before(:each) do
     assign(:admin, stub_model(User,
       :username => "MyString",
