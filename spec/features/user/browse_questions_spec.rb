@@ -1,8 +1,8 @@
 require 'features/features_spec_helper'
 
-describe "browse questions" do
-  describe "new and unanswered questions" do
-    describe "all" do
+describe "user browsing questions" do
+  describe "questions/archive" do
+    context "with no category selected" do
       it "displays all unanswered questions by most recent" do
         question = FactoryGirl.create(:question, created_at:1.day.ago)
         question2 = FactoryGirl.create(:question, :other, created_at:Time.now)
@@ -16,8 +16,8 @@ describe "browse questions" do
       end
     end
 
-    describe "by category" do
-      it "displays all questions in category by most recent" do
+    context "with a category chosen" do
+      it "displays all questions in the category by most recent" do
         category = FactoryGirl.create(:category)
         question = FactoryGirl.create(:question, created_at: 1.day.ago,
                                       categories: [category])
@@ -36,8 +36,33 @@ describe "browse questions" do
     end
   end
 
-  describe "navigate to question detail page" do
-    it "display the question detail info" do
+  describe "questions/answered" do
+    it "display all answered and investigating questions by most recent" do
+      question1 = FactoryGirl.create(:question, status: Question::Status::Investigating)
+      question2 = FactoryGirl.create(:question, status: Question::Status::Answered)
+      question3 = FactoryGirl.create(:question, status: Question::Status::New)
+      @questions = Questions.new
+      @questions.load(status: "answered")
+      @questions.should have(2).question_links
+    end
+  end
+
+  describe "answered carousel in questions/answered" do
+    it "displays featured questions" do
+      question1 = FactoryGirl.create(:question, display_text: "text1", status: Question::Status::Answered, featured: true , reporter: "reporter1")
+      question2 = FactoryGirl.create(:question, display_text: "text2", status: Question::Status::Investigating, featured: true, reporter: "reporter2" )
+      question3 = FactoryGirl.create(:question, display_text: "text3", status: Question::Status::Answered, featured: false )
+      @questions = Questions.new
+      @questions.load(status: "answered")
+      @questions.should have_content(question1.display_text)
+      @questions.should have_content(question1.reporter)
+      @questions.should have_content(question2.display_text)
+      @questions.should have_content(question2.reporter)
+    end
+  end
+
+  describe "questions/{id}" do
+    it "displays the question's image, text, and answers/updates" do
       category = FactoryGirl.create(:category)
       question = FactoryGirl.create(:question, categories: [category])
       answer = FactoryGirl.create(:answer, question_id: question.id)
@@ -48,16 +73,14 @@ describe "browse questions" do
       @question = ShowQuestion.new
       @question.should be_displayed
       @question.question_image[:src].should eq question.picture_url
-      @question.attribution_link[:href].should == question.picture_attribution_url
+      @question.attribution_link[:href].should eq question.picture_attribution_url
       @question.answer_links[0].text.should eq answer.label
       @question.answer_links[0][:href].should eq answer.url
       @question.update_links[0].text.should eq update.label
       @question.update_links[0][:href].should eq update.url
       @question.should have_checkmark
-   end
-  end
+    end
 
-  describe "question detail page" do
     it "has links to navigate to the other questions" do
       question0 = FactoryGirl.create(:question, :other)
       question1 = FactoryGirl.create(:question)
@@ -74,34 +97,6 @@ describe "browse questions" do
       @question.load(question_id: question2.id)
       @question.should_not have_link("Next Question")
       @question.should have_link("Previous Question", question_path(question2.id-1))
-    end
-  end
-
-  describe "answered and investigating questions" do
-    describe "all" do
-      it "display all answered and investigating questions" do
-        question1 = FactoryGirl.create(:question, status: Question::Status::Investigating)
-        question2 = FactoryGirl.create(:question, status: Question::Status::Answered)
-        question3 = FactoryGirl.create(:question, status: Question::Status::New)
-        @questions = Questions.new
-        @questions.load(status: "answered")
-        @questions.should have(2).question_links
-      end
-    end
-  end
-  describe "answered carousel" do
-    describe "featured" do
-      it "displays featured questions on carousel" do
-        question1 = FactoryGirl.create(:question, display_text: "text1", status: Question::Status::Answered, featured: true , reporter: "reporter1")
-        question2 = FactoryGirl.create(:question, display_text: "text2", status: Question::Status::Investigating, featured: true, reporter: "reporter2" )
-        question3 = FactoryGirl.create(:question, display_text: "text3", status: Question::Status::Answered, featured: false )
-        @questions = Questions.new
-        @questions.load(status: "answered")
-        @questions.should have_content(question1.display_text)
-        @questions.should have_content(question1.reporter)
-        @questions.should have_content(question2.display_text)
-        @questions.should have_content(question2.reporter)
-      end
     end
   end
 end

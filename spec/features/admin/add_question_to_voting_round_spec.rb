@@ -1,6 +1,6 @@
 require 'features/features_spec_helper'
 
-describe "Add question to voting round" do
+describe "admin adding question to voting round" do
   before do
     signin_as_admin
     @question = FactoryGirl.create(:question)
@@ -8,7 +8,7 @@ describe "Add question to voting round" do
     @edit_admin_question_page = Admin::EditQuestion.new
   end
 
-  context "active question" do
+  context "with an active question" do
     before do
       @edit_admin_question_page.load(id: @question.id)
       @edit_admin_question_page.label_dropdown.select(@voting_round.label)
@@ -20,14 +20,14 @@ describe "Add question to voting round" do
         "Question was successfully added to the voting round"
     end
 
-    it "displays added question on voting round page" do
+    it "displays the added question on voting round page" do
       @show_admin_voting_round_page = Admin::ShowVotingRound.new
       @show_admin_voting_round_page.load(id: @voting_round.id)
       expect(@show_admin_voting_round_page.has_question? /#{@question.display_text}/).to be_true
     end
   end
 
-  context "deactivated question" do
+  context "with a deactivated question" do
     before do
       @removed_question = FactoryGirl.create(:question, status: Question::Status::Removed)
       @edit_admin_question_page_removed = Admin::EditQuestion.new
@@ -37,8 +37,7 @@ describe "Add question to voting round" do
     it "displays error message" do
       @edit_admin_question_page.label_dropdown.select(@voting_round.label)
       @edit_admin_question_page_removed.add_question_to_voting_round_button.click
-      @edit_admin_question_page_removed.add_question_to_voting_round_error.text.should ==
-        "A removed question can not be added to voting round"
+      @edit_admin_question_page_removed.add_question_to_voting_round_error.text.should eq "A removed question can not be added to voting round"
     end
   end
 end
