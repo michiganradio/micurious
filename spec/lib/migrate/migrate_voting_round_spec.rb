@@ -1,25 +1,47 @@
 require 'spec_helper'
 require 'roo'
 
-describe "voting round migration" do
-# before do
-#   @test_file = "./spec/lib/migrate/test.xls"
-#   @voting_round_migrate = MigrateVotingRound.new
-# end
-# it "migrates voting round" do
-#   VotingRound.any_instance.should_receive(:save).and_return(true)
-#    saved_vrs = @voting_round_migrate.migrate_voting_round(@test_file)
-#    saved_vrs[0].label.should eq "vrlabel"
-#    saved_vrs[0].questions.size.should eq 2
-# end
-# it "gets voting round questions from tab" do
+describe MigrateVotingRound do
+  before do
+    @test_file = "./spec/lib/migrate/test.xls"
+    @voting_round_migrate = MigrateVotingRound.new
+  end
 
-# end
-# it "set dates for voting round" do
-#   voting_round = VotingRound.new
-#   label = "October 23rd - November 6th"
-#   startdate = DateTime.new(2013, 10, 23)
-#    @voting_round_migrate.set_voting_round_dates(voting_round, label)
-#    voting_round.start_time.should eq startdate
-# end
+  describe "#map_voting_round_start_time" do
+    context "start time and end time have same year" do
+      it "returns start time" do
+        label = "January 23 - February 6, 2013"
+        start_time = @voting_round_migrate.map_voting_round_start_time(label)
+        start_time.should eq DateTime.parse("January 23, 2013")
+      end
+    end
+
+    context "start time and end time have different years" do
+      it "returns start time" do
+        label = "January 23, 2012 - February 6, 2013"
+        start_time = @voting_round_migrate.map_voting_round_start_time(label)
+        start_time.should eq DateTime.parse("January 23, 2012")
+      end
+    end
+  end
+
+  describe "#map_voting_round_end_time" do
+    it "returns end time" do
+      label = "January 23 - February 6, 2013"
+      end_time = @voting_round_migrate.map_voting_round_end_time(label)
+      end_time.should eq DateTime.parse("February 6, 2013")
+    end
+  end
+
+  describe "#migrate_voting_round" do
+    it "calls save on voting rounds" do
+      VotingRound.any_instance.should_receive(:save)
+      questions = @voting_round_migrate.migrate_voting_round(@test_file)
+    end
+  end
+
+  describe "#get_voting_round_question" do
+    spreadsheet_to_voting_round_question_attributes = { "Id"=>"question_id",
+                                                        "Votes"=>"vote_number" }
+  end
 end

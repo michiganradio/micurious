@@ -19,6 +19,40 @@ describe "question migration" do
     hashed_column_indices["Name"].should eq 2
   end
 
+  it "maps generic data" do
+    question = Question.new
+    row = [1, "Questioner Name", "questioner@email.com",
+           "This is an original question?", "This is a question?",
+           "imageURL", "imageAttributionURL","imageOwner",
+           "ChicagoNeighbourhood", "ReporterName"]
+    spreadsheet_to_question_attributes = {
+      "id"=>"id", "Question"=>"display_text",
+      "Original Question"=>"original_text",
+      "Neighbourhood"=>"neighbourhood", "Name"=>"name",
+      "Email"=>"email", "Image Attribution"=>"picture_attribution_url",
+      "Username"=>"picture_owner", "Image Url"=>"picture_url",
+      "Reporter"=>"reporter"
+    }
+    column_indices = {
+      "id"=>0, "Name"=>1, "Email"=>2, "Original Question"=>3, "Question"=>4,
+      "Image Url"=>5, "Image Attribution"=>6, "Username"=>7, "Neighbourhood"=>8,
+      "Reporter"=>9
+    }
+
+    @question_migrate.map_generic_data(row, question, spreadsheet_to_question_attributes, column_indices)
+
+    question.id.should eq row[0]
+    question.name.should eq row[1]
+    question.email.should eq row[2]
+    question.original_text.should eq row[3]
+    question.display_text.should eq row[4]
+    question.picture_url.should eq row[5]
+    question.picture_attribution_url.should eq row[6]
+    question.picture_owner.should eq row[7]
+    question.neighbourhood.should eq row[8]
+    question.reporter.should eq row[9]
+  end
+
   describe "generates the Question-specific status from the spreadsheet" do
     it "sets the status of the question to be answered" do
       @row[0] = "answered"
@@ -165,24 +199,12 @@ describe "question migration" do
     end
   end
 
-  it "migrates question" do
-    category1 = stub_model(Category, id: 1, name: "how-we-live")
-    category2 = stub_model(Category, id: 2, name: "governance")
-    category3 = stub_model(Category, id: 3, name: "whats-it-like")
-    category4 = stub_model(Category, id: 4, name: "economy")
-    Category.should_receive(:where).with({ name: category1.name }).and_return([category1])
-    Category.should_receive(:where).with({ name: category2.name }).and_return([category2])
-    Category.should_receive(:where).with({ name: category3.name }).and_return([category3])
-    Category.should_receive(:where).with({ name: category4.name }).and_return([category4])
+  it "calls save on questions" do
+    category = stub_model(Category, id: 1, name: "category")
+    Category.stub(:where).and_return([category])
     save_count = 0
     Question.any_instance.stub(:save) { save_count += 1 }
-    saved_questions = @question_migrate.migrate_question(@test_file)
-    saved_questions[0].id.should eq 1
-    saved_questions[0].display_text.should eq "This is a question?"
-    saved_questions[0].anonymous.should eq false
-    saved_questions[1].id.should eq 2
-    saved_questions[1].display_text.should eq "This is a curious question?"
-    saved_questions[1].anonymous.should eq true
+    questions = @question_migrate.migrate_question(@test_file)
     save_count.should == 2
   end
 end

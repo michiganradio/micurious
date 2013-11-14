@@ -4,12 +4,12 @@ class MigrateQuestion < Migrate
   def migrate_question(filepath = "./../ccdata.xls")
     s = Roo::Excel.new(filepath)
     question_sheet = s.sheet(0)
-    spreadsheet_to_question_attributes = { "id"=>"id", "Question"=>"display_text", "Original Question"=>"original_text", "Neighborhood"=>"neighbourhood", "Name"=>"name", "Email"=>"email", "Anonymous"=>"anonymous", "Image Attribution"=>"picture_attribution_url", "Image Username"=>"picture_owner", "Reporter"=>"reporter" }
-    column_indices_names = spreadsheet_to_question_attributes.keys.push("Badge").push("Approved").push("Categories").push("Date Uploaded").push("Image Url").push("Response Link URL").push("Response Link Text").push("Timeline Key")
+    spreadsheet_to_question_attributes = { "id"=>"id", "Question"=>"display_text", "Original Question"=>"original_text", "Neighborhood"=>"neighbourhood", "Name"=>"name", "Email"=>"email", "Image Attribution"=>"picture_attribution_url", "Image Username"=>"picture_owner", "Reporter"=>"reporter" }
+    column_indices_names = spreadsheet_to_question_attributes.keys.push("Badge").push("Approved").push("Categories").push("Date Uploaded").push("Image Url").push("Response Link URL").push("Response Link Text").push("Timeline Key").push("Anonymous")
 
     column_indices = get_spreadsheet_column_indices(column_indices_names, question_sheet)
-    models = get_question_models(spreadsheet_to_question_attributes, question_sheet, column_indices)
-    save_models(models)
+    questions = get_question_models(spreadsheet_to_question_attributes, question_sheet, column_indices)
+    save_models(questions)
   end
 
   def get_question_models(spreadsheet_to_model_attribute_names, spreadsheet, attribute_column_indices)
@@ -23,7 +23,7 @@ class MigrateQuestion < Migrate
       questions.push question
       print "."
       # print "#{i-1} "
-      i+=1
+      i += 1
     end
 
     return questions
