@@ -211,10 +211,12 @@ describe Question do
       category2 = FactoryGirl.create(:category, name: "some other")
 
       question1= FactoryGirl.create(:question, categories: [category1],
-                                   status: Question::Status::Investigating)
+                                   status: Question::Status::Investigating,
+                                   created_at: 1.day.ago)
 
       question2= FactoryGirl.create(:question, categories: [category2],
-                                   status: Question::Status::Investigating)
+                                   status: Question::Status::Investigating,
+                                   created_at: 2.days.ago)
 
       question3= FactoryGirl.create(:question, categories: [category2],
                                    status: Question::Status::New)
