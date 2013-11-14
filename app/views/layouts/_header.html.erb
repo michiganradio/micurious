@@ -4,7 +4,8 @@
     $('#how-it-works').hide();
     $('#how-it-works-link').click(function() {
       $('#how-it-works').slideToggle();
-    });
+      });
+    $('.submit-question-text').limiter(140, $('#chars'));
   });
 </script>
 <div id="how-it-works">

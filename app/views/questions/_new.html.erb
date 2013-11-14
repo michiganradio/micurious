@@ -25,9 +25,9 @@
             <div class="field col-lg-12">
               <%= f.label :display_text, "Your question*" %>
               <%= render partial:'guidelines', locals:{guideline_content_partial:'question_guideline_content', link_label: 'Show some good question examples', placement: 'bottom', popover_id: 'question-guideline-link'} %>
-              <%= f.text_area :display_text, placeholder: "Enter your question here", rows: "4", maxlength: "140", class: "form-control no-changing" %> 
+              <%= f.text_area :display_text, placeholder: "Enter your question here", rows: "4", maxlength: "140", class: "form-control no-changing"  %> 
               <div class="submit-question-spec">
-                (140 character limit)
+                (<span id="question_display_text_count"></span> characters left)
               </div>
             </div>
           </div>

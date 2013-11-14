@@ -2,6 +2,7 @@
   $(document).ready(function() {
   $("body").css("display", "none");
   $("body").fadeIn(2000);
+  $(".submit-question-text").limiter(140, $("#question_display_text_count"));
   });
 </script>
 <div class="ask-widget">
@@ -13,7 +14,7 @@
         <%= text_area_tag :display_text, nil, placeholder: "What do you wonder about Chicago, the region or its people that you want WBEZ to investigate?", class: "submit-question-text", maxlength: 140 %>
         <%= submit_tag "Submit", class: "btn submit-question-btn" %>
       <% end %>
-      <span class="char-limit">(140 character limit)</span>
+      <span class="char-limit">(<span id="question_display_text_count"></span> characters left)</span>
     </div>
   </div>
   <%= render 'footer_widget' %>

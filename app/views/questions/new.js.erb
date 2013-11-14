@@ -7,5 +7,6 @@ $('document').ready(function() {
   });
   $('#myModal').modal('show');
   $('#display_text').val('');
+  $('#question_display_text').limiter(140, $('#question_display_text_count'));
 });
 
