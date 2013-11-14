@@ -9,7 +9,10 @@ $navbar-height: $grid-unit*2;
 
   a, & {
     color: $nice-blue;
-    text-decoration: underline;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .header-links {
@@ -103,8 +106,11 @@ $navbar-height: $grid-unit*2;
   width: 100%;
 }
 
-.dropdown-menu > li > a:hover {
-  background-color: $nice-blue; 
+.dropdown-menu > li > a {
+  text-decoration: none;
+  &:hover {
+    background-color: $nice-blue; 
+  }
 }
 
 .dropdown .carrot {
