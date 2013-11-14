@@ -21,7 +21,7 @@ describe Admin::QuestionsController do
   context "not signed in" do
     describe "GET index" do
       it "redirects to sign in page" do
-        question = FactoryGirl.create(:question)
+        question = double(:question)
         get :index, {}
         assigns(:questions).should_not eq([question])
       end
