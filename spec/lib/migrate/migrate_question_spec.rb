@@ -90,9 +90,9 @@ describe "question migration" do
     end
   end
 
-  describe "sets picture_url for question" do
+  describe "sets picture url for question" do
     context "image url cell in row is 'images/default.jpg'" do
-      it "picture_url is nil" do
+      it "pictureurl is nil" do
         question = Question.new
         @question_migrate.map_question_data(@row, question, @column_indices)
         question.picture_url.should eq nil

@@ -36,7 +36,8 @@ class MigrateQuestion < Migrate
     badge = row[attribute_column_indices["Badge"]]
     approved = row[attribute_column_indices["Approved"]]
     question.status = map_question_status(badge, approved)
-    map_question_image_url(row, question, attribute_column_indices)
+    image_url = row[attribute_column_indices["Image Url"]]
+    question.picture_url = map_question_image_url(image_url)
     category_names = row[attribute_column_indices["Categories"]]
     question.categories = map_question_categories(category_names)
     response_link_text = row[attribute_column_indices["Response Link Text"]]
@@ -44,9 +45,9 @@ class MigrateQuestion < Migrate
     question.answers = map_question_answers(response_link_text, response_link_url, question.id)
   end
 
-  def map_question_image_url(row, question, attribute_column_indices)
-    row_image_url = row[attribute_column_indices["Image Url"]]
-    question.picture_url = row_image_url unless ( row_image_url == "images/default.jpg")
+  def map_question_image_url(image_url)
+    row_image_url = image_url
+    image_url unless ( row_image_url == "images/default.jpg")
   end
 
   def map_question_status(badge, approved)
