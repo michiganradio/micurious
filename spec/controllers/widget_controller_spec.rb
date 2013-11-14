@@ -8,9 +8,7 @@ describe WidgetController do
       voting_rounds = [voting_round]
       questions = [double(:question)]
       VotingRound.stub(:where).and_return(voting_rounds)
-      voting_round.should_receive(:questions).and_return(questions)
       get :vote_widget
-      assigns(:questions).should eq questions
       assigns(:voting_round).should eq voting_round
     end
   end

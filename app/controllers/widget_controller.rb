@@ -5,7 +5,6 @@ class WidgetController < ApplicationController
 
   def vote_widget
     @voting_round = VotingRound.where(status: VotingRound::Status::Live).first
-    @questions = @voting_round.questions[0..2]
     render layout: "widget"
   end
 

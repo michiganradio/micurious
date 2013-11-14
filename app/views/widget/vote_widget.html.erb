@@ -1,38 +1,38 @@
-<% if voted? then %>
+<% if !@voting_round || voted? then %>
   <script> 
     $(document).ready(function(){
-      var count = 2;
-      countdown = setInterval(function(){
-        count--;
-        if (count == 0) {
-          $("body").fadeOut(1000,  function() {window.location = '/ask_widget' });  
-        }
-      }, 1000);
+    var count = 2;
+    countdown = setInterval(function(){
+    count--;
+    if (count == 0) {
+    $("body").fadeOut(1000,  function() {window.location = '/ask_widget' });  
+    }
+    }, 1000);
     });
   </script>
 <% end %>
 
 <script>
   $(document).ready(function(){
-   $('.widget-question').on('mouseenter','.vote', function(){
-      $(this).closest('.widget-question').find('.display-text').addClass('hover');    
-    });
+  $('.widget-question').on('mouseenter','.vote', function(){
+  $(this).closest('.widget-question').find('.display-text').addClass('hover');    
+  });
 
-    $('.widget-question').on('mouseleave','.vote', function(){
-      $(this).closest('.widget-question').find('.display-text').removeClass('hover');    
-    });
+  $('.widget-question').on('mouseleave','.vote', function(){
+  $(this).closest('.widget-question').find('.display-text').removeClass('hover');    
+  });
   });
 </script>
-    
-<div class="widget-prompt">
-  <%= voted? ? "Thanks for voting!" : "Which question should WBEZ investigate next?" %>
-</div>
-<div class="questions-container">
-  <% display_order(@questions).each_with_index do |question, index| %>
-    <div class="widget-question" style="background-image: url(<%= question.picture_url %>)">
-      <span class="ranking-legend">
-        <% if voted? %>
-          <h3 class="rank" id="rank<%= question.id.to_s %>"><%= (index + 1).ordinalize %></h3>
+<% if @voting_round %>
+  <div class="widget-prompt">
+    <%= voted? ? "Thanks for voting!" : "Which question should WBEZ investigate next?" %>
+  </div>
+  <div class="questions-container">
+    <% display_order(@voting_round.questions[0..2]).each_with_index do |question, index| %>
+      <div class="widget-question" style="background-image: url(<%= question.picture_url %>)">
+        <span class="ranking-legend">
+          <% if voted? %>
+            <h3 class="rank" id="rank<%= question.id.to_s %>"><%= (index + 1).ordinalize %></h3>
           <% end %>
         </span>
         <div class="widget-question-text">
@@ -46,11 +46,12 @@
           </div>
           <% if voted? %><span class="rank-triangle"></span>
             <%= if last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted") end %>
-          <% end %>
+            <% end %>
+          </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% end %>
   <%= link_to image_tag("cc-logo.png", class: "widget-image-logo", alt: "WBEZ CuriousCity" ), root_url%>
   <div class="widget-subtitle">
     What do you wonder about Chicago?
