@@ -2,9 +2,13 @@
   $(document).ready(function() {
   $("body").css("display", "none");
   $("body").fadeIn(2000);
-  $(".submit-question-text").limiter(140, $("#question_display_text_count"));
   });
 </script>
+<!--[if IE 8 ]>
+<script>
+  window.location = 'IE8_ask_widget';
+</script>
+<![endif]-->
 <div class="ask-widget">
   <%= link_to image_tag("cc-logo.png", class: "widget-image-logo", alt: "WBEZ CuriousCity" ), root_url%>
   <div class="submit-wrap">
@@ -14,8 +18,61 @@
         <%= text_area_tag :display_text, nil, placeholder: "What do you wonder about Chicago, the region or its people that you want WBEZ to investigate?", class: "submit-question-text", maxlength: 140 %>
         <%= submit_tag "Submit", class: "btn submit-question-btn" %>
       <% end %>
-      <span class="char-limit">(<span id="question_display_text_count"></span> characters left)</span>
+      <span class="char-limit">(140 character limit)</span>
     </div>
   </div>
-  <%= render 'footer_widget' %>
+  <div class="footer">
+    <%= link_to "Browse Answers", filter_questions_url(status: "answered"), id: "browse-answers-link", target: "_blank" %> |
+    <%= link_to "Browse Questions", filter_questions_url(status: "archive"), id: "browse-questions-link", target: "_blank" %>
+    <div class="partners">
+      <div class="sponsor-logos-widget">
+        <a href="http://www.zeega.org/" target = "blank" >
+          <div class="logo-small logo-widget">
+            <img src="/assets/zeega_bw.png">
+          </div>
+        </a>
+        <a href="http://www.wyncotefoundation.org/" target = "blank" >
+          <div class="logo-small logo-widget">
+            <img src="/assets/wyncote_bw.png">
+          </div>
+        </a>
+        <a href="http://www.arts.gov/artworks/" target = "blank" >
+          <div class="logo-small logo-widget">
+            <img src="/assets/art-works_bw.png">
+          </div>
+        </a>
+        <a href="http://www.macfound.org/" target = "blank" >
+          <div class="logo-small logo-widget">
+            <img src="/assets/macarthur_bw.gif">
+          </div>
+        </a>
+        <a href="http://www.cpb.org/" target = "blank" >
+          <div class="logo-small logo-widget">
+            <img src="/assets/cpb_bw.png">
+          </div>
+        </a>
+        <a href="http://www.airmedia.org/" target = "blank" >
+          <div class="logo-small logo-widget">
+            <img src="/assets/air_bw.png">
+          </div>
+        </a>
+        <a href="http://airmediaworks.org/localore" target = "blank" >
+          <div class="logo-small logo-widget">
+            <img src="/assets/localore_bw.png">
+          </div>
+        </a>
+        <a href="http://www.knightfoundation.org/" target = "blank" >
+          <div class="logo-small kf-logo-widget">
+            <img src="/assets/kf_bw.gif">
+          </div>
+        </a>
+        <a href="http://thoughtworks.com" target = "blank" >
+          <div class="logo-small tw-logo-widget">
+            <img src="/assets/tw-logo.png">
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="clearfix"> </div>
+  </div>
 </div>
