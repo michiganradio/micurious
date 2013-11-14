@@ -147,3 +147,12 @@ $navbar-height: $grid-unit*2;
 #instructions li.step-3{color:#21d780;}
 #instructions li.step-4{color:#36dc40;}
 #instructions li.step-5{color:#48e100;}
+
+.ie8-info {
+  background-color: $light-green;
+  font-size: 20px;
+  line-height: 30px;
+  color: $hot-pink;
+  font-style: italic;
+  padding: 5px 20px;
+}
