@@ -17,7 +17,9 @@ class Migrate
   end
 
   def save_models(models)
-    models.each { |model|  model.valid? ? model.save : (model.errors.each{ |attribute, error| p "#{model.id}|#{attribute}|#{model.send(attribute)}|#{error}."} ) }
+    models.each do |model|
+      model.valid? ? model.save : (model.errors.each{ |attribute, error| p "#{model.id}|#{attribute}|#{model.send(attribute)}|#{error}."} )
+    end
   end
 end
 

@@ -1,3 +1,5 @@
+require 'migrate/migrate'
+
 class MigrateVotingRound < Migrate
   def migrate_voting_round(filepath="./../ccdata.xls")
     s = Roo::Excel.new(filepath)
@@ -17,6 +19,7 @@ class MigrateVotingRound < Migrate
     end
     return voting_rounds
   end
-   def set_voting_round_dates(voting_round, label)
-   end
+
+  def set_voting_round_dates(voting_round, label)
+  end
 end

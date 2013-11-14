@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 require 'migrate/migrate_question'
+require 'migrate/migrate_voting_round'
 MigrateQuestion.new.migrate_question("./../ccdata.xls")
+# MigrateVotingRound.new.migrate_voting_round("./../ccdata.xls")
