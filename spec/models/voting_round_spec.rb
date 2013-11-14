@@ -49,7 +49,7 @@ describe VotingRound do
     it "gets voting round that is completed and previous" do
       old_voting_round = FactoryGirl.create(:voting_round, :completed)
       current_voting_round = FactoryGirl.create(:voting_round, :live, :other)
-      result = current_voting_round.get_previous
+      result = current_voting_round.previous
       result.should eq old_voting_round
     end
   end
@@ -58,7 +58,7 @@ describe VotingRound do
     it "gets voting round that is completed and previous" do
       old_voting_round = FactoryGirl.create(:voting_round, :completed)
       newer_voting_round = FactoryGirl.create(:voting_round, :live, :other)
-      result = old_voting_round.get_next
+      result = old_voting_round.next
       result.should eq newer_voting_round
     end
   end

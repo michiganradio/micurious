@@ -7,7 +7,7 @@ describe VotingRoundsController do
       @voting_round = double(:voting_round)
       VotingRound.stub(:where).with(status: VotingRound::Status::Live).and_return([@voting_round])
       @prev_voting_round = double(:voting_round)
-      @voting_round.stub(:get_previous).and_return(@prev_voting_round)
+      @voting_round.stub(:previous).and_return(@prev_voting_round)
       subject.stub(:load_categories)
     end
 
