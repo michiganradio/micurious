@@ -5,7 +5,7 @@ class MigrateQuestion < Migrate
     s = Roo::Excel.new(filepath)
     question_sheet = s.sheet(0)
     spreadsheet_to_question_attributes = { "id"=>"id", "Question"=>"display_text", "Original Question"=>"original_text", "Neighborhood"=>"neighbourhood", "Name"=>"name", "Email"=>"email", "Anonymous"=>"anonymous", "Image Attribution"=>"picture_attribution_url", "Image Username"=>"picture_owner", "Reporter"=>"reporter" }
-    column_indices_names = spreadsheet_to_question_attributes.keys.push("Badge").push("Approved").push("Categories").push("Date Uploaded").push("Image Url").push("Response Link URL").push("Response Link Text")
+    column_indices_names = spreadsheet_to_question_attributes.keys.push("Badge").push("Approved").push("Categories").push("Date Uploaded").push("Image Url").push("Response Link URL").push("Response Link Text").push("Timeline Key")
 
     column_indices = get_spreadsheet_column_indices(column_indices_names, question_sheet)
     models = get_question_models(spreadsheet_to_question_attributes, question_sheet, column_indices)
@@ -30,9 +30,8 @@ class MigrateQuestion < Migrate
   end
 
   def map_question_data(row, question, attribute_column_indices)
-    question.email_confirmation = question.email
 
-    anonymous_cell = row[attribute_column_indices["Anonymous"]]
+    anonymous = row[attribute_column_indices["Anonymous"]]
     date_uploaded = row[attribute_column_indices["Date Uploaded"]]
     badge = row[attribute_column_indices["Badge"]]
     approved = row[attribute_column_indices["Approved"]]
@@ -40,13 +39,20 @@ class MigrateQuestion < Migrate
     category_names = row[attribute_column_indices["Categories"]]
     response_link_text = row[attribute_column_indices["Response Link Text"]]
     response_link_url = row[attribute_column_indices["Response Link URL"]]
+    timeline_key = row[attribute_column_indices["Timeline Key"]]
 
-    question.anonymous = map_question_anonymous(anonymous_cell)
+    question.email_confirmation = question.email
+    question.anonymous = map_question_anonymous(anonymous)
     question.created_at = map_question_created_at(date_uploaded)
     question.status = map_question_status(badge, approved)
     question.picture_url = map_question_image_url(image_url)
     question.categories = map_question_categories(category_names)
+
     question.answers = map_question_answers(response_link_text, response_link_url, question.id)
+
+    timeline_update = map_question_timeline_update(timeline_key, question.id)
+    question.answers.push(timeline_update) if timeline_update
+
   end
 
   def map_question_anonymous(anonymous)
@@ -91,6 +97,17 @@ class MigrateQuestion < Migrate
       [answer]
     else
       []
+    end
+  end
+
+  def map_question_timeline_update(timeline_key, question_id)
+    if timeline_key.presence
+      update = Answer.new
+      update.type = Answer::Type::Update
+      update.label = "Our reporting on this question"
+      update.url = "http://cdn.knightlab.com/libs/timeline/latest/embed/index.html?source=#{timeline_key}&font=Bevan-PotanoSans"
+      update.question_id = question_id
+      update
     end
   end
 end

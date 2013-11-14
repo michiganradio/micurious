@@ -5,11 +5,11 @@ describe "question migration" do
   before do
     @test_file = "./spec/lib/migrate/test.xls"
     @question_migrate = MigrateQuestion.new
-    @row = ["", 1, 0.0, "", "1344395668", "images/default.jpg", "", ""]
+    @row = ["", 1, 0.0, "", "1344395668", "images/default.jpg", "", "", ""]
     @column_indices = { "Badge"=>0, "Approved"=>1, "Anonymous"=>2,
                         "Categories"=>3, "Date Uploaded"=>4,
                         "Image Url"=>5, "Response Link URL"=>6,
-                        "Response Link Text"=>7 }
+                        "Response Link Text"=>7, "Timeline Key"=>8 }
   end
 
   it "gets column indices of wanted attributes" do
@@ -135,6 +135,33 @@ describe "question migration" do
         answers = @question_migrate.map_question_answers(response_link_text, response_link_url, question_id)
 
         answers.size.should eq 0
+      end
+    end
+  end
+
+  describe "generates timeline update for question"do
+    context "timeline key is not empty" do
+      it "add new update using timeline key" do
+        timeline_key = "123"
+        question_id = 2
+
+        update = @question_migrate.map_question_timeline_update(timeline_key, question_id)
+
+        update.type.should eq Answer::Type::Update
+        update.label.should eq "Our reporting on this question"
+        update.url.should eq "http://cdn.knightlab.com/libs/timeline/latest/embed/index.html?source=#{timeline_key}&font=Bevan-PotanoSans"
+        update.question_id.should eq question_id
+      end
+    end
+
+    context "timeline key is empty" do
+      it "do not add new update" do
+        timeline_key = ""
+        question_id = 2
+
+        update = @question_migrate.map_question_timeline_update(timeline_key, question_id)
+
+        update.should eq nil
       end
     end
   end
