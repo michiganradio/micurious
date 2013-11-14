@@ -132,8 +132,8 @@ $navbar-height: $grid-unit*2;
   }
   li {
     float: left;
-    width: 200;
-    margin: 0 $grid-unit/2;
+    width: 17.5%;
+    margin: $grid-unit/2;
   }
 }
 #instructions li.step-1{color:#00ccff;}
