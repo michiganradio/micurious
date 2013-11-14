@@ -1,6 +1,6 @@
 require 'features/features_spec_helper'
 
-describe "Admin main" do
+describe "/main" do
   subject { page }
 
   before do
@@ -8,7 +8,5 @@ describe "Admin main" do
     visit admin_path
   end
 
-  describe "links to voting round" do
-    it { should have_link('New voting round', href: new_admin_voting_round_path)}
-  end
+  it { should have_link('New voting round', href: new_admin_voting_round_path) }
 end

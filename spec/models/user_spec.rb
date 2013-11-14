@@ -8,43 +8,38 @@ describe User do
 
   subject{ @admin }
 
-  context "username" do
-    it { should respond_to(:username) }
-  end
+  it { should respond_to(:username) }
 
-  context "password" do
-    it { should respond_to(:password) }
-    it { should respond_to(:password_confirmation) }
-    it { should respond_to(:password_digest) }
-    it { should respond_to(:remember_token) }
-    it { should respond_to(:authenticate) }
+  it { should respond_to(:password) }
+  it { should respond_to(:password_confirmation) }
+  it { should respond_to(:password_digest) }
+  it { should respond_to(:remember_token) }
+  it { should respond_to(:authenticate) }
 
-    describe "return value of authenticate method" do
-      before { @admin.save }
-      let(:found_admin) { User.find_by(username: @admin.username) }
+  its(:remember_token) { should_not be_blank }
 
-      describe "with valid password" do
-        it { should eq found_admin.authenticate(@admin.password) }
-      end
+  describe "return value of authenticate method" do
+    before { @admin.save }
+    let(:found_admin) { User.find_by(username: @admin.username) }
 
-      describe "with invalid password" do
-        let(:admin_for_invalid_password) { found_admin.authenticate("invalid") }
-      end
+    context "with valid password" do
+      it { should eq found_admin.authenticate(@admin.password) }
+    end
+
+    context "with invalid password" do
+      it { should_not eq found_admin.authenticate("invalid password") }
     end
   end
 
-  context "remember token" do
-    before { @admin.save }
-    its(:remember_token) { should_not be_blank }
-  end
-
-  describe "creating user" do
-    context "same username already exists" do
-      before { @admin.save }
-      it "username must be unique" do
-       @admin2 = User.create(username: "user1", password: "password", password_confirmation: "password")
-       @admin2.username = "user"
-       @admin2.should_not be_valid
+  describe "creation of user" do
+    context "when a user with the same username already exists" do
+      before do
+        @admin.save
+        @admin2 = User.create(username: "user1", password: "password", password_confirmation: "password")
+        @admin2.username = "user"
+      end
+      it "is not valid" do
+        @admin2.should_not be_valid
       end
     end
   end

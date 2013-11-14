@@ -2,15 +2,20 @@ require 'spec_helper'
 
 describe Admin::VotingRoundsHelper do
 
-  context "can_remove_question?" do
-    it "can remove question if voting round has New status" do
-      @voting_round = double(:voting_round, status: VotingRound::Status::New)
-      helper.can_remove_question?.should be_true
+  describe "can_remove_question? method" do
+    context "when voting round has New status" do
+      it "returns true" do
+        @voting_round = double(:voting_round, status: VotingRound::Status::New)
+        helper.can_remove_question?.should be_true
+      end
     end
 
-    it "can not remove question if voting round does not have New statusr" do
-      @voting_round = double(:voting_round, status: VotingRound::Status::Live)
-      helper.can_remove_question?.should be_false
+    context "when the voting round status is not New" do
+      it "returns false" do
+        @voting_round = double(:voting_round, status: VotingRound::Status::Live)
+        helper.can_remove_question?.should be_false
+      end
     end
   end
+
 end
