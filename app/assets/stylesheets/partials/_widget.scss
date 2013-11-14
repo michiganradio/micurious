@@ -75,6 +75,7 @@ $prompt: 25px;
 .display-text.hover{
   @extend .blue-hover; 
 }
+
 .widget-question {
   width: 95%;
   margin: 1 $grid-unit/2;
@@ -86,7 +87,7 @@ $prompt: 25px;
     border-radius: 0 $grid-unit;
     z-index: 2;
     left: 0;
-    bottom: 0;
+    bottom: 165px;
   }
   .rank {
     z-index: 3;
@@ -100,7 +101,7 @@ $prompt: 25px;
     position: absolute;
     left: 6px;
     z-index: 1;
-    margin-top: -11px;
+    margin-top: -50px;
   }
 }
 
