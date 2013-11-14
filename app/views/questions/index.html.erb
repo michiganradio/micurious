@@ -9,12 +9,12 @@
   </div>
   <div class="questions">
     <% @questions.each do |question| %>
-        <div class="question", id="question<%= question.id.to_s %>">
-          <div class="question-image">
-            <%= render partial: "shared/question_image", locals:{ question: question} %>
-          </div>
-          <%= render partial:'shared/question_text', locals:{question:question} %>
+      <div class="question", id="question<%= question.id.to_s %>">
+        <div class="question-image">
+          <%= render partial: "shared/question_image", locals:{ question: question} %>
         </div>
+        <%= render partial:'shared/question_text', locals:{question:question} %>
+      </div>
     <% end %>
   </div>
 </div>

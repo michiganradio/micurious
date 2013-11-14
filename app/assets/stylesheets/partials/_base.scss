@@ -31,6 +31,7 @@ $carrot-width: 20px;
   font-weight: normal;
   font-size: 10px; 
 }
+
 .no-changing {
   resize: none;
 }
@@ -82,26 +83,28 @@ $carrot-width: 20px;
 
 .responses {
   position: relative;
-  
+  margin-left: $question-image-width;
 }
 
 .response-image {
   float: left;
-  width: $question-image-width;
+  left: $question-image-width - 8 * $grid-unit;
+  margin-top: $grid-unit;
   position: relative;
 }
 
 %response-image-graphic {
   float: right;
-  margin: $grid-unit $grid-unit*4;
   overflow: hidden;
   background-repeat: no-repeat;
 }
 
 .response-text {
-  padding-top: $grid-unit;
   position: relative;
   display: inline;
+  * {
+    margin: $grid-unit 0; 
+  }
   h4 {
     font-size: $grid-unit * 2;
   }
@@ -115,7 +118,6 @@ $carrot-width: 20px;
 }
 
 %response-link{
-  margin-left: $question-image-width;
   display: inline;
   position: relative;
   float: left;
@@ -168,4 +170,8 @@ a {
   &:hover {
     color: $blue;
   }
+}
+
+.clearfix {
+  clear: both;
 }

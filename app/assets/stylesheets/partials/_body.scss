@@ -1,5 +1,4 @@
 $question-height: $grid-unit * 8;
-$comments-width: 580px;
 
 .categories-group {
   clear: right;
@@ -45,7 +44,7 @@ $comments-width: 580px;
 .question-image {
   float: left;
   width: $question-image-width;
-  height: 100%;
+  height: $question-height;
   position:relative;
   background-position: 0 50%;
   overflow: hidden;
@@ -186,28 +185,19 @@ h2 {
 }
 
 #disqus_thread {
-  float: right;
   background: white;
   background-image: image_url("bg_dots.png");
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-right: 40px;
-  width: $comments-width;
-}
-
-.clearfix {
-  clear: both;
+  margin-left: $question-image-width - $grid-unit * 8;
+  padding: $grid-unit;
 }
 
 #comments-prompt {
-  position: relative;
-  float: right;
-  margin: 0 auto;
   color: #999;
   line-height: 24px;
   font-weight: normal;
-  width: $comments-width;
   font-size: 18px; 
+  margin-left: $question-image-width - $grid-unit * 8;
+  margin-bottom: $grid-unit * 2;
 }
 
 .comment-count-link {
