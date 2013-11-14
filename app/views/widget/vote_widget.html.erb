@@ -29,7 +29,7 @@
   </div>
   <div class="questions-container">
     <% display_order(@voting_round.questions[0..2]).each_with_index do |question, index| %>
-      <div class="widget-question" style="background-image: url(<%= question.picture_url %>)">
+      <div class="widget-question" style="background-image: url(<%= question_image_url(question) %>)">
         <span class="ranking-legend">
           <% if voted? %>
             <h3 class="rank" id="rank<%= question.id.to_s %>"><%= (index + 1).ordinalize %></h3>
