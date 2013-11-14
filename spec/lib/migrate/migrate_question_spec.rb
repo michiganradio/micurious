@@ -74,11 +74,11 @@ describe "question migration" do
       category2 = stub_model(Category, id: 2, name: "category2")
       Category.should_receive(:where).with({ name: category1.name }).and_return([category1])
       Category.should_receive(:where).with({ name: category2.name }).and_return([category2])
-      row = ["category1, category2"]
-      @column_indices = { "Categories" => 0 }
-      question = Question.new
-      @question_migrate.map_question_categories(row, question, @column_indices)
-      question.categories.should eq [category1, category2]
+      category_names = "category1, category2"
+
+      categories = @question_migrate.map_question_categories(category_names)
+
+      categories.should eq [category1, category2]
     end
   end
 
@@ -115,6 +115,7 @@ describe "question migration" do
         response_link_url = "url"
         response_link_text = "text"
         question_id = 2
+
         answers = @question_migrate.map_question_answers(response_link_text, response_link_url, question_id)
 
         answers.size.should eq 1
@@ -130,6 +131,7 @@ describe "question migration" do
         response_link_url = "url"
         response_link_text = ""
         question_id = 2
+
         answers = @question_migrate.map_question_answers(response_link_text, response_link_url, question_id)
 
         answers.size.should eq 0

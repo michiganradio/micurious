@@ -35,7 +35,8 @@ class MigrateQuestion < Migrate
     question.created_at = Time.at(row[attribute_column_indices["Date Uploaded"]].to_i)
     map_question_status(row, question, attribute_column_indices)
     map_question_image_url(row, question, attribute_column_indices)
-    map_question_categories(row, question, attribute_column_indices)
+    category_names = row[attribute_column_indices["Categories"]]
+    question.categories = map_question_categories(category_names)
     response_link_text = row[attribute_column_indices["Response Link Text"]]
     response_link_url = row[attribute_column_indices["Response Link URL"]]
     question.answers = map_question_answers(response_link_text, response_link_url, question.id)
@@ -58,11 +59,11 @@ class MigrateQuestion < Migrate
     end
   end
 
-  def map_question_categories(row, question, attribute_column_indices)
-    category_names = row[attribute_column_indices["Categories"]].to_s.rstrip.split(/, |,/)
-    category_names.map! { |name| name.downcase.gsub(/like to/, "like").gsub(/ /, '-') }
-    categories = category_names.map { |name| Category.where(name: name).first }
-    question.categories = categories
+  def map_question_categories(category_names_str)
+    category_names_arr = category_names_str.to_s.rstrip.split(/, |,/)
+    category_names_arr.map! { |name| name.downcase.gsub(/like to/, "like").gsub(/ /, '-') }
+    categories = category_names_arr.map { |name| Category.where(name: name).first }
+    categories
   end
 
   def map_question_answers(response_link_text, response_link_url, question_id)
