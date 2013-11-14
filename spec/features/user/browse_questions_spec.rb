@@ -47,7 +47,7 @@ describe "browse questions" do
       @questions_in_category.question_links.first.click
       @question = ShowQuestion.new
       @question.should be_displayed
-      @question.image[:src].should eq question.picture_url
+      @question.question_image[:src].should eq question.picture_url
       @question.attribution_link[:href].should == question.picture_attribution_url
       @question.answer_links[0].text.should eq answer.label
       @question.answer_links[0][:href].should eq answer.url
