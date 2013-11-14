@@ -148,9 +148,10 @@ $prompt: 25px;
   }
 }
 
-.ask-widget .footer {
+.ask-widget footer{
   color: $bold-blue;
   font-weight: bold;
+  margin-bottom: $grid-unit;
 }
 
 .logo-widget {
