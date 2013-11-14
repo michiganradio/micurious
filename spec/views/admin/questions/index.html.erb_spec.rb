@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "admin's questions index page" do
+describe "admin/questions/index" do
   before(:each) do
     assign(:questions, [
       stub_model(Question,
