@@ -22,7 +22,7 @@
         <h4>Our answer</h4>
         <% @question.completed_answers.each do |answer| %>
           <p>
-            <%= link_to answer.label, answer.url, class: "answer-link" %>
+            <%= link_to answer.label, answer.url, class: "answer-link", target: "_blank" %>
           </p>
         <% end %>
       </div>
@@ -38,7 +38,7 @@
         <h4>Reporting updates:</h4>
         <% @question.updates.each do |update| %>
           <p>
-            <%= link_to update.label, update.url, class: "update-link" %>
+            <%= link_to update.label, update.url, class: "update-link", target: "_blank" %>
           </p>
         <% end %>
       </div>
