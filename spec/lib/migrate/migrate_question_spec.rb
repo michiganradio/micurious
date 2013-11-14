@@ -112,27 +112,27 @@ describe "question migration" do
   describe "generates answer for question" do
     context "response link text and url cells are not empty" do
       it "add new answer using response link" do
-        row = ["response link url", "response link text"]
-        @column_indices = { "Response Link URL"=>0,
-                            "Response Link Text"=>1 }
-        question = Question.new
-        @question_migrate.map_question_answer(row, question, @column_indices)
+        response_link_url = "url"
+        response_link_text = "text"
+        question_id = 2
+        answers = @question_migrate.map_question_answers(response_link_text, response_link_url, question_id)
 
-        question.answers.size.should eq 1
-        question.answers.first.type.should eq Answer::Type::Answer
-        question.answers.first.url.should eq row[0]
-        question.answers.first.label.should eq row[1]
+        answers.size.should eq 1
+        answers.first.type.should eq Answer::Type::Answer
+        answers.first.label.should eq response_link_text
+        answers.first.url.should eq response_link_url
+        answers.first.question_id.should eq question_id
       end
     end
 
     context "response link text cell is empty" do
       it "do not add new answer" do
-        row = ["response link url", ""]
-        @column_indices = { "Response Link Url"=>0,
-                            "Response Link Text"=>1 }
-        question = Question.new
-        @question_migrate.map_question_answer(row, question, @column_indices)
-        question.answers.size.should eq 0
+        response_link_url = "url"
+        response_link_text = ""
+        question_id = 2
+        answers = @question_migrate.map_question_answers(response_link_text, response_link_url, question_id)
+
+        answers.size.should eq 0
       end
     end
   end

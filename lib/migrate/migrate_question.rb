@@ -36,7 +36,9 @@ class MigrateQuestion < Migrate
     map_question_status(row, question, attribute_column_indices)
     map_question_image_url(row, question, attribute_column_indices)
     map_question_categories(row, question, attribute_column_indices)
-    map_question_answer(row, question, attribute_column_indices)
+    response_link_text = row[attribute_column_indices["Response Link Text"]]
+    response_link_url = row[attribute_column_indices["Response Link URL"]]
+    question.answers = map_question_answers(response_link_text, response_link_url, question.id)
   end
 
   def map_question_image_url(row, question, attribute_column_indices)
@@ -63,14 +65,16 @@ class MigrateQuestion < Migrate
     question.categories = categories
   end
 
-  def map_question_answer(row, question, attribute_column_indices)
-    if row[attribute_column_indices["Response Link Text"]].presence
+  def map_question_answers(response_link_text, response_link_url, question_id)
+    if response_link_text.presence
       answer = Answer.new
       answer.type = Answer::Type::Answer
-      answer.label = row[attribute_column_indices["Response Link Text"]]
-      answer.url = row[attribute_column_indices["Response Link URL"]]
-      answer.question_id = question.id
-      question.answers.push(answer)
+      answer.label = response_link_text
+      answer.url = response_link_url
+      answer.question_id = question_id
+      [answer]
+    else
+      []
     end
   end
 end
