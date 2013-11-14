@@ -6,6 +6,7 @@ Curiouscity::Application.routes.draw do
   match '/vote', to: 'voting_rounds#vote', via: 'post'
   match '/vote_widget', to: 'widget#vote_widget', via: 'get'
   match '/widget_vote', to: 'widget#vote', via: 'post'
+  match '/IE8_ask_widget', to: 'widget#IE8_ask_widget', via: 'get'
   match '/ask_widget', to: 'widget#ask_widget', via: 'get'
   match '/picture_question', to: 'questions#picture', via: 'post'
   match '/find_pictures', to: 'questions#find_pictures', via: 'post'

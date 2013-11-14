@@ -16,7 +16,7 @@ $prompt: 25px;
 
 .border-container{
   @include dotted-line(border); 
-  
+  margin: 3px;
   overflow: hidden;
   text-align: center;
 }
@@ -59,7 +59,7 @@ $prompt: 25px;
 }
 
 .widget-question-text {
-  height: $question-height;
+  height: 245px;
   position: relative;
   padding: 5px 0px 5px 30px;
   width: $widget-width - $rank-width - $grid-unit * 2;
