@@ -33,7 +33,9 @@ class MigrateQuestion < Migrate
     question.email_confirmation = question.email
     question.anonymous = (row[attribute_column_indices["Anonymous"]].to_i != 0)
     question.created_at = Time.at(row[attribute_column_indices["Date Uploaded"]].to_i)
-    map_question_status(row, question, attribute_column_indices)
+    badge = row[attribute_column_indices["Badge"]]
+    approved = row[attribute_column_indices["Approved"]]
+    question.status = map_question_status(badge, approved)
     map_question_image_url(row, question, attribute_column_indices)
     category_names = row[attribute_column_indices["Categories"]]
     question.categories = map_question_categories(category_names)
@@ -47,15 +49,15 @@ class MigrateQuestion < Migrate
     question.picture_url = row_image_url unless ( row_image_url == "images/default.jpg")
   end
 
-  def map_question_status(row, question, attribute_column_indices)
-    if row[attribute_column_indices["Badge"]] == "answered"
-      question.status = Question::Status::Answered
-    elsif row[attribute_column_indices["Badge"]] == "investigated"
-      question.status = Question::Status::Investigating
-    elsif row[attribute_column_indices["Approved"]]==1
-      question.status = Question::Status::New
+  def map_question_status(badge, approved)
+    if badge == "answered"
+      Question::Status::Answered
+    elsif badge == "investigated"
+      Question::Status::Investigating
+    elsif approved == 1
+      Question::Status::New
     else
-      question.status = Question::Status::Removed
+      Question::Status::Removed
     end
   end
 
