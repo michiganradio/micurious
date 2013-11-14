@@ -31,18 +31,30 @@ class MigrateQuestion < Migrate
 
   def map_question_data(row, question, attribute_column_indices)
     question.email_confirmation = question.email
-    question.anonymous = (row[attribute_column_indices["Anonymous"]].to_i != 0)
-    question.created_at = Time.at(row[attribute_column_indices["Date Uploaded"]].to_i)
+
+    anonymous_cell = row[attribute_column_indices["Anonymous"]]
+    date_uploaded = row[attribute_column_indices["Date Uploaded"]]
     badge = row[attribute_column_indices["Badge"]]
     approved = row[attribute_column_indices["Approved"]]
-    question.status = map_question_status(badge, approved)
     image_url = row[attribute_column_indices["Image Url"]]
-    question.picture_url = map_question_image_url(image_url)
     category_names = row[attribute_column_indices["Categories"]]
-    question.categories = map_question_categories(category_names)
     response_link_text = row[attribute_column_indices["Response Link Text"]]
     response_link_url = row[attribute_column_indices["Response Link URL"]]
+
+    question.anonymous = map_question_anonymous(anonymous_cell)
+    question.created_at = map_question_created_at(date_uploaded)
+    question.status = map_question_status(badge, approved)
+    question.picture_url = map_question_image_url(image_url)
+    question.categories = map_question_categories(category_names)
     question.answers = map_question_answers(response_link_text, response_link_url, question.id)
+  end
+
+  def map_question_anonymous(anonymous)
+    anonymous.to_i != 0
+  end
+
+  def map_question_created_at(date_uploaded)
+    Time.at(date_uploaded.to_i)
   end
 
   def map_question_image_url(image_url)
