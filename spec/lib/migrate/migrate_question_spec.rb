@@ -116,13 +116,12 @@ describe "question migration" do
         response_link_text = "text"
         question_id = 2
 
-        answers = @question_migrate.map_question_answers(response_link_text, response_link_url, question_id)
+        answer = @question_migrate.map_question_answer(response_link_text, response_link_url, question_id)
 
-        answers.size.should eq 1
-        answers.first.type.should eq Answer::Type::Answer
-        answers.first.label.should eq response_link_text
-        answers.first.url.should eq response_link_url
-        answers.first.question_id.should eq question_id
+        answer.type.should eq Answer::Type::Answer
+        answer.label.should eq response_link_text
+        answer.url.should eq response_link_url
+        answer.question_id.should eq question_id
       end
     end
 
@@ -132,9 +131,9 @@ describe "question migration" do
         response_link_text = ""
         question_id = 2
 
-        answers = @question_migrate.map_question_answers(response_link_text, response_link_url, question_id)
+        answer = @question_migrate.map_question_answer(response_link_text, response_link_url, question_id)
 
-        answers.size.should eq 0
+        answer.should eq nil
       end
     end
   end

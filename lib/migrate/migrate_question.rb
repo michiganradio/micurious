@@ -48,11 +48,11 @@ class MigrateQuestion < Migrate
     question.picture_url = map_question_image_url(image_url)
     question.categories = map_question_categories(category_names)
 
-    question.answers = map_question_answers(response_link_text, response_link_url, question.id)
+    answer = map_question_answer(response_link_text, response_link_url, question.id)
+    question.answers.push(answer) if answer
 
     timeline_update = map_question_timeline_update(timeline_key, question.id)
     question.answers.push(timeline_update) if timeline_update
-
   end
 
   def map_question_anonymous(anonymous)
@@ -87,16 +87,14 @@ class MigrateQuestion < Migrate
     categories
   end
 
-  def map_question_answers(response_link_text, response_link_url, question_id)
+  def map_question_answer(response_link_text, response_link_url, question_id)
     if response_link_text.presence
       answer = Answer.new
       answer.type = Answer::Type::Answer
       answer.label = response_link_text
       answer.url = response_link_url
       answer.question_id = question_id
-      [answer]
-    else
-      []
+      answer
     end
   end
 
