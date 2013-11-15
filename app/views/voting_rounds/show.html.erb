@@ -1,9 +1,9 @@
 <div class="container-padding">
   <div class="voting-round">
-      <div class="voting-round-title">
-        <h1>Winning Question</h1>
-        <h5>Week of <%= @voting_round.label %></h5>
-      </div>
+    <div class="voting-round-title">
+      <h1>Winning Question</h1>
+      <h5>Week of <%= @voting_round.label %></h5>
+    </div>
     <%= render partial:'shared/browse_voting_round' %>
     <div class="questions">
       <% @voting_round.winner.each do |winner| %>
@@ -17,23 +17,22 @@
           <%= render partial:'shared/question_text', locals:{ question: winner } %>
         </div>
       <% end %>
-    </div>
-    <br>
-    <div class="voting-round-title">
-      <h4>Runner-Ups</h4>
-    </div>
-  <% @voting_round.questions.order('vote_number').reverse[@voting_round.winner.size..-1].each do |question| %>
-    <div class="question">
-      <div class="question-image">
-        <h2 class = "percentage" id="percentage<%= question.id.to_s %>"><%= @voting_round.vote_percentage(question) %>%</h2>
-        <span class="image-container">
-          <%= render partial: "shared/question_image", locals:{ question: question } %>
-        </span>
-        <span class="rank-triangle"></span>
+      <br>
+      <div class="voting-round-title">
+        <h4>Runner-Ups</h4>
       </div>
-      <%= render partial:'shared/question_text', locals:{ question: question } %>
-    </div>
-  <% end %>
+      <% @voting_round.questions.order('vote_number').reverse[@voting_round.winner.size..-1].each do |question| %>
+        <div class="question">
+          <div class="question-image">
+            <h2 class = "percentage" id="percentage<%= question.id.to_s %>"><%= @voting_round.vote_percentage(question) %>%</h2>
+            <span class="image-container">
+              <%= render partial: "shared/question_image", locals:{ question: question } %>
+            </span>
+            <span class="rank-triangle"></span>
+          </div>
+          <%= render partial:'shared/question_text', locals:{ question: question } %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

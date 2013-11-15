@@ -8,6 +8,16 @@ body {
   line-height: 18px;
 }
 
+h1, h2, h3 {
+  margin-top: $grid-unit * 2;
+  margin-bottom: $grid-unit;
+}
+
+h4, h5, h6 {
+  margin-top: $grid-unit;
+  margin-bottom: $grid-unit;
+}
+
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
