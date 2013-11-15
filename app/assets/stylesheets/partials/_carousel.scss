@@ -1,5 +1,6 @@
 .carousel{
-  margin: $grid-unit * 2 0;
+  margin: $grid-unit * 1 0;
+  margin-top: $grid-unit * 2;
   @include dotted-line(border-top);
   @include dotted-line(border-bottom); 
   padding: $grid-unit 0;
