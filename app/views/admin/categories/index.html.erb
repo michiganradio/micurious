@@ -1,5 +1,7 @@
 <h1>Listing admin_categories</h1>
 
+<%= link_to 'New Category', new_admin_category_path, class:"btn-default btn" %>
+
 <table class="table">
   <thead>
     <tr>
@@ -25,6 +27,3 @@
     <% end %>
   </tbody>
 </table>
-
-
-<%= link_to 'New Category', new_admin_category_path, class:"btn-default btn" %>

@@ -1,5 +1,7 @@
 <h1>Listing admins</h1>
 
+<%= link_to 'New Admin', new_admin_user_path, class:"btn-default btn" %>
+
 <table class="table">
   <thead>
     <tr>
@@ -23,5 +25,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to 'New Admin', new_admin_user_path, class:"btn-default btn" %>

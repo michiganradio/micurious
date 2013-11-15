@@ -4,7 +4,6 @@
   <% if @answer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
-
       <ul>
       <% @answer.errors.full_messages.each do |msg| %>
         <li class="error-message"><%= msg %></li>
@@ -29,5 +28,5 @@
     <%= f.radio_button :type, Answer::Type::Update %>
     <%= f.label :type, 'Update', value: Answer::Type::Update %>
   </div>
-  <%= f.submit "Add answer to question"%> 
+  <%= f.submit "Add answer to question", class: "btn btn-default" %> 
 <% end %>
