@@ -1,3 +1,8 @@
+<script>
+  $(document).ready(function() {
+    $(".submit-question-text").limiter(140, $("#question_display_text_count"));
+  });
+</script>
 <div>
   <%= link_to image_tag("cc-logo.png", class: "widget-image-logo", alt: "WBEZ CuriousCity" ), root_url%>
   <div>
@@ -6,7 +11,7 @@
       <%= form_tag root_path(anchor:'ask'), id: 'ask-question-form-IE', method: :get, target: '_blank' do %>
         <%= text_area_tag :display_text, nil, rows: "5",  class: "submit-question-text", maxlength: 140 %>
        
-        <p class=>(140 character limit)</p>
+      <span class="char-limit">(<span id="question_display_text_count"></span> characters left)</span>
          <%= submit_tag "Submit", class: "submit" %>
       <% end %>
     </div>
