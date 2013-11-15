@@ -92,8 +92,9 @@ describe VotingRound do
     question2 = FactoryGirl.create(:question, :other)
     voting_round  = FactoryGirl.create(:voting_round, questions: [question, question2])
     VotingRoundQuestion.where(question_id: question.id).first.update_attributes(vote_number: 5)
-    voting_round.vote_percentage(question).should eq 100
-    voting_round.vote_percentage(question2).should eq 0
+    VotingRoundQuestion.where(question_id: question2.id).first.update_attributes(vote_number: 4)
+    voting_round.vote_percentage(question).should eq 56
+    voting_round.vote_percentage(question2).should eq 44
   end
 
   it "handles questions when there are no votes" do

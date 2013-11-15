@@ -38,7 +38,7 @@ class VotingRound < ActiveRecord::Base
   def vote_percentage(question)
     votes = VotingRoundQuestion.where('voting_round_id = ' + self.id.to_s + ' and question_id = ' + question.id.to_s).first.vote_number
     total_votes = VotingRoundQuestion.where('voting_round_id = ' + self.id.to_s).sum('vote_number')
-    return total_votes==0 ? 0 : (votes * 100)/total_votes
+    return total_votes==0 ? 0 : ((votes * 100.0)/total_votes).round
   end
 
   private
