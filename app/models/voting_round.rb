@@ -28,16 +28,16 @@ class VotingRound < ActiveRecord::Base
   end
 
   def winner
-    vr_questions = VotingRoundQuestion.where('voting_round_id = ' + self.id.to_s)
-    return [] if vr_questions.empty?
-    max_votes = vr_questions.maximum('vote_number')
-    winning_vr_questions = vr_questions.where('vote_number = ' + max_votes.to_s)
-    winners = winning_vr_questions.map{|vr_question| vr_question.question}
+    return [] if voting_round_questions.empty?
+    max_votes = voting_round_questions.maximum('vote_number')
+    winning_vr_questions = voting_round_questions.select{ |vr_question| vr_question.vote_number == max_votes }
+    winners = winning_vr_questions.map{ |vr_question| vr_question.question }
   end
 
   def vote_percentage(question)
-    votes = VotingRoundQuestion.where('voting_round_id = ' + self.id.to_s + ' and question_id = ' + question.id.to_s).first.vote_number
-    total_votes = VotingRoundQuestion.where('voting_round_id = ' + self.id.to_s).sum('vote_number')
+    voting_round_question = voting_round_questions.select{ |vr_question| vr_question.question_id == question.id }[0]
+    votes = voting_round_question.vote_number
+    total_votes = voting_round_questions.map(&:vote_number).inject(0) { |x,y| x + y }
     return total_votes==0 ? 0 : ((votes * 100.0)/total_votes).round
   end
 
