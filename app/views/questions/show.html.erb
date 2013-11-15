@@ -9,7 +9,7 @@
       <%= render partial: "shared/question_image", locals:{ question: @question} %>
     </div>
     <div class="question-text">
-      <%= question_display_text(@question) %>
+      <%= @question.display_text %>
       <p>Asked by <%=@question.display_author%></p>
     </div>
   </div>
