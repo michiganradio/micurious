@@ -17,6 +17,7 @@
 
   <tbody>
     <% @questions.each do |question| %>
+      <% cache(question) do %>
       <tr>
         <td><%= question.id %></td>
         <td><%= question.display_text %></td>
@@ -25,6 +26,7 @@
         <td><%= link_to 'Show', admin_question_path(question) %></td>
         <td><%= link_to 'Edit', edit_admin_question_path(question) %></td>
       </tr>
+     <% end %>
     <% end %>
   </tbody>
 </table>
