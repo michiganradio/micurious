@@ -1,5 +1,6 @@
 <div class="container-padding">
   <%= render 'carousel'  %>
+  <br>
   <div class="category-links">
     <%= link_to "All", filter_questions_path %>
     <% @categories.each do |category| %>
@@ -7,14 +8,18 @@
     <% end %>
   </div>
   <div class="questions">
+    <% cache(cache_key_for_questions(@questions)) do %>
     <% @questions.each do |question| %>
-      <div class="question", id="question<%= question.id.to_s %>">
-        <div class="question-image">
-          <%= render partial: "shared/question_image", locals:{ question: question} %>
+      <% cache(question) do %>
+        <div class="question", id="question<%= question.id.to_s %>">
+          <div class="question-image">
+            <%= render partial: "shared/question_image", locals:{ question: question} %>
+          </div>
+          <%= render partial:'shared/question_text', locals:{question:question} %>
         </div>
-        <%= render partial:'shared/question_text', locals:{question:question} %>
-      </div>
-    <% end %>
+      <% end %>
+   <% end %>
+   <% end %>
   </div>
 </div>
 <%= render 'shared/comment_count' unless Rails.env.test?%>
