@@ -1,5 +1,10 @@
 <html>
   <head>
+    <script>
+      if (window.location.hash.substring(0,2) == "#!") {
+        window.location.assign(window.location.hash.substring(1));
+      }
+    </script>
     <title>Curious City</title>
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
