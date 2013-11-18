@@ -3,7 +3,17 @@ require 'spec_helper'
 describe Admin::AnswersController do
   let(:valid_session) { {} }
   before do
+    request.env['HTTPS'] = 'on'
     subject.stub(:signed_in_admin)
+  end
+
+  describe "GET index without SSL" do
+    it "returns an error" do
+      Question.stub(:find).with("0")
+      request.env['HTTPS'] = 'off'
+      get :index, { question_id: 0 }, valid_session
+      expect(response.status).to eq 301
+    end
   end
 
   describe "GET index" do

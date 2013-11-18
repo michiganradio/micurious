@@ -1,5 +1,6 @@
 module Admin
   class AnswersController < Admin::AdminController
+   force_ssl
     def index
       params.require(:question_id)
       @question = Question.find(params[:question_id])

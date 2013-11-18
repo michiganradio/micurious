@@ -6,9 +6,17 @@ describe Admin::UsersController do
   let(:valid_session) { {} }
 
   before do
+    request.env['HTTPS'] = 'on'
     subject.stub(:signed_in_admin)
   end
 
+  describe "GET index without SSL" do
+    it "returns an error" do
+      request.env['HTTPS'] = 'off'
+      get :index
+      expect(response.status).to eq 301
+    end
+  end
   describe "GET index" do
     it "assigns all admins as @admins" do
       admin = User.create! valid_attributes
