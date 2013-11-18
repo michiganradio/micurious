@@ -11,6 +11,7 @@ describe Admin::AnswersController do
     it "returns an error" do
       Question.stub(:find).with("0")
       request.env['HTTPS'] = 'off'
+      subject.stub(:ssl_configured).and_return(true)
       get :index, { question_id: 0 }, valid_session
       expect(response.status).to eq 301
     end

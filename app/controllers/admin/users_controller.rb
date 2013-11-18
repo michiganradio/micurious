@@ -1,7 +1,7 @@
 module Admin
   class UsersController < Admin::AdminController
-    force_ssl
     before_action :set_admin, only: [:show, :edit, :update, :destroy]
+
 
     # GET /admins
     def index

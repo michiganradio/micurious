@@ -4,9 +4,9 @@ describe Admin::VotingRoundsController do
   let(:valid_attributes) { { "start_time" => "2013-10-03 11:03:52", "label" => "label text" } }
   let(:valid_session) { {} }
   before do
+    request.env['HTTPS'] = 'on'
     subject.stub(:signed_in_admin)
   end
-
 
   describe "GET index" do
     it "assigns all voting_rounds as @voting_rounds" do
@@ -14,6 +14,16 @@ describe Admin::VotingRoundsController do
       VotingRound.stub(:all).and_return([voting_round])
       get :index, {}, valid_session
       assigns(:voting_rounds).should eq([voting_round])
+    end
+    context "without SSL" do
+      it "returns an error" do
+        request.env['HTTPS'] = 'off'
+        voting_round = VotingRound.new(id:1)
+        VotingRound.stub(:all).and_return([voting_round])
+        subject.stub(:ssl_configured).and_return(true)
+        get :index, {}, valid_session
+        expect(response.status).to eq 301
+      end
     end
   end
 

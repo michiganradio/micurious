@@ -12,6 +12,7 @@ describe Admin::UsersController do
 
   describe "GET index without SSL" do
     it "returns an error" do
+      subject.stub(:ssl_configured).and_return(true)
       request.env['HTTPS'] = 'off'
       get :index
       expect(response.status).to eq 301
