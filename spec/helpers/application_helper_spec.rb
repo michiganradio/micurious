@@ -54,4 +54,20 @@ describe ApplicationHelper do
       end
     end
   end
+  describe "anonymity_partial" do
+    context "anonymous is false" do
+      it "returns public partial" do
+        question = Question.new(anonymous: false)
+        helper.anonymity_partial(question).should == "confirm_public"
+      end
+    end
+    context "anonymous is true" do
+      it "returns anonymous partial" do
+        question = Question.new(anonymous: true)
+        helper.anonymity_partial(question).should == "confirm_anonymous"
+      end
+    end
+  end
+
+
 end

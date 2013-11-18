@@ -15,4 +15,8 @@ module ApplicationHelper
      question.display_text[0, 140] << "..."
    end
   end
+
+  def anonymity_partial(question)
+    question.anonymous? ? "confirm_anonymous" : "confirm_public"
+  end
 end
