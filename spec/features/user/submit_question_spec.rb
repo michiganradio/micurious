@@ -126,7 +126,8 @@ describe 'Ask a question', js: true do
       @confirm_question_modal.title.should have_content "Double check that your question looks good"
       @confirm_question_modal.body.should have_content "Why is the sky green?"
       @confirm_question_modal.body.should have_content "Robert Johnson"
-      @confirm_question_modal.body.should have_content "true"
+      @confirm_question_modal.body.should have_content "Name (not public)"
+      @confirm_question_modal.body.should have_content "Email (not public)"
       @confirm_question_modal.body.should have_content "rjohnson@a.com"
       @confirm_question_modal.body.should have_content "Bucktown"
       @confirm_question_modal.body.should have_content @category1.label
