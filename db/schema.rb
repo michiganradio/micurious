@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131108211535) do
+ActiveRecord::Schema.define(version: 20131119211631) do
 
   create_table "answers", force: true do |t|
     t.text     "label",       null: false
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20131108211535) do
     t.string   "reporter"
     t.string   "status",                  limit: 50, default: "New",          null: false
     t.boolean  "featured",                           default: false
+    t.text     "description"
   end
 
   add_index "questions", ["status"], name: "index_questions_on_status", using: :btree
