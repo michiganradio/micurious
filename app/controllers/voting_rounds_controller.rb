@@ -15,12 +15,10 @@ class VotingRoundsController < ApplicationController
   end
 
   def show
-    @voting_round = VotingRound.where("id = ?", params[:id]).first
-    @previous_voting_round = @voting_round.previous unless @voting_round.nil?
-    if @voting_round.status == VotingRound::Status::Live
-      redirect_to root_path
-    end
-    @next_voting_round = @voting_round.next unless @voting_round.nil?
+    @voting_round = VotingRound.where(id: params[:id], status: VotingRound::Status::Completed).first
+    redirect_to root_url and return if @voting_round.nil?
+    @previous_voting_round = @voting_round.previous
+    @next_voting_round = @voting_round.next
   end
 
   def vote

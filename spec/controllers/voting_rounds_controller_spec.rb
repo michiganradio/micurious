@@ -26,6 +26,26 @@ describe VotingRoundsController do
       assigns(:previous_voting_round).should eq @prev_voting_round
     end
   end
+  describe "GET show" do
+    context "retrieves voting round that is completed" do
+      it "assigns the voting round and redirect to root path" do
+      voting_round = double(:voting_round,
+                           previous: double(:voting_round),
+                           next: double(:voting_round))
+      VotingRound.should_receive(:where).with(id: "10", status: VotingRound::Status::Completed).and_return([voting_round])
+      get :show, {:id =>10}
+      assigns(:voting_round).should eq(voting_round)
+      end
+    end
+
+    context "voting round is not completed" do
+      it "redirects to home page" do
+        VotingRound.should_receive(:where).with(id: "10", status: VotingRound::Status::Completed).and_return([])
+        get :show, {:id =>10}
+        response.should redirect_to(root_url)
+      end
+    end
+  end
 
   describe "POST vote" do
     context "vote success" do
