@@ -160,19 +160,18 @@ $prompt: 25px;
 }
 
 .sponsor-logos-widget {
-  @extend .sponsor-logos;
   margin: 0;
   margin-top: 15px;
   margin-bottom: 57px;
 }
 
-.logo-small.tw-logo-widget {
+.logo-small.tw-logo.logo-widget {
   @extend .logo-small.tw-logo;
   margin-top: 12px;
   width: 60px;
 }
 
-.logo-small.kf-logo-widget {
+.logo-small.kf-logo.logo-widget {
   @extend .logo-small;
   @extend .logo-small.kf-logo;
   width: 22px;
