@@ -2,6 +2,7 @@ require 'modal_section'
 
 class AskQuestionSection < ModalSection
   element :question_display_text, "#question_display_text"
+  element :question_description, "#question_description"
   element :question_name, "#question_name"
   element :question_anonymous, "#question_anonymous"
   element :question_email, "#question_email"

@@ -17,7 +17,6 @@ describe 'admin edit question', js: true do
     @admin_edit_question.featured.click
     @admin_edit_question.update_question_button.click
 
-
     @admin_show_question = Admin::ShowQuestion.new
     @admin_show_question.should have_content("reporter_name")
     @admin_show_question.should have_content("Removed")
@@ -25,7 +24,5 @@ describe 'admin edit question', js: true do
     @admin_edit_question.load(id: @question.id)
     @admin_edit_question.picture_url[:value].should == "new picture_url"
     @admin_edit_question.featured.should be_checked
-
-
   end
 end

@@ -33,6 +33,13 @@
           </div>
 
           <div class="row">
+            <div class="field col-lg-12">
+              <%= f.label :description, "More to say about your question?" %>
+              <%= f.text_area :description, placeholder: "Anything else we should know? For example: What made you ask it? Why does it matter to you? Why should others care about it?", rows: "4", class: "form-control no-changing"  %> 
+            </div>
+          </div>
+
+          <div class="row">
             <div class="field col-lg-8">
               <%= f.label :category, "Add a category to make it easier to find:" %>
               <div class="categories-group">
@@ -47,31 +54,31 @@
                                </div>
                              </div>
                            </div>
-                          <br/>
+                           <br/>
                            <div class="row">
                              <div class="col-md-6">
-                                <div class="field">
-                                  <%= f.label :name, "Name*" %>
-                                </div>
-                                <br/>
-                                <div class="field">
-                                  <%= f.text_field :name, class: "form-control" %>
-                                </div>
-                             </div>
-                           <div class="col-md-6">
                                <div class="field">
-                                <label for="question_neighbourhood">
-                                  Neighborhood or town
-                                  <div class="little-writing">
-                                    (e.g., Pilsen or Berwyn)
-                                  </div>
+                                 <%= f.label :name, "Name*" %>
+                               </div>
+                               <br/>
+                               <div class="field">
+                                 <%= f.text_field :name, class: "form-control" %>
+                               </div>
+                             </div>
+                             <div class="col-md-6">
+                               <div class="field">
+                                 <label for="question_neighbourhood">
+                                   Neighborhood or town
+                                   <div class="little-writing">
+                                     (e.g., Pilsen or Berwyn)
+                                   </div>
                                  </label>
                                </div>
-                             <div class="field">
-                               <%= f.text_field :neighbourhood, class: "form-control" %>
+                               <div class="field">
+                                 <%= f.text_field :neighbourhood, class: "form-control" %>
+                               </div>
                              </div>
                            </div>
-                          </div>
 
                            <div class="row">
                              <div class="field col-md-6">
@@ -83,25 +90,25 @@
                            </div>
                            <div class="row">
                              <div class="col-md-6">
-                                <div class="field">
-                                  <%= f.label :email, "Email*"%>
-                                  <span class="little-writing">
-                                  (your email is never shared)
-                                  </span>
-                                </div>
+                               <div class="field">
+                                 <%= f.label :email, "Email*"%>
+                                 <span class="little-writing">
+                                   (your email is never shared)
+                                 </span>
+                               </div>
                                <div class="field">
                                  <%= f.text_field :email, class: "form-control" %>
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="field">
-                                  <%= f.label :email_confirmation, "Confirm email*" %><br>
-                                </div>
-                                <div>
-                                    <%= f.text_field :email_confirmation, class: "form-control" %>
-                                </div>
-                              </div>
-                            </div>
+                               </div>
+                             </div>
+                             <div class="col-md-6">
+                               <div class="field">
+                                 <%= f.label :email_confirmation, "Confirm email*" %><br>
+                               </div>
+                               <div>
+                                 <%= f.text_field :email_confirmation, class: "form-control" %>
+                               </div>
+                             </div>
+                           </div>
 
                            <div class="row col-md-6 little-writing">* required fields</div>
                            <%= f.hidden_field :picture_url, value: @question.picture_url %>

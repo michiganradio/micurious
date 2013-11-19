@@ -22,6 +22,7 @@
         <div id="pictures"></div>
         <%= form_for(@question, :url => confirm_question_path, :method => :post, :remote => true) do |f| %>
           <%= f.hidden_field :display_text, value: @question.display_text %>
+          <%= f.hidden_field :description, value: @question.description %>
           <%= f.hidden_field :name, value: @question.name %>
           <%= f.hidden_field :anonymous, value: @question.anonymous %>
           <%= f.hidden_field :email, value: @question.email %>
