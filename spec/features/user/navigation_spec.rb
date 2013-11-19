@@ -54,4 +54,10 @@ describe "Navigation" do
       it_should_behave_like 'question browsing pages'
     end
   end
+
+  it "has social media links" do
+    @home.should have_link("", href: "http://www.tumblr.com/tagged/curious-city")
+    @home.should have_link("", href: "http://www.facebook.com/curiouscityproject")
+    @home.should have_link("", href: "https://twitter.com/wbezcuriouscity")
+  end
 end
