@@ -36,6 +36,7 @@ describe 'Ask a question', js: true do
 
   def setup_question_picture_modal
     @ask_question_modal.question_display_text.set("Why is the sky green?")
+    @ask_question_modal.question_description.set("I don't know it seems green to me")
     @ask_question_modal.question_name.set("Robert Johnson")
     @ask_question_modal.question_anonymous.click
     @ask_question_modal.question_email.set("rjohnson@a.com")
@@ -125,6 +126,7 @@ describe 'Ask a question', js: true do
     it "has expected content" do
       @confirm_question_modal.title.should have_content "Double check that your question looks good"
       @confirm_question_modal.body.should have_content "Why is the sky green?"
+      @confirm_question_modal.body.should have_content "I don't know it seems green to me"
       @confirm_question_modal.body.should have_content "Robert Johnson"
       @confirm_question_modal.body.should have_content "Name (not public)"
       @confirm_question_modal.body.should have_content "Email (not public)"
@@ -160,7 +162,6 @@ describe 'Ask a question', js: true do
       @question_received_modal.should have_link("public vote", href: root_path)
       @question_received_modal.should have_link("online", href: "http://www.wbez.org/series/curious-city")
       @question_received_modal.should have_link("WBEZ 91.5 FM", href: "http://www.wbez.org/player")
-
     end
   end
 
@@ -176,6 +177,7 @@ describe 'Ask a question', js: true do
       @admin_show_question = Admin::ShowQuestion.new
       @admin_show_question.load(id: Question.last.id)
       @admin_show_question.body.should have_content "Why is the sky green?"
+      @admin_show_question.body.should have_content "I don't know it seems green to me"
       @admin_show_question.body.should have_content "Robert Johnson"
       @admin_show_question.body.should have_content "rjohnson@a.com"
       @admin_show_question.body.should have_content "Bucktown"

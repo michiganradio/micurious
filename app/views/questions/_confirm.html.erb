@@ -13,7 +13,12 @@
         <div class="question-details">
           <label>Question</label><br>
           <%= @question.display_text %><br><br>
+          <% if @question.description.to_s != '' %>
+            <label>More about your question</label><br>
+            <%= @question.description %><br><br>
+          <% end %>
           <%= render anonymity_partial(@question) %>  
+
           <label>Neighborhood</label><br>
           <%= @question.neighbourhood %><br><br>
           <label>Categories</label><br>
@@ -25,6 +30,7 @@
 
         <%= form_for(@question, :url => questions_path, :method => :post, :remote => true) do |f| %>
           <%= f.hidden_field :display_text, value: @question.display_text %>
+          <%= f.hidden_field :description, value: @question.description %>
           <%= f.hidden_field :name, value: @question.name %>
           <%= f.hidden_field :anonymous, value: @question.anonymous %>
           <%= f.hidden_field :email, value: @question.email %>
@@ -40,7 +46,8 @@
 
       </div>
       <div class="modal-footer">
-        <%= link_to 'BACK', picture_question_path(params: { question: { display_text: @question.display_text, name: @question.name, anonymous: @question.anonymous,
+        <%= link_to 'BACK', picture_question_path(params: { question: { display_text: @question.display_text, description: @question.description,
+                                                                        name: @question.name, anonymous: @question.anonymous,
                                                                         email: @question.email, email_confirmation: @question.email_confirmation,
                                                                         neighbourhood: @question.neighbourhood, picture_url: @question.picture_url,
                                                                         picture_owner: @question.picture_owner, category_ids: @question.category_ids,

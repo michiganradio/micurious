@@ -51,7 +51,6 @@ describe QuestionsController do
         assigns(:featured_answers).should eq [question1]
       end
     end
-
   end
 
   describe "POST new" do
@@ -61,14 +60,22 @@ describe QuestionsController do
     end
 
     it "assigns passed params into the question" do
-      post :new, {:display_text => 'display', :name => 'name', :anonymous => 'true',
-                  :email => 'lkj@lkj.com', :email_confirmation => 'confirm@lkj.com', :format=> 'js'}
+      post :new, { :display_text => 'display', :description => 'description', :name => 'name',
+                   :anonymous => 'true', :email => 'lkj@lkj.com', :email_confirmation => 'confirm@lkj.com',
+                   :neighbourhood => 'neighbourhood', :picture_url => 'picture url',
+                   :picture_owner => 'picture owner', :picture_attribution_url => 'picture attribution url',
+                   :format => 'js' }
       question = assigns(:question)
       expect(question.display_text).to eq 'display'
+      expect(question.description).to eq 'description'
       expect(question.name).to eq 'name'
       expect(question.anonymous).to eq true
       expect(question.email).to eq 'lkj@lkj.com'
       expect(question.email_confirmation).to eq 'confirm@lkj.com'
+      expect(question.neighbourhood).to eq 'neighbourhood'
+      expect(question.picture_url).to eq 'picture url'
+      expect(question.picture_owner).to eq 'picture owner'
+      expect(question.picture_attribution_url).to eq 'picture attribution url'
     end
   end
 
