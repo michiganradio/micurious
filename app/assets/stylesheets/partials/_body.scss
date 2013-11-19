@@ -188,7 +188,7 @@ h2 {
 #disqus_thread {
   background: white;
   background-image: image_url("bg_dots.png");
-  margin-left: $question-image-width - $grid-unit * 8;
+  margin-left: $question-image-width;
   padding: $grid-unit;
 }
 
@@ -197,7 +197,8 @@ h2 {
   line-height: 24px;
   font-weight: normal;
   font-size: 18px; 
-  margin-left: $question-image-width - $grid-unit * 8;
+  margin-left: $question-image-width;
+  margin-top: $grid-unit * 7;
   margin-bottom: $grid-unit * 2;
 }
 
