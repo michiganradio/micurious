@@ -29,4 +29,5 @@ uat:
 
 production:
   <<: *default
+  username: cc
   database: curiouscity_production
