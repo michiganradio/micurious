@@ -1,17 +1,7 @@
 <footer>
   <div class="partners clearfix">
     <div class="footer-head"><h4>Partners</h4></div>
-    <div class="sponsor-logos">
-      <%= link_to image_tag("zeega_bw.png", class: "logo-small"), "http://www.zeega.com/", target: "blank" %>
-      <%= link_to image_tag("wyncote_bw.png", class: "logo-small"), "http://www.wyncotefoundation.org/", target: "blank" %>
-      <%= link_to image_tag("art-works_bw.png", class: "logo-small"), "http://www.arts.gov/artworks/", target: "blank" %>
-      <%= link_to image_tag("macarthur_bw.gif", class: "logo-small"), "http://www.macfound.org/", target: "blank" %>
-      <%= link_to image_tag("cpb_bw.png", class: "logo-small"), "http://www.cpb.org/", target: "blank" %>
-      <%= link_to image_tag("air_bw.png", class: "logo-small"), "http://www.airmedia.org/", target: "blank" %>
-      <%= link_to image_tag("localore_bw.png", class: "logo-small"), "http://airmediaworks.org/localore", target: "blank" %>
-      <%= link_to image_tag("kf_bw.gif", class: "logo-small kf-logo"), "http://www.knightfoundation.org/", target: "blank" %>
-      <%= link_to image_tag("tw-logo.png", class: "logo-small tw-logo"), "http://thoughtworks.com", target: "blank" %>
-    </div>
+    <%= render 'layouts/logos' %>
   </div>
 </footer>
 
