@@ -1,3 +1,4 @@
+<% provide(:title, 'Edit Question') %>
 <h1>Editing question</h1>
 <%= link_to 'Answers', admin_answers_path(question_id: @question.id), class: "btn btn-default" %>
 <%= render 'form', :url => admin_question_path(@question) %>

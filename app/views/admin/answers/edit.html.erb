@@ -1,3 +1,5 @@
+<% provide(:title, 'Edit Answer') %>
+
 <h1>Edit answer</h1>
 
 <%= form_for(@answer, :url => admin_answer_path(question_id: @answer.question_id)) do |f| %>
