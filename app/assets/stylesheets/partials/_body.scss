@@ -237,3 +237,13 @@ h2 {
 .voting-round-title {
   margin-left: $question-image-width;
 }
+
+@media (max-width: 1160px) {
+  .question {
+      height: 200px;
+  }
+  .question-image {
+    height: 200px;
+  }
+}
+
