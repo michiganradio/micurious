@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :answer do
-    label "label"
+    sequence(:label) { |n| "label #{n}" }
     url "url"
     question nil
     type Answer::Type::Answer

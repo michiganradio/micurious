@@ -23,6 +23,8 @@ module Admin
 
     # GET /admin_main
     def main
+      @recent_questions = Question.order(updated_at: :desc).limit(10)
+      @recent_answers = Answer.order(updated_at: :desc).limit(10)
     end
 
     # POST /admins

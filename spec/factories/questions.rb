@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :question do
-    display_text  "display_text"
+    sequence(:display_text) { |n| "display text #{n}" }
     name "Questioner name"
     neighbourhood "lake view"
     email "a@email.com"

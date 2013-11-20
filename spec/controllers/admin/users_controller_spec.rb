@@ -49,6 +49,22 @@ describe Admin::UsersController do
     end
   end
 
+  describe "GET main" do
+    it "assigns most recent questions as @recent_questions" do
+      most_recent_questions = [Question.new]
+      Question.stub_chain(:order, :limit).and_return(most_recent_questions)
+      get :main, {}, valid_session
+      assigns(:recent_questions).should eq most_recent_questions
+    end
+
+    it "assigns most recently updated answers as @recent_answers" do
+      most_recent_answers = [Answer.new]
+      Answer.stub_chain(:order, :limit).and_return(most_recent_answers)
+      get :main, {}, valid_session
+      assigns(:recent_answers).should eq most_recent_answers
+    end
+  end
+
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Admin" do

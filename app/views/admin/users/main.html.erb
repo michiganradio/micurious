@@ -1,3 +1,20 @@
 <% provide(:title, 'Admin Home Page') %>
 <h1>Admin Home Page</h1>
-<%= link_to "New voting round", new_admin_voting_round_path, class: "btn btn-default" %>
+
+<div class="recent-questions">
+  <strong>Recent questions:</strong>
+  <% @recent_questions.each do |question| %>
+    <div class="recent-question">
+      <%= question.display_text %> 
+    </div>
+  <% end %>
+</div>
+<br>
+<div class="recent-answers">
+  <strong>Recent answers:</strong>
+  <% @recent_answers.each do |answer| %>
+    <div class="recent-answer">
+      <%= answer.label %> 
+    </div>
+  <% end %>
+</div>
