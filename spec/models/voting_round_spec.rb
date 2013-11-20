@@ -1,8 +1,50 @@
 require 'spec_helper'
 
 describe VotingRound do
+  describe "after update" do
+     context "status is initially live" do
+      context "status is changed to completed" do
+        it "updates the winning question status to Investigated" do
+          question = FactoryGirl.create(:question)
+          voting_round = FactoryGirl.create(:voting_round,
+                                            questions: [question],
+                                            status: VotingRound::Status::Live)
+          expect {
+            voting_round.status = VotingRound::Status::Completed
+            voting_round.save!
+          }.to change(question, :status).to(Question::Status::Investigating)
+        end
+      end
+
+      context "status is not changed to Completed" do
+        it "does not change the winning question status" do
+          question = FactoryGirl.create(:question)
+          voting_round = FactoryGirl.create(:voting_round,
+                                            questions: [question],
+                                            status: VotingRound::Status::Live)
+          expect {
+            voting_round.save!
+          }.not_to change(question, :status).from(Question::Status::New)
+        end
+      end
+    end
+
+    context "when status is not initially live" do
+      it "does not change the winning question status" do
+        question = FactoryGirl.create(:question)
+        voting_round = FactoryGirl.create(:voting_round,
+                                          questions: [question],
+                                          status: VotingRound::Status::New)
+        expect {
+          voting_round.status = VotingRound::Status::Completed
+          voting_round.save!
+        }.not_to change(question, :status).from(Question::Status::New)
+      end
+    end
+  end
+
   describe "after save" do
-    context "public label is empty" do
+        context "public label is empty" do
       it "creates default public label" do
         voting_round = VotingRound.new
         voting_round.save
@@ -49,8 +91,7 @@ describe VotingRound do
     end
 
     it "only validates the status when the new status is live" do
-      FactoryGirl.create(:voting_round, status: VotingRound::Status::Live,
-                                        public_label: "public", private_label: "private")
+      FactoryGirl.create(:voting_round, status: VotingRound::Status::Live)
       expect { FactoryGirl.create(:voting_round) }.not_to raise_error
     end
   end
