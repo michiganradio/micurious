@@ -153,4 +153,27 @@ describe VotingRound do
     voting_round = FactoryGirl.create(:voting_round, questions: [question])
     voting_round.vote_percentage(question).should eq 0
   end
+
+  describe "before update" do
+    context "existing live voting round" do
+      it "makes old voting round completed and new voting round live" do
+         old_voting_round = double(:voting_round, id: 1, status: VotingRound::Status::Live)
+         VotingRound.should_receive(:where).with(status: VotingRound::Status::Live).and_return([old_voting_round])
+         old_voting_round.should_receive(:update!).with({:status => VotingRound::Status::Completed})
+         voting_round = VotingRound.create
+         voting_round.update!({:status  => VotingRound::Status::Live})
+         voting_round.status.should == VotingRound::Status::Live
+      end
+    end
+
+    context "no live voting rounds" do
+      it "makes new voting round live" do
+         VotingRound.should_receive(:where).with(status: VotingRound::Status::Live).and_return([])
+         voting_round = VotingRound.create
+         voting_round.update!({:status  => VotingRound::Status::Live})
+         voting_round.status.should == VotingRound::Status::Live
+      end
+
+    end
+  end
 end

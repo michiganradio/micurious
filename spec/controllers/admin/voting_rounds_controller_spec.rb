@@ -55,10 +55,11 @@ describe Admin::VotingRoundsController do
   end
 
   describe "POST create" do
-    describe "with valid params" do
+    context "with valid params" do
       it "creates a new VotingRound" do
         voting_round = double(VotingRound)
         VotingRound.should_receive(:new).with(valid_attributes).and_return(voting_round)
+        voting_round.stub(:status).and_return(VotingRound::Status::New)
         voting_round.should_receive(:save).and_return(true)
         post :create, {:voting_round => valid_attributes}, valid_session
       end
@@ -66,13 +67,14 @@ describe Admin::VotingRoundsController do
       it "redirects to the voting round index url" do
         voting_round = double(VotingRound)
         VotingRound.stub(:new).and_return(voting_round)
+        voting_round.stub(:status).and_return(VotingRound::Status::New)
         voting_round.stub(:save).and_return(true)
         post :create, {:voting_round => valid_attributes}, valid_session
         response.should redirect_to(admin_voting_rounds_url)
       end
     end
 
-    describe "with invalid params" do
+    context "with invalid params" do
       it "assigns a newly created but unsaved voting_round as @voting_round" do
         VotingRound.any_instance.stub(:save).and_return(false)
         post :create, {:voting_round => { "start_time" => "invalid value" }}, valid_session

@@ -5,10 +5,9 @@ class VotingRound < ActiveRecord::Base
   after_save :add_default_public_label_if_empty
   after_save :add_default_private_label_if_empty
   before_update :update_winning_question_status
-
+  before_update :change_current_voting_round_status
   validates :public_label, uniqueness: { case_sensitive: false }
   validates :private_label, uniqueness: { case_sensitive: false }
-  validate :only_one_live_status
 
   module Status
     New = "New"
@@ -23,11 +22,11 @@ class VotingRound < ActiveRecord::Base
   end
 
   def previous
-   VotingRound.where('status = "Completed" and start_time < "' + self.start_time.to_s + '"').order(start_time: :desc).first
+    VotingRound.where('status = "Completed" and start_time < "' + self.start_time.to_s + '"').order(start_time: :desc).first
   end
 
   def next
-   VotingRound.where('(status = "Live" or status = "Completed") and start_time > "' + self.start_time.to_s + '"').order(start_time: :asc).first
+    VotingRound.where('(status = "Live" or status = "Completed") and start_time > "' + self.start_time.to_s + '"').order(start_time: :asc).first
   end
 
   def winner
@@ -46,24 +45,25 @@ class VotingRound < ActiveRecord::Base
 
   private
 
-    def add_default_public_label_if_empty
-      self.update_attributes(public_label: "Voting Round #{self.id}") if self.public_label.to_s == ''
+  def change_current_voting_round_status
+    if self.status == VotingRound::Status::Live
+      old_voting_round = VotingRound.where(status: VotingRound::Status::Live).first
+      old_voting_round.update!({:status => VotingRound::Status::Completed}) unless old_voting_round.nil?
     end
+  end
 
-    def add_default_private_label_if_empty
-      self.update_attributes(private_label: "Voting Round #{self.id}") if self.private_label.to_s == ''
-    end
+  def add_default_public_label_if_empty
+    self.update_attributes(public_label: "Voting Round #{self.id}") if self.public_label.to_s == ''
+  end
 
-    def only_one_live_status
-      if self.status == VotingRound::Status::Live and (VotingRound.where(status:VotingRound::Status::Live) - [self]).any?
-        errors.add(:base, "Only one voting round can have live status")
-      end
-    end
+  def add_default_private_label_if_empty
+    self.update_attributes(private_label: "Voting Round #{self.id}") if self.private_label.to_s == ''
+  end
 
-    def update_winning_question_status
-      previous_state = VotingRound.find(self.id)
-      if previous_state.status == VotingRound::Status::Live && self.status == VotingRound::Status::Completed
-        self.winner.each { |question| question.update(status: Question::Status::Investigating) }
-      end
+  def update_winning_question_status
+    previous_state = VotingRound.find(self.id)
+    if previous_state.status == VotingRound::Status::Live && self.status == VotingRound::Status::Completed
+      self.winner.each { |question| question.update(status: Question::Status::Investigating) }
     end
+  end
 end
