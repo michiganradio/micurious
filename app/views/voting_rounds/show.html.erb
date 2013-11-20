@@ -11,7 +11,7 @@
           <div class="question-image">
             <h2 class = "percentage" id="percentage<%= winner.id.to_s %>"><%= @voting_round.vote_percentage(winner) %>%</h2>
             <span class="image-container">
-              <%= render partial: "shared/question_image", locals:{ question: winner } %>
+              <%= render partial: "shared/question_image_link", locals:{ question: winner } %>
             </span><span class="rank-triangle"></span>
           </div>
           <%= render partial:'shared/question_text', locals:{ question: winner } %>
@@ -26,7 +26,7 @@
           <div class="question-image">
             <h2 class = "percentage" id="percentage<%= question.id.to_s %>"><%= @voting_round.vote_percentage(question) %>%</h2>
             <span class="image-container">
-              <%= render partial: "shared/question_image", locals:{ question: question } %>
+              <%= render partial: "shared/question_image_link", locals:{ question: question } %>
             </span>
             <span class="rank-triangle"></span>
           </div>

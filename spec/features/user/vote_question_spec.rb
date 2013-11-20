@@ -22,11 +22,6 @@ describe "Vote on a question" do
     @home.voting_round.question_links[0][:href].should eq question_url(@question.id)
     @home.voting_round.question_links[1].text.should eq @question2.display_text
     @home.voting_round.question_links[1][:href].should eq question_url(@question2.id)
-
-    @home.voting_round.picture_links[0].text.should eq @question.picture_owner
-    @home.voting_round.picture_links[0][:href].should eq @question.picture_attribution_url
-    @home.voting_round.picture_links[1].text.should eq @question2.picture_owner
-    @home.voting_round.picture_links[1][:href].should eq @question2.picture_attribution_url
   end
 
   specify "display question image" do
