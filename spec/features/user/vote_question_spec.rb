@@ -30,8 +30,8 @@ describe "Vote on a question" do
   end
 
   specify "display question image" do
-    @home.voting_round.pictures[0][:src].should eq @question.picture_url
-    @home.voting_round.pictures[1][:src].should eq @question2.picture_url
+    @home.voting_round.pictures[0][:src].should include @question.picture_url
+    @home.voting_round.pictures[1][:src].should include @question2.picture_url
   end
 
   context "after voting" do

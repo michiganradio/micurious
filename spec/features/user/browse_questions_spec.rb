@@ -11,7 +11,7 @@ describe "user browsing questions" do
         @questions.should have(2).question_links
         @questions.question_links[0].text.should include question2.display_text
         @questions.question_links[1].text.should include question.display_text
-        @questions.question_images[1][:src].should eq question.picture_url
+        @questions.question_images[1][:src].should include question.picture_url
         @questions.question_image_attribution_links[0][:href].should == question2.picture_attribution_url
       end
     end
@@ -72,7 +72,7 @@ describe "user browsing questions" do
       @questions_in_category.question_links.first.click
       @question = ShowQuestion.new
       @question.should be_displayed
-      @question.question_image[:src].should eq question.picture_url
+      @question.question_image[:src].should include question.picture_url
       @question.attribution_link[:href].should eq question.picture_attribution_url
       @question.answer_links[0].text.should eq answer.label
       @question.answer_links[0][:href].should eq answer.url
