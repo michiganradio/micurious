@@ -29,7 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :status %>
-    <%= f.select :status, VotingRound::Status::All%>
+    <%= f.select :status, @voting_round.new_record? ? [VotingRound::Status::New] : VotingRound::Status::All  %>
   </div>
   <div class="actions">
     <%= f.submit nil, class: "btn-default btn" %>
