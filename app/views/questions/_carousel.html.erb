@@ -5,7 +5,7 @@
       <% @featured_answers.each do |question| %>
         <div class="item <%= "active" if question == @featured_answers.first%>">
           <%= link_to question_path(question.id) do %>
-            <%= image_tag(question.picture_url) %>
+            <%= image_tag(bigger_picture(question)) %>
             <div class="carousel-caption">
               <h2><%= question.display_text %></h2>
               Asked by <%= question.display_author %> | Reported by <%= question.reporter %>

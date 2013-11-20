@@ -69,5 +69,30 @@ describe ApplicationHelper do
     end
   end
 
+  describe "#bigger_picture" do
+    context "null picture_url" do
+      it "returns default picture" do
+        question  = Question.new(picture_url: "")
+        helper.bigger_picture(question).should == DEFAULT_PICTURE
+      end
+    end
 
+    context "unsized picture_url" do
+      it "returns bigger picture appended" do
+        question  = Question.new(picture_url: "url.jpg")
+        bigger_picture_question  = Question.new(picture_url: "url_b.jpg")
+        helper.bigger_picture(question).should == bigger_picture_question.picture_url
+        question.picture_url.should == "url.jpg"
+      end
+    end
+
+    context "sized picture_url" do
+      it "returns bigger picture appended" do
+        question  = Question.new(picture_url: "url_s.jpg")
+        bigger_picture_question  = Question.new(picture_url: "url_b.jpg")
+        helper.bigger_picture(question).should == bigger_picture_question.picture_url
+        question.picture_url.should == "url_s.jpg"
+      end
+    end
+ end
 end

@@ -19,4 +19,13 @@ module ApplicationHelper
   def anonymity_partial(question)
     question.anonymous? ? "confirm_anonymous" : "confirm_public"
   end
+  def bigger_picture(question)
+    if question.picture_url.present?
+      url = question.picture_url
+      bigger_url = "_b.jpg"
+      url[-6] == "_" ? url.gsub(/_[a-z](.jpg)$/, bigger_url) : url.gsub(".jpg",bigger_url)
+    else
+      DEFAULT_PICTURE
+    end
+  end
 end
