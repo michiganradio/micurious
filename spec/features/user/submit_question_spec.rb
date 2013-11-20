@@ -38,6 +38,7 @@ describe 'Ask a question', js: true do
   def setup_question_picture_modal
     @ask_question_modal.wait_for_question_display_text
     @ask_question_modal.question_display_text.set("Why is the sky green?")
+    @ask_question_modal.question_description.click
     @ask_question_modal.question_description.set("I don't know it seems green to me")
     @ask_question_modal.wait_for_question_name
     @ask_question_modal.question_name.click
