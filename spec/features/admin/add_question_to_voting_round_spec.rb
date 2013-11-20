@@ -11,7 +11,7 @@ describe "admin adding question to voting round" do
   context "with an active question" do
     before do
       @edit_admin_question_page.load(id: @question.id)
-      @edit_admin_question_page.label_dropdown.select(@voting_round.label)
+      @edit_admin_question_page.private_label_dropdown.select(@voting_round.private_label)
       @edit_admin_question_page.add_question_to_voting_round_button.click
     end
 
@@ -35,7 +35,7 @@ describe "admin adding question to voting round" do
     end
 
     it "displays error message" do
-      @edit_admin_question_page.label_dropdown.select(@voting_round.label)
+      @edit_admin_question_page.private_label_dropdown.select(@voting_round.private_label)
       @edit_admin_question_page_removed.add_question_to_voting_round_button.click
       @edit_admin_question_page_removed.add_question_to_voting_round_error.text.should eq "A removed question can not be added to voting round"
     end

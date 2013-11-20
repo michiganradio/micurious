@@ -10,10 +10,15 @@
 </p>
 
 <p>
-  <strong>Label:</strong>
-    <div id="voting-round-label">
-      <%= @voting_round.label %>
-    </div>
+  <strong>Public Label:</strong>
+    <span id="voting-round-public-label">
+      <%= @voting_round.public_label %>
+    </span>
+</p>
+
+<p>
+  <strong>Private Label:</strong>
+  <%= @voting_round.private_label %>
 </p>
 <%= render 'questions' %>
 <%= link_to 'Edit', edit_admin_voting_round_path(@voting_round) %> |

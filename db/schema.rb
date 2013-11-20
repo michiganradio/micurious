@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131119211631) do
+ActiveRecord::Schema.define(version: 20131120023740) do
 
   create_table "answers", force: true do |t|
     t.text     "label",       null: false
@@ -81,11 +81,13 @@ ActiveRecord::Schema.define(version: 20131119211631) do
     t.datetime "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "label",      limit: 50
-    t.string   "status",     limit: 20, default: "New", null: false
+    t.string   "public_label",  limit: 50
+    t.string   "status",        limit: 20, default: "New", null: false
+    t.string   "private_label", limit: 50
   end
 
-  add_index "voting_rounds", ["label"], name: "index_voting_rounds_on_label", using: :btree
+  add_index "voting_rounds", ["private_label"], name: "index_voting_rounds_on_private_label", using: :btree
+  add_index "voting_rounds", ["public_label"], name: "index_voting_rounds_on_public_label", using: :btree
   add_index "voting_rounds", ["status"], name: "index_voting_rounds_on_status", using: :btree
 
 end

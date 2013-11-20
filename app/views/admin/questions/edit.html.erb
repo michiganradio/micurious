@@ -6,7 +6,7 @@
 <form name="add_to_voting_round_form" method="post" action="add_question_to_voting_round">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" >
   <input type="hidden" value="<%= @question.id %>">
-  <%= select_tag "voting_round_id", options_from_collection_for_select(@voting_rounds, "id", "label"), prompt: "Please select" %>
+  <%= select_tag "voting_round_id", options_from_collection_for_select(@voting_rounds, "id", "private_label"), prompt: "Please select" %>
   <input type="submit" value="Add question to voting round", class="btn-default btn">
 </form>
 <br>

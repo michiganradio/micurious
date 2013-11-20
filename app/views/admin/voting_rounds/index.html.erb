@@ -6,7 +6,8 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Label</th>
+      <th>Public Label</th>
+      <th>Private Label</th>
       <th>Status</th>
       <th>Start time</th>
       <th>End time</th>
@@ -18,9 +19,10 @@
   <tbody>
     <% @voting_rounds.reverse.each do |voting_round| %>
       <tr id="voting-round<%= voting_round.id %>">
-        <td class="label-display">
-            <%= voting_round.label %>
-          </td>
+        <td class="public-label-display">
+            <%= voting_round.public_label %>
+        </td>
+        <td><%= voting_round.private_label %></td> 
         <td><%= voting_round.status %></td>
         <td><%= voting_round.start_time %></td>
         <td><%= voting_round.end_time %></td>

@@ -10,16 +10,16 @@ describe MigrateVotingRound do
   describe "#map_voting_round_start_time" do
     context "start time and end time have same year" do
       it "returns start time" do
-        label = "January 23 - February 6, 2013"
-        start_time = @voting_round_migrate.map_voting_round_start_time(label)
+        public_label = "January 23 - February 6, 2013"
+        start_time = @voting_round_migrate.map_voting_round_start_time(public_label)
         start_time.should eq DateTime.parse("January 23, 2013")
       end
     end
 
     context "start time and end time have different years" do
       it "returns start time" do
-        label = "January 23, 2012 - February 6, 2013"
-        start_time = @voting_round_migrate.map_voting_round_start_time(label)
+        public_label = "January 23, 2012 - February 6, 2013"
+        start_time = @voting_round_migrate.map_voting_round_start_time(public_label)
         start_time.should eq DateTime.parse("January 23, 2012")
       end
     end
@@ -27,8 +27,8 @@ describe MigrateVotingRound do
 
   describe "#map_voting_round_end_time" do
     it "returns end time" do
-      label = "January 23 - February 6, 2013"
-      end_time = @voting_round_migrate.map_voting_round_end_time(label)
+      public_label = "January 23 - February 6, 2013"
+      end_time = @voting_round_migrate.map_voting_round_end_time(public_label)
       end_time.should eq DateTime.parse("February 6, 2013")
     end
   end

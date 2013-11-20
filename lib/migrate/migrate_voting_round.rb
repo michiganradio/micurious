@@ -25,7 +25,7 @@ class MigrateVotingRound < Migrate
 
   def get_voting_round_model(spreadsheet_to_voting_round_question_attributes, sheet_name, sheet, column_indices)
     voting_round = VotingRound.new
-    voting_round.label = sheet_name
+    voting_round.public_label = sheet_name
     voting_round.start_time = map_voting_round_start_time(sheet_name)
     voting_round.end_time = map_voting_round_end_time(sheet_name)
     voting_round.created_at = voting_round.start_time
