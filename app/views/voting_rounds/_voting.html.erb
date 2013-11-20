@@ -13,7 +13,7 @@
                 <h2 class = "rank" id="rank<%= question.id.to_s %>"><%= (index + 1).ordinalize %></h2>
               <% end %>
               <span class="image-container">
-              <%= render partial: "shared/question_image", locals:{ question: question} %>
+              <%= render partial: "shared/question_image_link", locals:{ question: question} %>
             </span>
               <%= if !voted? then link_to "", vote_path(question_id: question.id, voting_round_id: @voting_round.id), method: :post, class: "vote", id: "vote"+question.id.to_s end %>
                 <%= if voted? and last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted") end %>
