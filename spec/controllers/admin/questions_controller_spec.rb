@@ -18,8 +18,12 @@ describe Admin::QuestionsController do
   let(:voting_rounds) { [FactoryGirl.create(:voting_round, status: VotingRound::Status::New),
                          FactoryGirl.create(:voting_round, :other,  status: VotingRound::Status::Live)]}
 
-  context "not signed in" do
-    describe "GET index" do
+  before do
+    request.env['HTTPS'] = 'on'
+  end
+
+  describe "GET index" do
+    context "not signed in" do
       it "redirects to sign in page" do
         question = double(:question)
         get :index, {}
@@ -31,6 +35,15 @@ describe Admin::QuestionsController do
   context "signed in admin" do
     before do
       subject.stub(:signed_in_admin)
+    end
+
+    context "not on SSL" do
+      it "returns an error" do
+        request.env['HTTPS'] = 'off'
+        subject.stub(:ssl_configured).and_return(true)
+        get :index
+        expect(response.status).to eq 301
+      end
     end
 
     describe "GET index" do
