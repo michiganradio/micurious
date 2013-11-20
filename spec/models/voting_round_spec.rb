@@ -85,11 +85,6 @@ describe VotingRound do
   end
 
   context "validation" do
-    it "disallows two live voting rounds" do
-      FactoryGirl.create(:voting_round, status:VotingRound::Status::Live)
-      expect { FactoryGirl.create(:voting_round, status:VotingRound::Status::Live) }.to raise_error
-    end
-
     it "only validates the status when the new status is live" do
       FactoryGirl.create(:voting_round, status: VotingRound::Status::Live)
       expect { FactoryGirl.create(:voting_round) }.not_to raise_error
