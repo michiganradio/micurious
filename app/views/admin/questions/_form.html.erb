@@ -106,6 +106,19 @@
       <%= f.select :status, Question::Status::All %>
     </div>
   </div>
+  <div class="row">
+    <div class="field col-md-5">
+      <%= f.label :notes %>
+      <%= f.text_field :notes, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="field col-md-5">
+      <%= f.label :tags %>
+      <%= f.text_field :tags, class: "form-control" %>
+    </div>
+  </div>
+
   <div class="actions">
     <%= f.submit nil, class:"btn btn-default" %>
   </div>

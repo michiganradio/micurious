@@ -14,12 +14,16 @@ describe 'admin edit question', js: true do
     @admin_edit_question.picture_attribution_url.set("new attribution_url")
     @admin_edit_question.reporter.set("reporter_name")
     @admin_edit_question.status_dropdown.select("Removed")
+    @admin_edit_question.notes.set("notes here")
+    @admin_edit_question.tags.set("tags here")
     @admin_edit_question.featured.click
     @admin_edit_question.update_question_button.click
 
     @admin_show_question = Admin::ShowQuestion.new
     @admin_show_question.should have_content("reporter_name")
     @admin_show_question.should have_content("Removed")
+    @admin_show_question.should have_content("notes here")
+    @admin_show_question.should have_content("tags here")
 
     @admin_edit_question.load(id: @question.id)
     @admin_edit_question.picture_url[:value].should == "new picture_url"
