@@ -2,6 +2,7 @@ module Admin
   class UsersController < Admin::AdminController
     before_action :set_admin, only: [:show, :edit, :update, :destroy]
 
+
     # GET /admins
     def index
       @admins = User.all

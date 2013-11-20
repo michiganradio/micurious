@@ -5,15 +5,25 @@ describe Admin::CategoriesController do
   let(:valid_session) { {} }
 
   before do
+    subject.stub(:ssl_configured).and_return(false)
     subject.stub(:signed_in_admin)
+    request.env['HTTPS'] = 'on'
   end
-
 
   describe "GET index" do
     it "assigns all admin_categories as @admin_categories" do
       category = Category.create! valid_attributes
       get :index, {}, valid_session
       assigns(:admin_categories).should eq([category])
+    end
+
+    context "without SSL" do
+      it "returns an error" do
+        request.env['HTTPS'] = 'off'
+        subject.stub(:ssl_configured).and_return(true)
+        get :index, {}, valid_session
+        expect(response.status).to eq 301
+      end
     end
   end
 
