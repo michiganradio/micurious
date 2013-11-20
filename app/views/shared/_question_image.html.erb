@@ -1,4 +1,4 @@
-<img src="<%= question_image_url(question) %>" alt="question image">
+<img src="<%= image_url( smaller_picture(question)) %>" alt="question image">
 <span class="image-credits"> 
   <%= link_to question.picture_owner, question.picture_attribution_url, target: "blank" %> 
 </span>
