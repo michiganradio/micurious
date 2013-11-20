@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe Admin::VotingRoundsController do
-  let(:valid_attributes) { { "start_time" => "2013-10-03 11:03:52", "label" => "label text" } }
+  let(:valid_attributes) { { "start_time" => "2013-10-03 11:03:52",
+                             "public_label" => "public label text",
+                             "private_label" => "private label text" } }
   let(:valid_session) { {} }
   before do
     subject.stub(:signed_in_admin)
@@ -78,7 +80,9 @@ describe Admin::VotingRoundsController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested voting_round" do
-        new_attributes = { "start_time" => "2113-10-03 11:03:52", "label" => "new label text"}
+        new_attributes = { "start_time" => "2113-10-03 11:03:52",
+                           "public_label" => "new public label text",
+                           "private_label" => "new private label text" }
         voting_round = VotingRound.new(id: 1)
         VotingRound.stub(:find).and_return(voting_round)
         voting_round.should_receive(:update!).with(new_attributes)

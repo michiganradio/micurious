@@ -2,16 +2,25 @@ require 'spec_helper'
 
 describe VotingRound do
   describe "after save" do
-    context "label is empty" do
-      it "creates default label" do
+    context "public label is empty" do
+      it "creates default public label" do
         voting_round = VotingRound.new
         voting_round.save
-        voting_round.reload.label.should == "Voting Round #{voting_round.id}"
+        voting_round.reload.private_label.should eq "Voting Round #{voting_round.id}"
+      end
+    end
+
+    context "private label is empty" do
+      it "creates default private label" do
+        voting_round = VotingRound.new
+        voting_round.save
+        voting_round.reload.private_label.should eq "Voting Round #{voting_round.id}"
       end
     end
   end
 
-  it {should validate_uniqueness_of(:label).case_insensitive}
+  it {should validate_uniqueness_of(:public_label).case_insensitive}
+  it {should validate_uniqueness_of(:private_label).case_insensitive}
 
   context "voting round question" do
     context "add_question" do
@@ -40,7 +49,8 @@ describe VotingRound do
     end
 
     it "only validates the status when the new status is live" do
-      FactoryGirl.create(:voting_round, status:VotingRound::Status::Live, label: "new label")
+      FactoryGirl.create(:voting_round, status: VotingRound::Status::Live,
+                                        public_label: "public", private_label: "private")
       expect { FactoryGirl.create(:voting_round) }.not_to raise_error
     end
   end

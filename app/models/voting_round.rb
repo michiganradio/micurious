@@ -2,9 +2,11 @@ class VotingRound < ActiveRecord::Base
   has_many :voting_round_questions
   has_many :questions, through: :voting_round_questions, autosave: true
 
-  after_save :add_default_label_if_empty
+  after_save :add_default_public_label_if_empty
+  after_save :add_default_private_label_if_empty
 
-  validates :label, uniqueness: { case_sensitive: false }
+  validates :public_label, uniqueness: { case_sensitive: false }
+  validates :private_label, uniqueness: { case_sensitive: false }
   validate :only_one_live_status
 
   module Status
@@ -43,8 +45,12 @@ class VotingRound < ActiveRecord::Base
 
   private
 
-  def add_default_label_if_empty
-    self.update_attributes(label: "Voting Round " + self.id.to_s) if self.label.to_s == ''
+  def add_default_public_label_if_empty
+    self.update_attributes(public_label: "Voting Round #{self.id}") if self.public_label.to_s == ''
+  end
+
+  def add_default_private_label_if_empty
+    self.update_attributes(private_label: "Voting Round #{self.id}") if self.private_label.to_s == ''
   end
 
   def only_one_live_status

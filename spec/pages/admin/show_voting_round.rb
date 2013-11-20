@@ -2,7 +2,7 @@ require 'admin/question_section'
 
 class Admin::ShowVotingRound < SitePrism::Page
   set_url "/admin/voting_rounds/{/id}"
-  element :label, "#voting-round-label"
+  element :public_label, "#voting-round-public-label"
   element :remove_question_confirmation, ".alert-notice"
   sections :questions, Admin::QuestionSection, ".voting-round-question"
 
