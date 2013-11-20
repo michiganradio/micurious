@@ -85,11 +85,6 @@ describe VotingRound do
   end
 
   context "validation" do
-    it "disallows two live voting rounds" do
-      FactoryGirl.create(:voting_round, status:VotingRound::Status::Live)
-      expect { FactoryGirl.create(:voting_round, status:VotingRound::Status::Live) }.to raise_error
-    end
-
     it "only validates the status when the new status is live" do
       FactoryGirl.create(:voting_round, status: VotingRound::Status::Live)
       expect { FactoryGirl.create(:voting_round) }.not_to raise_error
@@ -152,5 +147,28 @@ describe VotingRound do
     question = FactoryGirl.create(:question)
     voting_round = FactoryGirl.create(:voting_round, questions: [question])
     voting_round.vote_percentage(question).should eq 0
+  end
+
+  describe "before update" do
+    context "existing live voting round" do
+      it "makes old voting round completed and new voting round live" do
+         old_voting_round = double(:voting_round, id: 1, status: VotingRound::Status::Live)
+         voting_round = VotingRound.create
+         VotingRound.should_receive(:where).with("status = ? AND id != ?", VotingRound::Status::Live, voting_round.id).and_return([old_voting_round])
+         old_voting_round.should_receive(:update!).with({:status => VotingRound::Status::Completed})
+         voting_round.update!({:status  => VotingRound::Status::Live})
+         voting_round.status.should == VotingRound::Status::Live
+      end
+    end
+
+    context "no live voting rounds" do
+      it "makes new voting round live" do
+         voting_round = VotingRound.create
+         VotingRound.should_receive(:where).with("status = ? AND id != ?", VotingRound::Status::Live, voting_round.id).and_return([])
+         voting_round.update!({:status  => VotingRound::Status::Live})
+         voting_round.status.should == VotingRound::Status::Live
+      end
+
+    end
   end
 end
