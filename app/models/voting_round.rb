@@ -47,7 +47,7 @@ class VotingRound < ActiveRecord::Base
 
   def change_current_voting_round_status
     if self.status == VotingRound::Status::Live
-      old_voting_round = VotingRound.where(status: VotingRound::Status::Live).first
+      old_voting_round = VotingRound.where("status = ? AND id != ?", VotingRound::Status::Live, self.id ).first
       old_voting_round.update!({:status => VotingRound::Status::Completed}) unless old_voting_round.nil?
     end
   end

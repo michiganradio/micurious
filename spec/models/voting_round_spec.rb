@@ -153,9 +153,9 @@ describe VotingRound do
     context "existing live voting round" do
       it "makes old voting round completed and new voting round live" do
          old_voting_round = double(:voting_round, id: 1, status: VotingRound::Status::Live)
-         VotingRound.should_receive(:where).with(status: VotingRound::Status::Live).and_return([old_voting_round])
-         old_voting_round.should_receive(:update!).with({:status => VotingRound::Status::Completed})
          voting_round = VotingRound.create
+         VotingRound.should_receive(:where).with("status = ? AND id != ?", VotingRound::Status::Live, voting_round.id).and_return([old_voting_round])
+         old_voting_round.should_receive(:update!).with({:status => VotingRound::Status::Completed})
          voting_round.update!({:status  => VotingRound::Status::Live})
          voting_round.status.should == VotingRound::Status::Live
       end
@@ -163,8 +163,8 @@ describe VotingRound do
 
     context "no live voting rounds" do
       it "makes new voting round live" do
-         VotingRound.should_receive(:where).with(status: VotingRound::Status::Live).and_return([])
          voting_round = VotingRound.create
+         VotingRound.should_receive(:where).with("status = ? AND id != ?", VotingRound::Status::Live, voting_round.id).and_return([])
          voting_round.update!({:status  => VotingRound::Status::Live})
          voting_round.status.should == VotingRound::Status::Live
       end
