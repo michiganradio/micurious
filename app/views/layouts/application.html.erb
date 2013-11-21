@@ -3,7 +3,7 @@
     
     <% if not @question.nil? and request.original_url == question_url(@question) %> 
       <meta property="og:title" content="Curious City - <%= @question.display_text %>" /> 
-      <meta property="og:image" content="<%= @question.picture_url %>" /> 
+      <meta property="og:image" content="<%= question_image_url(@question) %>" /> 
       <meta property="og:url" content="<%= request.original_url %>" />
     <% end %>
 
