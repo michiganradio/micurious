@@ -238,6 +238,13 @@ h2 {
   margin-left: $question-image-width;
 }
 
+.share_button {
+  position: absolute;
+  top: $grid-unit * 27;
+  margin-top: $grid-unit;
+
+}
+
 @media (max-width: 1160px) {
   .question {
       height: 200px;
@@ -245,11 +252,7 @@ h2 {
   .question-image {
     height: 200px;
   }
-}
-
-.share_button {
-  position: absolute;
-  top: $grid-unit * 27;
-  margin-top: $grid-unit;
-
+  .share_button{
+    top: $grid-unit * 35
+  }
 }
