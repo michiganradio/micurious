@@ -245,14 +245,20 @@ h2 {
 
 }
 
-@media (max-width: 1160px) {
+@media (max-width: 1024px) {
   .question {
       height: 200px;
   }
   .question-image {
     height: 200px;
+    img {
+      margin-top: 0px;
+    }
   }
   .share_button{
     top: $grid-unit * 35
+  }
+  .carousel .carousel-inner .item a img{
+    margin-top: 0px
   }
 }

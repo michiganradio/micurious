@@ -1,8 +1,10 @@
 <footer>
+<small>
   <%= link_to "Browse Answers", filter_questions_url(status: "answered"), id: "browse-answers-link", target: "_blank" %> |
   <%= link_to "Browse Questions", filter_questions_url(status: "archive"), id: "browse-questions-link", target: "_blank" %>
   <div class="partners clearfix">
     <%= render partial: 'layouts/logos', locals: { div_class_append: '-widget', img_class_append: ' logo-widget' } %>
   </div>
+</small>
 </footer>
 

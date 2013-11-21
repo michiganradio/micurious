@@ -6,6 +6,9 @@
   left: $voting-round-image-width - 25px;
   display: inline-block;
   background-image: image_url("votebutton.png");
+  @media (max-width: 1020px) {
+    top: 35%;
+  }
 }
 
 .checkmark {

@@ -19,7 +19,7 @@
         <%= text_area_tag :display_text, nil, placeholder: "What do you wonder about Chicago, the region or its people that you want WBEZ to investigate?", class: "submit-question-text", maxlength: 140 %>
         <%= submit_tag "Submit", class: "btn submit-question-btn" %>
       <% end %>
-      <span class="char-limit">(<span id="question_display_text_count"></span> characters left)</span>
+      <span class="char-limit"><small>(<span id="question_display_text_count"></span> characters left)</small></span>
     </div>
   </div>
 </div>
