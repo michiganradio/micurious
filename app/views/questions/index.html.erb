@@ -1,3 +1,24 @@
+<script> 
+  $(document).ready(function(){
+    $('.question').on('mouseover', function(){
+      $(this).addClass('highlight');
+      $(this).find('.question-link').addClass('highlight');
+      $(this).find('.author').addClass('highlight');
+    });
+
+    $('.question').on('mouseout', function(){
+      $(this).removeClass('highlight');
+      $(this).find('.question-link').removeClass('highlight');
+      $(this).find('.author').removeClass('hover');
+    });
+    
+    $('.question').on('click', function(){
+      var link = $(this).find('.question-link').attr("href");
+      window.location.assign(link);
+    });
+  });
+</script>
+
 <div class="container-padding">
   <%= render 'carousel'  %>
   <br>
@@ -5,20 +26,22 @@
     <%= link_to "All", filter_questions_path %>
     <% @categories.each do |category| %>
       | <%= link_to category.label, filter_questions_path(status: params[:status],category_name:category.name) %>
-    <% end %>
-  </div>
-  <div class="questions">
-    <% cache(cache_key_for_questions(@questions)) do %>
+  <% end %>
+</div>
+<div class="questions">
+  <% cache(cache_key_for_questions(@questions)) do %>
     <% @questions.each do |question| %>
       <% cache(question) do %>
-        <div class="question", id="question<%= question.id.to_s %>">
-          <div class="question-image">
-            <%= render partial: "shared/question_image_link", locals:{ question: question} %>
+        <%= link_to question_url(question) do %>
+          <div class="question", id="question<%= question.id.to_s %>">
+            <div class="question-image">
+              <%= render partial: "shared/question_image_link", locals:{ question: question} %>
+            </div>
+            <%= render partial:'shared/question_text', locals:{question:question} %>
           </div>
-          <%= render partial:'shared/question_text', locals:{question:question} %>
-        </div>
+        <% end %>
       <% end %>
-   <% end %>
-   <% end %>
-  </div>
+    <% end %>
+  <% end %>
+</div>
 </div>
