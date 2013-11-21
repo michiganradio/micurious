@@ -1,5 +1,12 @@
 <html>
   <head>
+    
+    <meta property="og:title" content="Curious City - <%= @question.display_text %>" /> 
+<meta property="og:image" content="<%= @question.picture_url %>" /> 
+<meta property="og:url" content="<%= request.original_url %>" />
+
+
+    
     <script>
       if (window.location.hash.substring(0,2) == "#!") {
         window.location.assign(window.location.hash.substring(1));
