@@ -11,8 +11,6 @@
       <th>Display text</th>
       <th>Name</th>
       <th>Category</th>
-      <th>Notes</th>
-      <th>Tags</th>
       <th></th>
       <th></th>
     </tr>
@@ -26,8 +24,6 @@
         <td><%= question.display_text %></td>
         <td><%= question.name %></td>
         <td><%= question.categories.map(&:label).join(',') %></td>
-        <td><%= question.notes %></td>
-        <td><%= question.tags %></td>
         <td><%= link_to 'Show', admin_question_path(question) %></td>
         <td><%= link_to 'Edit', edit_admin_question_path(question) %></td>
       </tr>

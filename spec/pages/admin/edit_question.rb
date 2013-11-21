@@ -13,6 +13,4 @@ class Admin::EditQuestion < SitePrism::Page
   element :new_answer_button, "#add-answer-button"
   element :status_dropdown, "#question_status"
   element :featured, "#question_featured"
-  element :notes, "#question_notes"
-  element :tags, "#question_tags"
 end
