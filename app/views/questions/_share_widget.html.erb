@@ -1,6 +1,14 @@
+<meta property="og:title" content="Curious City - <%= @question.display_text %>" /> 
+<meta property="og:description" content="Watch the AddThis Tour video." />  
+<meta property="og:image" content="<%= @question.picture_url %>" /> 
+
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
+    function shorten(text){
+      return $.trim(text).substring(0, 70).split(" ").slice(0, -1).join(" ") + "...";
+    }
+
     var addthis_ui_config =
     {
       services_compact: 'facebook, twitter, google_plusone_share, tumblr'
@@ -8,8 +16,7 @@
     var addthis_share_config = 
     {
         url: $("#question-text").data("url"), 
-        description: "Curious City - " + $("#question-text").data("url"),
-        title: "Curious City - " + $("#question-text").data("url"),
+        title: "Curious City - " + shorten($("#question-text").data("displaytext"))
     }
     addthis.button("#btn_share", addthis_ui_config, addthis_share_config);
   });
@@ -18,3 +25,5 @@
 <div class="share_button">
     <a id="btn_share"></a>
 </div>
+
+
