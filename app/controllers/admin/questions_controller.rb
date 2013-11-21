@@ -40,7 +40,7 @@ module Admin
     # PATCH/PUT /questions/1
     def update
       if @question.in_active_voting_rounds?
-        flash.now[:error] = "Can not remove the question when it's in acitve(new, live) voting rounds"
+        flash.now[:error] = "Can not remove the question when it's in active (new or live) voting rounds"
       elsif @question.update(question_params)
         redirect_to admin_question_url(@question), notice: 'Question was successfully updated.' and return
       end
@@ -62,7 +62,7 @@ module Admin
         flash.now[:error] = 'A removed question can not be added to voting round'
       end
 
-      @questions = Question.all
+      @questions = Question.order("created_at DESC")
       render 'index'
     rescue Exception => error
       redirect_to edit_admin_question_url(@question), flash: {error: error.message}
