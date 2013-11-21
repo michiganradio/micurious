@@ -100,9 +100,7 @@ describe ApplicationHelper do
     context "sized picture_url" do
       it "returns smaller picture appended" do
         question  = Question.new(picture_url: "url_b.jpg")
-        smaller_picture_question  = Question.new(picture_url: "url.jpg")
-        helper.smaller_picture(question).should == smaller_picture_question.picture_url
-        question.picture_url.should == "url_b.jpg"
+        helper.smaller_picture(question).should == "url_n.jpg"
       end
     end
   end

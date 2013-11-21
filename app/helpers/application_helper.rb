@@ -21,7 +21,7 @@ module ApplicationHelper
   end
 
   def smaller_picture(question)
-    replace_picture_size(question, ".jpg")
+    replace_picture_size(question, "_n.jpg")
   end
 
   def bigger_picture(question)
