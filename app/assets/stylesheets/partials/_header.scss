@@ -101,6 +101,7 @@ $navbar-height: $grid-unit*2;
 
 .dropdown:hover .dropdown-menu {
   display: inline-block;
+  padding-top: 0px;
   border: hot-pink-border();
   border-radius: 5px;
   width: 100%;
@@ -118,8 +119,12 @@ $navbar-height: $grid-unit*2;
   background-image: image_url('carrot-mini-up.png');
   width: 15px;
   height: 10px;
-  top: -15px;
+  top: -10px;
   left: 45%;
+}
+
+.dropdown .dropdown-menu > li:nth-child(2) {
+  margin-top: -5px;
 }
 
 .nav-admin-links {

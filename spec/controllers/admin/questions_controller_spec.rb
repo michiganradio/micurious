@@ -280,7 +280,7 @@ describe Admin::QuestionsController do
           post :update, {:id => question.id, :question => { :status => Question::Status::Removed}}
           question.reload.active?.should be_true
 
-          flash.now[:error].should eq "Can not remove the question when it's in acitve(new, live) voting rounds"
+          flash.now[:error].should eq "Can not remove the question when it's in active (new or live) voting rounds"
         end
       end
     end

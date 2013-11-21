@@ -58,9 +58,9 @@
       <%= form_tag ask_question_path, id: 'ask-question-form', remote: true do %>
         <%= text_area_tag :display_text, params[:display_text], placeholder: "What do you wonder about Chicago, the region or its people that you want WBEZ to investigate?", class: "submit-question-text", maxlength: 140 %>
         <%= submit_tag "Ask", class: "btn submit-question-btn", remote: true%>
-        <div class="submit-question-spec-header">
+        <small class="submit-question-spec-header">
           (<span id="question_display_text_count_header"></span> characters left)
-        </div>
+        </small>
       <% end %>
     </div>
   </div>
