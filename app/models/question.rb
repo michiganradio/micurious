@@ -8,7 +8,8 @@ class Question < ActiveRecord::Base
   has_many :updates, -> { where type: Answer::Type::Update }, class_name: 'Answer'
   has_and_belongs_to_many :categories, -> { readonly }, join_table: :questions_categories
   accepts_nested_attributes_for :answers
-
+  before_update :set_tags_updated_at_if_tags_changed
+  before_update :set_notes_updated_at_if_notes_changed
   attr_readonly :original_text
   attr_accessor :email_confirmation
   before_create :copy_display_text_into_original_text
@@ -63,6 +64,16 @@ class Question < ActiveRecord::Base
   end
 
   private
+
+  def set_tags_updated_at_if_tags_changed
+    time = Time.new
+    self.tags_updated_at = time.inspect unless self.tags == Question.find(self.id).tags
+  end
+
+  def set_notes_updated_at_if_notes_changed
+    time = Time.new
+    self.notes_updated_at = time.inspect unless self.notes == Question.find(self.id).notes
+ end
 
   def copy_display_text_into_original_text
     self.original_text = self.display_text unless self.original_text.present?

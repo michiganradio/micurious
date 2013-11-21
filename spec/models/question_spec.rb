@@ -302,4 +302,40 @@ describe Question do
       question.next_question.should eq next_question
     end
   end
+
+  describe "tags" do
+    context "tags are updated" do
+      it "saves the update time" do
+        question = FactoryGirl.create(:question, tags: nil)
+        question.tags = "something new"
+        question.save
+        question.tags_updated_at.should_not eq nil
+      end
+    end
+    context "tags are not updated" do
+      it "does not update time" do
+        question = FactoryGirl.create(:question, tags: nil)
+        question.save
+        question.tags_updated_at.should eq nil
+      end
+    end
+  end
+
+  describe "notes" do
+    context "notes are updated" do
+      it "saves the update time" do
+        question = FactoryGirl.create(:question, notes: nil)
+        question.notes = "something new"
+        question.save
+        question.notes_updated_at.should_not eq nil
+      end
+    end
+    context "notes are not updated" do
+      it "does not update time" do
+        question = FactoryGirl.create(:question, notes: nil)
+        question.save
+        question.notes_updated_at.should eq nil
+      end
+    end
+  end
 end

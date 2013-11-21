@@ -50,18 +50,41 @@ describe Admin::UsersController do
   end
 
   describe "GET main" do
+    before do
+      @most_recent_questions = [Question.new]
+      Question.stub_chain(:order, :limit).and_return(@most_recent_questions)
+      @most_recent_answers = [Answer.new]
+      Answer.stub_chain(:where, :order, :limit).and_return(@most_recent_answers)
+      @most_recent_updates = @most_recent_answers
+      Answer.stub_chain(:where, :order, :limit).and_return(@most_recent_updates)
+      @most_recent_questions_with_updated_tags = [Question.new]
+      Question.stub_chain(:order, :where, :limit).and_return(@most_recent_questions_with_updated_tags)
+      @most_recent_questions_with_updated_notes = @most_recent_questions_with_updated_tags
+      Question.stub_chain(:order, :where, :limit).and_return(@most_recent_questions_with_updated_notes)
+    end
     it "assigns most recent questions as @recent_questions" do
-      most_recent_questions = [Question.new]
-      Question.stub_chain(:order, :limit).and_return(most_recent_questions)
       get :main, {}, valid_session
-      assigns(:recent_questions).should eq most_recent_questions
+      assigns(:recent_questions).should eq @most_recent_questions
     end
 
     it "assigns most recently updated answers as @recent_answers" do
-      most_recent_answers = [Answer.new]
-      Answer.stub_chain(:order, :limit).and_return(most_recent_answers)
       get :main, {}, valid_session
-      assigns(:recent_answers).should eq most_recent_answers
+      assigns(:recent_answers).should eq @most_recent_answers
+    end
+
+    it "assigns most recent updates as @recent_updates" do
+      get :main, {}, valid_session
+      assigns(:recent_updates).should eq @most_recent_updates
+    end
+
+    it "assigns most recent tags as @recent_questions_with_updated_tags" do
+      get :main, {}, valid_session
+      assigns(:recent_questions_with_updated_tags).should eq @most_recent_questions_with_updated_tags
+    end
+
+    it "assigns most recent notes as @recent_questions_with_updated_notes" do
+      get :main, {}, valid_session
+      assigns(:recent_questions_with_updated_tags).should eq @most_recent_questions_with_updated_notes
     end
   end
 

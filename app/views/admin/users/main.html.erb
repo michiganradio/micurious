@@ -3,18 +3,57 @@
 
 <div class="recent-questions">
   <strong>Recent questions:</strong>
-  <% @recent_questions.each do |question| %>
-    <div class="recent-question">
-      <%= question.display_text %> 
-    </div>
-  <% end %>
+  <ol>
+    <% @recent_questions.each do |question| %>
+      <li><div class="recent-question">
+        <%= question.display_text %> 
+      </div></li>
+    <% end %>
+  </ol>
 </div>
 <br>
-<div class="recent-answers">
-  <strong>Recent answers:</strong>
-  <% @recent_answers.each do |answer| %>
-    <div class="recent-answer">
-      <%= answer.label %> 
-    </div>
-  <% end %>
+<div class="row">
+  <div class="recent-answers col-md-6">
+    <strong>Recent answers:</strong>
+    <ol>
+      <% @recent_answers.each do |answer| %>
+        <li><div class="recent-answer">
+          <%= answer.label %> 
+        </div></li>
+      <% end %>
+    </ol>
+  </div>
+  <div class="recent-updates col-md-6">
+    <strong>Recent updates:</strong>
+    <ol>
+      <% @recent_updates.each do |update| %>
+        <li><div class="recent-update">
+          <%= update.label %> 
+        </div></li>
+      <% end %>
+    </ol>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="recent-tags col-md-6">
+    <strong>Recent tags:</strong>
+    <ol>
+      <% @recent_questions_with_updated_tags.each do |question| %>
+        <li><div class="recent-tag">
+          <%= question.tags %> 
+        </div></li>
+      <% end %>
+    </ol>
+  </div>
+  <div class="recent-notes col-md-6">
+    <strong>Recent notes:</strong>
+    <ol>
+      <% @recent_questions_with_updated_notes.each do |question| %>
+        <li><div class="recent-note">
+          <%= question.notes %> 
+        </div></li>
+      <% end %>
+    </ol>
+  </div>
 </div>

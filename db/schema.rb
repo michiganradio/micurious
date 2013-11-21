@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131120201612) do
+ActiveRecord::Schema.define(version: 20131121162204) do
 
   create_table "answers", force: true do |t|
     t.text     "label",       null: false
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 20131120201612) do
     t.text     "description"
     t.text     "notes"
     t.text     "tags"
+    t.datetime "tags_updated_at"
+    t.datetime "notes_updated_at"
   end
 
   add_index "questions", ["status"], name: "index_questions_on_status", using: :btree
