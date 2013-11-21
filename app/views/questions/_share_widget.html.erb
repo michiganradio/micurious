@@ -1,6 +1,7 @@
 <meta property="og:title" content="Curious City - <%= @question.display_text %>" /> 
 <meta property="og:description" content="Watch the AddThis Tour video." />  
 <meta property="og:image" content="<%= @question.picture_url %>" /> 
+<meta property="og:url" content="<%= request.original_url %>" />
 
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
 <script type="text/javascript">
