@@ -230,8 +230,9 @@ h2 {
  }
 }
 
-.category_links {
+.category-links {
   display: block;
+  color: gray;
 }
 
 .voting-round-title {
@@ -243,6 +244,16 @@ h2 {
   top: $grid-unit * 27;
   margin-top: $grid-unit;
 
+}
+
+.about {
+  h3 {
+    margin-top: $grid-unit;
+  }
+  img {
+    padding: $grid-unit;
+    padding-top: $grid-unit * 4;
+  }
 }
 
 @media (max-width: 1024px) {
