@@ -1,59 +1,71 @@
 <% provide(:title, 'Admin Home Page') %>
 <h1>Admin Home Page</h1>
 
+<div class="dashboard">
 <div class="recent-questions">
   <strong>Recent questions:</strong>
-  <ol>
+  <table class="table table-bordered">
+    <% count = 1 %>
     <% @recent_questions.each do |question| %>
-      <li><div class="recent-question">
-        <%= question.display_text %> 
-      </div></li>
+      <div class="recent-question"><tr><td>
+            <%= link_to "#{count}. "+question.display_text, admin_question_path(question) %>
+            <% count+=1 %>
+      </td></tr></div>
     <% end %>
-  </ol>
+  </table>
 </div>
 <br>
 <div class="row">
   <div class="recent-answers col-md-6">
     <strong>Recent answers:</strong>
-    <ol>
+    <table class="table table-bordered">
+    <% count = 1 %>
       <% @recent_answers.each do |answer| %>
-        <li><div class="recent-answer">
-          <%= answer.label %> 
-        </div></li>
+        <div class="recent-answer"><tr><td>
+          <%= link_to "#{count}. "+answer.label, admin_question_path(answer.question_id) %> 
+            <% count+=1 %>
+    </td></tr></div>
       <% end %>
-    </ol>
+    </table>
   </div>
   <div class="recent-updates col-md-6">
     <strong>Recent updates:</strong>
-    <ol>
+    <table class="table table-bordered">
+    <% count = 1 %>
       <% @recent_updates.each do |update| %>
-        <li><div class="recent-update">
-          <%= update.label %> 
-        </div></li>
+        <div class="recent-update"><tr><td>
+          <%= link_to "#{count}. "+update.label, admin_question_path(update.question_id) %> 
+            <% count+=1 %>
+    </td></tr></div>
       <% end %>
-    </ol>
+    </table>
   </div>
 </div>
 <br>
 <div class="row">
   <div class="recent-tags col-md-6">
     <strong>Recent tags:</strong>
-    <ol>
+    <table class="table table-bordered">
+    <% count = 1 %>
       <% @recent_questions_with_updated_tags.each do |question| %>
-        <li><div class="recent-tag">
-          <%= question.tags %> 
-        </div></li>
+        <div class="recent-tag"><tr><td>
+          <%= link_to "#{count}. "+question.tags, admin_question_path(question) %> 
+            <% count+=1 %>
+    </td></tr></div>
       <% end %>
-    </ol>
+    </table>
   </div>
   <div class="recent-notes col-md-6">
     <strong>Recent notes:</strong>
-    <ol>
+    <table class="table table-bordered">
+    <% count = 1 %>
       <% @recent_questions_with_updated_notes.each do |question| %>
-        <li><div class="recent-note">
-          <%= question.notes %> 
-        </div></li>
+        <div class="recent-note"><tr><td>
+              <%= link_to "#{count}. "+question.notes, admin_question_path(question) %> 
+            <% count+=1 %>
+    </td></tr></div>
       <% end %>
-    </ol>
+    </table>
   </div>
+</div>
 </div>

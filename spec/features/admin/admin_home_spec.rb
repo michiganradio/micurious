@@ -13,8 +13,9 @@ describe "/main" do
     @admin_home_page = Admin::Home.new
     @admin_home_page.load
     for i in 0..9
-      @admin_home_page.recent_questions[i].text.should eq @most_recent_questions[i].display_text
+      @admin_home_page.recent_questions[i].text.should eq "#{i+1}. "+ @most_recent_questions[i].display_text
     end
+    @admin_home_page.should have_link("display text", href: admin_question_path(@most_recent_questions[1]))
     @admin_home_page.recent_questions.size.should eq 10
   end
 
@@ -28,7 +29,7 @@ describe "/main" do
     @admin_home_page = Admin::Home.new
     @admin_home_page.load
     for i in 0..9
-      @admin_home_page.recent_answers[i].text.should eq @most_recent_answers[i].label
+      @admin_home_page.recent_answers[i].text.should eq "#{i+1}. "+ @most_recent_answers[i].label
     end
     @admin_home_page.recent_answers.size.should eq 10
   end
@@ -43,8 +44,9 @@ describe "/main" do
     @admin_home_page = Admin::Home.new
     @admin_home_page.load
     for i in 0..9
-      @admin_home_page.recent_updates[i].text.should eq @most_recent_updates[i].label
+      @admin_home_page.recent_updates[i].text.should eq "#{i+1}. "+ @most_recent_updates[i].label
     end
+    @admin_home_page.should have_link("label", href: admin_question_path(@most_recent_updates[1].question_id))
     @admin_home_page.recent_updates.size.should eq 10
   end
 
@@ -58,6 +60,7 @@ describe "/main" do
     for i in 0..9
       @admin_home_page.recent_tags[i].text.should have_content(questions[i].tags)
     end
+    @admin_home_page.should have_link("tag", href: admin_question_path(questions[0]))
     @admin_home_page.recent_tags.size.should eq 10
   end
 

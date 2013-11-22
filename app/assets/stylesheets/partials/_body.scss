@@ -275,3 +275,17 @@ h2 {
     margin-top: 0px
   }
 }
+
+.dashboard{
+  a {
+    color: black;
+    text-decoration: none;
+  }
+
+  table {
+    background-color: whitesmoke;
+    padding: $grid-unit/2;
+  }
+
+
+}
