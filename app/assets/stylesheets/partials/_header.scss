@@ -137,6 +137,7 @@ $navbar-height: $grid-unit*2;
 
 #how-it-works {
   background-image: image_url('bg_dots.png');
+  display: none;
   padding: $grid-unit 0;
   ul {
     list-style: none;
