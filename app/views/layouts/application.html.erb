@@ -1,6 +1,6 @@
 <html>
   <head>
-    
+
     <% if not @question.nil? and request.original_url == question_url(@question) %> 
       <meta property="og:title" content="Curious City - <%= @question.display_text %>" /> 
       <meta property="og:image" content="<%= question_image_url(@question) %>" /> 
@@ -9,7 +9,7 @@
 
     <script>
       if (window.location.hash.substring(0,2) == "#!") {
-        window.location.assign(window.location.hash.substring(1));
+      window.location.assign(window.location.hash.substring(1));
       }
     </script>
     <title>Curious City</title>
@@ -29,10 +29,30 @@
       <%= yield %>
       </section>
     </div>
-  <div id="ask-question-modal"></div>
-</body>
+    <div id="ask-question-modal"></div>
+  </body>
   <div class="container">
-      <%= render "layouts/footer" %>
-      <%= debug(params) if Rails.env.development? %>
-      </div>
+    <%= render "layouts/footer" %>
+    <%= debug(params) if Rails.env.development? %>
+  </div>
+  <script> 
+    $(document).ready(function(){
+    $('.question').on('mouseover', function(){
+    $(this).addClass('highlight');
+    $(this).find('.question-link').addClass('highlight');
+    $(this).find('.author').addClass('highlight');
+    });
+
+    $('.question').on('mouseout', function(){
+    $(this).removeClass('highlight');
+    $(this).find('.question-link').removeClass('highlight');
+    $(this).find('.author').removeClass('hover');
+    });
+
+    $('.question').on('click', function(){
+    var link = $(this).find('.question-link').attr("href");
+    window.location.assign(link);
+    });
+    });
+  </script>
 </html>

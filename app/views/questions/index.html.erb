@@ -1,24 +1,3 @@
-<script> 
-  $(document).ready(function(){
-    $('.question').on('mouseover', function(){
-      $(this).addClass('highlight');
-      $(this).find('.question-link').addClass('highlight');
-      $(this).find('.author').addClass('highlight');
-    });
-
-    $('.question').on('mouseout', function(){
-      $(this).removeClass('highlight');
-      $(this).find('.question-link').removeClass('highlight');
-      $(this).find('.author').removeClass('hover');
-    });
-    
-    $('.question').on('click', function(){
-      var link = $(this).find('.question-link').attr("href");
-      window.location.assign(link);
-    });
-  });
-</script>
-
 <div class="container-padding">
   <%= render 'carousel'  %>
   <br>
