@@ -1,9 +1,9 @@
 .vote-button {
   z-index: 1;
-  @include set-size(50px, 50px);
+  @include set-size(60px, 60px);
   overflow: hidden;
   top: 25%;
-  left: $voting-round-image-width - 25px;
+  left: $voting-round-image-width - 30px;
   display: inline-block;
   background-image: image_url("votebutton.png");
   @media (max-width: 1020px) {

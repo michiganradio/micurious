@@ -73,12 +73,12 @@ $carrot-width: 20px;
   position: absolute;
 
   &:hover {
-    background-position:-51px 0;
+    background-position:-60px 0;
   }
 }
 .voted {
   @extend .vote-button;
-  background-position: -51px 0;
+  background-position: -60px 0;
   position: relative;
 }
 
