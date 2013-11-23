@@ -46,6 +46,7 @@ $carrot-width: 20px;
     top: 40%;
     @include set-size($carrot-width, 24px);
     background: image_url("carrot.png") no-repeat;
+    left: -1px;
   }
 
   .submit-question-container {
@@ -53,7 +54,6 @@ $carrot-width: 20px;
     height: 90px;
     padding: $crowded-room;
     border-radius: 12px;
-    margin-left: $carrot-width - 3px;
   }
 }
 .submit-question-text {
