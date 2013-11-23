@@ -1,6 +1,6 @@
 @import "modules/all";
 @import "modules/common_features";
-$nice-blue: #0ecbff;
+$nice-blue: #03bef5;
 $hot-pink: #ff0066; 
 $bold-blue: #00bff3;
 $light_nice_blue: #3dcef6;
@@ -9,7 +9,7 @@ $blue: #6dcff6;
 $light-blue: #91d8f6;
 $light-green: #00FF00;
 
-$grid-unit: 13px;
+$grid-unit: 16px;
 
 $crowded-room: 2%;
 $container-padding: 10%;
@@ -39,7 +39,7 @@ $carrot-width: 20px;
 
 .submit-wrap {
   position: relative;
-  padding: $grid-unit 0 $grid-unit $logo-size;
+  padding: $grid-unit;
   
   .carrot {
     position: absolute;
@@ -169,4 +169,16 @@ a {
 
 .clearfix {
   clear: both;
+}
+
+.col-sm-4 {
+  padding: 0;
+}
+
+.col-sm-2 {
+  padding: 0;
+}
+
+.col-sm-3 {
+  padding: 0;
 }

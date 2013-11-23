@@ -3,6 +3,7 @@ $user-navigation-menu-height: 30px;
 $navbar-height: $grid-unit*2;
 
 .header-logo {
+  position: relative;
   background: black left center;
   border: $grid-unit/2 solid black;
   border-left: 0px;
@@ -16,20 +17,28 @@ $navbar-height: $grid-unit*2;
   }
 
   .header-links {
-    margin: $grid-unit/2 0;
-    font-size: $grid-unit;
-    float: right;
+    position: absolute;
+    bottom: 20%;
+    right: $container-padding;
+    img {
+      height: $grid-unit;
+      width: $grid-unit;
+    }
+  }
+
+  img {
+    height: $grid-unit * 2;
+    margin-left: -5px;
   }
 }
 
 .image-logo {
-  position: relative;
-  z-index: 1;
-  float: left;
-  width: $logo-size;
-  padding: $grid-unit/2;
+  vertical-align: middle;
+  padding: $grid-unit*1.5;
   padding-left: 0px;
-  margin-left: -4px;
+  padding-right: 0px;
+  float: left;
+  display: inline-block;
   &:hover {
     background-color: white;
   }
@@ -41,7 +50,7 @@ $navbar-height: $grid-unit*2;
 .submit-question-btn {
   position: absolute;
   color: white;
-  right: $grid-unit/2;
+  right: $grid-unit * 1.5;
   bottom: $grid-unit * 1.5;
   background-color: darkgray;
 
@@ -66,7 +75,7 @@ $navbar-height: $grid-unit*2;
   }
  
   #up-for-voting-id.highlighted {
-    background-color: #03bef5;
+    background-color: $nice-blue;
   } 
 
   & > li > a {
@@ -142,10 +151,9 @@ $navbar-height: $grid-unit*2;
   ul {
     list-style: none;
   }
-  li {
-    float: left;
-    width: 17.5%;
-    margin: $grid-unit/2;
+  p {
+    padding-left: $grid-unit * 3;
+    margin-right: $grid-unit;
   }
 }
 #instructions li.step-1{color:#00ccff;}
@@ -165,7 +173,7 @@ $navbar-height: $grid-unit*2;
 
 .submit-question-spec-header{
   position: absolute;
-  bottom: 20;
-  right: 60;
+  bottom: $grid-unit * 1.5;
+  right: $grid-unit * 5;
   color: lightgray;
 }
