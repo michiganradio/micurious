@@ -9,13 +9,13 @@ body {
 }
 
 h1, h2, h3 {
-  margin-top: $grid-unit * 2;
-  margin-bottom: $grid-unit;
+  margin-top: $grid-unit * 1;
+  margin-bottom: $grid-unit * .5;
 }
 
 h4, h5, h6 {
-  margin-top: $grid-unit;
-  margin-bottom: $grid-unit;
+  margin-top: $grid-unit * .5;
+  margin-bottom: $grid-unit * .25;
 }
 
 p, ol, ul, td {

@@ -286,6 +286,9 @@ h2 {
     background-color: whitesmoke;
     padding: $grid-unit/2;
   }
+}
 
-
+.voting-round-navigation {
+  padding-top: $grid-unit * 3;
+  padding-left: $grid-unit / 2;
 }
