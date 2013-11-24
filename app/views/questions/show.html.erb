@@ -6,10 +6,10 @@
   </p>
   <div class="clearfix">
     <%= render "share_widget" %>
-    <div class="question-image">
+    <div class="question-image col-sm-4">
       <%= render partial: "shared/question_image", locals:{ question: @question} %>
     </div>
-    <div id="question-text" class="question-text" data-url="<%= request.original_url %>" data-displaytext="<%= @question.display_text %>" >
+    <div id="question-text" class="question-text col-sm-8" data-url="<%= request.original_url %>" data-displaytext="<%= @question.display_text %>" >
       <%= @question.display_text %>
       <p>Asked by <%=@question.display_author%></p>
     </div>

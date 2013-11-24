@@ -1,9 +1,9 @@
-<h1 id="comments-prompt"> If WBEZ investigates this question, what should we consider? What's your experience with this? 
+<h1 id="comments-prompt" class="col-sm-8 pull-right"> If WBEZ investigates this question, what should we consider? What's your experience with this? 
   <div class='comment-guideline'>
     <%= render partial:'guidelines', locals:{guideline_content_partial:'comments_guideline_content', link_label:'Commenting Guidelines', placement: 'left', popover_id: 'comment-guideline-link'} %>
   </div>
 </h1>
-<div id="disqus_thread"></div>
+<div id="disqus_thread" class="col-sm-8 pull-right"></div>
 <script type="text/javascript">
 var disqus_shortname = '<%= DISQUS_SHORTNAME %>'; 
 var disqus_identifier = "question-" + <%=@question.id%>;

@@ -5,12 +5,12 @@
           <h1>Which should we investigate next? Vote!</h1>
           Select the question you’d most like answered.
       </div>
-      <div class="voting-round-navigation"><%= render partial:'shared/browse_voting_round' %></div>
     </div>
+      <%= render partial:'shared/browse_voting_round' %>
     <div class="questions">
       <% (display_order(@voting_round.questions)).each_with_index do |question, index| %>
           <div class="question", id="question<%= question.id.to_s %>">
-            <div class="question-image">
+            <div class="question-image col-sm-4">
               <% if voted? %>
                 <h2 class = "rank" id="rank<%= question.id.to_s %>"><%= (index + 1).ordinalize %></h2>
               <% end %>

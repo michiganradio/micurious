@@ -13,7 +13,7 @@
       <% cache(question) do %>
         <%= link_to question_url(question) do %>
           <div class="question", id="question<%= question.id.to_s %>">
-            <div class="question-image">
+            <div class="question-image col-sm-4">
               <%= render partial: "shared/question_image_link", locals:{ question: question} %>
             </div>
             <%= render partial:'shared/question_text', locals:{question:question} %>

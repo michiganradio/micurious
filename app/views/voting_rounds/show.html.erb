@@ -1,14 +1,16 @@
 <div class="container-padding">
   <div class="voting-round">
-    <div class="voting-round-title">
-      <h1>Winning Question</h1>
-      <h5>Week of <%= @voting_round.public_label %></h5>
+    <div class="row">
+      <div class="voting-round-title col-sm-8 pull-right">
+        <h1>Winning Question</h1>
+        Week of <%= @voting_round.public_label %>
+      </div>
     </div>
     <%= render partial:'shared/browse_voting_round' %>
     <div class="questions">
       <% @voting_round.winner.each do |winner| %>
         <div class="question">
-          <div class="question-image">
+          <div class="question-image col-sm-4">
             <h2 class = "percentage" id="percentage<%= winner.id.to_s %>"><%= @voting_round.vote_percentage(winner) %>%</h2>
             <span class="image-container">
               <%= render partial: "shared/question_image_link", locals:{ question: winner } %>
@@ -23,7 +25,7 @@
       </div>
       <% @voting_round.questions.order('vote_number').reverse[@voting_round.winner.size..-1].each do |question| %>
         <div class="question">
-          <div class="question-image">
+          <div class="question-image col-sm-4">
             <h2 class = "percentage" id="percentage<%= question.id.to_s %>"><%= @voting_round.vote_percentage(question) %>%</h2>
             <span class="image-container">
               <%= render partial: "shared/question_image_link", locals:{ question: question } %>

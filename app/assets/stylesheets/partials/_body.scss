@@ -44,19 +44,21 @@ $question-height: $grid-unit * 8;
 
 .question-image {
   float: left;
-  width: $question-image-width;
+//  width: $question-image-width;
   height: $question-height;
-  position:relative;
+  position: relative;
   background-position: 0 50%;
   overflow: hidden;
   img {
+    background-size: cover;
     position: absolute;
-    width: $voting-round-image-width;
+    width: 92%;
     margin-top: -38px;
   }
   .rank-triangle {
     @include right-triangle(50px, top, right);
-    right: $grid-unit * 3;
+//    right: $grid-unit * 3;
+    right: 8%;
     top: 0;
   }
 }
@@ -126,7 +128,7 @@ h2 {
     float: right;
     z-index: 2;
     position: relative;
-    right: $grid-unit * 3;
+    right: 8%;
     font-size: 25px;
     margin: 10 5px;
   }
@@ -136,7 +138,7 @@ h2 {
   position: absolute;
   bottom: 0;
   padding: 0 5px;
-  width: $voting-round-image-width;
+  width: 92%;
   background-image: image_url("bg_black-transparent.png"); 
 
   a { 
@@ -148,24 +150,21 @@ h2 {
 }
 
 .question-text {
-  overflow:hidden;
   font-weight: 400;
   font-size: 18px;
   line-height: 25px;
-  margin: $grid-unit/2;
+  padding: $grid-unit/2;
 
   .author {
     position: absolute;
-    bottom: 5px;
-    left: $question-image-width;
+    bottom: -7em;
     padding: $grid-unit/2 $grid-unit/2 0 $grid-unit/2;
     margin: 0px;
   }
 
   .question-link {
+    margin-right: 50px + $grid-unit * 2; 
     position: absolute;
-    left: $question-image-width;
-    right: 100px;
     color: black;
     text-decoration: none;
 
@@ -191,7 +190,7 @@ h2 {
 #disqus_thread {
   background: white;
   background-image: image_url("bg_dots.png");
-  margin-left: $question-image-width;
+//  margin-left: $question-image-width;
   padding: $grid-unit;
 }
 
@@ -200,14 +199,16 @@ h2 {
   line-height: 24px;
   font-weight: normal;
   font-size: 18px; 
-  margin-left: $question-image-width;
+  padding: 0;
+//  margin-left: $question-image-width;
   margin-top: $grid-unit * 7;
   margin-bottom: $grid-unit * 2;
 }
 
 .comment-count-link {
+  text-decoration: none;
   position: absolute;
-  bottom: 0px;
+  bottom: -9em;
   right: 0px;
   padding: $grid-unit/2 $grid-unit/2 0 $grid-unit/2;
   margin: 0px;
@@ -225,7 +226,7 @@ h2 {
 
 .comment-guideline {
   position: relative;
-  right: $grid-unit;
+//  right: $grid-unit;
   color: black;
   font-size: 12px; 
   a {
