@@ -53,6 +53,11 @@ $question-height: $grid-unit * 8;
     background-size: cover;
     position: absolute;
     width: 92%;
+    width: -webkit-calc(100% - 30px);
+    width: -moz-calc(100% - 30px);
+    width: -ms-calc(100% - 30px);
+    width: -o-calc(100% - 30px);
+    width: calc(100% - 30px);
     margin-top: -38px;
   }
   .rank-triangle {
