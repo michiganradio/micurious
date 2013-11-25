@@ -265,17 +265,18 @@ h2 {
 }
 
 @media (max-width: 1024px) {
+  $tablet-question-height: 160px;
   .question {
-      height: 200px;
+      height: $tablet-question-height;
   }
   .question-image {
-    height: 200px;
+    height: $tablet-question-height;
     img {
       margin-top: 0px;
     }
   }
   .question-text {
-    height: 200px;
+    height: $tablet-question-height;
   }
   .share_button{
     top: $grid-unit * 35
