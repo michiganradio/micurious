@@ -10,6 +10,7 @@ describe WidgetController do
       VotingRound.stub(:where).and_return(voting_rounds)
       get :vote_widget
       assigns(:voting_round).should eq voting_round
+      response.headers["X-Frame-Options"].should eq "ALLOWALL"
     end
   end
 
