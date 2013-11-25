@@ -24,8 +24,8 @@
         </td>
         <td><%= voting_round.private_label %></td> 
         <td><%= voting_round.status %></td>
-        <td><%= voting_round.start_time %></td>
-        <td><%= voting_round.end_time %></td>
+        <td><%= convert_time(voting_round.start_time) %></td>
+        <td><%= convert_time(voting_round.end_time) %></td>
         <td><%= link_to 'Show', admin_voting_round_path(voting_round) %></td>
         <td><%= link_to 'Edit', edit_admin_voting_round_path(voting_round) %></td>
       </tr>

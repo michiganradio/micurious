@@ -1,12 +1,12 @@
 <% provide(:title, 'Show Voting Round') %>
 <p>
   <strong>Start time:</strong>
-  <%= @voting_round.start_time %>
+  <%= convert_time(@voting_round.start_time) %>
 </p>
 
 <p>
   <strong>End time:</strong>
-  <%= @voting_round.end_time %>
+  <%= convert_time(@voting_round.end_time) %>
 </p>
 
 <p>

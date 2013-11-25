@@ -18,4 +18,16 @@ describe Admin::VotingRoundsHelper do
     end
   end
 
+  describe "#convert_time" do
+    it "converts from military time" do
+      @voting_round = double(:voting_round, start_time: DateTime.new(2013, 3, 2, 11, 0, 0))
+      @voting_round.start_time.stub(:strftime).and_return("March 2, 2013 at 11am")
+      helper.convert_time(@voting_round.start_time).should eq "March 2, 2013 at 11am"
+    end
+
+    it "converts a nil time" do
+      @voting_round = VotingRound.new(start_time: nil)
+      helper.convert_time(@voting_round.start_time).should eq ""
+    end
+  end
 end
