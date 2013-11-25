@@ -66,14 +66,16 @@ describe 'Ask a question', js: true do
   end
 
   describe "new question modal" do
-    it "has title and prepopulated question" do
+    before do
       setup_ask_question_modal
+    end
+    it "has title, prepopulated question, and progress indication" do
       @ask_question_modal.title.text.should == "Submit your question to Curious City"
       @ask_question_modal.question_display_text.text.should == "Why is the sky blue?"
+      @ask_question_modal.footer.should have_content "Step 1/3"
     end
 
     it "has a pop up modal when the link is clicked" do
-        setup_ask_question_modal
         @ask_question_modal.question_guideline_link.click
         @ask_question_modal.wait_for_popup
         @ask_question_modal.should have_popup
@@ -94,8 +96,9 @@ describe 'Ask a question', js: true do
       setup_question_picture_modal
     end
 
-    it "has picture question field" do
+    it "has picture question field and progress indication" do
       @question_picture_modal.should have_field('search-field')
+      @question_picture_modal.footer.should have_content "Step 2/3"
       @question_picture_modal.next_button.click
     end
 
@@ -142,6 +145,7 @@ describe 'Ask a question', js: true do
       @confirm_question_modal.body.should have_content @category2.label
       picture = @mock_pictures[0]
       @confirm_question_modal.picture[:src].should eq "http://farm#{picture.farm}.staticflickr.com/#{picture.server}/#{picture.id}_#{picture.secret}.jpg"
+      @confirm_question_modal.footer.should have_content("Step 3/3");
       @confirm_question_modal.modal_form_submit
     end
 

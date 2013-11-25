@@ -38,6 +38,10 @@
         <div id="cc-message">(All images are Creative Commons licensed.)</div>
       </div>
       <div class="modal-footer">
+        <div class="status-bar">
+          <h4>Step 2/3</h4>
+          <div class="status-bar-2"></div>
+        </div>
         <%= link_to 'BACK', ask_question_path(@question.attributes.merge(email_confirmation: @question.email_confirmation, category_ids: @question.category_ids)),
                             id: 'modal-form-back', class: 'btn', method: 'post', remote: true %>
         <a id='modal-form-next' class='btn btn-primary' href='#'>NEXT</a>

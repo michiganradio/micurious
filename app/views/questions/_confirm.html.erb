@@ -46,6 +46,10 @@
 
       </div>
       <div class="modal-footer">
+        <div class="status-bar">
+          <h4>Step 3/3</h4>
+          <div class="status-bar-3"></div>
+        </div>
         <%= link_to 'BACK', picture_question_path(params: { question: { display_text: @question.display_text, description: @question.description,
                                                                         name: @question.name, anonymous: @question.anonymous,
                                                                         email: @question.email, email_confirmation: @question.email_confirmation,

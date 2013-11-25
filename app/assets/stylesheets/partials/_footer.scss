@@ -11,3 +11,21 @@
 .sponsor-logos {
   margin-right: -13px;
 }
+
+.status-bar {
+  float: left;
+}
+.modal-footer .status-bar h4 {
+  margin-top: -5px;
+  text-align: left;
+}
+
+.status-bar-1 {
+  @include progress-bar(1);
+}
+.status-bar-2 {
+  @include progress-bar(2);
+}
+.status-bar-3 {
+  @include progress-bar(3);
+}
