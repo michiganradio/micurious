@@ -2,6 +2,8 @@
   <%= link_to(question_display_text(question), question_url(question), class: "question-link" ) %>
   <p class="author">Asked by <%=question.display_author%></p>
   <%= link_to("Comments", question_url(question, anchor: 'disqus_thread'), class:"comment-count-link")%>
-  <div class="<%=badge_class question%>">
-  </div>
+  <% if badge then %>
+    <div class="<%=badge_class question%>">
+    </div>
+  <% end %>
 </div>

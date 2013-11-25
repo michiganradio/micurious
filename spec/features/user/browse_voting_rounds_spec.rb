@@ -3,7 +3,7 @@ require 'features/features_spec_helper'
 describe "browse past voting rounds" do
   before do
     @question = FactoryGirl.create(:question)
-    @other_question = FactoryGirl.create(:question, :other)
+    @other_question = FactoryGirl.create(:question, :other, status: Question::Status::Investigating)
     @oldest_voting_round = FactoryGirl.create(:voting_round, :completed, start_time: "2000-01-01 11:11:11", public_label: "public", private_label: "private")
     @voting_round = FactoryGirl.create(:voting_round, :completed, questions: [@question, @other_question])
     VotingRoundQuestion.where(question_id: @question.id).first.update_attributes(vote_number: 0)
@@ -46,5 +46,11 @@ describe "browse past voting rounds" do
     vr = ShowVotingRound.new
     vr.load(voting_round_id: @voting_round.id.to_s)
     vr.questions[0].should have_content "100%"
+  end
+
+  it "does not show answered badge" do
+    vr = ShowVotingRound.new
+    vr.load(voting_round_id: @voting_round.id.to_s)
+    vr.questions[0].should_not have_selector(".checkmark")
   end
 end

@@ -21,7 +21,7 @@
                 <%= if voted? and last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted") end %>
                   <% if voted? %><span class="rank-triangle"></span><% end %>
                 </div>
-                <%= render partial:'shared/question_text', locals:{question:question} %>
+                <%= render partial:'shared/question_text', locals:{question:question, badge: false} %>
               </div>
           <% end %>
         </div>
