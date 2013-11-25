@@ -302,3 +302,24 @@ h2 {
   padding-top: $grid-unit * 3;
   padding-left: $grid-unit / 2;
 }
+
+#admin-question-table{
+    border: 1px solid black;
+    table-layout: fixed;
+    width: 1250px;
+}
+
+#admin-question-table .small-cel {
+    width: 70px;
+}
+
+#admin-question-table .medium-cel {
+    width: 300px;
+    overflow: hidden;
+}
+
+#admin-question-table td {
+  width: 50px; 
+  overflow: hidden;
+}
+
