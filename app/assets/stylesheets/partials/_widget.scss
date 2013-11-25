@@ -116,7 +116,9 @@ $prompt: 25px;
 }
 
 .widget-question-text .vote {
+  @include set-size(50px, 50px);
   float: left;
+  background-image: image_url("votebutton_widget.png"); 
   overflow: hidden;
   display: inline-block;
   top: 15px;
@@ -128,6 +130,13 @@ $prompt: 25px;
     background-position:-51px 0;
     background-color: transparent;
   }
+}
+
+.widget-question-text .voted {
+  @include set-size(50px, 50px);
+  float: left;
+  background-image: image_url("votebutton_widget.png"); 
+  background-position: -51px 0;
 }
 
 .ask-widget .submit-wrap {
