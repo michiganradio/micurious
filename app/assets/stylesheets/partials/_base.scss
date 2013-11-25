@@ -70,7 +70,7 @@ $carrot-width: 20px;
   @extend .vote-button;
   cursor: pointer;
   background-position: 0px 0;
-  position: absolute;
+  right: 0;
 
   &:hover {
     background-position:-60px 0;
@@ -79,7 +79,6 @@ $carrot-width: 20px;
 .voted {
   @extend .vote-button;
   background-position: -60px 0;
-  position: relative;
 }
 
 .responses {

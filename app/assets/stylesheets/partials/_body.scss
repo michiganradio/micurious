@@ -44,7 +44,6 @@ $question-height: $grid-unit * 8;
 
 .question-image {
   float: left;
-//  width: $question-image-width;
   height: $question-height;
   position: relative;
   background-position: 0 50%;
@@ -123,16 +122,15 @@ h2 {
     float: right;
     z-index: 2;
     position: relative;
-    right: $grid-unit * 5;
+    right: 30px;
     font-size: 25px;
-    margin: 5;
-    margin-right: -10;
+    margin: $grid-unit/2 $grid-unit/2;
   }
   &.percentage {
     float: right;
     z-index: 2;
     position: relative;
-    right: 8%;
+    right: 30px;
     font-size: 25px;
     margin: 10 5px;
   }
@@ -200,7 +198,6 @@ h2 {
 #disqus_thread {
   background: white;
   background-image: image_url("bg_dots.png");
-//  margin-left: $question-image-width;
   padding: $grid-unit;
 }
 
@@ -210,7 +207,6 @@ h2 {
   font-weight: normal;
   font-size: 18px; 
   padding: 0;
-//  margin-left: $question-image-width;
   margin-top: $grid-unit * 7;
   margin-bottom: $grid-unit * 2;
 }
@@ -236,7 +232,6 @@ h2 {
 
 .comment-guideline {
   position: relative;
-//  right: $grid-unit;
   color: black;
   font-size: 12px; 
   a {
@@ -278,6 +273,9 @@ h2 {
     img {
       margin-top: 0px;
     }
+  }
+  .question-text {
+    height: 200px;
   }
   .share_button{
     top: $grid-unit * 35
