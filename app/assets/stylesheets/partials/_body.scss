@@ -33,6 +33,10 @@ $question-height: $grid-unit * 8;
   background-image: none;
 }
 
+.question-text .question-link.hover.highlight {
+  color: white;
+}
+
 .image-container.hover{
   @extend .blue-hover;
   opacity: 0.5;
@@ -320,6 +324,6 @@ h2 {
 
 #admin-question-table td {
   width: 50px; 
-  overflow: hidden;
+  overflow: auto;
 }
 

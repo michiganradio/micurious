@@ -25,7 +25,7 @@
         <td><%= question.id %></td>
         <td><%= question.display_text %></td>
         <td><%= question.name %></td>
-        <td><%= question.categories.map(&:label).join(' , ') %></td>
+        <td><%= question.categories.map(&:label).join(', ') %></td>
         <td><%= question.notes %></td>
         <td><%= question.tags %></td>
         <td><%= link_to 'Show', admin_question_path(question) %></td>
