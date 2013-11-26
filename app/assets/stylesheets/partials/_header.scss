@@ -21,10 +21,12 @@ $navbar-height: $grid-unit*2;
     bottom: 10%;
     right: $container-padding;
     img {
-      height: $grid-unit;
-      width: $grid-unit;
-      margin-left: 2px;
-      margin-bottom: 4px;
+      height: $grid-unit * 1.4;
+      width: $grid-unit * 1.4;
+    }
+    
+    a:nth-child(3) {
+      margin-left: 5px;
     }
   }
 
