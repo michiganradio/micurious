@@ -76,4 +76,19 @@ describe "/main" do
     end
     @admin_home_page.recent_notes.size.should eq 10
   end
+
+  it "has current voting round stats" do
+    @voting_round = FactoryGirl.create(:voting_round, status: VotingRound::Status::Live)
+    @questions = [FactoryGirl.create(:question), FactoryGirl.create(:question), FactoryGirl.create(:question)]
+    @voting_round.questions = @questions
+    VotingRoundQuestion.where(question_id: @questions[0].id).first.update_attributes(vote_number: 10)
+    VotingRoundQuestion.where(question_id: @questions[1].id).first.update_attributes(vote_number: 0)
+    VotingRoundQuestion.where(question_id: @questions[2].id).first.update_attributes(vote_number: 5)
+    signin_as_admin
+    @admin_home_page = Admin::Home.new
+    @admin_home_page.load
+    for i in 0..2
+      @admin_home_page.current_voting_round_questions[i].should have_content(@questions[i].display_text)
+    end
+  end
 end

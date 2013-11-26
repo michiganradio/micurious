@@ -61,6 +61,8 @@ describe Admin::UsersController do
       Question.stub_chain(:order, :where, :limit).and_return(@most_recent_questions_with_updated_tags)
       @most_recent_questions_with_updated_notes = @most_recent_questions_with_updated_tags
       Question.stub_chain(:order, :where, :limit).and_return(@most_recent_questions_with_updated_notes)
+      @voting_round = [VotingRound.new]
+      VotingRound.stub(:where).and_return(@voting_round)
     end
     it "assigns most recent questions as @recent_questions" do
       get :main, {}, valid_session
@@ -85,6 +87,11 @@ describe Admin::UsersController do
     it "assigns most recent notes as @recent_questions_with_updated_notes" do
       get :main, {}, valid_session
       assigns(:recent_questions_with_updated_tags).should eq @most_recent_questions_with_updated_notes
+    end
+
+    it "assigns current voting round as @voting_round" do
+      get :main, {}, valid_session
+      assigns(:voting_round).should eq @voting_round[0]
     end
   end
 

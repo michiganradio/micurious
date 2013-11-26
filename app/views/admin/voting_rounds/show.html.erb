@@ -20,6 +20,6 @@
   <strong>Private Label:</strong>
   <%= @voting_round.private_label %>
 </p>
-<%= render 'questions' %>
+<%= render 'admin/shared/questions' %>
 <%= link_to 'Edit', edit_admin_voting_round_path(@voting_round) %> |
 <%= link_to 'Back', admin_voting_rounds_path %>

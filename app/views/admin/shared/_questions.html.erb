@@ -1,4 +1,7 @@
-<table>
+<% if @voting_round == nil %>
+      <p> There is currently no live voting round </p>
+    <% else %>
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Question</th>
@@ -16,12 +19,13 @@
         <td>
           <%= voting_round_question.vote_number %>
         </td>
-        <td>
           <% if can_remove_question? %>
+            <td>
             <%= link_to 'Remove', remove_question_admin_voting_round_path(@voting_round, question_id: voting_round_question.question.id), method: :post, data: { confirm: 'Are you sure?' } %>
+            </td>
           <% end %>
-        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+  <% end %>

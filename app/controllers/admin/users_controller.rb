@@ -28,6 +28,7 @@ module Admin
       @recent_updates = Answer.where(type: "Update").order(updated_at: :desc).limit(10)
       @recent_questions_with_updated_tags = Question.order(tags_updated_at: :desc).where("tags <> ''").limit(10)
       @recent_questions_with_updated_notes = Question.order(notes_updated_at: :desc).where("notes <> ''").limit(10)
+      @voting_round = VotingRound.where(status: VotingRound::Status::Live).first
     end
 
     # POST /admins

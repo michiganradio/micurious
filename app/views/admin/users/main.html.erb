@@ -2,7 +2,8 @@
 <h1>Admin Home Page</h1>
 
 <div class="dashboard">
-  <div class="recent-questions">
+  <div class="row">
+  <div class="recent-questions col-md-6">
     <details>
     <summary> <strong>Recent questions:</strong></summary>
   <table class="table table-bordered">
@@ -15,6 +16,13 @@
     <% end %>
   </table>
   </details>
+</div>
+<div class="current-voting-round col-md-6">
+  <details>
+  <summary><strong>Current Voting Round:</strong></summary>
+  <%= render 'admin/shared/questions' %>
+  </details>
+</div>
 </div>
 <br>
 <div class="row">
