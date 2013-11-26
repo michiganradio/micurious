@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20131127154610) do
     t.string   "type",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
   end
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
