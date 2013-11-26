@@ -1,5 +1,6 @@
 class Answer < ActiveRecord::Base
   belongs_to :question
+  acts_as_list :scope => :question
 
   validates :label, length: { maximum: 3000, minimum: 1 }
   validates :url, length: { maximum: 2000, minimum: 1 }
