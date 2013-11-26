@@ -1,5 +1,5 @@
 <% provide(:title, 'Listing Answers and Updates') %>
-<h1>Listing answers and updates</h1>
+<h1>Listing answers</h1>
 
 <table class="table">
   <thead>
@@ -14,23 +14,63 @@
 
   <tbody>
     <% @question.answers.each do |answer| %>
-      <tr class="answer-row">
-        <td class="answer-label">
-          <%= answer.label %>
-        </td>
-        <td class="answer-url">
-          <%= answer.url %>
-        </td>
-        <td class="answer-type">
-          <%= answer.type %>
-        </td>
-        <td class="answer-edit-link">
-          <%= link_to 'Edit', edit_admin_answer_path(answer) %>
-        </td>
-        <td class="answer-delete-link">
-          <%= link_to 'Delete', admin_answer_path(answer), :method => :delete %>
-        </td>
-      </tr>
+      <% if answer.type == Answer::Type::Answer %>
+        <tr class="answer-row">
+          <td class="answer-label">
+            <%= answer.label %>
+          </td>
+          <td class="answer-url">
+            <%= answer.url %>
+          </td>
+          <td class="answer-type">
+            <%= answer.type %>
+          </td>
+          <td class="answer-edit-link">
+            <%= link_to 'Edit', edit_admin_answer_path(answer) %>
+          </td>
+          <td class="answer-delete-link">
+            <%= link_to 'Delete', admin_answer_path(answer), :method => :delete %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<h1>Listing updates</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Label</th>
+      <th>Url</th>
+      <th>Type</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @question.answers.each do |answer| %>
+      <% if answer.type == Answer::Type::Update %>
+        <tr class="answer-row">
+          <td class="answer-label">
+            <%= answer.label %>
+          </td>
+          <td class="answer-url">
+            <%= answer.url %>
+          </td>
+          <td class="answer-type">
+            <%= answer.type %>
+          </td>
+          <td class="answer-edit-link">
+            <%= link_to 'Edit', edit_admin_answer_path(answer) %>
+          </td>
+          <td class="answer-delete-link">
+            <%= link_to 'Delete', admin_answer_path(answer), :method => :delete %>
+          </td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
