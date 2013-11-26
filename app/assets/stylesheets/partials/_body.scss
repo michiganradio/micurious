@@ -327,3 +327,10 @@ h2 {
   overflow: auto;
 }
 
+img.bio-pic{
+  float: left;
+  padding: $grid-unit;
+  padding-top: 0;
+  padding-left: 0;
+}
+
