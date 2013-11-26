@@ -27,6 +27,8 @@ GEM
       tzinfo (~> 0.3.37)
     acts-as-taggable-on (2.4.1)
       rails (>= 3, < 5)
+    acts_as_list (0.3.0)
+      activerecord (>= 3.0)
     addressable (2.3.5)
     arel (4.0.0)
     atomic (1.1.14)
@@ -90,6 +92,8 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.1.0)
+      railties (>= 3.1.0)
     js-test-driver-rails (0.4.3)
       json
       rake
@@ -211,6 +215,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on (~> 2.4.1)
+  acts_as_list (~> 0.3.0)
   awesome_print (~> 1.2.0)
   bcrypt-ruby (~> 3.0.0)
   capybara (~> 2.1.0, < 3.0)
@@ -222,6 +227,7 @@ DEPENDENCIES
   jasmine
   jbuilder (~> 1.2)
   jquery-rails
+  jquery-ui-rails (~> 4.1.0)
   js-test-driver-rails (~> 0.4.3)
   launchy
   mysql2 (~> 0.3.13)
