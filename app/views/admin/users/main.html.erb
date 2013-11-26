@@ -2,8 +2,9 @@
 <h1>Admin Home Page</h1>
 
 <div class="dashboard">
-<div class="recent-questions">
-  <strong>Recent questions:</strong>
+  <div class="recent-questions">
+    <details>
+    <summary> <strong>Recent questions:</strong></summary>
   <table class="table table-bordered">
     <% count = 1 %>
     <% @recent_questions.each do |question| %>
@@ -13,11 +14,13 @@
       </td></tr></div>
     <% end %>
   </table>
+  </details>
 </div>
 <br>
 <div class="row">
   <div class="recent-answers col-md-6">
-    <strong>Recent answers:</strong>
+    <details>
+    <summary><strong>Recent answers:</strong></summary>
     <table class="table table-bordered">
     <% count = 1 %>
       <% @recent_answers.each do |answer| %>
@@ -27,9 +30,11 @@
     </td></tr></div>
       <% end %>
     </table>
+    </details>
   </div>
   <div class="recent-updates col-md-6">
-    <strong>Recent updates:</strong>
+    <details>
+    <summary><strong>Recent updates:</strong></summary>
     <table class="table table-bordered">
     <% count = 1 %>
       <% @recent_updates.each do |update| %>
@@ -39,12 +44,14 @@
     </td></tr></div>
       <% end %>
     </table>
+    </details>
   </div>
 </div>
 <br>
 <div class="row">
   <div class="recent-tags col-md-6">
-    <strong>Recent tags:</strong>
+    <details>
+    <summary><strong>Recent tags:</strong></summary>
     <table class="table table-bordered">
     <% count = 1 %>
       <% @recent_questions_with_updated_tags.each do |question| %>
@@ -54,9 +61,11 @@
     </td></tr></div>
       <% end %>
     </table>
+    </details>
   </div>
   <div class="recent-notes col-md-6">
-    <strong>Recent notes:</strong>
+    <details>
+    <summary><strong>Recent notes:</strong></summary>
     <table class="table table-bordered">
     <% count = 1 %>
       <% @recent_questions_with_updated_notes.each do |question| %>
@@ -66,6 +75,7 @@
     </td></tr></div>
       <% end %>
     </table>
+    </details>
   </div>
 </div>
 </div>
