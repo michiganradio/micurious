@@ -24,6 +24,10 @@ module Admin
       @answer.question_id = params[:question_id]
     end
 
+    def sort
+      @question = Question.find(params[:question_id])
+    end
+
     def create
       @answer = Answer.new(answer_params)
       if @answer.save

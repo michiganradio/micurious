@@ -34,7 +34,11 @@ Curiouscity::Application.routes.draw do
         post :add_question_to_voting_round
       end
     end
-    resources :answers
+    resources :answers do
+      collection do
+        get :sort
+      end
+    end
 
     match '/signup',       to: 'users#new',        via: 'get'
     match '/signin',       to: 'sessions#new',      via: 'get'

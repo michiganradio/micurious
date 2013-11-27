@@ -1,0 +1,25 @@
+<% provide(:title, 'Listing Answers and Updates') %>
+<h1>Sorting answers</h1>
+<ul id="question-answers">
+  <% @question.answers.each do |answer| %>
+    <% if answer.type == Answer::Type::Answer %>
+      <li id="answer_<%= answer.id %>">
+      <%= "#{answer.label} (" %>
+      <%= link_to h(answer.url), answer.url %>
+      <%= ")" %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+<h1>Sorting updates</h1>
+<ul>
+  <% @question.answers.each do |answer| %>
+    <% if answer.type == Answer::Type::Update %>
+      <li id="update_<%= answer.id %>">
+        <%= "#{answer.label} (" %>
+        <%= link_to h(answer.url), answer.url %>
+        <%= ")" %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

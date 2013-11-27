@@ -99,6 +99,15 @@ describe Admin::AnswersController do
     end
   end
 
+  describe "GET sort" do
+    it "assigns @question using question_id" do
+      question = double(Question)
+      Question.should_receive(:find).with("0").and_return(question)
+      get :sort, { question_id: 0 }, valid_session
+      assigns(:question).should eq question
+    end
+  end
+
   describe "POST create" do
     context "valid answer params" do
       it "creates a new Answer" do
