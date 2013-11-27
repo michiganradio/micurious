@@ -75,5 +75,5 @@
   </tbody>
 </table>
 
-<%= link_to 'Reorder Answers and Updates', sort_admin_answers_path(question_id: @question.id), class: "btn-default btn" %>
+<%= link_to 'Reorder Answers and Updates', reorder_admin_answers_path(question_id: @question.id), class: "btn-default btn" %>
 <%= link_to 'New Answer or Update', new_admin_answer_path(question_id: @question.id), class: "btn-default btn" %>

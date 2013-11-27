@@ -1,0 +1,43 @@
+<% provide(:title, 'Listing Answers and Updates') %>
+<script>
+  $(function() {
+    $("#sortable1").sortable({ 
+      axis: 'y',
+      update: function (event, ui) {
+        var data = $(this).sortable("serialize");
+        $.post($(this).data("update-url"), $(this).sortable("serialize"));
+      }
+    });
+    $("#sortable2").sortable({ 
+      axis: 'y',
+      update: function (event, ui) {
+        var data = $(this).sortable("serialize");
+        $.post($(this).data("update-url"), $(this).sortable("serialize"));
+      }
+    });
+  });
+</script>
+<h1>Reordering answers</h1>
+<ul id="sortable1" data-update-url="<%= sort_admin_answers_url %>"> 
+  <% @answers.each do |answer| %>
+    <% if answer.type == Answer::Type::Answer %>
+      <li class="ui-state-default" id="answer_<%= answer.id %>">
+        <%= "#{answer.label} (" %>
+        <%= link_to h(answer.url), answer.url %>
+        <%= ")" %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+<h1>Reordering updates</h1>
+<ul id="sortable2" data-update-url="<%= sort_admin_answers_url %>">
+  <% @answers.each do |answer| %>
+    <% if answer.type == Answer::Type::Update %>
+      <li class="ui-state-default" id="answer_<%= answer.id %>">
+        <%= "#{answer.label} (" %>
+        <%= link_to h(answer.url), answer.url %>
+        <%= ")" %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

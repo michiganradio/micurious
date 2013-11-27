@@ -24,8 +24,15 @@ module Admin
       @answer.question_id = params[:question_id]
     end
 
+    def reorder
+      @answers = Question.find(params[:question_id]).answers.order(:position)
+    end
+
     def sort
-      @question = Question.find(params[:question_id])
+      params[:answer].each_with_index do |id, index|
+        Answer.find(id).insert_at(index+1)
+      end
+      render nothing: true
     end
 
     def create

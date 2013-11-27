@@ -36,7 +36,8 @@ Curiouscity::Application.routes.draw do
     end
     resources :answers do
       collection do
-        get :sort
+        get :reorder
+        post :sort
       end
     end
 

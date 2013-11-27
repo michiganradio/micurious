@@ -99,12 +99,26 @@ describe Admin::AnswersController do
     end
   end
 
-  describe "GET sort" do
-    it "assigns @question using question_id" do
+  describe "GET reorder" do
+    it "assigns @answers ordered by position using question_id" do
       question = double(Question)
+      answers = [double(Answer)]
       Question.should_receive(:find).with("0").and_return(question)
-      get :sort, { question_id: 0 }, valid_session
-      assigns(:question).should eq question
+      question.should_receive(:answers).and_return(answers)
+      answers.should_receive(:order).and_return(answers)
+      get :reorder, { question_id: 0 }, valid_session
+      assigns(:answers).should eq answers
+    end
+  end
+
+  describe "POST sort" do
+    it "inserts each answer param in list at param index plus one" do
+      answers = [double(Answer), double(Answer), double(Answer)]
+      Answer.stub(:find).and_return(answers[0], answers[1], answers[2])
+      answers[0].should_receive(:insert_at).with(1)
+      answers[1].should_receive(:insert_at).with(2)
+      answers[2].should_receive(:insert_at).with(3)
+      post :sort, { answer: [5, 6, 7] }, valid_session
     end
   end
 
