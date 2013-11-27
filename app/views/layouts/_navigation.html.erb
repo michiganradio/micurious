@@ -1,5 +1,6 @@
 <nav class="navbar row" role="navigation">
-<ul class="nav navbar-nav container-padding">
+<div class="container-padding">
+<ul class="nav navbar-nav col-sm-8 pull-right">
      <li><%= link_to "Up for Voting", root_url, id: "up-for-voting-id", class: @up_for_voting_class %></li>
       <li class="dropdown" id="answered-investigating">
       <%= link_to("Answered & Investigating", filter_questions_url(status: "answered"), id: "answered-investigating-id", class: "dropdown-toggle "+ @answered_class.to_s)%> 
@@ -9,5 +10,6 @@
         <%= render partial: "layouts/category_dropdown_menu", locals:{status: "archive"} %>
       </li>
     </ul>
+  </div>
 </nav>
 
