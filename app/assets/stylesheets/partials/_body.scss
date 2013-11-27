@@ -258,16 +258,6 @@ h2 {
 
 }
 
-.about {
-  h3 {
-    margin-top: $grid-unit;
-  }
-  img {
-    padding: $grid-unit;
-    padding-top: $grid-unit * 4;
-  }
-}
-
 @media (max-width: 1024px) {
   $tablet-question-height: 160px;
   .question {
@@ -334,3 +324,13 @@ img.bio-pic{
   padding-left: 0;
 }
 
+.about img {
+  width: 100%;
+  margin: $grid-unit;
+  margin-top: $grid-unit * 2;
+}
+
+.team img {
+  margin: $grid-unit;
+  margin-top: $grid-unit / 2;
+}
