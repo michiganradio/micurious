@@ -6,6 +6,14 @@ class Answer < ActiveRecord::Base
   validates :type, presence: true
   self.inheritance_column = :_type_disabled
 
+  def self.recent_answers
+    where(type: "Answer").order(updated_at: :desc).limit(10)
+  end
+
+  def self.recent_updates
+    where(type: "Update").order(updated_at: :desc).limit(10)
+  end
+
   module Type
     Answer = "Answer"
     Update = "Update"

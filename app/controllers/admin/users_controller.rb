@@ -23,11 +23,11 @@ module Admin
 
     # GET /admin_main
     def main
-      @recent_questions = Question.order(updated_at: :desc).limit(10)
-      @recent_answers = Answer.where(type: "Answer").order(updated_at: :desc).limit(10)
-      @recent_updates = Answer.where(type: "Update").order(updated_at: :desc).limit(10)
-      @recent_questions_with_updated_tags = Question.order(tags_updated_at: :desc).where("tags_updated_at <> ''").limit(10)
-      @recent_questions_with_updated_notes = Question.order(notes_updated_at: :desc).where("notes <> ''").limit(10)
+      @recent_questions =  Question.recent_questions
+      @recent_answers = Answer.recent_answers
+      @recent_updates = Answer.recent_updates
+      @recent_questions_with_updated_tags = Question.recent_questions_with_updated_tags
+      @recent_questions_with_updated_notes = Question.recent_questions_with_updated_notes
       @voting_round = VotingRound.where(status: VotingRound::Status::Live).first
     end
 

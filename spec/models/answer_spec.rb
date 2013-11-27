@@ -18,4 +18,20 @@ describe Answer do
       it { should validate_presence_of(:type) }
     end
   end
+
+  describe "recent_answer" do
+      it "returns recent updated answers" do
+        @most_recent_answers = [Answer.new]
+        Answer.stub_chain(:where, :order, :limit).and_return(@most_recent_answers)
+        Answer.recent_answers.should == @most_recent_answers
+      end
+  end
+
+  describe "recent_update" do
+      it "returns recent updated updates" do
+        @most_recent_updates = [Answer.new]
+        Answer.stub_chain(:where, :order, :limit).and_return(@most_recent_updates)
+        Answer.recent_updates.should == @most_recent_updates
+      end
+  end
 end

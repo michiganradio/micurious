@@ -64,6 +64,18 @@ class Question < ActiveRecord::Base
     Question.where('status != "Removed" AND id>'+(self.id).to_s).order(id: :asc).first
   end
 
+  def self.recent_questions
+    order(updated_at: :desc).limit(10)
+  end
+
+  def self.recent_questions_with_updated_tags
+    order(tags_updated_at: :desc).where("tags_updated_at <> ''").limit(10)
+  end
+
+  def self.recent_questions_with_updated_notes
+    order(notes_updated_at: :desc).where("notes <> ''").limit(10)
+  end
+
   private
 
   def set_tags_updated_at_if_tags_changed

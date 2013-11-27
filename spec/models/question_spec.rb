@@ -339,12 +339,28 @@ describe Question do
     end
   end
 
-  #describe "recent_questions" do
-   # it "returns recent updated questions" do
-    #  @most_recent_questions = [Question.new]
-     # Question.stub_chain(:order, :limit).and_return(@most_recent_questions)
+  describe "recent_questions" do
+    it "returns recent updated questions" do
+      @most_recent_questions = [Question.new]
+      Question.stub_chain(:order, :limit).and_return(@most_recent_questions)
+      Question.recent_questions.should == @most_recent_questions
+    end
+  end
 
-   # end
-  #end
+  describe "recent_questions_with_updated_tags" do
+    it "returns recent updated questions with updated tags" do
+      @most_recent_questions_with_updated_tags = [Question.new]
+      Question.stub_chain(:order, :where, :limit).and_return(@most_recent_questions_with_updated_tags)
+      Question.recent_questions_with_updated_tags.should == @most_recent_questions_with_updated_tags
+    end
+  end
+
+  describe "recent_questions_with_updated_notes" do
+    it "returns recent updated questions with updated notes" do
+      @most_recent_questions_with_updated_notes = [Question.new]
+      Question.stub_chain(:order, :where, :limit).and_return(@most_recent_questions_with_updated_notes)
+      Question.recent_questions_with_updated_notes.should == @most_recent_questions_with_updated_notes
+    end
+  end
 
 end
