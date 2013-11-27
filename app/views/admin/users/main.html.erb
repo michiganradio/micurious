@@ -64,7 +64,7 @@
     <% count = 1 %>
       <% @recent_questions_with_updated_tags.each do |question| %>
         <div class="recent-tag"><tr><td>
-          <%= link_to "#{count}. "+question.tags, admin_question_path(question) %> 
+          <%= link_to "#{count}. " + display_tags(question), admin_question_path(question), id: "tag" %> 
             <% count+=1 %>
     </td></tr></div>
       <% end %>

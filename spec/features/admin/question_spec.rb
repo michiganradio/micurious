@@ -7,7 +7,7 @@ describe "admin's questions page" do
                              picture_owner: "picture_owner",
                              picture_attribution_url: "picture_attribution_url",
                              notes: "question notes",
-                             tags: "question tags")
+                             tag_list: "question tags")
     @admin_questions = Admin::Questions.new
     @admin_questions.load
     @admin_questions.should have_content("question notes")

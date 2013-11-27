@@ -116,7 +116,7 @@
     <div class="row">
       <div class="field col-md-5">
         <%= f.label :tags %>
-        <%= f.text_field :tags, class: "form-control" %>
+        <%= f.text_field :tag_list, value: display_tags(@question), class: "form-control" %>
       </div>
     </div>
   <% end %>

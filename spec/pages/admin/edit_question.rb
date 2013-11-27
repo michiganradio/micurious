@@ -14,5 +14,5 @@ class Admin::EditQuestion < SitePrism::Page
   element :status_dropdown, "#question_status"
   element :featured, "#question_featured"
   element :notes, "#question_notes"
-  element :tags, "#question_tags"
+  element :tags, "#question_tag_list"
 end

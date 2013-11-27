@@ -51,14 +51,14 @@ describe "/main" do
   end
 
   it "has ten most recent tags" do
-    questions = FactoryGirl.create_list(:question, 11, tags_updated_at: "2013-11-20 12:38:40")
+    questions = FactoryGirl.create_list(:question, 11, tag_list: "tag", tags_updated_at: "2013-11-20 12:38:40")
     questions_without_updated_tags = FactoryGirl.create_list(:question, 5)
 
     signin_as_admin
     @admin_home_page = Admin::Home.new
     @admin_home_page.load
     for i in 0..9
-      @admin_home_page.recent_tags[i].text.should have_content(questions[i].tags)
+      @admin_home_page.recent_tags[i].text.should have_content(questions[i].tags.join(", "))
     end
     @admin_home_page.should have_link("tag", href: admin_question_path(questions[0]))
     @admin_home_page.recent_tags.size.should eq 10

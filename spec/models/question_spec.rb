@@ -306,15 +306,15 @@ describe Question do
   describe "tags" do
     context "tags are updated" do
       it "saves the update time" do
-        question = FactoryGirl.create(:question, tags: nil)
-        question.tags = "something new"
+        question = FactoryGirl.create(:question)
+        question.tag_list = "something new"
         question.save
         question.tags_updated_at.should_not eq nil
       end
     end
     context "tags are not updated" do
       it "does not update time" do
-        question = FactoryGirl.create(:question, tags: nil)
+        question = FactoryGirl.create(:question)
         question.save
         question.tags_updated_at.should eq nil
       end
@@ -338,4 +338,13 @@ describe Question do
       end
     end
   end
+
+  #describe "recent_questions" do
+   # it "returns recent updated questions" do
+    #  @most_recent_questions = [Question.new]
+     # Question.stub_chain(:order, :limit).and_return(@most_recent_questions)
+
+   # end
+  #end
+
 end

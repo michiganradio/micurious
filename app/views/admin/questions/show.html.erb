@@ -96,7 +96,7 @@
 
 <p>
   <strong>Tags:</strong>
-  <%= @question.tags %>
+  <%= display_tags(@question) %>
 </p>
 
 <%= link_to 'Edit', edit_admin_question_path(@question) %> |

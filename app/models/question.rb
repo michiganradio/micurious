@@ -1,6 +1,7 @@
 class Question < ActiveRecord::Base
   ANONYMOUS = "Anonymous"
 
+  acts_as_taggable
   has_many :voting_rounds, through: :voting_round_questions
   has_many :voting_round_questions
   has_many :answers, autosave: true
@@ -66,13 +67,11 @@ class Question < ActiveRecord::Base
   private
 
   def set_tags_updated_at_if_tags_changed
-    time = Time.new
-    self.tags_updated_at = time.inspect unless self.tags == Question.find(self.id).tags
+    self.tags_updated_at =  Time.zone.now if self.tag_list_changed?
   end
 
   def set_notes_updated_at_if_notes_changed
-    time = Time.new
-    self.notes_updated_at = time.inspect unless self.notes == Question.find(self.id).notes
+    self.notes_updated_at = Time.zone.now if self.notes_changed?
  end
 
   def copy_display_text_into_original_text
