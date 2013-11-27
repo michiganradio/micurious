@@ -324,13 +324,13 @@ img.bio-pic{
   padding-left: 0;
 }
 
-.about img {
+.faq img {
   width: 100%;
-  margin: $grid-unit;
+  margin: $grid-unit * 2 $grid-unit $grid-unit 0;
   margin-top: $grid-unit * 2;
 }
 
 .team img {
-  margin: $grid-unit;
-  margin-top: $grid-unit / 2;
+  padding: $grid-unit/2 $grid-unit;
+//  padding-top: $grid-unit / 2;
 }
