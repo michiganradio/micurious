@@ -317,17 +317,45 @@ h2 {
   overflow: auto;
 }
 
-img.bio-pic{
-  float: left;
-  padding: $grid-unit;
-  padding-top: 0;
-  padding-left: 0;
+.bio {
+  img {
+    float: left;
+    padding: $grid-unit;
+    padding-top: 0;
+    padding-left: 0;
+    width: 250px;
+    height: 238px;
+  }
+
+  p {
+    text-align: justify;
+  }
 }
 
-.faq img {
-  width: 100%;
-  margin: $grid-unit * 2 $grid-unit $grid-unit 0;
-  margin-top: $grid-unit * 2;
+.faq {
+   img {
+    width: 100%;
+    margin: $grid-unit * 2 $grid-unit $grid-unit 0;
+    margin-top: $grid-unit * 2;
+  }
+  p {
+    text-align: justify;
+  }
+}
+
+.about {
+
+  p {
+    text-align: justify;
+  }
+}
+
+.credit {
+
+  p {
+    text-align: justify;
+  }
+
 }
 
 .team img {
