@@ -246,6 +246,12 @@ h2 {
 .category-links {
   display: block;
   color: gray;
+  a {
+    color: $bold-blue;
+    &:hover {
+      color: $light-blue;
+    }
+  }
 }
 
 .voting-round-title {
