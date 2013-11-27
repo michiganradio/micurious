@@ -72,24 +72,29 @@ $navbar-height: $grid-unit*2;
   border-radius: 0px;
   .navbar-toggle {
     border-color: $hot-pink;
+    margin: 0;
+    height:$grid-unit * 2;
     &:hover {
       background-color: $hot-pink;
     }
     .icon-bar {
       background-color: darkgray;
     }
-    margin: 0;
-    height:$grid-unit * 2;
   }
+}
+
+.navbar-collapse {
+  padding: 0;
+}
+
+#up-for-voting-id {
+  border-left: 2px solid white;
 }
 
 .navbar-nav {
   padding: 0px;
   width: 66.666%;
 
-  #up-for-voting-id {
-    border-left: 2px solid white;
-  }
  
   #up-for-voting-id.highlighted {
     background-color: $nice-blue;
@@ -206,8 +211,28 @@ $navbar-height: $grid-unit*2;
   color: lightgray;
 }
 
-@media(max-width: 1224px) {
+@media(max-width: 1224px) and (min-width: 701px){
   .navbar-nav {
     width: 100%;
+  }
+}
+
+@media(max-width: 750px) {
+  .nav.navbar-nav {
+    margin: 0;
+    width: 100%;
+  }
+  .navbar-nav > li > a {
+   width: 100%; 
+   float: right;
+   margin: -1px;
+  }
+  .navbar-collapse .navbar-nav > li {
+    width: 100%;
+    float:right;
+  }
+  #up-for-voting-id {
+    border-left: none;
+    border-right: 2px solid white;
   }
 }
