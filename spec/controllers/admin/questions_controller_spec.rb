@@ -217,6 +217,10 @@ describe Admin::QuestionsController do
         it "assigns all questions as @questions" do
           assigns(:questions).should eq([])
         end
+
+        it "assigns all tags as @tags" do
+          assigns(:tags).should eq([])
+        end
       end
 
       context "removed question" do
@@ -303,7 +307,7 @@ describe Admin::QuestionsController do
           post :update, {:id => question.id, :question => { :status => Question::Status::Removed}}
           question.reload.active?.should be_true
 
-          flash.now[:error].should eq "Can not remove the question when it's in active (new or live) voting rounds"
+          flash.now[:error].should eq "Can not update the question when it's in active (new or live) voting rounds"
         end
       end
     end
