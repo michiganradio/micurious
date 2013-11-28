@@ -10,7 +10,7 @@ FactoryGirl.define do
     picture_owner "owner"
     picture_attribution_url "attribution_url"
     categories []
-
+    tag_list "some tags"
     trait :anonymous do
       anonymous true
       name "Anon name"

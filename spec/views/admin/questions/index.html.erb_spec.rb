@@ -12,6 +12,7 @@ describe "admin/questions/index" do
         :display_text => "display_question"
       )
     ])
+    assign(:tags, [] )
   end
 
   it "renders a list of questions" do

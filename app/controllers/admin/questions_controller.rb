@@ -3,6 +3,7 @@ module Admin
     before_action :set_question, only: [:show, :edit, :update, :deactivate, :add_question_to_voting_round]
     before_action :load_categories, only: [:new, :edit]
     before_action :load_voting_rounds, only: [:edit]
+    before_action :load_tags, only: [:index, :filter_by_tag]
 
     # GET /questions
     def index
@@ -11,6 +12,12 @@ module Admin
 
     # GET /questions/1
     def show
+    end
+
+    # GET /questions/:tag
+    def filter_by_tag
+        @questions = Question.tagged_with(params[:tag]).order("created_at DESC")
+        render 'index'
     end
 
     # GET /questions/new
@@ -74,7 +81,6 @@ module Admin
       @question = Question.find(params[:id])
     end
 
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
       params.require(:question).permit(:original_text, :display_text, :name, :anonymous, :featured, :email,
@@ -87,6 +93,10 @@ module Admin
 
     def load_voting_rounds
       @voting_rounds = VotingRound.where(status: VotingRound::Status::New)
+    end
+
+    def load_tags
+      @tags = Question.tag_counts_on(:tags)
     end
   end
 end

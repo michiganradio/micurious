@@ -37,6 +37,22 @@ describe Admin::QuestionsController do
       subject.stub(:signed_in_admin)
     end
 
+    describe "GET filter_by_tag" do
+        it "returns questions based on tags" do
+          question1 = double(:question)
+          Question.stub_chain(:tagged_with, :order).and_return([question1])
+          get :filter_by_tag, {:tag => "some tag"}
+          assigns(:questions).should eq [question1]
+        end
+
+        it "assings all tags to @tags" do
+          Question.should_receive(:tag_counts_on).with(:tags).and_return("a,b,c")
+          Question.stub_chain(:tagged_with, :order)
+          get :filter_by_tag, {:tag => "some tag"}
+          assigns(:tags).should eq("a,b,c")
+        end
+    end
+
     context "not on SSL" do
       it "returns an error" do
         request.env['HTTPS'] = 'off'
@@ -52,6 +68,13 @@ describe Admin::QuestionsController do
         Question.should_receive(:order).with("created_at DESC").and_return(questions)
         get :index, {}
         assigns(:questions).should eq(questions)
+      end
+
+      it "assings all tags to @tags" do
+        Question.should_receive(:tag_counts_on).with(:tags).and_return("a,b,c")
+        Question.stub(:order)
+        get :index, {}
+        assigns(:tags).should eq("a,b,c")
       end
     end
 
