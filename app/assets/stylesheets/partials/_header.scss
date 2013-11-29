@@ -35,8 +35,7 @@ $user-navigation-menu-height: 30px;
 }
 
 .image-logo {
-  vertical-align: middle;
-  padding: $grid-unit*1.5;
+  padding-top: $grid-unit * 1.5;
   padding-left: 0px;
   padding-right: 0px;
   float: left;
@@ -46,6 +45,13 @@ $user-navigation-menu-height: 30px;
   }
 }
 
+.image-logo-large {
+  @extend .image-logo;
+  margin-left: -12%;
+  margin-right: -12%;
+  max-width: 150%;
+  width: 125%;
+}
   
 @include faded-placeholder();
 
