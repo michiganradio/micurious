@@ -65,14 +65,14 @@ div {
     text-align: left;
     font-weight: bold;
     padding: 5px 5px 5px 15px;
-    font-size: 12px;
+    font-size: $grid-unit * .75;
     margin: -7px;
     margin-bottom: 0px;
     background-color: $nice_blue;
     color: #fff;
   }
   ul li {
-    font-size: 12px;
+    font-size: $grid-unit * .75;
     list-style: square;
   }
 }

@@ -9,21 +9,22 @@
       <%= render partial:'shared/browse_voting_round' %>
     <div class="questions">
       <% (display_order(@voting_round.questions)).each_with_index do |question, index| %>
-          <div class="question", id="question<%= question.id.to_s %>">
-            <div class="question-image col-sm-4">
-              <% if voted? %>
-                <h2 class = "rank" id="rank<%= question.id.to_s %>"><%= (index + 1).ordinalize %></h2>
-              <% end %>
-              <span class="image-container">
+        <div class="question", id="question<%= question.id.to_s %>">
+          <div class="question-image col-sm-4">
+            <% if voted? %>
+              <h2 class = "rank" id="rank<%= question.id.to_s %>"><%= (index + 1).ordinalize %></h2>
+            <% end %>
+            <span class="image-container hidden-xs">
               <%= render partial: "shared/question_image_link", locals:{ question: question} %>
             </span>
-              <%= if !voted? then link_to "", vote_path(question_id: question.id, voting_round_id: @voting_round.id), method: :post, class: "vote", id: "vote"+question.id.to_s end %>
-                <%= if voted? and last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted") end %>
-                  <% if voted? %><span class="rank-triangle"></span><% end %>
-                </div>
-                <%= render partial:'shared/question_text', locals:{question:question, badge: false} %>
-              </div>
-          <% end %>
+            <%= if !voted? then link_to "", vote_path(question_id: question.id, voting_round_id: @voting_round.id), method: :post, class: "vote", id: "vote"+question.id.to_s end %>
+            <%= if voted? and last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted") end %>
+            <% if voted? %><span class="rank-triangle hidden-xs"></span><% end %>
+          </div>
+          <%= render partial:'shared/question_text', locals:{question:question, badge: false} %>
+            <% if voted? %><span class="rank-triangle-small visible-xs"></span><% end %>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

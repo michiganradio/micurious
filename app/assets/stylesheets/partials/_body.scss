@@ -48,6 +48,7 @@ $question-height: $grid-unit * 8;
 
 .question-image {
   float: left;
+//  min-width:30px;
   height: $question-height;
   position: relative;
   background-position: 0 50%;
@@ -70,6 +71,12 @@ $question-height: $grid-unit * 8;
     right: 30px;
     top: 0;
   }
+}
+
+.rank-triangle-small {
+  @include right-triangle(40px, top, left);
+  left: 0;
+  top: 0;
 }
 
 .answers {
@@ -132,7 +139,7 @@ h2 {
     float: right;
     z-index: 2;
     position: relative;
-    right: 30px;
+    right: 15px;
     font-size: 25px;
     margin: $grid-unit/2 $grid-unit/2;
   }
@@ -169,7 +176,7 @@ h2 {
 
 .question-text {
   font-weight: 400;
-  font-size: 18px;
+  font-size: $grid-unit * 1.125;
   line-height: 25px;
   padding: $grid-unit/2;
   height: $question-height;
@@ -266,7 +273,6 @@ h2 {
 .share_button {
   float: left;
   margin-top: $grid-unit;
-
 }
 
 @media (max-width: 1024px) {
@@ -376,3 +382,9 @@ h2 {
 .css2 { font-size: 11px; }
 .css3 { font-size: 14px; }
 .css4 { font-size: 17px; }
+
+@media (max-width: 750px) {
+  h2.rank {
+    right: 5;
+  }
+}

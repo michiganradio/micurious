@@ -115,15 +115,10 @@ $social-media-logo-size: 18px;
 @media (max-width: 750px) {
   .ask-question-row {
     position: relative;
-    height: 80%;
     margin: 0;
-    max-height: 300px;
   }
-  .cc-logo {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    margin-left: -170px;
+  .cc-logo > img {
+    width: 100%;
   }
   .carrot {
     visibility: hidden;
@@ -133,6 +128,17 @@ $social-media-logo-size: 18px;
     width: 100%;
     .submit-question-container {
       height: calc(100% - 100px);
+      max-height: $grid-unit * 10;
+
+      .submit-question-btn {
+        right: $grid-unit * .5;
+        bottom: $grid-unit * .5;
+      }
+
+      .submit-question-spec-header {
+        right: $grid-unit * 5;
+        bottom: $grid-unit * .5;
+      }
     }
   }
 }
