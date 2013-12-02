@@ -1,7 +1,7 @@
 module Admin
   class UsersController < Admin::AdminController
     before_action :set_admin, only: [:show, :edit, :update, :destroy]
-
+    before_action :load_page_info, only: [:main, :search]
 
     # GET /admins
     def index
@@ -23,18 +23,12 @@ module Admin
 
     # GET /admin_main
     def main
-      @recent_questions =  Question.recent_questions
-      @recent_answers = Answer.recent_answers
-      @recent_updates = Answer.recent_updates
-      @recent_questions_with_updated_tags = Question.recent_questions_with_updated_tags
-      @recent_questions_with_updated_notes = Question.recent_questions_with_updated_notes
-      @voting_round = VotingRound.where(status: VotingRound::Status::Live).first
     end
 
-    # GET /admin/search
+    # POST /admin/search
     def search
-      @search_results = Question.with_search_text(params[:search_text], params[:category_id])
-      redirect_to admin_url
+      @search_results = Question.with_search_text(params[:text], params[:category])
+      render 'main'
     end
 
     # POST /admins
@@ -78,6 +72,16 @@ module Admin
       # Never trust parameters from the scary internet, only allow the white list through.
       def admin_params
         params.require(:admin).permit(:username, :password, :password_confirmation)
+      end
+
+      def load_page_info
+        @recent_questions =  Question.recent_questions
+        @recent_answers = Answer.recent_answers
+        @recent_updates = Answer.recent_updates
+        @recent_questions_with_updated_tags = Question.recent_questions_with_updated_tags
+        @recent_questions_with_updated_notes = Question.recent_questions_with_updated_notes
+        @voting_round = VotingRound.where(status: VotingRound::Status::Live).first
+        @categories = Category.all
       end
   end
 end

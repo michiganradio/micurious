@@ -32,9 +32,9 @@ class Question < ActiveRecord::Base
     search_query =  "display_text like :text or original_text like :text or description like :text or neighbourhood like :text or notes like :text"
 
     if category_id.present?
-      includes(:categories).where(search_query, text: "%"+search_text+"%").references(:categories).where("category_id = ?", category_id)
+      includes(:categories).where(search_query, text: "%"+search_text.to_s+"%").references(:categories).where("category_id = ?", category_id.to_s)
     else
-      includes(:categories).where(search_query, text: "%"+search_text+"%").references(:categories)
+      includes(:categories).where(search_query, text: "%"+search_text.to_s+"%").references(:categories)
     end
    end
 

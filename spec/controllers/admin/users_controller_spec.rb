@@ -64,6 +64,13 @@ describe Admin::UsersController do
       @voting_round = [VotingRound.new]
       VotingRound.stub(:where).and_return(@voting_round)
     end
+
+    it "assigns categories for search" do
+      categories = [FactoryGirl.create(:category)]
+      get :main, {}, valid_session
+      assigns(:categories).should eq categories
+    end
+
     it "assigns most recent questions as @recent_questions" do
       get :main, {}, valid_session
       assigns(:recent_questions).should eq @most_recent_questions
@@ -97,10 +104,10 @@ describe Admin::UsersController do
     describe "#search" do
        it "returns questions with search text only criteria "do
           question_results = [double(:question)]
-          Question.should_receive(:with_search_text).and_return(question_results)
-          get :search, {:search_text => "some text"}, valid_session
+          Question.should_receive(:with_search_text).with("some text", "some category").and_return(question_results)
+          get :search, {:text => "some text", :category => "some category"}, valid_session
           assigns(:search_results).should eq question_results
-          response.should redirect_to admin_url
+          response.should render_template('main')
        end
     end
   end

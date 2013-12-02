@@ -91,4 +91,20 @@ describe "/main" do
       @admin_home_page.current_voting_round_questions[i].should have_content(@questions[i].display_text)
     end
   end
+
+  it "displays search results" do
+    category = FactoryGirl.create(:category, id: 100)
+    @search_results = FactoryGirl.create_list(:question, 2, display_text: "This is a test", categories: [category])
+    other_questions = FactoryGirl.create_list(:question, 3, display_text: "Apple")
+    signin_as_admin
+    @admin_home_page = Admin::Home.new
+    @admin_home_page.load
+    @admin_home_page.categories_dropdown.select(category.name)
+    @admin_home_page.search_text_field.set("test")
+    @admin_home_page.search_button.click
+
+    @admin_home_page.search_question[0].should have_content(@search_results[0].display_text)
+    @admin_home_page.search_question[1].should have_content(@search_results[1].display_text)
+
+  end
 end
