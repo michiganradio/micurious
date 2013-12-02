@@ -52,15 +52,17 @@ $question-height: $grid-unit * 8;
   position: relative;
   background-position: 0 50%;
   overflow: hidden;
+  margin-left: -15px;
+  padding-right: 15px;
   img {
     background-size: cover;
     position: absolute;
     width: 92%;
-    width: -webkit-calc(100% - 30px);
-    width: -moz-calc(100% - 30px);
-    width: -ms-calc(100% - 30px);
-    width: -o-calc(100% - 30px);
-    width: calc(100% - 30px);
+    width: -webkit-calc(100% - 44px);
+    width: -moz-calc(100% - 44px);
+    width: -ms-calc(100% - 44px);
+    width: -o-calc(100% - 44px);
+    width: calc(100% - 44px);
     margin-top: -38px;
   }
   .rank-triangle {
@@ -151,11 +153,11 @@ h2 {
   width: 92%;
   background-image: image_url("bg_black-transparent.png"); 
   width: 92%;
-  width: -webkit-calc(100% - 30px);
-  width: -moz-calc(100% - 30px);
-  width: -ms-calc(100% - 30px);
-  width: -o-calc(100% - 30px);
-  width: calc(100% - 30px);
+  width: -webkit-calc(100% - 44px);
+  width: -moz-calc(100% - 44px);
+  width: -ms-calc(100% - 44px);
+  width: -o-calc(100% - 44px);
+  width: calc(100% - 44px);
  
   a { 
     &:link, &:visited, &:hover {
