@@ -112,11 +112,13 @@ $user-navigation-menu-height: 30px;
   .ask-question-row {
     position: relative;
     height: 80%;
+    margin: 0;
   }
   .cc-logo {
     position: absolute;
     bottom: 0;
-    left: 25%;
+    left: 50%;
+    margin-left: -170px;
   }
   .carrot {
     visibility: hidden;
