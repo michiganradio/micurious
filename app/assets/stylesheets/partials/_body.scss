@@ -166,7 +166,7 @@ h2 {
   font-size: 18px;
   line-height: 25px;
   padding: $grid-unit/2;
-  height: $question-height;
+  min-height: $question-height;
 
   .author {
     position: absolute;
