@@ -56,16 +56,18 @@ $carrot-width: 20px;
     border-radius: 12px;
   }
 }
+
 .submit-question-text {
   height: 100%;
   border-style:none;
   overflow: hidden;
   resize: none;
   outline: none;
-  font-size: 16;
+  font-size: $grid-unit;
   line-height: 18px;
   width: 90%;
 }
+
 .vote {
   @extend .vote-button;
   cursor: pointer;
@@ -76,6 +78,7 @@ $carrot-width: 20px;
     background-position:-60px 0;
   }
 }
+
 .voted {
   @extend .vote-button;
   background-position: -60px 0;
@@ -168,3 +171,8 @@ a {
   padding: 0;
 }
 
+@media (max-width: 750px) {
+  .submit-question-text {
+    font-size: $grid-unit * .75;
+  }
+}

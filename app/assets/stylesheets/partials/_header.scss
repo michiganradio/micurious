@@ -110,6 +110,7 @@ $social-media-logo-size: 18px;
   bottom: $grid-unit * 1.5;
   right: $grid-unit * 5;
   color: lightgray;
+  font-size: $grid-unit * .8;
 }
 
 @media (max-width: 750px) {
@@ -128,16 +129,18 @@ $social-media-logo-size: 18px;
     width: 100%;
     .submit-question-container {
       height: calc(100% - 100px);
-      max-height: $grid-unit * 10;
+      max-height: $grid-unit * 11;
 
       .submit-question-btn {
         right: $grid-unit * .5;
         bottom: $grid-unit * .5;
+        font-size: $grid-unit * .7;
       }
 
       .submit-question-spec-header {
-        right: $grid-unit * 5;
+        right: $grid-unit * 4;
         bottom: $grid-unit * .5;
+        font-size: $grid-unit * .6;
       }
     }
   }
@@ -161,5 +164,4 @@ $social-media-logo-size: 18px;
   height: auto;
   width: auto;
   padding: 4 15;
-
 }
