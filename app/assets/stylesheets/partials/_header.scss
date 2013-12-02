@@ -1,4 +1,5 @@
 $user-navigation-menu-height: 30px;
+$social-media-logo-size: 18px;
 
 .header-logo {
   position: relative;
@@ -19,8 +20,11 @@ $user-navigation-menu-height: 30px;
     bottom: 10%;
     right: $container-padding;
     img {
-      height: $grid-unit * 1.4;
-      width: $grid-unit * 1.4;
+      height: $social-media-logo-size;
+      width: $social-media-logo-size;
+      border-radius: 5px;
+      margin-left: 1px;
+      background-color: #ececec;
     }
     
     a:nth-child(3) {
