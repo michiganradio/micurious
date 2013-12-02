@@ -104,13 +104,11 @@ $carrot-width: 20px;
   position: relative;
   display: inline;
   * {
+    word-wrap: break-word;
     margin: $grid-unit 0; 
   }
   h4 {
     font-size: $grid-unit * 2;
-  }
-  p {
-    word-wrap: break-word;
   }
   a {
     line-height: $grid-unit * 3;

@@ -25,10 +25,8 @@
       <div class="answer-text">
         <h4>Our answer</h4>
         <% @answers.each do |answer| %>
-          <p>
-            <%= link_to answer.label, answer.url, class: "answer-link", target: "_blank" %>
-            <br>
-          </p>
+          <%= link_to answer.label, answer.url, class: "answer-link clearfix", target: "_blank" %>
+          <br>
         <% end %>
       </div>
     </div>
@@ -42,15 +40,11 @@
       <div class="update-text clearfix">
         <h4>Reporting updates:</h4>
         <% @updates.each do |update| %>
-          <p>
-            <%= link_to update.label, update.url, class: "update-link", target: "_blank" %>
-            <br>
-          </p>
+          <%= link_to update.label, update.url, class: "update-link", target: "_blank" %>
+          <br>
         <% end %>
       </div>
     </div>
   <% end %>
   <%= render partial:'comments' unless Rails.env.test?%>
 </div>
-
-
