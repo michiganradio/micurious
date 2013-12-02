@@ -175,4 +175,20 @@ a {
   .submit-question-text {
     font-size: $grid-unit * .75;
   }
+  .response-text {
+    * {
+      margin: $grid-unit * .75 0; 
+    }
+    h4 {
+      font-size: $grid-unit * 1.5;
+    }
+    a {
+      // padding-left: 65px;
+      line-height: $grid-unit * 1.7;
+      font-size: $grid-unit * 1.125;
+    }
+  }
+  .response-image {
+    margin-top: 0;
+  }
 }
