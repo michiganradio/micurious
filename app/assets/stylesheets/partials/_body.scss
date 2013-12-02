@@ -92,6 +92,10 @@ $question-height: $grid-unit * 8;
 }
 
 
+.question-text-display {
+  min-height: $question-height;
+}
+
 .updates {
   @extend .responses;
 }

@@ -9,9 +9,11 @@
     <div class="question-image col-sm-4">
       <%= render partial: "shared/question_image", locals:{ question: @question} %>
     </div>
-    <div id="question-text" class="question-text col-sm-8" data-url="<%= request.original_url %>" data-displaytext="<%= @question.display_text %>" >
-      <%= @question.display_text %>
-      <p>Asked by <%=@question.display_author%></p>
+    <div class="col-sm-8">
+      <div id="question-text" class="question-text-display" data-url="<%= request.original_url %>" data-displaytext="<%= @question.display_text %>" >
+        <%= @question.display_text %>
+        <p>Asked by <%=@question.display_author%></p>
+      </div>
     </div>
   </div>
   <% if @question.completed_answers.any? %>
@@ -23,7 +25,7 @@
         <h4>Our answer</h4>
         <% @question.completed_answers.each do |answer| %>
           <p>
-            <%= link_to answer.label, answer.url, class: "answer-link", target: "_blank" %>
+          <%= link_to answer.label, answer.url, class: "answer-link", target: "_blank" %>
           </p>
         <% end %>
       </div>
@@ -39,7 +41,7 @@
         <h4>Reporting updates:</h4>
         <% @question.updates.each do |update| %>
           <p>
-            <%= link_to update.label, update.url, class: "update-link", target: "_blank" %>
+          <%= link_to update.label, update.url, class: "update-link", target: "_blank" %>
           </p>
         <% end %>
       </div>
