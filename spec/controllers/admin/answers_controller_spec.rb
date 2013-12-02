@@ -7,37 +7,70 @@ describe Admin::AnswersController do
     subject.stub(:signed_in_admin)
   end
 
-  describe "GET index without SSL" do
-    it "returns an error" do
-      Question.stub(:find).with("0")
-      request.env['HTTPS'] = 'off'
-      subject.stub(:ssl_configured).and_return(true)
-      get :index, { question_id: 0 }, valid_session
-      expect(response.status).to eq 301
+  describe "before action load answers and updates" do
+    before do
+      @question = double(Question)
+      @answers = [double(Answer), double(Answer)]
+      Question.stub(:find).with("0").and_return(@question)
+      @question.stub(:answers).and_return(@answers)
+      @answers.stub(:order).and_return(@answers)
+      @answers.stub(:where).with(type: Answer::Type::Answer).and_return([@answers[0]])
+      @answers.stub(:where).with(type: Answer::Type::Update).and_return([@answers[1]])
     end
-  end
 
-  describe "GET index" do
-    context "no question_id param given" do
-      it "raises error" do
-        expect {
-          get :index, {}, valid_session
-        }.to raise_error(ActionController::ParameterMissing)
+    describe "GET index" do
+      context "without SSL" do
+        it "returns an error" do
+          request.env['HTTPS'] = 'off'
+          subject.stub(:ssl_configured).and_return(true)
+          get :index, { question_id: 0 }, valid_session
+          expect(response.status).to eq 301
+        end
+      end
+
+      context "no question_id param given" do
+        it "raises error" do
+          expect {
+            get :index, {}, valid_session
+          }.to raise_error(ActionController::ParameterMissing)
+        end
+      end
+
+      context "question_id param given" do
+        it "renders 'index' template" do
+          get :index, { question_id: 0 }, valid_session
+          response.should render_template('index')
+        end
+
+        it "assigns @question using question_id" do
+          get :index, { question_id: 0 }, valid_session
+          assigns(:question).should eq @question
+        end
       end
     end
 
-    context "question_id param given" do
-      it "renders 'index' template" do
-        Question.stub(:find).with("0")
-        get :index, { question_id: 0 }, valid_session
+    describe "DELETE destroy"do
+      it "destroys the requested answer" do
+        answer = double(Answer)
+        Answer.stub(:find).with("0").and_return(answer)
+        answer.should_receive(:destroy)
+        delete :destroy, {id: 0, question_id: 0}, valid_session
+      end
+
+      it "re-renders 'index' template" do
+        answer = double(Answer)
+        Answer.stub(:find).with("0").and_return(answer)
+        answer.stub(:destroy)
+        delete :destroy, {id: 0, question_id: 0}, valid_session
         response.should render_template('index')
       end
+    end
 
-      it "assigns @question using question_id" do
-        question = double(Question)
-        Question.should_receive(:find).with("0").and_return(question)
-        get :index, { question_id: 0 }, valid_session
-        assigns(:question).should eq question
+    describe "GET reorder" do
+      it "assigns @answers and @updates ordered by position using question_id" do
+        get :reorder, { question_id: 0 }, valid_session
+        assigns(:answers).should eq [@answers[0]]
+        assigns(:updates).should eq [@answers[1]]
       end
     end
   end
@@ -99,17 +132,6 @@ describe Admin::AnswersController do
     end
   end
 
-  describe "GET reorder" do
-    it "assigns @answers ordered by position using question_id" do
-      question = double(Question)
-      answers = [double(Answer)]
-      Question.should_receive(:find).with("0").and_return(question)
-      question.should_receive(:answers).and_return(answers)
-      answers.should_receive(:order).and_return(answers)
-      get :reorder, { question_id: 0 }, valid_session
-      assigns(:answers).should eq answers
-    end
-  end
 
   describe "POST sort" do
     it "inserts each answer param in list at param index plus one" do
@@ -153,27 +175,6 @@ describe Admin::AnswersController do
         Answer.any_instance.stub(:save).and_return(false)
         post :create, { answer: { label: "label", url: "url" } }, valid_session
         response.should render_template('new')
-      end
-    end
-
-    describe "DELETE destroy"do
-      it "destroys the requested answer" do
-        answer = double(Answer)
-        answer.stub(:question_id).and_return(1)
-        Question.stub(:find).and_return(double(Question))
-        Answer.stub(:find).with("0").and_return(answer)
-        answer.should_receive(:destroy)
-        delete :destroy, {id: 0}, valid_session
-      end
-
-      it "re-renders 'index' template" do
-        answer = double(Answer)
-        answer.stub(:question_id).and_return(1)
-        Question.stub(:find).and_return(double(Question))
-        Answer.stub(:find).with("0").and_return(answer)
-        answer.stub(:destroy)
-        delete :destroy, {id: 0}, valid_session
-        response.should render_template('index')
       end
     end
   end

@@ -1,6 +1,7 @@
 module Admin
   class QuestionsController < Admin::AdminController
     before_action :set_question, only: [:show, :edit, :update, :deactivate, :add_question_to_voting_round]
+    before_action :load_answers_and_updates, only: [:show]
     before_action :load_categories, only: [:new, :edit]
     before_action :load_voting_rounds, only: [:edit]
     before_action :load_tags, only: [:index, :filter_by_tag]
@@ -98,6 +99,12 @@ module Admin
 
     def load_tags
       @tags = Question.tag_counts_on(:tags)
+    end
+
+    def load_answers_and_updates
+      ordered_answers_both_types = Question.find(params[:id]).answers.order(:position)
+      @answers = ordered_answers_both_types.where(type: Answer::Type::Answer)
+      @updates = ordered_answers_both_types.where(type: Answer::Type::Update)
     end
   end
 end

@@ -10,17 +10,25 @@ describe QuestionsController do
                           }
 
   describe "GET show" do
-
-    it "retrieves a question that is not removed" do
-      questions = [double(:question)]
-      Question.should_receive(:where).with("id = ? AND status != 'Removed'", "1" ).and_return(questions)
-      get :show, {:id => 1}
-      assigns(:question).should eq(questions.first)
+    before do
+      @question = double(Question)
+      @answers = [double(Answer), double(Answer)]
+      Question.stub(:find).with("0").and_return(@question)
+      @question.stub(:answers).and_return(@answers)
+      @answers.stub(:order).and_return(@answers)
+      @answers.stub(:where).with(type: Answer::Type::Answer).and_return([@answers[0]])
+      @answers.stub(:where).with(type: Answer::Type::Update).and_return([@answers[1]])
     end
 
-    it "does not retrieve a question that is removed" do
-      Question.stub_chain(:where,:first).and_return(nil)
-      get :show, {:id => 1}
+    it "sets @question to question found by id param" do
+      @question.stub(:status).and_return(Question::Status::New)
+      get :show, {:id => 0}
+      assigns(:question).should eq(@question)
+    end
+
+    it "redirects to root if question is removed" do
+      @question.stub(:status).and_return(Question::Status::Removed)
+      get :show, {:id => 0}
       response.should redirect_to(root_url)
     end
   end

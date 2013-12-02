@@ -13,26 +13,24 @@
   </thead>
 
   <tbody>
-    <% @question.answers.each do |answer| %>
-      <% if answer.type == Answer::Type::Answer %>
-        <tr class="answer-row">
-          <td class="answer-label">
-            <%= answer.label %>
-          </td>
-          <td class="answer-url">
-            <%= answer.url %>
-          </td>
-          <td class="answer-type">
-            <%= answer.type %>
-          </td>
-          <td class="answer-edit-link">
-            <%= link_to 'Edit', edit_admin_answer_path(answer) %>
-          </td>
-          <td class="answer-delete-link">
-            <%= link_to 'Delete', admin_answer_path(answer), :method => :delete %>
-          </td>
-        </tr>
-      <% end %>
+    <% @answers.each do |answer| %>
+      <tr class="answer-row">
+        <td class="answer-label">
+          <%= answer.label %>
+        </td>
+        <td class="answer-url">
+          <%= answer.url %>
+        </td>
+        <td class="answer-type">
+          <%= answer.type %>
+        </td>
+        <td class="answer-edit-link">
+          <%= link_to 'Edit', edit_admin_answer_path(answer) %>
+        </td>
+        <td class="answer-delete-link">
+          <%= link_to 'Delete', admin_answer_path(answer, question_id: answer.question_id), :method => :delete %>
+        </td>
+      </tr>
     <% end %>
   </tbody>
 </table>
@@ -51,26 +49,24 @@
   </thead>
 
   <tbody>
-    <% @question.answers.each do |answer| %>
-      <% if answer.type == Answer::Type::Update %>
-        <tr class="answer-row">
-          <td class="answer-label">
-            <%= answer.label %>
-          </td>
-          <td class="answer-url">
-            <%= answer.url %>
-          </td>
-          <td class="answer-type">
-            <%= answer.type %>
-          </td>
-          <td class="answer-edit-link">
-            <%= link_to 'Edit', edit_admin_answer_path(answer) %>
-          </td>
-          <td class="answer-delete-link">
-            <%= link_to 'Delete', admin_answer_path(answer), :method => :delete %>
-          </td>
-        </tr>
-      <% end %>
+    <% @updates.each do |update| %>
+      <tr class="update-row">
+        <td class="update-label">
+          <%= update.label %>
+        </td>
+        <td class="update-url">
+          <%= update.url %>
+        </td>
+        <td class="update-type">
+          <%= update.type %>
+        </td>
+        <td class="update-edit-link">
+          <%= link_to 'Edit', edit_admin_answer_path(update) %>
+        </td>
+        <td class="update-delete-link">
+          <%= link_to 'Delete', admin_answer_path(update, question_id: update.question_id), :method => :delete %>
+        </td>
+      </tr>
     <% end %>
   </tbody>
 </table>

@@ -1,7 +1,8 @@
 module Admin
   class AnswersController < Admin::AdminController
+    before_action :load_answers_and_updates, only: [:index, :destroy, :reorder]
+
     def index
-      params.require(:question_id)
       @question = Question.find(params[:question_id])
     end
 
@@ -25,7 +26,6 @@ module Admin
     end
 
     def reorder
-      @answers = Question.find(params[:question_id]).answers.order(:position)
     end
 
     def sort
@@ -46,12 +46,19 @@ module Admin
 
     def destroy
       answer = Answer.find(params[:id])
-      @question = Question.find(answer.question_id)
+      @question = Question.find(params[:question_id])
       answer.destroy
       render "index"
     end
 
     private
+      def load_answers_and_updates
+        params.require(:question_id)
+        ordered_answers_both_types = Question.find(params[:question_id]).answers.order(:position)
+        @answers = ordered_answers_both_types.where(type: Answer::Type::Answer)
+        @updates = ordered_answers_both_types.where(type: Answer::Type::Update)
+      end
+
       def answer_params
         params.require(:answer).permit(:label, :url, :question_id, :type)
       end

@@ -1,9 +1,11 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show]
+  before_action :load_answers_and_updates, only: [:show]
   before_action :load_categories, only: [:filter, :show]
 
   def show
-      redirect_to root_url if @question.nil?
+      @question = Question.where("id = ? AND status != 'Removed'", params[:id]).first
+    @question = Question.find(params[:id])
+    redirect_to root_url if @question.status == Question::Status::Removed
   end
 
   def filter
@@ -73,7 +75,9 @@ class QuestionsController < ApplicationController
       params.require(:question).permit(:searchfield, :original_text, :display_text, :description, :name, :anonymous, :email, :email_confirmation, :neighbourhood, :picture_url, :picture_owner, :picture_attribution_url, :category_ids => [] )
     end
 
-    def set_question
-      @question = Question.where("id = ? AND status != 'Removed'", params[:id]).first
+    def load_answers_and_updates
+      ordered_answers_both_types = Question.find(params[:id]).answers.order(:position)
+      @answers = ordered_answers_both_types.where(type: Answer::Type::Answer)
+      @updates = ordered_answers_both_types.where(type: Answer::Type::Update)
     end
 end

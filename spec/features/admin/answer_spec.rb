@@ -39,9 +39,9 @@ describe "Question answers" do
         add_answer(Answer::Type::Update)
         @admin_answers_page = Admin::Answers.new
         @admin_answers_page.load(question_id: @question.id)
-        @admin_answers_page.answers[0].url.text.should eq "url"
-        @admin_answers_page.answers[0].label.text.should eq "label"
-        @admin_answers_page.answers[0].type.text.should eq Answer::Type::Update
+        @admin_answers_page.updates[0].url.text.should eq "url"
+        @admin_answers_page.updates[0].label.text.should eq "label"
+        @admin_answers_page.updates[0].type.text.should eq Answer::Type::Update
       end
     end
   end
@@ -60,9 +60,9 @@ describe "Question answers" do
       page.choose(Answer::Type::Update)
       @edit_admin_answer_page.update_answer_button.click
       @admin_answers_page.load(question_id: @question.id)
-      @admin_answers_page.answers[0].url.text.should eq "url2"
-      @admin_answers_page.answers[0].label.text.should eq "label2"
-      @admin_answers_page.answers[0].type.text.should eq Answer::Type::Update
+      @admin_answers_page.updates[0].url.text.should eq "url2"
+      @admin_answers_page.updates[0].label.text.should eq "label2"
+      @admin_answers_page.updates[0].type.text.should eq Answer::Type::Update
     end
   end
 

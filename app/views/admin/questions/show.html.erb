@@ -71,7 +71,7 @@
 
 <p>
   <strong>Answers:</strong>
-  <% @question.completed_answers.each do |answer| %>
+  <% @answers.each do |answer| %>
     <div>
       <span class="answer_label"><%= answer.label %></span>
       <span class="answer_url"><%= answer.url %></span>
@@ -81,7 +81,7 @@
 
 <p>
   <strong>Updates:</strong>
-  <% @question.updates.each do |update| %>
+  <% @updates.each do |update| %>
     <div>
       <span class="update_label"><%= update.label %></span>
       <span class="update_url"><%= update.url %></span>
