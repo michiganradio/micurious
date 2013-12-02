@@ -52,15 +52,15 @@ describe Admin::UsersController do
   describe "GET main" do
     before do
       @most_recent_questions = [Question.new]
-      Question.should_receive(:recent_questions).and_return(@most_recent_questions)
+      Question.stub(:recent_questions).and_return(@most_recent_questions)
       @most_recent_answers = [Answer.new]
-      Answer.should_receive(:recent_answers).and_return(@most_recent_answers)
+      Answer.stub(:recent_answers).and_return(@most_recent_answers)
       @most_recent_updates = @most_recent_answers
-      Answer.should_receive(:recent_updates).and_return(@most_recent_updates)
+      Answer.stub(:recent_updates).and_return(@most_recent_updates)
       @most_recent_questions_with_updated_tags = [Question.new]
-      Question.should_receive(:recent_questions_with_updated_tags).and_return(@most_recent_questions_with_updated_tags)
+      Question.stub(:recent_questions_with_updated_tags).and_return(@most_recent_questions_with_updated_tags)
       @most_recent_questions_with_updated_notes = @most_recent_questions_with_updated_tags
-      Question.should_receive(:recent_questions_with_updated_notes).and_return(@most_recent_questions_with_updated_notes)
+      Question.stub(:recent_questions_with_updated_notes).and_return(@most_recent_questions_with_updated_notes)
       @voting_round = [VotingRound.new]
       VotingRound.stub(:where).and_return(@voting_round)
     end
@@ -92,6 +92,16 @@ describe Admin::UsersController do
     it "assigns current voting round as @voting_round" do
       get :main, {}, valid_session
       assigns(:voting_round).should eq @voting_round[0]
+    end
+
+    describe "#search" do
+       it "returns questions with search text only criteria "do
+          question_results = [double(:question)]
+          Question.should_receive(:with_search_text).and_return(question_results)
+          get :search, {:search_text => "some text"}, valid_session
+          assigns(:search_results).should eq question_results
+          response.should redirect_to admin_url
+       end
     end
   end
 

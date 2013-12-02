@@ -226,6 +226,26 @@ describe Question do
 
   end
 
+  describe "with_search_text" do
+    context "no category selected" do
+      it "returns questions with search text only" do
+        question = FactoryGirl.create(:question, display_text: "Whatever you are searching for")
+        question2 = FactoryGirl.create(:question)
+        Question.with_search_text("searching").should eq [question]
+      end
+    end
+
+    context "with category selected" do
+      it "returns questions with search text based on category" do
+        category = FactoryGirl.create(:category, name: "economics")
+        question = FactoryGirl.create(:question, display_text: "Whatever you are searching for", categories: [category])
+        question2 = FactoryGirl.create(:question , display_text: "searching")
+        Question.with_search_text("searching",  category.id).should eq [question]
+      end
+    end
+
+  end
+
   describe "active?" do
     it "is true when the status is New, Investigating, and Answered" do
       [Question::Status::New, Question::Status::Investigating, Question::Status::Answered].each do |status|

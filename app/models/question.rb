@@ -28,6 +28,16 @@ class Question < ActiveRecord::Base
     end
   end
 
+  def self.with_search_text(search_text, category_id = nil)
+    search_query =  "display_text like :text or original_text like :text or description like :text or neighbourhood like :text or notes like :text"
+
+    if category_id.present?
+      includes(:categories).where(search_query, text: "%"+search_text+"%").references(:categories).where("category_id = ?", category_id)
+    else
+      includes(:categories).where(search_query, text: "%"+search_text+"%").references(:categories)
+    end
+   end
+
  module Status
    New = "New"
    Answered = "Answered"

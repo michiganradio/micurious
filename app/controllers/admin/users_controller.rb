@@ -31,6 +31,12 @@ module Admin
       @voting_round = VotingRound.where(status: VotingRound::Status::Live).first
     end
 
+    # GET /admin/search
+    def search
+      @search_results = Question.with_search_text(params[:search_text], params[:category_id])
+      redirect_to admin_url
+    end
+
     # POST /admins
     def create
       @admin = User.new(admin_params)
