@@ -108,3 +108,24 @@ $user-navigation-menu-height: 30px;
   color: lightgray;
 }
 
+@media (max-width: 750px) {
+  .ask-question-row {
+    position: relative;
+    height: 80%;
+  }
+  .cc-logo {
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+  }
+  .carrot {
+    visibility: hidden;
+  }
+  .submit-wrap {
+    height: calc(100% - 100px);
+    width: 100%;
+    .submit-question-container {
+      height: calc(100% - 100px);
+    }
+  }
+}
