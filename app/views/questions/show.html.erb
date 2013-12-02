@@ -5,7 +5,6 @@
   <%= link_to raw("Next Question<span class='arrow right'></span>"), question_path(@question.next_question), class: "pull-right" unless @question.next_question.nil? %>
   </p>
   <div class="clearfix">
-    <%= render "share_widget" %>
     <div class="question-image col-sm-4">
       <%= render partial: "shared/question_image", locals:{ question: @question} %>
     </div>
@@ -20,6 +19,7 @@
   <% if @question.completed_answers.any? %>
     <div class="answer-image col-sm-4">
       <div class="checkmark"></div>
+    <%= render "share_widget" %>
     </div>
     <div class="answers col-sm-8">
       <div class="answer-text">
