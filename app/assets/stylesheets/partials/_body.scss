@@ -235,7 +235,7 @@ h2 {
   right: 0px;
   padding: $grid-unit/2 $grid-unit/2 0 $grid-unit/2;
   margin: 0px;
-  font-size: 13px;
+  font-size: $grid-unit;
 }
 
 .popover-link {
@@ -383,8 +383,14 @@ h2 {
 .css3 { font-size: 14px; }
 .css4 { font-size: 17px; }
 
-@media (max-width: 750px) {
+@media (max-width: 768px) {
   h2.rank {
     right: 5;
+  }
+  .question-text {
+    font-size: $grid-unit * .9;
+    .comment-count-link {
+      font-size: $grid-unit * .75;
+    }
   }
 }

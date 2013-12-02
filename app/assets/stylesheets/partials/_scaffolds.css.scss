@@ -80,3 +80,16 @@ div {
 section p {
   font-size: $grid-unit;
 }
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: $grid-unit * 1.5;
+  } 
+  body {
+    font-size: $grid-unit *.75;
+    line-height: $grid-unit;
+  }
+  section p {
+    font-size: $grid-unit * .75;
+  }
+}
