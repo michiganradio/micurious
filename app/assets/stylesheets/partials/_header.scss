@@ -132,3 +132,17 @@ $user-navigation-menu-height: 30px;
     }
   }
 }
+
+.search-bar {
+   width: 300px;
+   height: 10px; 
+   margin-right: 325px;
+   margin-top: -10px;
+   float: right;
+}
+
+.search-bar > div > div {
+  background-color: black;
+  border: none;
+  height: 10px;
+}

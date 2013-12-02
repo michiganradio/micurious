@@ -16,11 +16,12 @@
       </div>
     </div>
   </div>
+  
   <% if @question.completed_answers.any? %>
-    <div class="answer-image">
+    <div class="answer-image col-sm-4">
       <div class="checkmark"></div>
     </div>
-    <div class="answers">
+    <div class="answers col-sm-8">
       <div class="answer-text">
         <h4>Our answer</h4>
         <% @question.completed_answers.each do |answer| %>
@@ -33,10 +34,10 @@
   <% end %>
   <div class="clearfix"></div>
   <% if @question.updates.any? %>
-    <div class="update-image">
+    <div class="update-image col-sm-4">
       <div class="notepad"></div>
     </div>
-    <div class="updates">
+    <div class="updates col-sm-8">
       <div class="update-text clearfix">
         <h4>Reporting updates:</h4>
         <% @question.updates.each do |update| %>
