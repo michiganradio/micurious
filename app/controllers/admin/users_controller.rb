@@ -6,6 +6,7 @@ module Admin
     # GET /admins
     def index
       @admins = User.all
+      @current_admin = current_admin
     end
 
     # GET /admins/1

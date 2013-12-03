@@ -1,4 +1,17 @@
 require 'features/features_spec_helper'
+describe "reporter's voting round actions" do
+  before { signin_as_reporter}
+
+  it "new voting round button is not displayed" do
+    @admin_voting_rounds = Admin::VotingRounds.new
+    @admin_voting_rounds.should have_no_new_voting_round_button
+  end
+
+  it "cannot edit the voting round" do
+    @admin_voting_rounds = Admin::VotingRounds.new
+    @admin_voting_rounds.rows[0].should_not have_content "Edit"
+  end
+end
 
 describe "admin's voting round actions" do
 
