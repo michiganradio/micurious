@@ -38,19 +38,15 @@
   <script> 
     $(document).ready(function(){
     $('.question').on('mouseover', function(){
-    $(this).addClass('highlight');
-    $(this).find('.question-link').addClass('highlight');
-    $(this).find('.author').addClass('highlight');
+    $(this).children('.question-text').children('.question-link').addClass('highlight');
     });
 
     $('.question').on('mouseout', function(){
-    $(this).removeClass('highlight');
-    $(this).find('.question-link').removeClass('highlight');
-    $(this).find('.author').removeClass('hover');
+    $(this).children('.question-text').children('.question-link').removeClass('highlight');
     });
 
     $('.question').on('click', function(){
-    var link = $(this).find('.question-link').attr("href");
+    var link = $(this).children('.question-text').children('.question-link').attr("href");
     window.location.assign(link);
     });
     });
