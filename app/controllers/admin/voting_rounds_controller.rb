@@ -13,11 +13,14 @@ module Admin
 
     # GET /voting_rounds/new
     def new
-      @voting_round = VotingRound.new
+      if admin_privilege_check
+        @voting_round = VotingRound.new
+      end
     end
 
     # GET /voting_rounds/1/edit
     def edit
+      admin_privilege_check
     end
 
     # POST /voting_rounds

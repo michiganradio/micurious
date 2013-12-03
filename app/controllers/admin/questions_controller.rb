@@ -29,6 +29,7 @@ module Admin
 
     # GET /questions/1/edit
     def edit
+      @current_admin = current_admin
     end
 
     # POST /questions
@@ -58,24 +59,26 @@ module Admin
     end
 
     def add_question_to_voting_round
-      raise "Please select a voting round to add" unless params[:voting_round_id].present?
-      voting_round = VotingRound.find(params[:voting_round_id])
-      raise "No voting round exists!" unless voting_round
+      if admin_privilege_check
+        raise "Please select a voting round to add" unless params[:voting_round_id].present?
+        voting_round = VotingRound.find(params[:voting_round_id])
+        raise "No voting round exists!" unless voting_round
 
-      if (@question.active?)
-        voting_round.add_question(@question)
-        voting_round.save!
-        flash.now[:notice] = 'Question was successfully added to the voting round'
-      else
-        flash.now[:error] = 'A removed question can not be added to voting round'
+        if (@question.active?)
+          voting_round.add_question(@question)
+          voting_round.save!
+          flash.now[:notice] = 'Question was successfully added to the voting round'
+        else
+          flash.now[:error] = 'A removed question can not be added to voting round'
+        end
+
+        load_tags
+        @questions = Question.order("created_at DESC")
+        render 'index'
       end
-
-      load_tags
-      @questions = Question.order("created_at DESC")
-      render 'index'
-    rescue Exception => error
-      redirect_to edit_admin_question_url(@question), flash: {error: error.message}
-    end
+      rescue Exception => error
+        redirect_to edit_admin_question_url(@question), flash: {error: error.message}
+      end
 
     private
     # Use callbacks to share common setup or constraints between actions.

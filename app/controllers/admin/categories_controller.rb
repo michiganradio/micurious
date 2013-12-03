@@ -12,11 +12,14 @@ class Admin::CategoriesController < Admin::AdminController
 
   # GET /admin/categories/new
   def new
-    @admin_category = Category.new
-  end
+    if admin_privilege_check
+      @admin_category = Category.new
+    end
+   end
 
   # GET /admin/categories/1/edit
   def edit
+    admin_privilege_check
   end
 
   # POST /admin/categories

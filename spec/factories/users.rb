@@ -5,5 +5,9 @@ FactoryGirl.define do
     username "MyString"
     password "password"
     password_confirmation "password"
+    admin true
+    trait :reporter do
+      admin false
+    end
   end
 end

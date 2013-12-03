@@ -10,7 +10,7 @@ describe Admin::QuestionsController do
       :picture_owner => "owner",
       :picture_attribution_url => "attribution_url",
       :picture_url => "url"
-     }
+  }
   }
   let(:categories) { [FactoryGirl.create(:category),
                       FactoryGirl.create(:category)]}
@@ -38,19 +38,19 @@ describe Admin::QuestionsController do
     end
 
     describe "GET filter_by_tag" do
-        it "returns questions based on tags" do
-          question1 = double(:question)
-          Question.stub_chain(:tagged_with, :order).and_return([question1])
-          get :filter_by_tag, {:tag => "some tag"}
-          assigns(:questions).should eq [question1]
-        end
+      it "returns questions based on tags" do
+        question1 = double(:question)
+        Question.stub_chain(:tagged_with, :order).and_return([question1])
+        get :filter_by_tag, {:tag => "some tag"}
+        assigns(:questions).should eq [question1]
+      end
 
-        it "assings all tags to @tags" do
-          Question.should_receive(:tag_counts_on).with(:tags).and_return("a,b,c")
-          Question.stub_chain(:tagged_with, :order)
-          get :filter_by_tag, {:tag => "some tag"}
-          assigns(:tags).should eq("a,b,c")
-        end
+      it "assigns all tags to @tags" do
+        Question.should_receive(:tag_counts_on).with(:tags).and_return("a,b,c")
+        Question.stub_chain(:tagged_with, :order)
+        get :filter_by_tag, {:tag => "some tag"}
+        assigns(:tags).should eq("a,b,c")
+      end
     end
 
     context "not on SSL" do
@@ -70,7 +70,7 @@ describe Admin::QuestionsController do
         assigns(:questions).should eq(questions)
       end
 
-      it "assings all tags to @tags" do
+      it "assigns all tags to @tags" do
         Question.should_receive(:tag_counts_on).with(:tags).and_return("a,b,c")
         Question.stub(:order)
         get :index, {}
@@ -169,83 +169,97 @@ describe Admin::QuestionsController do
         Question.stub(:find).with(@question.id).and_return(@question)
       end
 
-      context "no voting round selected" do
-        it "flashes error" do
-          put :add_question_to_voting_round, id: @question.id, voting_round_id:""
-          flash.now[:error].should eq "Please select a voting round to add"
+      context "when user does not have admin privileges" do
+        it "returns an error" do
+          subject.stub(:current_admin).and_return(FactoryGirl.create(:user, :reporter))
+          put :add_question_to_voting_round, id: @question.id, voting_round_id: @voting_round.id
+          expect(response.status).to eq 401
         end
       end
 
-      context "question already added to the voting round" do
-        it "flashes error" do
-          duplication_error = RuntimeError.new("some error")
-          @voting_round.stub(:add_question).and_raise(duplication_error)
-          put :add_question_to_voting_round, id: @question.id, voting_round_id:@voting_round.id
-          flash.now[:error].should eq "some error"
-
-        end
-      end
-
-      context "no voting round exists" do
-        it "raises error" do
-          VotingRound.stub(:find).with(@voting_round.id).and_return(nil)
-
-          put :add_question_to_voting_round, id: @question.id, voting_round_id:@voting_round.id
-          flash.now[:error].should eq "No voting round exists!"
-        end
-      end
-
-      context "active question" do
+      context "when user has admin privileges" do
         before do
-          put :add_question_to_voting_round, id: @question.id, voting_round_id: @voting_round.id
+          subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
         end
 
-        it "render 'index' template" do
-          response.should render_template("index")
+        context "no voting round selected" do
+          it "flashes error" do
+            put :add_question_to_voting_round, id: @question.id, voting_round_id:""
+            flash.now[:error].should eq "Please select a voting round to add"
+          end
         end
 
-        it "create a voting_round_question" do
-          @voting_round.should_receive(:add_question).with(@question)
-          @voting_round.should_receive(:save!)
-          put :add_question_to_voting_round, id: @question.id, voting_round_id: @voting_round.id
+        context "question already added to the voting round" do
+          it "flashes error" do
+            duplication_error = RuntimeError.new("some error")
+            @voting_round.stub(:add_question).and_raise(duplication_error)
+            put :add_question_to_voting_round, id: @question.id, voting_round_id:@voting_round.id
+            flash.now[:error].should eq "some error"
+
+          end
         end
 
-        it "flash success notice" do
-          flash.now[:notice].should eq "Question was successfully added to the voting round"
+        context "no voting round exists" do
+          it "raises error" do
+            VotingRound.stub(:find).with(@voting_round.id).and_return(nil)
+
+            put :add_question_to_voting_round, id: @question.id, voting_round_id:@voting_round.id
+            flash.now[:error].should eq "No voting round exists!"
+          end
         end
 
-        it "assigns all questions as @questions" do
-          assigns(:questions).should eq([])
+        context "active question" do
+          before do
+            put :add_question_to_voting_round, id: @question.id, voting_round_id: @voting_round.id
+          end
+
+          it "render 'index' template" do
+            response.should render_template("index")
+          end
+
+          it "create a voting_round_question" do
+            @voting_round.should_receive(:add_question).with(@question)
+            @voting_round.should_receive(:save!)
+            put :add_question_to_voting_round, id: @question.id, voting_round_id: @voting_round.id
+          end
+
+          it "flash success notice" do
+            flash.now[:notice].should eq "Question was successfully added to the voting round"
+          end
+
+          it "assigns all questions as @questions" do
+            assigns(:questions).should eq([])
+          end
+
+          it "assigns all tags as @tags" do
+            assigns(:tags).should eq([])
+          end
         end
 
-        it "assigns all tags as @tags" do
-          assigns(:tags).should eq([])
-        end
-      end
+        context "removed question" do
+          before do
+            @question.status = Question::Status::Removed
+            put :add_question_to_voting_round, id: @question.id, voting_round_id: @voting_round.id
+          end
 
-      context "removed question" do
-        before do
-          @question.status = Question::Status::Removed
-          put :add_question_to_voting_round, id: @question.id, voting_round_id: @voting_round.id
-        end
+          it "render 'index' template" do
+            response.should render_template("index")
+          end
 
-        it "render 'index' template" do
-          response.should render_template("index")
-        end
+          it "not create a voting_round_question" do
+            @voting_round.should_not_receive(:add_question).with(@question)
+            @voting_round.should_not_receive(:save!)
+            put :add_question_to_voting_round, id: @question.id, voting_round_id: @voting_round.id
 
-        it "not create a voting_round_question" do
-          @voting_round.should_not_receive(:add_question).with(@question)
-          @voting_round.should_not_receive(:save!)
-          put :add_question_to_voting_round, id: @question.id, voting_round_id: @voting_round.id
+          end
 
-        end
+          it "flash error notice" do
+            flash.now[:error].should eq "A removed question can not be added to voting round"
+          end
 
-        it "flash error notice" do
-          flash.now[:error].should eq "A removed question can not be added to voting round"
-        end
-
-        it "assigns all questions as @questions" do
-          assigns(:questions).should eq([])
+          it "assigns all questions as @questions" do
+            assigns(:questions).should eq([])
+          end
         end
       end
     end

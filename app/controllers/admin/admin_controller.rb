@@ -10,4 +10,13 @@ class Admin::AdminController < ApplicationController
   def ssl_configured
     !Rails.env.development? && !Rails.env.test?
   end
+
+  def admin_privilege_check
+    unless current_admin.admin
+      render :file => "public/401.html", :status => :unauthorized
+      false
+    else
+      true
+    end
+  end
 end

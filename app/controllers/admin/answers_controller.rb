@@ -7,7 +7,9 @@ module Admin
     end
 
     def edit
-      @answer = Answer.find(params[:id])
+      if admin_privilege_check
+        @answer = Answer.find(params[:id])
+      end
     end
 
     def update
@@ -20,12 +22,15 @@ module Admin
     end
 
     def new
-      params.require(:question_id)
-      @answer = Answer.new
-      @answer.question_id = params[:question_id]
+      if admin_privilege_check
+        params.require(:question_id)
+        @answer = Answer.new
+        @answer.question_id = params[:question_id]
+      end
     end
 
     def reorder
+      admin_privilege_check
     end
 
     def sort
@@ -45,10 +50,12 @@ module Admin
     end
 
     def destroy
-      answer = Answer.find(params[:id])
-      @question = Question.find(params[:question_id])
-      answer.destroy
-      render "index"
+      if admin_privilege_check
+        answer = Answer.find(params[:id])
+        @question = Question.find(params[:question_id])
+        answer.destroy
+        render "index"
+      end
     end
 
     private

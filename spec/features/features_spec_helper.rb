@@ -32,12 +32,22 @@ RSpec.configure do |config|
   config.include Capybara::DSL
 end
 
+
 def switch_to_popup
   page.driver.browser.switch_to.window(page.driver.browser.window_handles.last)
 end
 
 def signin_as_admin
   user = FactoryGirl.create(:user)
+  @signin_page = Admin::Signin.new
+  @signin_page.load
+  @signin_page.username.set(user.username)
+  @signin_page.password.set(user.password)
+  @signin_page.signin_button.click
+end
+
+def signin_as_reporter
+  user = FactoryGirl.create(:user, :reporter)
   @signin_page = Admin::Signin.new
   @signin_page.load
   @signin_page.username.set(user.username)

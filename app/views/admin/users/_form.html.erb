@@ -19,8 +19,12 @@
     <%= f.password_field :password %>
   </div>
   <div class="field">
-      <%= f.label :password_confirmation, "Confirmation" %><br>
-      <%= f.password_field :password_confirmation %>
+    <%= f.label :password_confirmation, "Confirmation" %><br>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="field">
+    <%= f.label :admin, "Admin privileges?" %><br>
+    <%= f.check_box :admin %>
   </div>
   <div class="actions">
     <%= f.submit nil, class: "btn-default btn" %>

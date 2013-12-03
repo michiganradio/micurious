@@ -39,18 +39,41 @@ describe Admin::VotingRoundsController do
   end
 
   describe "GET new" do
+    context "when the user is an admin" do
     it "assigns a new voting_round as @voting_round" do
+      subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
       get :new, {}, valid_session
       assigns(:voting_round).should be_a_new(VotingRound)
+    end
+    end
+
+    context "when the user is not an admin" do
+      it "returns and error" do
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user, :reporter))
+        get :new, {}, valid_session
+        expect(response.status).to eq 401
+      end
     end
   end
 
   describe "GET edit" do
-    it "assigns the requested voting_round as @voting_round" do
-      voting_round = VotingRound.new(id:1)
-      VotingRound.stub(:find).and_return(voting_round)
-      get :edit, {:id => voting_round.to_param}, valid_session
-      assigns(:voting_round).should eq(voting_round)
+    context "when user is an admin" do
+      it "assigns the requested voting_round as @voting_round" do
+        voting_round = VotingRound.new(id:1)
+        VotingRound.stub(:find).and_return(voting_round)
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
+        get :edit, {:id => voting_round.to_param}, valid_session
+        assigns(:voting_round).should eq(voting_round)
+      end
+    end
+    context "when user is not an admin" do
+      it "returns an error" do
+        voting_round = VotingRound.new(id:1)
+        VotingRound.stub(:find).and_return(voting_round)
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user, :reporter))
+        get :edit, {:id => voting_round.to_param}, valid_session
+        expect(response.status).to eq 401
+      end
     end
   end
 

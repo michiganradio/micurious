@@ -35,17 +35,39 @@ describe Admin::UsersController do
   end
 
   describe "GET new" do
-    it "assigns a new admin as @admin" do
-      get :new, {}, valid_session
-      assigns(:admin).should be_a_new(User)
+    context "user has admin privileges" do
+      it "assigns a new admin as @admin" do
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
+        get :new, {}, valid_session
+        assigns(:admin).should be_a_new(User)
+      end
+    end
+
+    context "user does not have admin privileges" do
+      it "returns an error" do
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user, :reporter))
+        get :new, {}, valid_session
+        expect(response.status).to eq 401
+      end
     end
   end
 
   describe "GET edit" do
-    it "assigns the requested admin as @admin" do
-      admin = User.create! valid_attributes
-      get :edit, {:id => admin.to_param}, valid_session
-      assigns(:admin).should eq(admin)
+    context "user has admin privileges" do
+      it "assigns the requested admin as @admin" do
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user, username: "loggedinuser"))
+        admin = User.create! valid_attributes
+        get :edit, {:id => admin.to_param}, valid_session
+        assigns(:admin).should eq(admin)
+      end
+    end
+    context "user does not have admin privileges" do
+      it "returns an error" do
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user, :reporter, username: "loggedinuser"))
+        admin = User.create! valid_attributes
+        get :edit, {:id => admin.to_param}, valid_session
+        expect(response.status).to eq 401
+      end
     end
   end
 
@@ -102,13 +124,13 @@ describe Admin::UsersController do
     end
 
     describe "#search" do
-       it "returns questions with search text only criteria "do
-          question_results = [double(:question)]
-          Question.should_receive(:with_search_text).with("some text", "some category").and_return(question_results)
-          get :search, {:text => "some text", :category => "some category"}, valid_session
-          assigns(:search_results).should eq question_results
-          response.should render_template('main')
-       end
+      it "returns questions with search text only criteria "do
+        question_results = [double(:question)]
+        Question.should_receive(:with_search_text).with("some text", "some category").and_return(question_results)
+        get :search, {:text => "some text", :category => "some category"}, valid_session
+        assigns(:search_results).should eq question_results
+        response.should render_template('main')
+      end
     end
   end
 
@@ -194,18 +216,29 @@ describe Admin::UsersController do
   end
 
   describe "DELETE destroy" do
-    it "destroys the requested admin" do
-      admin = User.create! valid_attributes
-      expect {
-        delete :destroy, {:id => admin.to_param}, valid_session
-      }.to change(User, :count).by(-1)
-    end
+    context "when user is an admin" do
+      it "destroys the requested admin" do
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user, username: "loggedinuser"))
+        admin = User.create! valid_attributes
+        expect {
+          delete :destroy, {:id => admin.to_param}, valid_session
+        }.to change(User, :count).by(-1)
+      end
 
-    it "redirects to the admins list" do
-      admin = User.create! valid_attributes
-      delete :destroy, {:id => admin.to_param}, valid_session
-      response.should redirect_to(admin_users_url)
+      it "redirects to the admins list" do
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user, username: "loggedinuser"))
+        admin = User.create! valid_attributes
+        delete :destroy, {:id => admin.to_param}, valid_session
+        response.should redirect_to(admin_users_url)
+      end
+    end
+    context "when user is not an admin" do
+      it "returns an error" do
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user, :reporter, username: "loggedinuser"))
+        admin = User.create! valid_attributes
+        delete :destroy, {:id => admin.to_param}, valid_session
+        expect(response.status).to eq 401
+      end
     end
   end
-
 end

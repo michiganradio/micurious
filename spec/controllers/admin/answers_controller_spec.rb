@@ -50,45 +50,79 @@ describe Admin::AnswersController do
     end
 
     describe "DELETE destroy"do
-      it "destroys the requested answer" do
-        answer = double(Answer)
-        Answer.stub(:find).with("0").and_return(answer)
-        answer.should_receive(:destroy)
-        delete :destroy, {id: 0, question_id: 0}, valid_session
-      end
+      context "when user has admin privileges" do
+        it "destroys the requested answer" do
+          answer = double(Answer)
+          subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
+          Answer.stub(:find).with("0").and_return(answer)
+          answer.should_receive(:destroy)
+          delete :destroy, {id: 0, question_id: 0}, valid_session
+        end
 
-      it "re-renders 'index' template" do
-        answer = double(Answer)
-        Answer.stub(:find).with("0").and_return(answer)
-        answer.stub(:destroy)
-        delete :destroy, {id: 0, question_id: 0}, valid_session
-        response.should render_template('index')
+        it "re-renders 'index' template" do
+          answer = double(Answer)
+          subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
+          Answer.stub(:find).with("0").and_return(answer)
+          answer.stub(:destroy)
+          delete :destroy, {id: 0, question_id: 0}, valid_session
+          response.should render_template('index')
+        end
+      end
+      context "when user does not have admin privileges" do
+        it "returns an error" do
+          subject.stub(:current_admin).and_return(FactoryGirl.create(:user, :reporter))
+          delete :destroy, {id: 0, question_id: 0}, valid_session
+          expect(response.status).to eq 401
+        end
       end
     end
 
     describe "GET reorder" do
-      it "assigns @answers and @updates ordered by position using question_id" do
-        get :reorder, { question_id: 0 }, valid_session
-        assigns(:answers).should eq [@answers[0]]
-        assigns(:updates).should eq [@answers[1]]
+      context "when user has admin privileges" do
+        it "assigns @answers and @updates ordered by position using question_id" do
+          subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
+          get :reorder, { question_id: 0 }, valid_session
+          assigns(:answers).should eq [@answers[0]]
+          assigns(:updates).should eq [@answers[1]]
+        end
+      end
+      context "when user has no admin privileges" do
+        it "returns an error" do
+          subject.stub(:current_admin).and_return(FactoryGirl.create(:user, :reporter))
+          get :reorder, { question_id: 0 }, valid_session
+          expect(response.status).to eq 401
+        end
       end
     end
   end
 
   describe "GET new" do
-    it "assigns a new answer as @answer" do
-      get :new, { question_id: 0 }, valid_session
-      assigns(:answer).should be_a_new(Answer)
-    end
+    context "when user has admin privileges" do
+      it "assigns a new answer as @answer" do
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
+        get :new, { question_id: 0 }, valid_session
+        assigns(:answer).should be_a_new(Answer)
+      end
 
-    it "sets @answer.question_id to given question id" do
-      get :new, { question_id: 0 }, valid_session
-      assigns(:answer).question_id.should eq 0
+      it "sets @answer.question_id to given question id" do
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
+        get :new, { question_id: 0 }, valid_session
+        assigns(:answer).question_id.should eq 0
+      end
+    end
+    context "when user has no admin privileges" do
+      it "returns an error" do
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user, :reporter))
+        get :new, { question_id: 0 }, valid_session
+        expect(response.status).to eq 401
+      end
     end
   end
 
   describe "GET edit" do
+    context "when user has admin privileges" do
     it "renders 'edit' template" do
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
       answer = double(Answer)
       Answer.stub(:find).with("1").and_return(answer)
       get :edit, { id: 1 }, valid_session
@@ -96,11 +130,21 @@ describe Admin::AnswersController do
     end
 
     it "assigns answer from id param as @answer" do
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
       answer = double(Answer)
       Answer.stub(:find).with("1").and_return(answer)
       get :edit, { id: 1 }, valid_session
       assigns(:answer).should eq answer
     end
+    end
+    context "when user has no admin privileges" do
+      it "returns an error" do
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user, :reporter))
+        get :edit, { id: 1 }, valid_session
+        expect(response.status).to eq 401
+      end
+    end
+
   end
 
   describe "PUT update" do

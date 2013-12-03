@@ -14,11 +14,14 @@ module Admin
 
     # GET /admins/new
     def new
-      @admin = User.new
+      if admin_privilege_check
+        @admin = User.new
+      end
     end
 
     # GET /admins/1/edit
     def edit
+      admin_privilege_check
     end
 
     # GET /admin_main
@@ -57,9 +60,11 @@ module Admin
 
     # DELETE /admins/1
     def destroy
-      @admin.destroy
-      respond_to do |format|
-        format.html { redirect_to admin_users_url }
+      if admin_privilege_check
+        @admin.destroy
+        respond_to do |format|
+          format.html { redirect_to admin_users_url }
+        end
       end
     end
 

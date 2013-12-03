@@ -36,17 +36,39 @@ describe Admin::CategoriesController do
   end
 
   describe "GET new" do
-    it "assigns a new admin_category as @admin_category" do
-      get :new, {}, valid_session
-      assigns(:admin_category).should be_a_new(Category)
+    context "when user has admin privileges" do
+      it "assigns a new admin_category as @admin_category" do
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
+        get :new, {}, valid_session
+        assigns(:admin_category).should be_a_new(Category)
+      end
+    end
+    context "when user does not have admin privileges" do
+      it "returns an error" do
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user, :reporter))
+        get :new, {}, valid_session
+        expect(response.status).to eq 401
+      end
     end
   end
 
   describe "GET edit" do
+    context "when user has admin privileges" do
     it "assigns the requested admin_category as @admin_category" do
+      subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
       category = Category.create! valid_attributes
       get :edit, {:id => category.to_param}, valid_session
       assigns(:admin_category).should eq(category)
+    end
+    end
+    context "when user does not have admin privileges" do
+      it "returns an error" do
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user, :reporter))
+        category = Category.create! valid_attributes
+        get :edit, {:id => category.to_param}, valid_session
+        expect(response.status).to eq 401
+
+      end
     end
   end
 
