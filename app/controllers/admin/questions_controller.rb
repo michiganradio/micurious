@@ -23,8 +23,11 @@ module Admin
 
     # GET /questions/new
     def new
-      @question = Question.new
-      @question.display_text = params["question"]["text"] if params["question"]
+      if admin_privilege_check
+        @question = Question.new
+        @question.display_text = params["question"]["text"] if params["question"]
+        @current_admin = current_admin
+      end
     end
 
     # GET /questions/1/edit

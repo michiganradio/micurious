@@ -48,9 +48,11 @@ class Admin::CategoriesController < Admin::AdminController
 
   # POST /admin/categories/1
   def deactivate
-    @admin_category.update_attribute(:active, false)
-    respond_to do |format|
-      format.html { redirect_to admin_categories_url }
+    if admin_privilege_check
+      @admin_category.update_attribute(:active, false)
+      respond_to do |format|
+        format.html { redirect_to admin_categories_url }
+      end
     end
   end
 

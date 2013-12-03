@@ -87,14 +87,25 @@ describe Admin::QuestionsController do
     end
 
     describe "GET new" do
-      it "assigns a new question as @question" do
-        get :new, {}
-        assigns(:question).should be_a_new(Question)
-      end
+      context "user has admin privileges" do
+        it "assigns a new question as @question" do
+          subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
+          get :new, {}
+          assigns(:question).should be_a_new(Question)
+        end
 
-      it "assigns categories" do
-        get :new, {}
-        assigns(:categories).should == categories
+        it "assigns categories" do
+          subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
+          get :new, {}
+          assigns(:categories).should == categories
+        end
+      end
+      context "user has no admin privileges" do
+        it "returns an error" do
+          subject.stub(:current_admin).and_return(FactoryGirl.create(:user, :reporter))
+          get :new, {}
+          expect(response.status).to eq 401
+        end
       end
     end
 
