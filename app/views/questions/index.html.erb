@@ -5,13 +5,12 @@
     <%= link_to "All", filter_questions_path %>
     <% @categories.each do |category| %>
       | <%= link_to category.label, filter_questions_path(status: params[:status], category_name: category.name) %>
-  <% end %>
-</div>
-<div class="questions">
-  <% cache(cache_key_for_questions(@questions)) do %>
-    <% @questions.each do |question| %>
-      <% cache(question) do %>
-        <%= link_to question_url(question) do %>
+    <% end %>
+  </div>
+  <div class="questions">
+    <% cache(cache_key_for_questions(@questions)) do %>
+      <% @questions.each do |question| %>
+        <% cache(question) do %>
           <div class="question", id="question<%= question.id.to_s %>">
             <div class="question-image col-sm-4">
               <%= render partial: "shared/question_image_link", locals:{ question: question } %>
@@ -21,6 +20,5 @@
         <% end %>
       <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
 </div>
