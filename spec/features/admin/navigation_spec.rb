@@ -7,7 +7,7 @@ describe "Admin navigation" do
 
   shared_examples_for "all admin pages" do
     describe "has navigation links" do
-      it { should have_link("Main", href: admin_path) }
+      it { should have_link("Dashboard", href: admin_path) }
       it { should have_link("Categories", href: admin_categories_path) }
       it { should have_link("Questions", href: admin_questions_path) }
       it { should have_link("Voting Rounds", href: admin_voting_rounds_path) }
@@ -15,7 +15,7 @@ describe "Admin navigation" do
     end
   end
 
-  describe "main page" do
+  describe "dashboard page" do
     before do
       visit admin_path
     end

@@ -1,10 +1,10 @@
 <header> 
   <%= link_to image_tag("cc-logo.gif", class: "image-logo"), root_url, :class=> "image-logo" %>
   <div class="nav-admin-links">
-    <%= link_to "Main", admin_path %>
-    <%= link_to "Categories", admin_categories_path %>
     <%= link_to "Questions", admin_questions_path %>
     <%= link_to "Voting Rounds", admin_voting_rounds_path %>
+    <%= link_to "Categories", admin_categories_path %>
     <%= link_to "Users", admin_users_path %>
+    <%= link_to "Dashboard", admin_path %>
   </div>
 </header>

@@ -3,22 +3,22 @@
 
 <div class="dashboard">
   <div class="row">
-  <div class="recent-questions col-md-6">
-    <details>
-    <summary><strong>Recent questions:</strong></summary>
-  <table class="table table-bordered">
-    <% count = 1 %>
-    <% @recent_questions.each do |question| %>
-      <div class="recent-question"><tr><td>
-            <%= link_to "#{count}. "+question.display_text, admin_question_path(question) %>
-            <% count+=1 %>
-      </td></tr></div>
-    <% end %>
-  </table>
-  </details>
-</div>
+    <div class="recent-questions col-md-6">
+      <details open>
+      <summary><strong>Recent questions:</strong></summary>
+      <table class="table table-bordered">
+        <% count = 1 %>
+        <% @recent_questions.each do |question| %>
+          <div class="recent-question"><tr><td>
+                <%= link_to "#{count}. "+question.display_text, admin_question_path(question) %>
+                <% count+=1 %>
+              </td></tr></div>
+        <% end %>
+      </table>
+    </details>
+  </div>
 <div class="current-voting-round col-md-6">
-  <details>
+  <details open>
   <summary><strong>Current Voting Round:</strong></summary>
   <%= render 'admin/shared/questions' %>
   </details>
@@ -27,7 +27,7 @@
 <br>
 <div class="row">
   <div class="recent-answers col-md-6">
-    <details>
+    <details open>
     <summary><strong>Recent answers:</strong></summary>
     <table class="table table-bordered">
     <% count = 1 %>
@@ -41,7 +41,7 @@
     </details>
   </div>
   <div class="recent-updates col-md-6">
-    <details>
+    <details open>
     <summary><strong>Recent updates:</strong></summary>
     <table class="table table-bordered">
     <% count = 1 %>
@@ -58,7 +58,7 @@
 <br>
 <div class="row">
   <div class="recent-tags col-md-6">
-    <details>
+    <details open>
     <summary><strong>Recent tags:</strong></summary>
     <table class="table table-bordered">
     <% count = 1 %>
@@ -72,7 +72,7 @@
     </details>
   </div>
   <div class="recent-notes col-md-6">
-    <details>
+    <details open>
     <summary><strong>Recent notes:</strong></summary>
     <table class="table table-bordered">
     <% count = 1 %>
