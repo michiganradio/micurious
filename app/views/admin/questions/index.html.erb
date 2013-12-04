@@ -17,6 +17,7 @@
       <th class="medium-cel">Display text</th>
       <th>Name</th>
       <th>Category</th>
+      <th>Created At</th>
       <th>Notes</th>
       <th>Tags</th>
       <th class="small-cel"></th>
@@ -32,6 +33,7 @@
         <td><%= question.display_text %></td>
         <td><%= question.name %></td>
         <td><%= question.categories.map(&:label).join(', ') %></td>
+        <td><%= display_date(question.created_at) %></td>
         <td><%= question.notes %></td>
         <td><%= display_tags(question) %></td>
         <td><%= link_to 'Show', admin_question_path(question) %></td>

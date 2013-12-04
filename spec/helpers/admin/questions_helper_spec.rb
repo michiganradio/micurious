@@ -9,4 +9,10 @@ describe Admin::QuestionsHelper do
     end
   end
 
+  describe "display_date" do
+    it "converts the date to MonddYYYY format" do
+      date = DateTime.new(2013, 3, 4, 0, 0, 0)
+      helper.display_date(date).should == "03/04/2013"
+    end
+  end
 end
