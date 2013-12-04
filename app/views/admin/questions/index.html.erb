@@ -2,7 +2,7 @@
 <h1>Listing questions</h1>
 
 <p>
-<%= link_to 'New Question', new_admin_question_path, class:"btn-default btn" if @current_admin.admin%>
+<%= link_to 'New Question', new_admin_question_path, class:"btn-default btn" if current_admin? %>
 </p>
 <% if @tags.present? %>
 <small>Tags:</small> <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>

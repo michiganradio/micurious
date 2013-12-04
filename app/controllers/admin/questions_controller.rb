@@ -26,13 +26,11 @@ module Admin
       if admin_privilege_check
         @question = Question.new
         @question.display_text = params["question"]["text"] if params["question"]
-        @current_admin = current_admin
       end
     end
 
     # GET /questions/1/edit
     def edit
-      @current_admin = current_admin
     end
 
     # POST /questions

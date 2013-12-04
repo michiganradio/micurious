@@ -20,5 +20,9 @@ module Admin
       remember_token = User.encrypt(cookies[:remember_token])
       @current_admin ||= User.find_by(remember_token: remember_token)
     end
+
+    def current_admin?
+      current_admin.admin
+    end
   end
 end

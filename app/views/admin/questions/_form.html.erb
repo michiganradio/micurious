@@ -31,7 +31,7 @@
       <%= f.text_area :description, :disabled => true, class:"form-control" %>
     </div>
   </div>
-  <% if @current_admin.admin %>
+  <% if current_admin? %>
   <div class="row">
     <div class="field col-lg-8">
       <%= f.label :category %><br>
