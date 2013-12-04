@@ -43,7 +43,9 @@ describe QuestionsController do
         questions = [double(:question, featured?:false)]
         statuses = [Question::Status::New]
         Question.should_receive(:with_status_and_category).with(statuses, 'somecategory').and_return(questions)
-        get :filter, {:status => 'archive', :category_name => 'somecategory'}
+        questions.should_receive(:paginate).with(page: "1").and_return(questions)
+        Question.stub_chain(:with_status_and_category, :where).and_return([])
+        get :filter, {:status => 'archive', :category_name => 'somecategory', :page => 1}
         assigns(:questions).should eq questions
       end
     end
@@ -53,10 +55,14 @@ describe QuestionsController do
         question1 = double(:question, featured?: true)
         question2 = double(:question, featured?:false)
         statuses = [Question::Status::Answered, Question::Status::Investigating]
-        Question.should_receive(:with_status_and_category).with(statuses,'somecategory').and_return([question1, question2])
-        get :filter, {:status => 'answered', :category_name => 'somecategory'}
-        assigns(:questions).should eq [question1, question2]
-        assigns(:featured_answers).should eq [question1]
+        questions = [question1, question2]
+        featured = [question1]
+        Question.should_receive(:with_status_and_category).with(statuses,'somecategory').and_return(questions)
+        Question.stub_chain(:with_status_and_category, :where).and_return(featured)
+        questions.should_receive(:paginate).with(page: "1").and_return(questions)
+        get :filter, {:status => 'answered', :category_name => 'somecategory', :page => 1}
+        assigns(:questions).should eq questions
+        assigns(:featured_answers).should eq featured
       end
     end
   end

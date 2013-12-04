@@ -8,6 +8,7 @@
     <% end %>
   </div>
   <div class="questions">
+    <%= will_paginate @pquestions %>
     <% cache(cache_key_for_questions(@questions)) do %>
       <% @questions.each do |question| %>
         <% cache(question) do %>
@@ -22,5 +23,6 @@
         <% end %>
       <% end %>
     <% end %>
+    <%= will_paginate @pquestions %>
   </div>
 </div>
