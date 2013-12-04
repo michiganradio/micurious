@@ -93,6 +93,7 @@ $carrot-width: 20px;
 .voted {
   @extend .vote-button;
   background-position: -60px 0;
+  right: 0;
 }
 
 .voted-xs {
