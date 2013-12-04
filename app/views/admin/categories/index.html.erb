@@ -1,7 +1,7 @@
 <% provide(:title, 'Listing Categories') %>
 <h1>Listing categories</h1>
 
-<%= link_to 'New Category', new_admin_category_path, class:"btn-default btn" if @current_admin.admin%>
+<%= link_to 'New Category', new_admin_category_path, class:"btn-default btn" if current_admin? %>
 
 <table class="table">
   <thead>
@@ -22,7 +22,7 @@
         <td><%= admin_category.label %></td>
         <td><%= admin_category.active %></td>
         <td><%= link_to 'Show', admin_category_path(admin_category) %></td>
-        <% if @current_admin.admin %>
+        <% if current_admin? %>
           <td><%= link_to 'Edit', edit_admin_category_path(admin_category) %></td>
           <td><%= link_to 'Deactivate', deactivate_admin_category_path(admin_category), method: :post, data: { confirm: 'Are you sure?' } %></td>
         <% end %>

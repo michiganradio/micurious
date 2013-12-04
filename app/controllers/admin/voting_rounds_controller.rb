@@ -5,7 +5,6 @@ module Admin
     # GET /voting_rounds
     def index
       @voting_rounds = VotingRound.all
-      @current_admin = current_admin
     end
 
     # GET /voting_rounds/1

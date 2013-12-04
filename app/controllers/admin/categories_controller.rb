@@ -3,7 +3,6 @@ class Admin::CategoriesController < Admin::AdminController
 
   # GET /admin/categories
   def index
-    @current_admin = current_admin
     @admin_categories = Category.all
   end
 
