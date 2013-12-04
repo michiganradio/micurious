@@ -19,6 +19,9 @@ $question-image-width: $voting-round-image-width + $grid-unit * 3;
 $logo-size: 350px;
 $carrot-width: 20px;
 
+$mobile-max-width: 768;
+
+
 .container {
   padding: 0px;
   margin: 0 auto;
@@ -79,26 +82,14 @@ $carrot-width: 20px;
   }
 }
 
-.vote-xs {
-  @extend .vote-button;
-  cursor: pointer;
-  background-position: 0px 0;
-  right: $grid-unit / 2;
-
-  &:hover {
-    background-position:-60px 0;
-  }
-}
-
 .voted {
   @extend .vote-button;
   background-position: -60px 0;
   right: 0;
 }
 
-.voted-xs {
-  @extend .vote-button;
-  background-position: -60px 0;
+
+.vote.visible-xs, .voted.visible-xs {
   right: $grid-unit / 2;
 }
 
@@ -187,7 +178,7 @@ a {
   padding: 0;
 }
 
-@media (max-width: 768) {
+@media (max-width: $mobile-max-width) {
   .submit-question-text {
     font-size: $grid-unit * .75;
   }

@@ -113,7 +113,7 @@ $social-media-logo-size: 18px;
   font-size: $grid-unit * .8;
 }
 
-@media (max-width: 768px) {
+@media (max-width: $mobile-max-width) {
   .ask-question-row {
     position: relative;
     margin: 0;

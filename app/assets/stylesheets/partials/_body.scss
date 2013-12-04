@@ -383,7 +383,7 @@ h2 {
 .css3 { font-size: 14px; }
 .css4 { font-size: 17px; }
 
-@media (max-width: 768px) {
+@media (max-width: $mobile-max-width) {
   h2.rank {
     right: 0;
     margin: 8px 0;
@@ -393,7 +393,7 @@ h2 {
     height: 256px;
   }
   .question-text {
-    font-size: $grid-unit * .9;
+    font-size: 14px;;
     .comment-count-link {
       font-size: $grid-unit * .75;
     }

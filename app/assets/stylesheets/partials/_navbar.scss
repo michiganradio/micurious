@@ -112,7 +112,7 @@ $navbar-height: $grid-unit*2;
   }
 }
 
-@media(max-width: 768px) {
+@media(max-width: $mobile-max-width) {
   .nav.navbar-nav {
     margin: 0;
     width: 100%;

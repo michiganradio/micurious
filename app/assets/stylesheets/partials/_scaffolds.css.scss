@@ -81,7 +81,7 @@ section p {
   font-size: $grid-unit;
 }
 
-@media (max-width: 768px) {
+@media (max-width: $mobile-max-width) {
   h1 {
     font-size: $grid-unit * 1.5;
   } 
