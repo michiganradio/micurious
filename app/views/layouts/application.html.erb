@@ -37,18 +37,18 @@
   </div>
   <script> 
     $(document).ready(function(){
-    $('.question').on('mouseover', function(){
-    $(this).children('.question-text').children('.question-link').addClass('highlight');
-    });
+      $('.question').on('mouseover', function(){
+        $(this).children('.question-text').children('.question-link').addClass('highlight');
+      });
 
-    $('.question').on('mouseout', function(){
-    $(this).children('.question-text').children('.question-link').removeClass('highlight');
-    });
+      $('.question').on('mouseout', function(){
+        $(this).children('.question-text').children('.question-link').removeClass('highlight');
+      });
 
-    $('.question').on('click', function(){
-    var link = $(this).children('.question-text').children('.question-link').attr("href");
-    window.location.assign(link);
-    });
+      $('.question').on('click', function(){
+        var link = $(this).children('.question-text').children('.question-link').attr("href");
+        window.location.assign(link);
+      });
     });
   </script>
 </html>

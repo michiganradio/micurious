@@ -18,7 +18,7 @@ $question-height: $grid-unit * 8;
 
 .question {
   background-image: image_url("bg_dots.png");
-  position: relative;
+  // position: relative;
   height: $question-height; 
   border-top: 1px dotted darkgray;
   @include smooth-transitions();
@@ -47,10 +47,10 @@ $question-height: $grid-unit * 8;
 }
 
 .question-image {
-  float: left;
+  // float: left;
 //  min-width:30px;
   height: $question-height;
-  position: relative;
+  // position: relative;
   background-position: 0 50%;
   overflow: hidden;
   margin-left: -15px;
@@ -276,18 +276,18 @@ h2 {
 }
 
 @media (max-width: 1024px) {
-  $tablet-question-height: 160px;
+  // $tablet-question-height: 160px;
   .question {
-      height: $tablet-question-height;
+      // height: $tablet-question-height;
   }
   .question-image {
-    height: $tablet-question-height;
+    // height: $tablet-question-height;
     img {
       margin-top: 0px;
     }
   }
   .question-text {
-    height: $tablet-question-height;
+    // height: $tablet-question-height;
   }
   
   .carousel .carousel-inner .item a img{
@@ -386,6 +386,9 @@ h2 {
 @media (max-width: 768px) {
   h2.rank {
     right: 5;
+  }
+  .question {
+    height: 256px;
   }
   .question-text {
     font-size: $grid-unit * .9;

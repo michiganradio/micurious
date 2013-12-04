@@ -11,11 +11,13 @@
     <% cache(cache_key_for_questions(@questions)) do %>
       <% @questions.each do |question| %>
         <% cache(question) do %>
-          <div class="question", id="question<%= question.id.to_s %>">
-            <div class="question-image col-sm-4">
-              <%= render partial: "shared/question_image_link", locals:{ question: question } %>
+          <div class="row">
+            <div class="question", id="question<%= question.id.to_s %>">
+              <div class="question-image col-xs-12 col-sm-4">
+                <%= render partial: "shared/question_image_link", locals:{ question: question } %>
+              </div>
+              <%= render partial:'shared/question_text', locals:{ question: question, badge: true } %>
             </div>
-            <%= render partial:'shared/question_text', locals:{ question: question, badge: true } %>
           </div>
         <% end %>
       <% end %>
