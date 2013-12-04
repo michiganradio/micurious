@@ -1,3 +1,45 @@
+<% if !Rails.env.test? %>
+<script>
+  $(document).ready(function(){
+    function change_image_size(str, size_letter) {
+      var new_url;
+      if (str[str.length-6] == '_') {
+       new_url = str.replace(/_[a-z](.jpg)$/, '_' + size_letter + '.jpg');
+      }
+      else {
+        new_url = str.replace(".jpg", '_' + size_letter + '.jpg');
+      }
+      return new_url;
+    }
+    
+    function preview_small_image(url){
+      if(url != ''){
+        $('#smaller-picture-preview').show();
+        $('#smaller-picture-preview img').attr('src', change_image_size($('#question_picture_url').val(),'n'));
+      }else{
+        $('#smaller-picture-preview').hide();
+      }
+    }
+    
+    function preview_bigger_image(url){
+      if(url != ''){
+        $('#bigger-picture-preview').show();
+        $('#bigger-picture-preview img').attr('src', change_image_size($('#question_picture_url').val(),'b'));
+      }else{
+        $('#bigger-picture-preview').hide();
+      }
+    }
+
+    preview_small_image($('#question_picture_url').val());
+    preview_bigger_image($('#question_picture_url').val());
+
+    $('#question_picture_url').focusout(function(){
+        preview_small_image($(this).val()); 
+        preview_bigger_image($(this).val()); 
+    });
+  });
+</script>
+<% end %>
 <%= form_for(@question, :url => url) do |f| %>
   <% if @question.errors.any? %>
     <div id="error_explanation">
@@ -48,7 +90,37 @@
       <%= f.text_field :picture_url, class:"form-control" %>
     </div>
   </div>
+  <div class="row"> 
+    <div id="smaller-picture-preview">
+      <details open> 
+        <summary>
+         List Picture Preview
+        </summary>
+        <img src="" >
+      </details>     
+    </div>
+    <br>
+  </div>
+  
+  <div class="row"> 
+    <div class="field col-md-5">
+      <%= f.check_box :featured %>
+      <%= f.label :featured %>
+    </div>
+  </div>
 
+  <div class="row">
+    <div id="bigger-picture-preview">
+      <details open> 
+        <summary>
+         Carousel Picture Preview
+        </summary>
+        <img src="" >
+      </details>     
+    </div>
+  </div>
+
+  
   <div class="row">
     <div class="field col-lg-8">
       <%= f.label :picture_owner %>
@@ -77,10 +149,6 @@
     <div class="field col-md-5">
       <%= f.check_box :anonymous %>
       <%= f.label "Remain anonymous" %>
-    </div>
-    <div class="field col-md-5">
-      <%= f.check_box :featured %>
-      <%= f.label :featured %>
     </div>
   </div>
   <div class="row">

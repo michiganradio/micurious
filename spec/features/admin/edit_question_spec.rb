@@ -46,11 +46,9 @@ describe 'admin edit question', js: true do
       @admin_edit_question.should have_no_featured
       @admin_edit_question.update_question_button.click
 
-
       @admin_show_question = Admin::ShowQuestion.new
       @admin_show_question.should have_content("notes here")
       @admin_show_question.should have_content("tags here")
-
 
     end
   end
