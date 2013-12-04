@@ -79,9 +79,26 @@ $carrot-width: 20px;
   }
 }
 
+.vote-xs {
+  @extend .vote-button;
+  cursor: pointer;
+  background-position: 0px 0;
+  right: $grid-unit / 2;
+
+  &:hover {
+    background-position:-60px 0;
+  }
+}
+
 .voted {
   @extend .vote-button;
   background-position: -60px 0;
+}
+
+.voted-xs {
+  @extend .vote-button;
+  background-position: -60px 0;
+  right: $grid-unit / 2;
 }
 
 .responses {

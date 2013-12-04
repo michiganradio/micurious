@@ -385,9 +385,11 @@ h2 {
 
 @media (max-width: 768px) {
   h2.rank {
-    right: 5;
+    right: 0;
+    margin: 8px 0;
   }
   .question {
+    position: relative;
     height: 256px;
   }
   .question-text {
@@ -401,6 +403,9 @@ h2 {
     margin-left: 0;
     img {
       width: 100%;
+    }
+    .rank-triangle {
+      right: 0;
     }
   }
 }

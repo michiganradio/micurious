@@ -4,18 +4,34 @@
       $('#ask-question-form').submit();
     } 
 
+    function addHover(question){
+      $(question).closest('.question').addClass('hover');    
+      $(question).closest('.question').find('.image-container').addClass('hover');    
+      $(question).closest('.question').find('.comment-count-link').addClass('hover');    
+      $(question).closest('.question').find('.question-link').addClass('hover');    
+    }
+
+    function removeHover(question){
+      $(question).closest('.question').removeClass('hover');    
+      $(question).closest('.question').find('.image-container').removeClass('hover');    
+      $(question).closest('.question').find('.comment-count-link').removeClass('hover');    
+      $(question).closest('.question').find('.question-link').removeClass('hover');    
+    }
+
     $('.question').on('mouseenter','.vote', function(){
-      $(this).closest('.question').addClass('hover');    
-      $(this).closest('.question').find('.image-container').addClass('hover');    
-      $(this).closest('.question').find('.comment-count-link').addClass('hover');    
-      $(this).closest('.question').find('.question-link').addClass('hover');    
+      addHover(this);
     });
 
     $('.question').on('mouseleave','.vote', function(){
-      $(this).closest('.question').removeClass('hover');    
-      $(this).closest('.question').find('.image-container').removeClass('hover');    
-      $(this).closest('.question').find('.comment-count-link').removeClass('hover');    
-      $(this).closest('.question').find('.question-link').removeClass('hover');    
+      removeHover(this);
+    });
+
+    $('.question').on('mouseenter','.vote-xs', function(){
+      addHover(this);
+    });
+
+    $('.question').on('mouseleave','.vote-xs', function(){
+      removeHover(this);
     });
 
   });
