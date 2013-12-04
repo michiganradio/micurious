@@ -30,7 +30,7 @@ module Admin
 
     # POST /admin/search
     def search
-      @search_results = Question.with_search_text(params[:text], params[:category])
+      @search_results = Question.with_search_text(params[:text].strip, params[:category])
       render 'main'
     end
 

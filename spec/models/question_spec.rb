@@ -244,6 +244,41 @@ describe Question do
       end
     end
 
+    context "when user provides a neighborhood" do
+      it "returns questions with that neighborhood" do
+        category = FactoryGirl.create(:category, name: "economics")
+        question = FactoryGirl.create(:question, display_text: "Whatever you are searching for", categories: [category], neighbourhood: "Pilsen")
+        question2 = FactoryGirl.create(:question , display_text: "searching")
+        Question.with_search_text("Pilsen", category.id).should eq [question]
+      end
+    end
+
+    context "when user provides a description" do
+      it "returns questions with that description" do
+        category = FactoryGirl.create(:category, name: "economics")
+        question = FactoryGirl.create(:question, display_text: "Whatever you are searching for", categories: [category], description: "describe")
+        question2 = FactoryGirl.create(:question , display_text: "searching")
+        Question.with_search_text("describe", category.id).should eq [question]
+      end
+    end
+
+    context "when user provides a note" do
+      it "returns questions with that note" do
+        category = FactoryGirl.create(:category, name: "economics")
+        question = FactoryGirl.create(:question, display_text: "Whatever you are searching for", categories: [category], notes: "note")
+        question2 = FactoryGirl.create(:question , display_text: "searching")
+        Question.with_search_text("note", category.id).should eq [question]
+      end
+    end
+
+    context "when user provides a name" do
+      it "returns questions with that name" do
+        category = FactoryGirl.create(:category, name: "economics")
+        question = FactoryGirl.create(:question, display_text: "Whatever you are searching for", categories: [category], name: "Landon")
+        question2 = FactoryGirl.create(:question , display_text: "searching")
+        Question.with_search_text("Landon", category.id).should eq [question]
+      end
+    end
   end
 
   describe "active?" do

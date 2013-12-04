@@ -29,7 +29,8 @@ class Question < ActiveRecord::Base
   end
 
   def self.with_search_text(search_text, category_id = nil)
-    search_query =  "display_text like :text or original_text like :text or description like :text or neighbourhood like :text or notes like :text"
+    searched_fields = %w{display_text original_text description neighbourhood notes questions.name}
+    search_query= searched_fields.map{|v| "#{v} like :text"}.join(" or ")
 
     if category_id.present?
       includes(:categories).where(search_query, text: "%"+search_text.to_s+"%").references(:categories).where("category_id = ?", category_id.to_s)
