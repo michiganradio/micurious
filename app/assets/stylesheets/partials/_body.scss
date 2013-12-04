@@ -396,4 +396,11 @@ h2 {
       font-size: $grid-unit * .75;
     }
   }
+  .question-image {
+    padding-left: 0;
+    margin-left: 0;
+    img {
+      width: 100%;
+    }
+  }
 }
