@@ -394,6 +394,19 @@ h2 {
     .comment-count-link {
       font-size: $grid-unit * .75;
     }
+    .question-link {
+      margin-right: 0;
+    }
+    .checkmark, .questionmark {
+      margin: 0; 
+      position: absolute;
+      right: $grid-unit / 2;
+      top: (-$question-height) + ($grid-unit/2)
+    }
+    .questionmark {
+      margin: 0 !important;
+      left: auto;
+    }
   }
   .question-image {
     padding-left: 0;
