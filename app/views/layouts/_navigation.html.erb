@@ -10,7 +10,7 @@
   </div>
   <div class="collapse navbar-collapse" id = "cc-navbar-collapse">
     <ul class="nav navbar-nav col-sm-8 pull-right nav-justified">
-      <li><%= link_to "Up for Voting", root_url, id: "up-for-voting-id", class: @up_for_voting_class %></li>
+     <li><%= link_to "Up for Voting", root_url, id: "up-for-voting-id", class: @up_for_voting_class %></li>
       <li class="dropdown" id="answered-investigating">
         <%= link_to("Answered & Investigating", filter_questions_url(status: "answered"), id: "answered-investigating-id", class: "dropdown-toggle "+ @answered_class.to_s)%> 
         <%= render partial: "layouts/category_dropdown_menu", locals:{status: "answered"} %>
