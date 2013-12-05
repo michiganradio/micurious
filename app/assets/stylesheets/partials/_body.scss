@@ -87,7 +87,7 @@ $question-height: $grid-unit * 8;
   @extend .response-image;
 }
 
-.answer-link {
+.answer-link, .update-link {
   @extend %response-link;
 }
 
@@ -123,10 +123,6 @@ $question-height: $grid-unit * 8;
       color: #767676;    
       text-decoration: none;
     }
-  }
-
-  .update-link {
-    @extend %response-link;
   }
 }
 
@@ -408,5 +404,8 @@ h2 {
     .rank-triangle {
       right: 0;
     }
+  }
+  .image-credits {
+    width: 100%;
   }
 }

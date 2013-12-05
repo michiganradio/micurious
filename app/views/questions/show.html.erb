@@ -26,7 +26,6 @@
         <h4>Our answer</h4>
         <% @answers.each do |answer| %>
           <%= link_to answer.label, answer.url, class: "answer-link clearfix", target: "_blank" %>
-          <br>
         <% end %>
       </div>
     </div>
@@ -40,8 +39,7 @@
       <div class="update-text clearfix">
         <h4>Reporting updates:</h4>
         <% @updates.each do |update| %>
-          <%= link_to update.label, update.url, class: "update-link", target: "_blank" %>
-          <br>
+          <%= link_to update.label, update.url, class: "update-link clearfix", target: "_blank" %>
         <% end %>
       </div>
     </div>
