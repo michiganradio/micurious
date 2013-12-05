@@ -147,8 +147,8 @@ $social-media-logo-size: 18px;
 }
 
 .search-bar {
-   width: 300px;
-   height: 10px; 
+   width: 320px;
+   height: 30px; 
    margin-right: 325px;
    margin-top: -10px;
    float: right;
@@ -157,11 +157,14 @@ $social-media-logo-size: 18px;
 .search-bar > div > div {
   background-color: black;
   border: none;
-  height: 10px;
+  height: 30px;
 }
 
 .search-bar input.gsc-search-button-v2 {
-  height: auto;
-  width: auto;
-  padding: 4 15;
+  height: 25px;
+  width: 67px;
+  background-image: image_url('search_box_icon.png');
+  background-position: 26px 5px;
+  background-repeat: no-repeat;
+  padding: 5 26;
 }
