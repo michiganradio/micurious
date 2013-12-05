@@ -388,13 +388,19 @@ h2 {
     right: 0;
     margin: 8px 0;
   }
+
+  .vote.visible-xs, .voted.visible-xs{
+    top: 35%;
+  }
+
   .question {
     position: relative;
-    height: 256px;
+    height: 280px;
     margin-bottom: $grid-unit;
   }
   .question-text {
-    font-size: 14px;;
+    font-size: 14px;
+    margin-top: 25px;
     .comment-count-link {
       font-size: $grid-unit * .75;
     }
