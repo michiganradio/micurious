@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License along with Cur
       <%= render partial:'shared/browse_voting_round' %>
     <div class="questions">
       <% (display_order(@voting_round.questions)).each_with_index do |question, index| %>
-        <div class="row">
+        <div class="row question-row">
           <div class="question", id="question<%= question.id.to_s %>">
             <div class="question-image col-xs-12 col-sm-4">
               <% if voted? %>

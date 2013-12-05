@@ -411,6 +411,10 @@ h2 {
     height: 280px;
     margin-bottom: $grid-unit;
   }
+  .question-row {
+    margin-left: 0;
+    margin-right: 0;
+  }
   .question-text {
     font-size: 14px;
     padding: 4px 8px 0 8px;
@@ -462,6 +466,5 @@ h2 {
   }
   .answers, .updates, .answer-image, .update-image {
     padding-left: 0;
-  }
-  
+  }  
 }

@@ -189,6 +189,9 @@ a {
 }
 
 @media (max-width: $mobile-max-width) {
+  .container-padding {
+    padding: $container-padding / 4; 
+  }
   .submit-question-text {
     font-size: $grid-unit * .75;
   }

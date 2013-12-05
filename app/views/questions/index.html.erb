@@ -22,7 +22,7 @@ You should have received a copy of the GNU General Public License along with Cur
     <% cache(cache_key_for_questions(@questions)) do %>
       <% @questions.each do |question| %>
         <% cache(question) do %>
-          <div class="row">
+          <div class="row question-row">
             <div class="question", id="question<%= question.id.to_s %>">
               <div class="question-image col-xs-12 col-sm-4">
                 <%= render partial: "shared/question_image_link", locals:{ question: question } %>
