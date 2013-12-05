@@ -21,7 +21,7 @@ class LicenseAdder
     elsif (true_type = ".html")
       license = "<!--" + header_license_text + "!-->\n"
     end
-    prepend(filename, erb_license)
+    prepend(filename, license)
   end
 
   def js_gpl(filename)
