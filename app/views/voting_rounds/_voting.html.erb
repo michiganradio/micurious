@@ -30,9 +30,7 @@ You should have received a copy of the GNU General Public License along with Cur
               <%= if voted? and last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted hidden-xs") end %>
               <% if voted? %><span class="rank-triangle"></span><% end %>
             </div>
-            <%= render partial:'shared/question_text', locals:{question:question, badge: false} %>
-            <%= if !voted? then link_to "", vote_path(question_id: question.id, voting_round_id: @voting_round.id), method: :post, class: "vote visible-xs", id: "vote"+question.id.to_s end %>
-            <%= if voted? and last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted visible-xs") end %>
+            <%= render partial:'shared/question_text', locals:{question:question, voting_round: @voting_round, badge: false} %>
           </div>
         </div>
       <% end %>

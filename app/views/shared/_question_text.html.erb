@@ -7,11 +7,12 @@ Curious City is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU General Public License along with Curious City.  If not, see <http://www.gnu.org/licenses/>.!-->
 <div class="question-text col-xs-12 col-sm-8">
+  <%= if voting_round and !voted? then link_to "", vote_path(question_id: question.id, voting_round_id: voting_round.id), method: :post, class: "vote visible-xs", id: "vote"+question.id.to_s end %>
+  <%= if voting_round and voted? and last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted visible-xs") end %>
   <%= link_to(question_display_text(question), question_url(question), class: "question-link" ) %>
   <p class="author">Asked by <%=question.display_author%></p>
   <%= link_to("Comments", question_url(question, anchor: 'disqus_thread'), class:"comment-count-link")%>
   <% if badge then %>
-    <div class="<%=badge_class question%>">
-    </div>
+    <div class="<%=badge_class question%>"></div>
   <% end %>
 </div>

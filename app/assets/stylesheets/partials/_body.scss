@@ -400,7 +400,10 @@ h2 {
   }
 
   .vote.visible-xs, .voted.visible-xs{
-    top: 35%;
+    position: relative;
+    float: right;
+    margin-left: $grid-unit/2;
+    top: -38;
   }
 
   .question {
@@ -410,11 +413,12 @@ h2 {
   }
   .question-text {
     font-size: 14px;
-    margin-top: 25px;
+    padding: 4px 8px 0 8px;
     .comment-count-link {
       font-size: $grid-unit * .75;
     }
     .question-link {
+      position: relative;
       margin-right: 0;
     }
     .checkmark, .questionmark {
@@ -426,6 +430,15 @@ h2 {
     .questionmark {
       margin: 0 !important;
       left: auto;
+    }
+    .author {
+      bottom: -26px;
+      // height: 0;
+    }
+    .comment-count-link {
+      bottom: -26px;
+      // height: 0;
+      // padding: 0 8px 0 0;
     }
   }
   .question-image {
@@ -450,4 +463,5 @@ h2 {
   .answers, .updates, .answer-image, .update-image {
     padding-left: 0;
   }
+  
 }
