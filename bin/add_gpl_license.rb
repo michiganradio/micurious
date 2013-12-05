@@ -39,10 +39,13 @@ class LicenseAdder
     end
 end
 
+require 'find'
+
 path = '/Users/Thoughtworker/Documents/current_projects/wbez/curiouscity/'
-Dir.new(path).each do |filename|
+Find.find(path) do |filename|
   la = LicenseAdder.new
   if (LicenseAdder.supported_types.include? File.extname(filename))
-    la.send(File.extname(filename)[1..-1] + "_gpl", path+filename)
+    p "adding license to " + filename
+    la.send(File.extname(filename)[1..-1] + "_gpl", filename)
   end
 end
