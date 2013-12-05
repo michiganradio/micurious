@@ -17,9 +17,6 @@ You should have received a copy of the GNU General Public License along with Cur
   position: absolute;
   display: inline-block;
   background-image: image_url("votebutton.png");
-  @media (max-width: 1020px) {
-    top: 35%;
-  }
 }
 
 .checkmark {
