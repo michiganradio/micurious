@@ -88,9 +88,9 @@ $mobile-max-width: 768;
   right: 0;
 }
 
-
 .vote.visible-xs, .voted.visible-xs {
   right: $grid-unit / 2;
+  top: 38%;
 }
 
 .responses {
