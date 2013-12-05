@@ -12,8 +12,9 @@
     <ul class="nav navbar-nav col-sm-8 pull-right nav-justified">
       <li><%= link_to "Up for Voting", root_url, id: "up-for-voting-id", class: @up_for_voting_class %></li>
       <li class="dropdown" id="answered-investigating">
-      <%= link_to("Answered & Investigating", filter_questions_url(status: "answered"), id: "answered-investigating-id", class: "dropdown-toggle "+ @answered_class.to_s)%> 
-      <%= render partial: "layouts/category_dropdown_menu", locals:{status: "answered"} %>
+        <%= link_to("Answered & Investigating", filter_questions_url(status: "answered"), id: "answered-investigating-id", class: "dropdown-toggle "+ @answered_class.to_s)%> 
+        <%= render partial: "layouts/category_dropdown_menu", locals:{status: "answered"} %>
+      </li>
       <li class="dropdown" id="new-unanswered">
         <%= link_to("New & Unanswered", filter_questions_url(status: "archive"), id: "new-unanswered-id", class:"dropdown-toggle "+ @unanswered_class.to_s) %>
         <%= render partial: "layouts/category_dropdown_menu", locals:{status: "archive"} %>
