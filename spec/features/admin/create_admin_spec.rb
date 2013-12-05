@@ -11,16 +11,18 @@ describe "create user" do
   end
 
   context "user being created is an admin" do
-    it "is a user with editing privileges" do
+    it "is a user with admin privileges" do
+      @admin_create.admin_field.set(true)
       @admin_create.create_user_button.click
       @admin_index_page = Admin::Users.new
       @admin_index_page.load
       @admin_index_page.users[1].should have_content("rebecca")
+      @admin_index_page.users[1].should have_content("true")
     end
   end
 
   context "user being created is a reporter" do
-    it "is a user without editing privileges" do
+    it "is a user without admin privileges" do
       @admin_create.admin_field.set(false)
       @admin_create.create_user_button.click
       @admin_index_page = Admin::Users.new
