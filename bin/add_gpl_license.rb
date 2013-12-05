@@ -15,7 +15,12 @@ class LicenseAdder
   end
 
   def erb_gpl(filename)
-    erb_license = "<!--" + header_license_text + "!-->\n"
+    true_type = File.extname( fname.chomp(File.extname(fname)) )
+    if (true_type = ".js")
+      license = "/*\n" + header_license_text + "\n*/\n"
+    elsif (true_type = ".html")
+      license = "<!--" + header_license_text + "!-->\n"
+    end
     prepend(filename, erb_license)
   end
 
