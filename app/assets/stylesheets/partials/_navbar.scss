@@ -28,6 +28,11 @@ $navbar-height: $grid-unit*2;
   border-left: 2px solid white;
 }
 
+.navbar-brand {
+  padding: 5px 0;
+  color: white;
+}
+
 .navbar-nav {
   padding: 0px;
   width: 66.666%;
@@ -138,10 +143,6 @@ $navbar-height: $grid-unit*2;
   .navbar-header {
     padding-left: 10%;
     padding-right: 10%;
-  }
-  .navbar-brand {
-    padding: 5px 0;
-    color: white;
   }
   #up-for-voting-id {
     border: none;
