@@ -12,8 +12,9 @@ You should have received a copy of the GNU General Public License along with Cur
 <p>
 <%= link_to 'New Question', new_admin_question_path, class:"btn-default btn" if current_admin? %>
 </p>
+
 <% if @tags.present? %>
-<small>Tags:</small> <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+<small>Tags:</small> <% tag_cloud(@tags, %w(tag-xs tag-sm tag-md tag-bg)) do |tag, css_class| %>
     <%= link_to tag.name + "(" + tag.count.to_s + ")", filter_admin_questions_path(tag.name) , :class => css_class %>
   <% end %>
 <% end %>

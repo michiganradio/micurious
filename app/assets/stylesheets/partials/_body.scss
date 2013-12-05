@@ -388,10 +388,10 @@ h2 {
 //  padding-top: $grid-unit / 2;
 }
 
-.css1 { font-size: 8px; }
-.css2 { font-size: 11px; }
-.css3 { font-size: 14px; }
-.css4 { font-size: 17px; }
+.tag-xs { font-size: 8px; }
+.tag-sm { font-size: 11px; }
+.tag-md { font-size: 14px; }
+.tag-bg { font-size: 17px; }
 
 @media (max-width: $mobile-max-width) {
   h2.rank {
