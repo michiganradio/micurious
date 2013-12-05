@@ -34,6 +34,8 @@ GEM
     atomic (1.1.14)
     awesome_print (1.2.0)
     bcrypt-ruby (3.0.1)
+    bootstrap-sass (3.0.3.0)
+      sass (~> 3.2)
     builder (3.1.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -219,6 +221,7 @@ DEPENDENCIES
   acts_as_list (~> 0.3.0)
   awesome_print (~> 1.2.0)
   bcrypt-ruby (~> 3.0.0)
+  bootstrap-sass (~> 3.0.3.0)
   capybara (~> 2.1.0, < 3.0)
   database_cleaner (~> 1.2.0)
   debugger
