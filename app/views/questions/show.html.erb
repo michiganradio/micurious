@@ -15,11 +15,14 @@
       </div>
     </div>
   </div>
-  
+  <div class="row">
+    <div class="col-sm-4"> 
+      <%= render "share_widget" %>
+    </div>
+  </div>
   <% if @answers.any? %>
     <div class="answer-image col-sm-4">
       <div class="checkmark"></div>
-    <%= render "share_widget" %>
     </div>
     <div class="answers col-sm-8">
       <div class="answer-text">
