@@ -90,6 +90,10 @@ $navbar-height: $grid-unit*2;
   width: 100%;
 }
 
+.dropdown-menu{
+  display: none !important;
+}
+
 .dropdown-menu > li > a {
   text-decoration: none;
   &:hover {
@@ -133,9 +137,6 @@ $navbar-height: $grid-unit*2;
   .navbar-collapse .navbar-nav > li {
     width: 100%;
     float:right;
-  }
-  .dropdown-menu{
-    visibility: hidden;
   }
   .navbar > .container-padding {
     padding: 0;

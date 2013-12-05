@@ -1,4 +1,4 @@
-<ul class="dropdown-menu">
+<ul class="dropdown-menu hidden-xs" >
   <li class="carrot"></li>
   <% @categories.each do |category| %>
     <li><%= link_to(category.label, filter_questions_url(status: status, category_name: category.name)) %></li>
