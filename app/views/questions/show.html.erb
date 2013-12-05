@@ -5,11 +5,11 @@
   <%= link_to raw("Next Question<span class='arrow right'></span>"), question_path(@question.next_question), class: "pull-right" unless @question.next_question.nil? %>
   </p>
   <div class="clearfix">
-    <div class="question-image col-sm-4 hidden-xs">
+    <div class="question-image col-sm-4">
       <%= render partial: "shared/question_image", locals:{ question: @question} %>
     </div>
-    <div class="col-sm-8">
-      <div id="question-text" class="question-text-display" data-url="<%= request.original_url %>" data-displaytext="<%= @question.display_text %>" >
+    <div class="col-sm-8 question-show-text-container">
+      <div class="question-text question-show-text" data-url="<%= request.original_url %>" data-displaytext="<%= @question.display_text %>" >
         <%= @question.display_text %>
         <p>Asked by <%=@question.display_author%></p>
       </div>
