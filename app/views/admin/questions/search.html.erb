@@ -1,0 +1,34 @@
+<% if @search_results.present? %>
+<table class="table table-bordered" id="admin-question-table">
+  <thead>
+    <tr>
+      <th class="small-cel">ID</th>
+      <th class="medium-cel">Display text</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Notes</th>
+      <th>Tags</th>
+      <th class="small-cel"></th>
+      <th class="small-cel"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @search_results.each do |question| %>
+      <% cache(question) do %>
+      <tr class="search-question">
+        <td><%= question.id %></td>
+        <td><%= question.display_text %></td>
+        <td><%= question.name %></td>
+        <td><%= question.categories.map(&:label).join(', ') %></td>
+        <td><%= question.notes %></td>
+        <td><%= display_tags(question) %></td>
+        <td><%= link_to 'Show', admin_question_path(question) %></td>
+        <td><%= link_to 'Edit', edit_admin_question_path(question) %></td>
+      </tr>
+     <% end %>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+

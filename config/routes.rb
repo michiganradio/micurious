@@ -22,7 +22,7 @@ Curiouscity::Application.routes.draw do
   match '/find_pictures', to: 'questions#find_pictures', via: 'post'
   match '/questions/:status(/:category_name)', to: 'questions#filter', via: 'get', as: 'filter_questions', constraints: { status: /answered|archive/}
   match '/admin/questions/tag/:tag', to: 'admin/questions#filter_by_tag', via: 'get', as: 'filter_admin_questions'
-  match '/admin/search/', to: 'admin/users#search', via: 'post', as: 'search_admin_questions'
+  match '/admin/questions/search/', to: 'admin/questions#search', via: 'post', as: 'search_admin_questions'
   resources :questions, only: [:create, :new, :show]
   resources :voting_rounds, only: [:show]
 

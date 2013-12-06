@@ -8,26 +8,8 @@ Curious City is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU General Public License along with Curious City.  If not, see <http://www.gnu.org/licenses/>.
 =end
-class Admin::AdminController < ApplicationController
-  force_ssl if: :ssl_configured
-  before_action :signed_in_admin
-  before_action :load_categories
-  layout 'admin/layouts/admin.html.erb'
+class Admin::Results < SitePrism::Page
+  set_url "/admin/search"
 
-  def signed_in_admin
-    redirect_to admin_signin_path, notice: "Please sign in." unless signed_in?
-  end
-
-  def ssl_configured
-    !Rails.env.development? && !Rails.env.test?
-  end
-
-  def admin_privilege_check
-    unless current_admin.admin
-      render :file => "public/401.html", :status => :unauthorized
-      false
-    else
-      true
-    end
-  end
+  elements :search_question, ".search-question"
 end

@@ -96,7 +96,6 @@ module Admin
         @recent_questions_with_updated_tags = Question.recent_questions_with_updated_tags
         @recent_questions_with_updated_notes = Question.recent_questions_with_updated_notes
         @voting_round = VotingRound.where(status: VotingRound::Status::Live).first
-        @categories = Category.all
       end
   end
 end

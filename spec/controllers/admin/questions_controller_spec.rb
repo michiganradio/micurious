@@ -72,6 +72,23 @@ describe Admin::QuestionsController do
       end
     end
 
+    it "assigns categories for search" do
+      Category.stub(:where).and_return(categories)
+      get :search, {:text => "", :category => "some category"}
+      assigns(:categories).should eq categories
+    end
+
+    describe "#search" do
+      it "returns questions with search text only criteria "do
+        question_results = [double(:question)]
+        Question.should_receive(:with_search_text).with("some text", "some category").and_return(question_results)
+        get :search, {:text => "some text", :category => "some category"}
+        assigns(:search_results).should eq question_results
+        response.should render_template('search')
+      end
+    end
+
+
     describe "GET index" do
       it "assigns all questions as @questions" do
         questions = [double(:question), double(:question)]
@@ -106,8 +123,9 @@ describe Admin::QuestionsController do
 
         it "assigns categories" do
           subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
+          Category.stub(:where).and_return(categories)
           get :new, {}
-          assigns(:categories).should == categories
+          assigns(:categories).should eq categories
         end
       end
       context "user has no admin privileges" do
@@ -128,14 +146,15 @@ describe Admin::QuestionsController do
 
       it "assigns categories" do
         question = FactoryGirl.create(:question)
+        Category.stub(:where).and_return(categories)
         get :edit, {:id => question.to_param}
-        assigns(:categories).should == categories
+        assigns(:categories).should eq categories
       end
 
       it "assigns new voting rounds" do
         question = FactoryGirl.create(:question)
         get :edit, {:id => question.to_param}
-        assigns(:voting_rounds).should == [voting_rounds.first]
+        assigns(:voting_rounds).should eq [voting_rounds.first]
       end
     end
 
@@ -312,7 +331,7 @@ describe Admin::QuestionsController do
 
       context "with invalid params" do
         before do
-          Category.stub(:all).and_return([])
+          Category.stub(:where).and_return([])
           VotingRound.stub(:where).and_return([])
         end
 

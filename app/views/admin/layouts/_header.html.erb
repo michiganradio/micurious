@@ -6,13 +6,27 @@ Curious City is free software: you can redistribute it and/or modify it under th
 Curious City is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with Curious City.  If not, see <http://www.gnu.org/licenses/>.!-->
-<header> 
-  <%= link_to image_tag("cc-logo.gif", class: "image-logo"), root_url, :class=> "image-logo" %>
-  <div class="nav-admin-links">
-    <%= link_to "Questions", admin_questions_path %>
-    <%= link_to "Voting Rounds", admin_voting_rounds_path %>
-    <%= link_to "Categories", admin_categories_path %>
-    <%= link_to "Users", admin_users_path %>
-    <%= link_to "Dashboard", admin_path %>
+<header>
+  <div class="row">
+  <div class="col-md-8">
+    <%= link_to image_tag("cc-logo.gif", class: "image-logo"), root_url, :class=> "image-logo" %>
+    <div class="nav-admin-links">
+      <%= link_to "Questions", admin_questions_path %>
+      <%= link_to "Voting Rounds", admin_voting_rounds_path %>
+      <%= link_to "Categories", admin_categories_path %>
+      <%= link_to "Users", admin_users_path %>
+      <%= link_to "Dashboard", admin_path %>
+    </div>
   </div>
+  <div class="admin-search-box col-md-4" >
+    <h3> Questions Search</h3>
+    <%= form_tag(search_admin_questions_path, method: "post") do %>
+      <%= label_tag( "Category:")%>
+      <%= select_tag "category", options_from_collection_for_select(@categories, "id", "name"), prompt: "Please select a category"%>
+      <br>
+      <%= text_field_tag "text", params[:text] %>
+      <%= submit_tag "Search", id: "search-button"%>
+    <% end %>
+  </div>
+</div>
 </header>

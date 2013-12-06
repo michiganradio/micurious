@@ -12,13 +12,17 @@ module Admin
   class QuestionsController < Admin::AdminController
     before_action :set_question, only: [:show, :edit, :update, :deactivate, :add_question_to_voting_round]
     before_action :load_answers_and_updates, only: [:show]
-    before_action :load_categories, only: [:new, :edit]
     before_action :load_voting_rounds, only: [:edit]
     before_action :load_tags, only: [:index, :filter_by_tag]
 
     # GET /questions
     def index
       @questions = Question.order("created_at DESC")
+    end
+
+    # POST /admin/search
+    def search
+      @search_results = Question.with_search_text(params[:text].strip, params[:category])
     end
 
     # GET /questions/1
@@ -51,7 +55,6 @@ module Admin
         if @question.save
           format.html { redirect_to admin_question_url(@question), notice: 'Question was successfully created.' }
         else
-          load_categories
           format.html { render action: 'new' }
         end
       end
@@ -64,7 +67,6 @@ module Admin
       elsif @question.update(question_params)
         redirect_to admin_question_url(@question), notice: 'Question was successfully updated.' and return
       end
-      load_categories
       load_voting_rounds
       render action: 'edit'
     end
@@ -101,10 +103,6 @@ module Admin
     def question_params
       params.require(:question).permit(:original_text, :display_text, :name, :anonymous, :featured, :email,
                                        :email_confirmation, :neighbourhood, :picture_url, :picture_owner, :picture_attribution_url, :reporter, :status, :notes, :tag_list, :category_ids => [])
-    end
-
-    def load_categories
-      @categories = Category.all
     end
 
     def load_voting_rounds

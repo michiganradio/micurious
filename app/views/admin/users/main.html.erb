@@ -95,45 +95,5 @@ You should have received a copy of the GNU General Public License along with Cur
   </div>
 </div>
 <br>
-<h3> Search Questions </h3>
-<%= form_tag(search_admin_questions_path, method: "post") do %>
-  <%= select_tag "category", options_from_collection_for_select(@categories, "id", "name"), prompt: "Please select a category"%>
-  <%= label_tag(:q, "Search for:") %>
-  <%= text_field_tag "text", params[:text] %>
-  <%= submit_tag "Search", id: "search-button" %>
-<% end %>
 
-<% if @search_results.present? %>
-<table class="table table-bordered" id="admin-question-table">
-  <thead>
-    <tr>
-      <th class="small-cel">ID</th>
-      <th class="medium-cel">Display text</th>
-      <th>Name</th>
-      <th>Category</th>
-      <th>Notes</th>
-      <th>Tags</th>
-      <th class="small-cel"></th>
-      <th class="small-cel"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @search_results.each do |question| %>
-      <% cache(question) do %>
-      <tr class="search-question">
-        <td><%= question.id %></td>
-        <td><%= question.display_text %></td>
-        <td><%= question.name %></td>
-        <td><%= question.categories.map(&:label).join(', ') %></td>
-        <td><%= question.notes %></td>
-        <td><%= display_tags(question) %></td>
-        <td><%= link_to 'Show', admin_question_path(question) %></td>
-        <td><%= link_to 'Edit', edit_admin_question_path(question) %></td>
-      </tr>
-     <% end %>
-    <% end %>
-  </tbody>
-</table>
-<% end %>
 </div>
