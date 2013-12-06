@@ -19,13 +19,15 @@ You should have received a copy of the GNU General Public License along with Cur
     </div>
   </div>
   <div class="admin-search-box col-md-4" >
-    <h3> Questions Search</h3>
-    <%= form_tag(search_admin_questions_path, method: "post") do %>
-      <%= label_tag( "Category:")%>
-      <%= select_tag "category", options_from_collection_for_select(@categories, "id", "name"), prompt: "Please select a category"%>
-      <br>
-      <%= text_field_tag "text", params[:text] %>
-      <%= submit_tag "Search", id: "search-button"%>
+    <% if signed_in? %>
+      <h3> Questions Search</h3>
+      <%= form_tag(search_admin_questions_path, method: "post") do %>
+        <%= label_tag( "Category:")%>
+        <%= select_tag "category", options_from_collection_for_select(@categories, "id", "name"), prompt: "Please select a category"%>
+        <br>
+        <%= text_field_tag "text", params[:text] %>
+        <%= submit_tag "Search", id: "search-button"%>
+      <% end %>
     <% end %>
   </div>
 </div>
