@@ -131,6 +131,9 @@ $navbar-height: $grid-unit*2;
 }
 
 @media(max-width: $mobile-max-width) {
+  .navbar {
+    height: auto;
+  }
   .nav.navbar-nav {
     margin: 0;
     width: 100%;
