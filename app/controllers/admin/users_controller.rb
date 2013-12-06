@@ -11,7 +11,7 @@ You should have received a copy of the GNU General Public License along with Cur
 module Admin
   class UsersController < Admin::AdminController
     before_action :set_admin, only: [:show, :edit, :update, :destroy]
-    before_action :load_page_info, only: [:main, :search]
+    before_action :load_page_info, only: [:main]
 
     # GET /admins
     def index
@@ -36,12 +36,6 @@ module Admin
 
     # GET /admin_main
     def main
-    end
-
-    # POST /admin/search
-    def search
-      @search_results = Question.with_search_text(params[:text].strip, params[:category])
-      render 'main'
     end
 
     # POST /admins
