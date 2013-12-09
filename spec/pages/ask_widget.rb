@@ -11,7 +11,7 @@ You should have received a copy of the GNU General Public License along with Cur
 class AskWidget < SitePrism::Page
   set_url "/ask_widget"
   element :submit_question_text, ".submit-question-text"
-  element :submit_button, "input[value='Submit']"
+  element :submit_button, "input[value='Ask']"
   element :answers_link, "#browse-answers-link"
   element :questions_link, "#browse-questions-link"
 end

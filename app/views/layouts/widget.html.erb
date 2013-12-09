@@ -16,8 +16,9 @@ You should have received a copy of the GNU General Public License along with Cur
   <body>
     <div class="widget-container">
       <div class="border-container">
+        <div class="widget-header"><span>WBEZ's</span> CURIOUS CITY</div>
         <%= yield %>
-             </div>
+      </div>
     </div>
     <%= debug(params) if Rails.env.development? %>
   </body>

@@ -124,6 +124,7 @@ $social-media-logo-size: 18px;
 }
 
 @media (max-width: $mobile-max-width) {
+  .container {
   .ask-question-row {
     position: relative;
     margin: 0;
@@ -154,6 +155,7 @@ $social-media-logo-size: 18px;
       }
     }
   }
+}
 }
 
 .search-bar {

@@ -19,16 +19,17 @@ You should have received a copy of the GNU General Public License along with Cur
 </script>
 <![endif]-->
 <div class="ask-widget">
-  <%= link_to image_tag("cc-logo.png", class: "widget-image-logo", alt: "WBEZ CuriousCity" ), root_url, target: "blank" %>
+  <div class="widget-prompt">ASK US <em>YOUR</em> QUESTION: </div>
   <div class="submit-wrap">
     <div class="carrot"></div>
     <div class="submit-question-container">
       <%= form_tag root_path(anchor:'ask'), id: 'ask-question-form', method: :get, target: '_blank' do %>
         <%= text_area_tag :display_text, nil, placeholder: "What do you wonder about Chicago, the region or its people that you want WBEZ to investigate?", class: "submit-question-text", maxlength: 140 %>
-        <%= submit_tag "Submit", class: "btn submit-question-btn" %>
+        <%= submit_tag "Ask", class: "btn submit-question-btn" %>
       <% end %>
       <span class="char-limit"><small>(<span id="question_display_text_count"></span> characters left)</small></span>
     </div>
   </div>
+  <%= link_to image_tag("cc-logo.png", class: "widget-image-logo", alt: "WBEZ CuriousCity" ), root_url, target: "blank" %>
 </div>
 <%= render "footer_widget" %>

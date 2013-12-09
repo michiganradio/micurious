@@ -7,12 +7,7 @@ Curious City is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU General Public License along with Curious City.  If not, see <http://www.gnu.org/licenses/>.!-->
 <footer>
-<small>
-  <%= link_to "Browse Answers", filter_questions_url(status: "answered"), id: "browse-answers-link", target: "_blank" %> |
-  <%= link_to "Browse Questions", filter_questions_url(status: "archive"), id: "browse-questions-link", target: "_blank" %>
-  <div class="partners clearfix">
-    <%= render partial: 'layouts/logos', locals: { div_class_append: '-widget', img_class_append: ' logo-widget' } %>
-  </div>
-</small>
+  <%= link_to "BROWSE ANSWERS", filter_questions_url(status: "answered"), id: "browse-answers-link", target: "_blank" %> |
+  <%= link_to "BROWSE QUESTIONS", filter_questions_url(status: "archive"), id: "browse-questions-link", target: "_blank" %>
 </footer>
 

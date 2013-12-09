@@ -28,7 +28,7 @@ describe "widgets" do
       it "has questions from active voting round" do
         @vote_widget.questions[0].should have_text @questions.first.display_text
         @vote_widget.questions[1].should have_text @questions.second.display_text
-        @vote_widget.widget_prompt.should have_text "Which question should WBEZ investigate next?"
+        @vote_widget.widget_prompt.should have_text "WHICH QUESTION SHOULD WBEZ INVESTIGATE NEXT?"
         @vote_widget.questions[0].should have_link('vote' + @questions.first.id.to_s)
         @vote_widget.questions[1].should have_link('vote' + @questions.second.id.to_s)
       end
@@ -47,7 +47,7 @@ describe "widgets" do
       describe "shows voting results" do
         it "hides vote buttons, shows ranks, thanks user, and orders questions by voting number" do
           @vote_widget.should_not have_vote_buttons
-          @vote_widget.widget_prompt.should have_text "Thanks for voting!"
+          @vote_widget.widget_prompt.should have_text "THANKS FOR VOTING!"
 
           @vote_widget.questions[0].should have_text "1st"
           @vote_widget.questions[1].should have_text "2nd"

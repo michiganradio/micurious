@@ -11,7 +11,7 @@ You should have received a copy of the GNU General Public License along with Cur
 $question-height: 80px;
 $widget-width: 310px;
 $widget-height: 370px;
-$logo-height: 31px;
+$logo-height: 25px;
 $logo-width: 140px;
 $rank-width: 20px;
 $prompt: 25px;
@@ -25,7 +25,7 @@ $prompt: 25px;
 
 .border-container{
   @include dotted-line(border); 
-  margin: 3px;
+  background-image: image_url("bg_dots.png");
   overflow: hidden;
   text-align: center;
 }
@@ -36,52 +36,62 @@ $prompt: 25px;
 
 .widget-image-logo {
   @include set-size($logo-width, $logo-height);
-  margin: 5px;
-  padding-bottom: 5px;
-  @include dotted-line(border-bottom);
-}
-
-.ask-widget .widget-image-logo {
-  @include set-size(250px, 50px); 
+  margin: $grid-unit/2;
 }
 
 .widget-container .questions-container {
-  height: 245px; 
+  height: 215px; 
   @include box-sizing(border-box);
 }
 
 .widget-prompt {
   font-size: 16px;
-  color: $bold-blue;
-  text-align: center;
+  color: black;
   line-height: $prompt;
   @include box-sizing(border-box);
-  @include dotted-line(border-bottom);
   width: 80%;
   margin: 0 auto;
+  height: 55px;
+  padding-top: $grid-unit/2;
 }
 
 .widget-subtitle {
-  font-size: $grid-unit;
-  color: $bold-blue;
+  font-size: 12px;
+  color: black;
   text-align: center;
 }
 
 .widget-question-text {
   position: relative;
-  padding: 5px 0px 5px 30px;
+  margin: 5px 0;
+  margin-left: 25px;
   width: $widget-width - $rank-width - $grid-unit * 2;
   @include box-sizing(border-box);
+  background-color: white;
   display: table;
 }
 
-.widget-blue-hover {
-  background-image: image_url('bg_dots.png');
-  width: 234px;
+.widget-header {
+  background-color: $nice-blue;
+  color: white;
+  height: 13px;
+  font-size: 10px;
+  line-height:12px;
+  text-align: left;
+
+  & span{
+    color: $hot-pink;
+  }
 }
 
-.display-text.hover{
-  @extend .blue-hover; 
+
+.widget-blue-hover {
+  width: 262px;
+  padding-left: 35px;
+}
+
+.widget-blue-hover.hover {
+  @extend .blue-hover;
 }
 
 .widget-question {
@@ -89,33 +99,32 @@ $prompt: 25px;
   margin: 1 $grid-unit/2;
   border-radius: $grid-unit;
   background-position-y: -38px;
-  height: 80px;
+  height: 70px;
+  position: relative;
   .rank-triangle {
-    @include right-triangle(30px, bottom, left);
-    border-radius: 0 $grid-unit;
+    @include right-triangle(30px, top, right);
     z-index: 2;
-    left: 0;
-    top: 20px;
+    right: 0;
+    top: 0px;
   }
   .rank {
     z-index: 3;
-    padding: $grid-unit/2;
     font-size: $grid-unit;
+    left: 255;
     color: white;
     position: absolute;
-    margin-top: $question-height - $grid-unit*2.5;
+    margin-top: $grid-unit/4;
   }
   .voted {
     position: absolute;
-    left: 6px;
+    left: -30px;
     z-index: 1;
-    top: 10px;
+    top: 0px;
   }
 }
 
 .widget-question-text .display-text {
-  padding: 3px 5px 3px 30px;
-  height: 70px;
+  height: 60px;
   width: inherit;
   display: table-cell;
   font-size: 11px;
@@ -125,27 +134,35 @@ $prompt: 25px;
 }
 
 .widget-question-text .vote {
-  @include set-size(50px, 50px);
-  float: left;
-  background-image: image_url("votebutton_widget.png"); 
+  left: -30px;
+  @include set-size(60px, 60px);
+  top: 0;
+  background-image: image_url("votebutton.png"); 
   overflow: hidden;
   display: inline-block;
-  top: 15px;
   position: absolute;
   cursor: pointer;
-  left: 5px;
   z-index: 1;
   &:hover {
-    background-position:-51px 0;
+    background-position:-61px 0;
     background-color: transparent;
   }
 }
 
 .widget-question-text .voted {
-  @include set-size(50px, 50px);
-  float: left;
-  background-image: image_url("votebutton_widget.png"); 
-  background-position: -51px 0;
+  @include set-size(60px, 60px);
+  background-image: image_url("votebutton.png"); 
+  background-position: -61px 0;
+}
+
+.widget-question-text .not-voted {
+  @extend .voted;
+  -khtml-opacity:.50; 
+  -moz-opacity:.50; 
+  -ms-filter:"alpha(opacity=50)";
+  filter:alpha(opacity=50);
+  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0.5);
+  opacity:.50; 
 }
 
 .ask-widget .submit-wrap {
@@ -160,6 +177,7 @@ $prompt: 25px;
 
   .submit-question-container {
     height: 180px;
+  background-color: white;
 
     .submit-question-btn {
       right: $grid-unit * 1.5;
@@ -194,4 +212,14 @@ $prompt: 25px;
   @extend .logo-small;
   @extend .logo-small.kf-logo;
   width: 22px;
+}
+
+.widget-container a {
+  color: black;
+  font-size: $grid-unit * .75;
+  margin-bottom: $grid-unit;
+}
+
+.widget-container footer {
+  margin: $grid-unit/2;
 }
