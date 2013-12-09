@@ -9,11 +9,30 @@ You should have received a copy of the GNU General Public License along with Cur
 <header>
 <script>
   $(document).ready(function() {
-  $('#how-it-works-link').click(function() {
-  $('#how-it-works').slideToggle();
-  });
-  $('#display_text').limiter(140, $('#question_display_text_count_header'));
-  });
+    $('#how-it-works-link').click(function() {
+      $('#how-it-works').slideToggle();
+    });
+    $('#display_text').limiter(140, $('#question_display_text_count_header'));
+    loadVisibleCCLogos();
+
+    window.onresize = function() {
+      loadVisibleCCLogos();
+    }
+    });
+
+    function loadVisibleCCLogos() {
+      var smallLogo = $('.cc-logo').first();
+      if (smallLogo.css("display") != "none" && smallLogo.data("loaded") === false) {
+        smallLogo.data("loaded", true);
+        $('.cc-logo > img')[0].src = $('.cc-logo img').first().data("src");
+      }
+
+      var bigLogo = $('.cc-logo:eq(1)');
+      if ($('.cc-logo:eq(1)').css("display") != "none" && bigLogo.data("loaded") === false) {
+        bigLogo.data("loaded", true);
+        $('.cc-logo > img')[1].src = $('.cc-logo img:eq(1)').data("src");
+      }
+    }
 </script>
 <!--[if lt IE 9]>
 <div class="ie8-info">
@@ -63,8 +82,8 @@ You should have received a copy of the GNU General Public License along with Cur
   </div>
 </div>
 <div class="container-padding row ask-question-row">
-  <%= link_to image_tag("cc-logo.gif", class: "image-logo img-responsive"), root_url, :class=> "col-sm-4 hidden-lg cc-logo" %>
-  <%= link_to image_tag("cc-logo-large.gif", class: "image-logo-large img-responsive"), root_url, :class=> "col-sm-4 visible-lg cc-logo" %>
+  <%= link_to image_tag("", data: {src: image_path("cc-logo.gif")}, class: "image-logo img-responsive"), root_url, :class=> "col-sm-4 hidden-lg cc-logo", :data=>{loaded: false} %>
+  <%= link_to image_tag("", data: {src: image_path("cc-logo-large.gif")}, class: "image-logo-large img-responsive"), root_url, :class=> "col-sm-4 visible-lg cc-logo", :data=>{loaded: false} %>
   <span class="submit-wrap col-sm-8">
     <div class="carrot"></div>
     <div class="submit-question-container">
