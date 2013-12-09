@@ -22,6 +22,7 @@ describe "Admin navigation" do
       it { should have_link("Questions", href: admin_questions_path) }
       it { should have_link("Voting Rounds", href: admin_voting_rounds_path) }
       it { should have_link("Users", href: admin_users_path) }
+      it { should have_link("Sign Out", href: admin_signout_path) }
     end
   end
 

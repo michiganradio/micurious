@@ -18,6 +18,11 @@ module Admin
       self.current_admin = admin
     end
 
+    def sign_out
+      cookies.delete :remember_token
+      self.current_admin = nil
+    end
+
     def signed_in?
       !current_admin.nil?
     end

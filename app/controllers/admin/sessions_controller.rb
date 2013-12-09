@@ -27,6 +27,8 @@ module Admin
     end
 
     def destroy
+      sign_out
+      redirect_to admin_signin_path
     end
   end
 end
