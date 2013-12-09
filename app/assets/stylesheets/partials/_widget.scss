@@ -189,12 +189,16 @@ $prompt: 20px;
 
   .submit-question-container {
     height: 180px;
-  background-color: white;
+    background-color: white;
 
     .submit-question-btn {
       right: $grid-unit * 1.5;
     }
   }
+}
+
+.ask-widget .submit-question-text {
+  height: 150px;
 }
 
 .ask-widget footer{
