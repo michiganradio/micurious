@@ -100,9 +100,6 @@ $navbar-height: $grid-unit*2;
   width: 100%;
 }
 
-.dropdown-menu{
-  display: none !important;
-}
 
 .dropdown-menu > li > a {
   text-decoration: none;
@@ -131,6 +128,9 @@ $navbar-height: $grid-unit*2;
 }
 
 @media(max-width: $mobile-max-width) {
+  .dropdown-menu{
+    display: none !important;
+  }
   .navbar {
     height: auto;
   }
