@@ -36,6 +36,13 @@ describe VotingRoundsController do
       assigns(:previous_voting_round).should eq @prev_voting_round
     end
   end
+  describe "GET about" do
+    it "assigns @about_class to highlighted" do
+      get :about, {}, {}
+      assigns(:about_class).should eq "highlighted"
+    end
+  end
+
   describe "GET show" do
     context "retrieves voting round that is completed" do
       it "assigns the voting round and redirect to root path" do

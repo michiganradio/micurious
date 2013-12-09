@@ -21,7 +21,7 @@ class VotingRoundsController < ApplicationController
   end
 
   def about
-
+    @about_class = "highlighted"
   end
 
   def show
