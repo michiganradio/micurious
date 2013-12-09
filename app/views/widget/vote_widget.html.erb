@@ -8,7 +8,7 @@ Curious City is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with Curious City.  If not, see <http://www.gnu.org/licenses/>.!-->
 <% if !@voting_round || voted? then %>
   <script> 
-    $(document).ready(function(){
+   /* $(document).ready(function(){
     var count = 5;
     countdown = setInterval(function(){
         count--;
@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License along with Cur
           $("body").fadeOut(1000,  function() {window.location = '/ask_widget' });  
         }
       }, 1000);
-    });
+    });*/
   </script>
 <% end %>
 
@@ -33,7 +33,7 @@ You should have received a copy of the GNU General Public License along with Cur
 </script>
 <% if @voting_round %>
   <div class="widget-prompt">
-    <%= voted? ? "THANKS FOR VOTING!" : "WHICH QUESTION SHOULD WBEZ INVESTIGATE NEXT?" %>
+    <%= voted? ? raw("<br>")+"THANKS FOR VOTING!" : "WHICH QUESTION SHOULD WBEZ INVESTIGATE NEXT?" %>
   </div>
   <div class="questions-container">
     <% display_order(@voting_round.questions[0..2]).each_with_index do |question, index| %>
@@ -54,6 +54,7 @@ You should have received a copy of the GNU General Public License along with Cur
                  <% if last_vote?(question.id) %>
                    <%= content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted") %>
                   <% else %>
+                    <div class = "background-circle"></div>
                     <%= content_tag(:div, nil, id: 'not-vote-confirm' + question.id.to_s, class: "not-voted") %>
                 <% end %>
           <% end %>
