@@ -43,6 +43,13 @@ describe QuestionsController do
     end
   end
 
+  describe "GET search" do
+    it "renders user question search page" do
+      get :search, {}
+      response.should render_template("search")
+    end
+  end
+
   describe "GET filter" do
     before do
       subject.stub(:load_categories)

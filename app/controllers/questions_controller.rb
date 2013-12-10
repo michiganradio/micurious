@@ -10,7 +10,7 @@ You should have received a copy of the GNU General Public License along with Cur
 =end
 class QuestionsController < ApplicationController
   before_action :load_answers_and_updates, only: [:show]
-  before_action :load_categories, only: [:filter, :show]
+  before_action :load_categories, only: [:filter, :show, :search]
 
   def show
       @question = Question.where("id = ? AND status != 'Removed'", params[:id]).first
@@ -78,6 +78,9 @@ class QuestionsController < ApplicationController
     respond_to do |format|
       format.js { render @question.valid? ? 'confirm.js.erb' : 'new.js.erb' }
     end
+  end
+
+  def search
   end
 
   private
