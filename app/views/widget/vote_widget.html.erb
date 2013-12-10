@@ -8,27 +8,29 @@ Curious City is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with Curious City.  If not, see <http://www.gnu.org/licenses/>.!-->
 <% if !@voting_round || voted? then %>
   <script> 
-   $(document).ready(function(){
+    $(document).ready(function(){
     var count = 5;
     countdown = setInterval(function(){
-        count--;
-        if (count == 0) {
-          $("body").fadeOut(1000,  function() {window.location = '/ask_widget' });  
-        }
-      }, 1000);
+    count--;
+    if (count == 0) {
+    $("body").fadeOut(1000,  function() {window.location = '/ask_widget' });  
+    }
+    }, 1000);
     });
   </script>
 <% end %>
 
 <script>
   $(document).ready(function(){
-    $('.widget-question').on('mouseenter','.vote', function(){
-      $(this).closest('.widget-question').find('.widget-blue-hover').addClass('hover');    
-    });
+  $('.widget-question').on('mouseenter','.vote', function(){
+  $(this).closest('.widget-question').find('.widget-blue-hover').addClass('hover');    
+  $(this).closest('.widget-question').find('.background-circle').addClass('hover');    
+  });
 
-    $('.widget-question').on('mouseleave','.vote', function(){
-      $(this).closest('.widget-question').find('.widget-blue-hover').removeClass('hover');    
-    });
+  $('.widget-question').on('mouseleave','.vote', function(){
+  $(this).closest('.widget-question').find('.widget-blue-hover').removeClass('hover');    
+  $(this).closest('.widget-question').find('.background-circle').removeClass('hover');    
+  });
   });
 </script>
 <% if @voting_round %>
@@ -38,9 +40,9 @@ You should have received a copy of the GNU General Public License along with Cur
   <div class="questions-container">
     <% display_order(@voting_round.questions[0..2]).each_with_index do |question, index| %>
       <div class="widget-question">
-          <% if voted? %>
-            <h3 class="rank" id="rank<%= question.id.to_s %>"><%= (index + 1).ordinalize %></h3>
-          <% end %>
+        <% if voted? %>
+          <h3 class="rank" id="rank<%= question.id.to_s %>"><%= (index + 1).ordinalize %></h3>
+        <% end %>
         <div class="widget-question-text">
           <%unless voted? %>
             <%=link_to "", widget_vote_path(question_id: question.id, voting_round_id: @voting_round.id), method: :post, class: "vote", id: "vote"+question.id.to_s %> 
@@ -50,20 +52,21 @@ You should have received a copy of the GNU General Public License along with Cur
               <%= question_display_text(question) %>
             </div>
           </div>
+            <div class = "background-circle"></div>
           <% if voted? %><span class="rank-triangle"></span>
-                 <% if last_vote?(question.id) %>
-                   <%= content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted") %>
-                  <% else %>
-                    <div class = "background-circle"></div>
-                    <%= content_tag(:div, nil, id: 'not-vote-confirm' + question.id.to_s, class: "not-voted") %>
-                <% end %>
+            <% if last_vote?(question.id) %>
+              <%= content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted") %>
+            <% else %>
+              <div class = "background-circle"></div>
+              <%= content_tag(:div, nil, id: 'not-vote-confirm' + question.id.to_s, class: "not-voted") %>
+            <% end %>
           <% end %>
         </div>
       </div>
     <% end %>
   </div>
 <% end %>
-  <%= link_to image_tag("cc-logo.png", class: "widget-image-logo", alt: "WBEZ CuriousCity" ), root_url, target: "blank" %>
-  <div class="widget-subtitle">
-    What do you wonder about Chicago?
-  </div>
+<%= link_to image_tag("cc-logo.png", class: "widget-image-logo logo-background", alt: "WBEZ CuriousCity" ), root_url, target: "blank" %>
+<div class="widget-subtitle">
+  What do you wonder about Chicago?
+</div>
