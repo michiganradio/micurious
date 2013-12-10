@@ -27,7 +27,7 @@ class Home < SitePrism::Page
   element :ask_button, "input[value='Ask']"
 
   section :voting_round, VotingRoundSection, ".voting-round"
-  section :ask_question_modal, AskQuestionSection, "#myModal"
+  section :ask_question_modal, AskQuestionSection, "#question-modal"
   section :confirm_question_modal, ConfirmQuestionSection, "#confirm-question-modal"
   section :question_received_modal, QuestionReceivedSection, "#question-received-modal"
   section :question_picture_modal, QuestionPictureSection, "#question-picture-modal"
