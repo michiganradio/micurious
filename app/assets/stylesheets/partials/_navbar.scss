@@ -47,9 +47,6 @@ $navbar-height: $grid-unit*2;
   padding: 0px;
   width: 66.666%;
  
-  #up-for-voting-id.highlighted {
-    background-color: $nice-blue;
-  }
   & > li:nth-child(1) {
     min-width: 20%;
     width: 25%;
@@ -76,15 +73,7 @@ $navbar-height: $grid-unit*2;
   }
 }
 
-#answered-investigating-id.highlighted{
-    background-color: #03bef5;
-}
-
-#new-unanswered-id.highlighted{
-    background-color: #03bef5;
-}
-
-#about-id.highlighted{
+.nav a.highlighted{
     background-color: #03bef5;
 }
 
@@ -92,11 +81,7 @@ $navbar-height: $grid-unit*2;
   background-color: $hot-pink; 
 }
 
-#up-for-voting-id:hover {
-  background-color: $hot-pink;
-}
-
-#about-id:hover {
+ul.nav li a:hover {
   background-color: $hot-pink;
 }
 .dropdown:hover .dropdown-menu {

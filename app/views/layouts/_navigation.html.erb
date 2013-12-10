@@ -27,6 +27,7 @@ You should have received a copy of the GNU General Public License along with Cur
           <%= link_to("New & Unanswered", filter_questions_url(status: "archive"), id: "new-unanswered-id", class:"dropdown-toggle "+ @unanswered_class.to_s) %>
           <%= render partial: "layouts/category_dropdown_menu", locals:{status: "archive"} %>
         </li>
+        <li><%= link_to "Search", search_user_questions_url, id: "search-id", class: "visible-xs " + @search_class.to_s %></li>
         <li><%= link_to "About", about_url, id: "about-id", class: "visible-xs " + @about_class.to_s %></li>
       </ul>
     </div>

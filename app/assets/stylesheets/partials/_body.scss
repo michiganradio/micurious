@@ -453,3 +453,14 @@ h2 {
     height: 100%;
   }
 }
+
+.search > div > div {
+  border: none;
+}
+
+.search input.gsc-search-button-v2 {
+  height: 25px;
+  width: 67px;
+  background-position: 26px 5px;
+  background-repeat: no-repeat;
+}

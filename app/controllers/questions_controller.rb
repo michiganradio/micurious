@@ -81,6 +81,7 @@ class QuestionsController < ApplicationController
   end
 
   def search
+    @search_class = "highlighted"
   end
 
   private
