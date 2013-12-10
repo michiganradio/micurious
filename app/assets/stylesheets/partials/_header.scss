@@ -16,8 +16,9 @@ $social-media-logo-size: 18px;
   background: black left center;
   border: $grid-unit/2 solid black;
   border-left: 0px;
+  color: $nice-blue;
 
-  a, & {
+  .text-link {
     color: $nice-blue;
     text-decoration: none;
     &:hover {
