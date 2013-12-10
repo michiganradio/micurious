@@ -21,6 +21,12 @@ You should have received a copy of the GNU General Public License along with Cur
     });
 
     function loadVisibleCCLogos() {
+      var staticLogo = $('.cc-logo:eq(2)');
+      if (staticLogo.css("display") != "none" && staticLogo.data("loaded") === false) {
+        staticLogo.data("loaded", true);
+        $('.cc-logo > img')[2].src = $('.cc-logo img:eq(2)').data("src");
+      }
+
       var smallLogo = $('.cc-logo').first();
       if (smallLogo.css("display") != "none" && smallLogo.data("loaded") === false) {
         smallLogo.data("loaded", true);
@@ -85,8 +91,9 @@ You should have received a copy of the GNU General Public License along with Cur
   </div>
 </div>
 <div class="container-padding row ask-question-row">
-  <%= link_to image_tag("", data: {src: image_path("cc-logo.gif")}, class: "image-logo img-responsive"), root_url, :class=> "col-sm-4 hidden-lg cc-logo", :data=>{loaded: false} %>
+  <%= link_to image_tag("", data: {src: image_path("cc-logo.gif")}, class: "image-logo img-responsive"), root_url, :class=> "col-sm-4 hidden-xs hidden-lg cc-logo", :data=>{loaded: false} %>
   <%= link_to image_tag("", data: {src: image_path("cc-logo-large.gif")}, class: "image-logo-large img-responsive"), root_url, :class=> "col-sm-4 visible-lg cc-logo", :data=>{loaded: false} %>
+  <%= link_to image_tag("", data: {src: image_path("cc-logo.png")}, class: "image-logo img-responsive"), root_url, :class=> "col-sm-4 visible-xs cc-logo", :data=>{loaded: false} %>
   <span class="submit-wrap col-sm-8">
     <div class="carrot"></div>
     <div class="submit-question-container">
