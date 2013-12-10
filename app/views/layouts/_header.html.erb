@@ -73,11 +73,10 @@ You should have received a copy of the GNU General Public License along with Cur
   <div class="container-padding">
     <%= link_to image_tag("wbez.gif"), "http://www.wbez.org/series/curious-city" %>
     
-    <%= render "layouts/search_box" unless Rails.env.test? %>
-    
     <div class="header-links btn-group hidden-xs">
-        <a class="collapse-data-btn text-link" id = "how-it-works-link" href="#how-it-works">How It Works</a> |
-        <%= link_to "About", about_path, class: "text-link" %>
+      <a class="collapse-data-btn text-link" id = "how-it-works-link" href="#how-it-works">How It Works</a> |
+      <%= link_to "About", about_path, class: "text-link" %> |
+      <%= link_to "Search", search_user_questions_path, class: "text-link" %>
       <%= mail_to "curiouscity@wbez.org" do %>
         <%= image_tag("mail.png") %>
       <% end %>

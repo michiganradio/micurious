@@ -38,7 +38,7 @@ $social-media-logo-size: 18px;
       background-color: #ececec;
     }
     
-    a:nth-child(3) {
+    a:nth-child(4) {
       margin-left: 5px;
     }
   }
@@ -159,27 +159,16 @@ $social-media-logo-size: 18px;
 }
 }
 
-.search-bar {
-   width: 310px;
-   height: 30px; 
-   margin-right: 345px;
-   margin-top: -10px;
-   float: right;
-}
-
-.search-bar > div > div {
-  background-color: black;
+.search > div > div {
   border: none;
-  height: 30px;
 }
 
-.search-bar input.gsc-search-button-v2 {
+.search input.gsc-search-button-v2 {
   height: 25px;
   width: 67px;
   background-image: image_url('search_box_icon.png');
   background-position: 26px 5px;
   background-repeat: no-repeat;
-  padding: 5 26;
 }
 
 .admin-search-box {
