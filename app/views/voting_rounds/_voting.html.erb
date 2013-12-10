@@ -6,6 +6,15 @@ Curious City is free software: you can redistribute it and/or modify it under th
 Curious City is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with Curious City.  If not, see <http://www.gnu.org/licenses/>.!-->
+<script>
+  $(document).ready(function() {
+      $('.question-background-xs').each(function() {
+        var picture_url = $(this).data('picture-url');
+        $(this).css('background-image', 'url(' + picture_url + ')');
+    });
+  });
+</script>
+
 <% if @voting_round %>
   <div class="voting-round">
     <div class="clearfix">
@@ -18,19 +27,20 @@ You should have received a copy of the GNU General Public License along with Cur
     <div class="questions">
       <% (display_order(@voting_round.questions)).each_with_index do |question, index| %>
         <div class="row question-row">
-          <div class="question", id="question<%= question.id.to_s %>">
-            <div class="question-image col-xs-12 col-sm-4">
+          <div class="question voting" id="question<%= question.id.to_s %>">
+            <div class="question-image voting col-xs-12 col-sm-4">
+              <div class="question-background-xs tint visible-xs" data-picture-url="<%= question.picture_url %>"></div>
               <% if voted? %>
-                <h2 class = "rank" id="rank<%= question.id.to_s %>"><%= (index + 1).ordinalize %></h2>
+                <h2 class = "rank hidden-xs" id="rank<%= question.id.to_s %>"><%= (index + 1).ordinalize %></h2>
               <% end %>
-              <span class="image-container">
-                <%= render partial: "shared/question_image_link", locals:{ question: question} %>
+              <span class="image-container hidden-xs">
+                <%= render partial: "shared/question_image_link", locals: {question: question} %>
               </span>
               <%= if !voted? then link_to "", vote_path(question_id: question.id, voting_round_id: @voting_round.id), method: :post, class: "vote hidden-xs", id: "vote"+question.id.to_s end %>
               <%= if voted? and last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted hidden-xs") end %>
-              <% if voted? %><span class="rank-triangle"></span><% end %>
+              <% if voted? %><span class="rank-triangle hidden-xs"></span><% end %>
             </div>
-            <%= render partial:'shared/question_text', locals:{question:question, voting_round: @voting_round, badge: false} %>
+            <%= render partial:'shared/question_text', locals:{question:question, voting_round: @voting_round, badge: false, voting: true } %>
           </div>
         </div>
       <% end %>

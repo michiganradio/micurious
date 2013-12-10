@@ -17,6 +17,7 @@ You should have received a copy of the GNU General Public License along with Cur
       $(question).closest('.question').find('.image-container').addClass('hover');    
       $(question).closest('.question').find('.comment-count-link').addClass('hover');    
       $(question).closest('.question').find('.question-link').addClass('hover');    
+      $(question).closest('.question').find('.question-background-xs').addClass('hover');    
     }
 
     function removeHover(question){
@@ -24,6 +25,7 @@ You should have received a copy of the GNU General Public License along with Cur
       $(question).closest('.question').find('.image-container').removeClass('hover');    
       $(question).closest('.question').find('.comment-count-link').removeClass('hover');    
       $(question).closest('.question').find('.question-link').removeClass('hover');    
+      $(question).closest('.question').find('.question-background-xs').removeClass('hover');    
     }
 
     $('.question').on('mouseenter','.vote', function(){

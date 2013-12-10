@@ -27,7 +27,7 @@ You should have received a copy of the GNU General Public License along with Cur
               <div class="question-image col-xs-12 col-sm-4">
                 <%= render partial: "shared/question_image_link", locals:{ question: question } %>
               </div>
-              <%= render partial:'shared/question_text', locals:{ question: question, voting_round: nil, badge: true } %>
+              <%= render partial:'shared/question_text', locals:{ question: question, voting_round: nil, badge: true, voting: false } %>
             </div>
           </div>
         <% end %>

@@ -6,7 +6,7 @@ Curious City is free software: you can redistribute it and/or modify it under th
 Curious City is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with Curious City.  If not, see <http://www.gnu.org/licenses/>.!-->
-<div class="question-text col-xs-12 col-sm-8">
+<div class= "question-text col-xs-12 col-sm-8 <%= " voting" if voting %>">
   <%= if voting_round and !voted? then link_to "", vote_path(question_id: question.id, voting_round_id: voting_round.id), method: :post, class: "vote visible-xs", id: "vote"+question.id.to_s end %>
   <%= if voting_round and voted? and last_vote?(question.id) then content_tag(:div, nil, id: 'vote_confirm' + question.id.to_s, class: "voted visible-xs") end %>
   <%= link_to(question_display_text(question), question_url(question), class: "question-link" ) %>

@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License along with Cur
               <%= render partial: "shared/question_image_link", locals:{ question: winner } %>
             </span><span class="rank-triangle"></span>
           </div>
-          <%= render partial:'shared/question_text', locals:{ question: winner, voting_round: nil, badge: false } %>
+          <%= render partial:'shared/question_text', locals:{ question: winner, voting_round: nil, badge: false, voting: false } %>
         </div>
       <% end %>
       <br>
@@ -40,7 +40,7 @@ You should have received a copy of the GNU General Public License along with Cur
             </span>
             <span class="rank-triangle"></span>
           </div>
-          <%= render partial:'shared/question_text', locals:{ question: question, voting_round: nil, badge: false } %>
+          <%= render partial:'shared/question_text', locals:{ question: question, voting_round: nil, badge: false, voting: false } %>
         </div>
       <% end %>
     </div>
