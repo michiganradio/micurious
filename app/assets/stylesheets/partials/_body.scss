@@ -468,3 +468,10 @@ h2 {
     padding-left: 0;
   }  
 }
+
+@media (max-width: 1110px) and (min-width: 768px) {
+  .question-image img{
+    margin-top: 0px;
+    height: 100%;
+  }
+}
