@@ -28,11 +28,15 @@ You should have received a copy of the GNU General Public License along with Cur
       <tr>
         <td><%= admin_category.name %></td>
         <td><%= admin_category.label %></td>
-        <td><%= admin_category.active %></td>
+        <td class="active-label"><%= admin_category.active %></td>
         <td><%= link_to 'Show', admin_category_path(admin_category) %></td>
         <% if current_admin? %>
           <td><%= link_to 'Edit', edit_admin_category_path(admin_category) %></td>
-          <td><%= link_to 'Deactivate', deactivate_admin_category_path(admin_category), method: :post, data: { confirm: 'Are you sure?' } %></td>
+          <% if admin_category.active %>
+            <td><%= link_to 'Deactivate', deactivate_admin_category_path(admin_category), method: :post, data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+            <td><%= link_to 'Activate', activate_admin_category_path(admin_category), method: :post, class: "activate-link"  %></td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>

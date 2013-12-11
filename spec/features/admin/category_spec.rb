@@ -8,17 +8,17 @@ Curious City is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU General Public License along with Curious City.  If not, see <http://www.gnu.org/licenses/>.
 =end
+require 'features/features_spec_helper'
 
-FactoryGirl.define do
-  factory :category, :class => 'Category' do
-    name "MyString"
-    label "MyString"
-    active false
-
-    trait :other do
-      name "secondName"
-      label "second name"
-      active true
-    end
+describe "activate deactivated category" do
+  it "changes the active status" do
+    FactoryGirl.create(:category)
+    signin_as_admin
+    @admin_categories = Admin::Categories.new
+    @admin_categories.load
+    @admin_categories.activate_links[0].click
+    @admin_categories.should be_displayed
+    @admin_categories.load
+    expect(@admin_categories.active_labels[0].text).to eq "true"
   end
 end

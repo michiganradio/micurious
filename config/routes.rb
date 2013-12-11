@@ -33,6 +33,7 @@ Curiouscity::Application.routes.draw do
     resources :categories do
       member do
         post :deactivate
+        post :activate
       end
     end
     resources :voting_round_questions

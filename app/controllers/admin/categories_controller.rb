@@ -9,8 +9,8 @@ Curious City is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with Curious City.  If not, see <http://www.gnu.org/licenses/>.
 =end
 class Admin::CategoriesController < Admin::AdminController
-  before_action :set_admin_category, only: [:show, :edit, :update, :deactivate]
-  before_action :admin_privilege_check, only: [:new, :edit, :deactivate]
+  before_action :set_admin_category, only: [:show, :edit, :update, :deactivate, :activate]
+  before_action :admin_privilege_check, only: [:new, :edit, :deactivate, :activate]
 
   # GET /admin/categories
   def index
@@ -60,6 +60,11 @@ class Admin::CategoriesController < Admin::AdminController
     respond_to do |format|
       format.html { redirect_to admin_categories_url }
     end
+  end
+
+  def activate
+    @admin_category.update_attribute(:active, true)
+    redirect_to admin_categories_url
   end
 
   private

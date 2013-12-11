@@ -167,6 +167,37 @@ describe Admin::CategoriesController do
     context "when user has admin privileges" do
       it "deactivates the requested admin_category" do
         subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
+        category = double(:category)
+        Category.stub(:find).with("0").and_return(category)
+        category.should_receive(:update_attribute).with(:active, true)
+        post :activate, {:id => 0}, valid_session
+      end
+
+      it "redirects to the admin_categories list" do
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
+        category = double(:category)
+        Category.stub(:find).with("0").and_return(category)
+        category.stub(:update_attribute).with(:active, true)
+        post :activate, {:id => 0}, valid_session
+        response.should redirect_to(admin_categories_url)
+      end
+    end
+    context "when user does not have admin privileges" do
+      it "returns an error" do
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user, :reporter))
+        category = double(:category)
+        Category.stub(:find).with("0").and_return(category)
+        category.stub(:update_attribute).with(:active, true)
+        post :activate, {:id => 0}, valid_session
+        expect(response.status).to eq 401
+      end
+    end
+  end
+
+  describe "POST activate" do
+    context "when user has admin privileges" do
+      it "activates the requested admin_category" do
+        subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
         category = Category.create! valid_attributes
         expect {
           post :deactivate, {:id => category.to_param}, valid_session

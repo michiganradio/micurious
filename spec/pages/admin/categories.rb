@@ -9,16 +9,10 @@ Curious City is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with Curious City.  If not, see <http://www.gnu.org/licenses/>.
 =end
 
-FactoryGirl.define do
-  factory :category, :class => 'Category' do
-    name "MyString"
-    label "MyString"
-    active false
+class Admin::Categories < SitePrism::Page
+  set_url "/admin/categories"
+  set_url_matcher /\/admin\/categories/
 
-    trait :other do
-      name "secondName"
-      label "second name"
-      active true
-    end
-  end
+  elements :activate_links, ".activate-link"
+  elements :active_labels, ".active-label"
 end
