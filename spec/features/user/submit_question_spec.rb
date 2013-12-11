@@ -39,6 +39,7 @@ describe 'Ask a question', js: true do
   def setup_ask_question_modal
     @home = Home.new
     @home.load
+    @home.wait_for_display_text
     @home.display_text.set "Why is the sky blue?"
     @home.ask_button.click
     @ask_question_modal = @home.ask_question_modal

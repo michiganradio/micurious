@@ -66,7 +66,7 @@ describe "widgets" do
       @ask_widget.load
     end
 
-    it "allows user to submit a question", js:true do
+    it "allows user to submit a question", js: true do
      @ask_widget.submit_question_text.set("What should this question be?")
       @ask_widget.submit_button.click
       switch_to_popup
@@ -74,6 +74,7 @@ describe "widgets" do
       @home.should be_displayed
       @home.ask_question_modal.question_display_text.text.should == "What should this question be?"
     end
+
     it "allows user to browse answers and questions" do
       @ask_widget.answers_link[:href].should == filter_questions_url(status: "answered")
       @ask_widget.questions_link[:href].should == filter_questions_url(status: "archive")
