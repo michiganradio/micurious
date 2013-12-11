@@ -3,7 +3,7 @@
     $('#question_display_text').limiter(140, $('#question_display_text_count'));
     });
 </script>
-<div class="container-padding">
+<div class="container-padding ask_mobile">
   <%= form_for(@question, :url => submit_mobile_url) do |f| %>
     <% if @question.errors.any? %>
       <div id="error_explanation">
@@ -32,26 +32,36 @@
           <%= f.label :name, "Name*" %>
           <%= f.text_field :name, class:"form-control" %>
         </div>
+      </div>
       <div class="row">
         <div class="field col-md-5">
           <%= f.check_box :anonymous %>
           <%= f.label "Remain anonymous" %>
         </div>
       </div>
+      <div class="row">
         <div class="field col-md-5">
           <%= f.label :email, "Email*" %>
+            <span class="little-writing">
+              (your email is never shared)
+            </span>
           <%= f.text_field :email, class:"form-control" %>
         </div>
       </div>
       <div class="row">
         <div class="field col-md-5">
-          <%= f.label :neighborhood, "Neighborhood or Town" %>
+           <label for="question_neighbourhood">
+              Neighborhood or town
+              <div class="little-writing">
+                (e.g., Pilsen or Berwyn)
+              </div>
+            </label>
           <%= f.text_field :neighbourhood, class: "form-control" %>
         </div>
       </div>
-
+      <div class="row col-md-6 little-writing">* required fields</div>
       <div class="actions">
-        <%= f.submit nil, class:"btn btn-default", id: "submit-button" %>
+        <%= f.submit "Submit", class:"btn btn-primary pull-right", id: "submit-button" %>
       </div>
     <% end %>
   </div>
