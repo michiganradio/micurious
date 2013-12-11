@@ -8,10 +8,12 @@ Curious City is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with Curious City.  If not, see <http://www.gnu.org/licenses/>.!-->
 <% if @voting_round %>
   <div class="voting-round">
+    <div class="row">
       <div class="voting-round-title col-sm-8 col-sm-offset-4">
           <h1>Which should we investigate next? Vote!</h1>
           Select the question you’d most like answered.
       </div>
+    </div>
     <span class="hidden-xs"><%= render partial:'shared/browse_voting_round' %></span>
     <div class="questions">
       <% (display_order(@voting_round.questions)).each_with_index do |question, index| %>

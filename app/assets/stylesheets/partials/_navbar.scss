@@ -17,15 +17,11 @@ $navbar-height: $grid-unit*2;
   margin: 0;
   border-radius: 0px;
   .navbar-toggle {
-    border-color: $hot-pink;
     margin: 0;
     height:$grid-unit * 2;
     padding: $grid-unit/3;
-    &:hover {
-      background-color: $hot-pink;
-    }
     .icon-bar {
-      background-color: black;
+      background-color: white;
     }
   }
 }
