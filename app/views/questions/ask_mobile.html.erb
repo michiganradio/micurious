@@ -1,47 +1,57 @@
-<%= form_for(@question, :url => submit_mobile_url) do |f| %>
-  <% if @question.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+<script>
+  $(document).ready(function() {
+    $('#question_display_text').limiter(140, $('#question_display_text_count'));
+    });
+</script>
+<div class="container-padding">
+  <%= form_for(@question, :url => submit_mobile_url) do |f| %>
+    <% if @question.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
 
-      <ul>
-        <% @question.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <ul>
+          <% @question.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-  <div class="row">
-    <div class="field col-lg-8">
-      <%= f.label :display_text %>
-      <%= f.text_area :display_text, class:"form-control" %>
-    </div>
-  </div>
+    <div class="row">
+      <div class="field col-lg-8">
+        <%= f.label :display_text, "Your question*" %>
+        <%= f.text_area :display_text, placeholder: "Enter your question here", rows: "4", maxlength: "140", class: "form-control no-changing"  %> 
+        <div class="submit-question-spec">
+          (<span id="question_display_text_count"></span> characters left)
+        </div>
+        </div>
+      </div>
 
-  <div class="row">
-    <div class="field col-md-5">
-      <%= f.label :name %>
-      <%= f.text_field :name, class:"form-control" %>
-    </div>
-    <div class="field col-md-5">
-      <%= f.label :email %>
-      <%= f.text_field :email, class:"form-control" %>
-    </div>
+      <div class="row">
+        <div class="field col-md-5">
+          <%= f.label :name, "Name*" %>
+          <%= f.text_field :name, class:"form-control" %>
+        </div>
+      <div class="row">
+        <div class="field col-md-5">
+          <%= f.check_box :anonymous %>
+          <%= f.label "Remain anonymous" %>
+        </div>
+      </div>
+        <div class="field col-md-5">
+          <%= f.label :email, "Email*" %>
+          <%= f.text_field :email, class:"form-control" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field col-md-5">
+          <%= f.label :neighborhood, "Neighborhood or Town" %>
+          <%= f.text_field :neighbourhood, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="actions">
+        <%= f.submit nil, class:"btn btn-default", id: "submit-button" %>
+      </div>
+    <% end %>
   </div>
-  <div class="row">
-    <div class="field col-md-5">
-      <%= f.check_box :anonymous %>
-      <%= f.label "Remain anonymous" %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="field col-md-5">
-      <%= f.label :neighborhood %>
-      <%= f.text_field :neighbourhood, class: "form-control" %>
-    </div>
-  </div>
- 
-  <div class="actions">
-    <%= f.submit nil, class:"btn btn-default", id: "submit-button" %>
-  </div>
-<% end %>
