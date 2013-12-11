@@ -14,7 +14,7 @@ You should have received a copy of the GNU General Public License along with Cur
           Select the question you’d most like answered.
       </div>
     </div>
-      <%= render partial:'shared/browse_voting_round' %>
+    <span class="hidden-xs"><%= render partial:'shared/browse_voting_round' %></span>
     <div class="questions">
       <% (display_order(@voting_round.questions)).each_with_index do |question, index| %>
         <div class="row question-row">
