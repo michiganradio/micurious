@@ -18,27 +18,21 @@ You should have received a copy of the GNU General Public License along with Cur
     window.onresize = function() {
       loadVisibleCCLogos();
     }
-    });
+  });
 
-    function loadVisibleCCLogos() {
-      var staticLogo = $('.cc-logo:eq(2)');
-      if (staticLogo.css("display") != "none" && staticLogo.data("loaded") === false) {
-        staticLogo.data("loaded", true);
-        $('.cc-logo > img')[2].src = $('.cc-logo img:eq(2)').data("src");
-      }
+  function loadVisibleCCLogos() {
+    for (var i = 0; i< 3; i++) {
+      loadLogoIfDisplayed(i);
+    }
 
-      var smallLogo = $('.cc-logo').first();
-      if (smallLogo.css("display") != "none" && smallLogo.data("loaded") === false) {
-        smallLogo.data("loaded", true);
-        $('.cc-logo > img')[0].src = $('.cc-logo img').first().data("src");
-      }
-
-      var bigLogo = $('.cc-logo:eq(1)');
-      if ($('.cc-logo:eq(1)').css("display") != "none" && bigLogo.data("loaded") === false) {
-        bigLogo.data("loaded", true);
-        $('.cc-logo > img')[1].src = $('.cc-logo img:eq(1)').data("src");
+    function loadLogoIfDisplayed(logoIndex) {
+      var logoLink = $('.cc-logo:eq(' + logoIndex + ')');
+      if (logoLink.css("display") != "none" && logoLink.data("loaded") === false) {
+        logoLink.data("loaded", true);
+        $('.cc-logo > img')[logoIndex].src = $('.cc-logo img:eq(' + logoIndex + ')').data("src");
       }
     }
+  }
 </script>
 <!--[if lt IE 9]>
 <div class="ie8-info">
