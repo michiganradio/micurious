@@ -17,6 +17,7 @@ $navbar-height: $grid-unit*2;
   margin: 0;
   border-radius: 0px;
   .navbar-toggle {
+    z-index: 1;
     margin: 0;
     height:$grid-unit * 2;
     padding: $grid-unit/3;
@@ -24,6 +25,19 @@ $navbar-height: $grid-unit*2;
       background-color: white;
     }
   }
+}
+
+.navbar-ask-button {
+  position: relative;
+  color: white;
+  background-color: $hot-pink;
+  height: $grid-unit * 4/3;
+  font-family: 'Open Sans', sans-serif;
+  margin-top: $grid-unit/3;
+  margin-bottom: $grid-unit/3;
+  padding: 0 4px;
+  font-size: 14px;
+  text-decoration: none;
 }
 
 .navbar-collapse {
@@ -38,12 +52,16 @@ $navbar-height: $grid-unit*2;
   padding: 5px 0;
   color: white;
   font-family: 'Open Sans', sans-serif;
-  margin-left: 10px;
   font-size: 20px;
   font-weight:800;
+  margin: auto;
   & .radio-station {
     color: black;  
   }
+  position: absolute;
+  width: 100%;
+  left: 0;
+  text-align: center;
 }
 
 
