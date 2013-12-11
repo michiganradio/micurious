@@ -24,7 +24,6 @@ You should have received a copy of the GNU General Public License along with Cur
     for (var i = 0; i< 3; i++) {
       loadLogoIfDisplayed(i);
     }
-
     function loadLogoIfDisplayed(logoIndex) {
       var logoLink = $('.cc-logo:eq(' + logoIndex + ')');
       if (logoLink.css("display") != "none" && logoLink.data("loaded") === false) {
@@ -71,9 +70,7 @@ You should have received a copy of the GNU General Public License along with Cur
       <a class="collapse-data-btn text-link" id = "how-it-works-link" href="#how-it-works">How It Works</a> |
       <%= link_to "Search", search_user_questions_path, class: "text-link" %> |
       <%= link_to "About", about_path, class: "text-link" %>
-      <%= mail_to "curiouscity@wbez.org" do %>
-        <%= image_tag("mail.png") %>
-      <% end %>
+      <%= mail_to "curiouscity@wbez.org", image_tag("mail.png") %>
       <%= link_to image_tag("twitter.png" ),"https://twitter.com/wbezcuriouscity", target:"blank" %>
       <%= link_to image_tag("facebook.png"), "http://www.facebook.com/curiouscityproject", target:"blank" %>
       <%= link_to image_tag("tumblr.png"), "http://wbezcuriouscity.tumblr.com", target:"blank"%>
