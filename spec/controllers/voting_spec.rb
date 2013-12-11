@@ -11,7 +11,7 @@ You should have received a copy of the GNU General Public License along with Cur
 require 'spec_helper'
 
 describe Voting do
-  describe "vote" do
+  describe "vote helper function" do
 
     before do
       @voting_round = FactoryGirl.create(:voting_round)
@@ -26,7 +26,7 @@ describe Voting do
 
     end
 
-    describe "first vote" do
+    context "when it is the user's first vote for this voting round" do
       before do
         @return_value = Voting.vote(@cookies, @params)
       end
@@ -35,20 +35,20 @@ describe Voting do
         @return_value.should be_true
       end
 
-      it "asks voting round question to increment vote" do
+      it "increments the vote number of the voting round question" do
         @voting_round_question.reload.vote_number.should eq 1
       end
 
-      it "sets cookie with voting round id of vote" do
+      it "sets a user's browser's cookie with the voting round id" do
         expect(@permanent[:voting_round_id]).to eq @voting_round.id
       end
 
-      it "sets cookie with question id of vote" do
+      it "sets a user's browser's cookie with the id of the question the user voted for" do
         expect(@permanent[:question_id]).to eq @question.id
       end
     end
 
-    describe "second vote" do
+    context "when it is the user's second (attempted) vote for this voting around" do
       before do
         Voting.vote(@cookies, @params)
         @return_value = Voting.vote(@cookies, @params)
@@ -63,7 +63,7 @@ describe Voting do
       end
     end
 
-    describe "voting in new voting round" do
+    context "when the user has voted, and is now voting in a new voting round" do
       before do
         Voting.vote(@cookies, @params)
         @new_voting_round = FactoryGirl.create(:voting_round, :other)
@@ -80,15 +80,15 @@ describe Voting do
         @return_value.should be_true
       end
 
-      it "asks voting round question to increment vote" do
+      it "increments the vote number of the voting round question" do
         @new_voting_round_question.reload.vote_number.should eq 1
       end
 
-      it "sets cookie with voting round id of vote" do
+      it "sets a user's browser's cookie with the voting round id" do
         expect(@permanent[:voting_round_id]).to eq @new_voting_round.id
       end
 
-      it "sets cookie with question id of vote" do
+      it "sets a user's browser's cookie with the id of the question the user voted for" do
         expect(@permanent[:question_id]).to eq @new_question.id
       end
     end

@@ -44,7 +44,7 @@ describe VotingRoundsController do
   end
 
   describe "GET show" do
-    context "retrieves voting round that is completed" do
+    context "when the retrieved voting round is completed" do
       it "assigns the voting round and redirect to root path" do
       voting_round = double(:voting_round,
                            previous: double(:voting_round),
@@ -55,7 +55,7 @@ describe VotingRoundsController do
       end
     end
 
-    context "voting round is not completed" do
+    context "when the retrieved voting round is not completed" do
       it "redirects to home page" do
         VotingRound.should_receive(:where).with(id: "10", status: VotingRound::Status::Completed).and_return([])
         get :show, {:id =>10}
@@ -65,7 +65,7 @@ describe VotingRoundsController do
   end
 
   describe "POST vote" do
-    context "vote success" do
+    context "when vote is legal and successful" do
       it "redirects to root path" do
         Voting.stub(:vote).and_return(true)
         post :vote
@@ -73,7 +73,7 @@ describe VotingRoundsController do
       end
     end
 
-    context "vote failure" do
+    context "when vote is illegal and failed" do
       it "renders with status 409" do
         Voting.stub(:vote).and_return(false)
         post :vote

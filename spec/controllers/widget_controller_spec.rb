@@ -25,7 +25,7 @@ describe WidgetController do
   end
 
   describe "POST vote" do
-    context "vote success" do
+    context "when the vote was legal and successful" do
       it "redirects to root path" do
         Voting.stub(:vote).and_return(true)
         post :vote
@@ -33,7 +33,7 @@ describe WidgetController do
       end
     end
 
-    context "vote failure" do
+    context "when the vote was illegal and failed" do
       it "renders with status 409" do
         Voting.stub(:vote).and_return(false)
         post :vote
@@ -43,7 +43,7 @@ describe WidgetController do
   end
 
   describe "GET ask widget" do
-    it "gets the ask question widget page without issue" do
+    it "gets the ask question widget page" do
       get :ask_widget
       response.status.should be 200
     end

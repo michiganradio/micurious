@@ -17,7 +17,7 @@ describe Admin::AnswersController do
     subject.stub(:signed_in_admin)
   end
 
-  describe "before action load answers and updates" do
+  describe "pages that require preloading of answers and updates" do
     before do
       @question = double(Question)
       @answers = [double(Answer), double(Answer)]
@@ -29,7 +29,7 @@ describe Admin::AnswersController do
     end
 
     describe "GET index" do
-      context "without SSL" do
+      context "when user is not on SSL" do
         it "returns an error" do
           request.env['HTTPS'] = 'off'
           subject.stub(:ssl_configured).and_return(true)
@@ -38,7 +38,7 @@ describe Admin::AnswersController do
         end
       end
 
-      context "no question_id param given" do
+      context "when no question_id param is given in the request" do
         it "raises error" do
           expect {
             get :index, {}, valid_session
@@ -158,7 +158,7 @@ describe Admin::AnswersController do
   end
 
   describe "PUT update" do
-    context "valid params" do
+    context "with valid params" do
       it "redirects to answers index for question id param" do
         answer = double(Answer)
         answer.stub(:update_attributes).and_return(true)
@@ -175,7 +175,7 @@ describe Admin::AnswersController do
       end
     end
 
-    context "invalid params" do
+    context "with invalid params" do
       it "re-renders 'edit template'" do
         answer = double(Answer)
         Answer.stub(:find).with("0").and_return(answer)
@@ -199,7 +199,7 @@ describe Admin::AnswersController do
   end
 
   describe "POST create" do
-    context "valid answer params" do
+    context "with valid answer params" do
       it "creates a new Answer" do
         answer = double(Answer)
         Answer.should_receive(:new).and_return(answer)
@@ -218,7 +218,7 @@ describe Admin::AnswersController do
       end
     end
 
-    context "invalid answer params" do
+    context "with invalid answer params" do
       it "assigns a newly created but unsaved answer as @answer" do
         Answer.any_instance.stub(:save).and_return(false)
         post :create, { answer: { label: "label", url: "url" } }, valid_session

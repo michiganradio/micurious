@@ -45,7 +45,7 @@ describe Admin::UsersController do
   end
 
   describe "GET new" do
-    context "user has admin privileges" do
+    context "when the user has admin privileges" do
       it "assigns a new admin as @admin" do
         subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
         get :new, {}, valid_session
@@ -53,7 +53,7 @@ describe Admin::UsersController do
       end
     end
 
-    context "user does not have admin privileges" do
+    context "when the user does not have admin privileges" do
       it "returns an error" do
         subject.stub(:current_admin).and_return(FactoryGirl.create(:user, :reporter))
         get :new, {}, valid_session
@@ -63,7 +63,7 @@ describe Admin::UsersController do
   end
 
   describe "GET edit" do
-    context "user has admin privileges" do
+    context "when the user has admin privileges" do
       it "assigns the requested admin as @admin" do
         subject.stub(:current_admin).and_return(FactoryGirl.create(:user, username: "loggedinuser"))
         admin = User.create! valid_attributes
@@ -71,7 +71,7 @@ describe Admin::UsersController do
         assigns(:admin).should eq(admin)
       end
     end
-    context "user does not have admin privileges" do
+    context "when the user does not have admin privileges" do
       it "returns an error" do
         subject.stub(:current_admin).and_return(FactoryGirl.create(:user, :reporter, username: "loggedinuser"))
         admin = User.create! valid_attributes
@@ -211,7 +211,7 @@ describe Admin::UsersController do
   end
 
   describe "DELETE destroy" do
-    context "when user is an admin" do
+    context "when the user is an admin" do
       it "destroys the requested admin" do
         subject.stub(:current_admin).and_return(FactoryGirl.create(:user, username: "loggedinuser"))
         admin = User.create! valid_attributes
@@ -227,7 +227,7 @@ describe Admin::UsersController do
         response.should redirect_to(admin_users_url)
       end
     end
-    context "when user is not an admin" do
+    context "when the user is not an admin" do
       it "returns an error" do
         subject.stub(:current_admin).and_return(FactoryGirl.create(:user, :reporter, username: "loggedinuser"))
         admin = User.create! valid_attributes

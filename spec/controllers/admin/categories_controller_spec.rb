@@ -27,7 +27,7 @@ describe Admin::CategoriesController do
       assigns(:admin_categories).should eq([category])
     end
 
-    context "without SSL" do
+    context "when user is not on SSL" do
       it "returns an error" do
         request.env['HTTPS'] = 'off'
         subject.stub(:ssl_configured).and_return(true)

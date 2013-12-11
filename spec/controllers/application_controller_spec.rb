@@ -11,7 +11,7 @@ You should have received a copy of the GNU General Public License along with Cur
 require 'spec_helper'
 
 describe ApplicationController do
-  describe "load_categories" do
+  describe "load_categories helper method" do
     it "assigns all active categories as @categories" do
       categories = [double(:category)]
       Category.stub(:where).with(active:true).and_return(categories)

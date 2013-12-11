@@ -20,7 +20,7 @@ describe Admin::QuestionsController do
       :picture_owner => "owner",
       :picture_attribution_url => "attribution_url",
       :picture_url => "url"
-  }
+    }
   }
   let(:categories) { [FactoryGirl.create(:category),
                       FactoryGirl.create(:category)]}
@@ -33,7 +33,7 @@ describe Admin::QuestionsController do
   end
 
   describe "GET index" do
-    context "not signed in" do
+    context "when the user is not signed in" do
       it "redirects to sign in page" do
         question = double(:question)
         get :index, {}
@@ -42,7 +42,7 @@ describe Admin::QuestionsController do
     end
   end
 
-  context "signed in admin" do
+  context "when the admin is signed in" do
     before do
       subject.stub(:signed_in_admin)
     end
@@ -63,7 +63,7 @@ describe Admin::QuestionsController do
       end
     end
 
-    context "not on SSL" do
+    context "when the user is not on SSL" do
       it "returns an error" do
         request.env['HTTPS'] = 'off'
         subject.stub(:ssl_configured).and_return(true)
@@ -114,7 +114,7 @@ describe Admin::QuestionsController do
     end
 
     describe "GET new" do
-      context "user has admin privileges" do
+      context "when the user has admin privileges" do
         it "assigns a new question as @question" do
           subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
           get :new, {}
@@ -128,7 +128,7 @@ describe Admin::QuestionsController do
           assigns(:categories).should eq categories
         end
       end
-      context "user has no admin privileges" do
+      context "when the user has no admin privileges" do
         it "returns an error" do
           subject.stub(:current_admin).and_return(FactoryGirl.create(:user, :reporter))
           get :new, {}
@@ -222,14 +222,14 @@ describe Admin::QuestionsController do
           subject.stub(:current_admin).and_return(FactoryGirl.create(:user))
         end
 
-        context "no voting round selected" do
+        context "when no voting round is passed in to the request" do
           it "flashes error" do
             put :add_question_to_voting_round, id: @question.id, voting_round_id:""
             flash.now[:error].should eq "Please select a voting round to add"
           end
         end
 
-        context "question already added to the voting round" do
+        context "when the question is already added to the voting round" do
           it "flashes error" do
             duplication_error = RuntimeError.new("some error")
             @voting_round.stub(:add_question).and_raise(duplication_error)
@@ -239,7 +239,7 @@ describe Admin::QuestionsController do
           end
         end
 
-        context "no voting round exists" do
+        context "when no voting round exists" do
           it "raises error" do
             VotingRound.stub(:find).with(@voting_round.id).and_return(nil)
 
@@ -248,7 +248,7 @@ describe Admin::QuestionsController do
           end
         end
 
-        context "active question" do
+        context "when the question is active" do
           before do
             put :add_question_to_voting_round, id: @question.id, voting_round_id: @voting_round.id
           end
@@ -276,7 +276,7 @@ describe Admin::QuestionsController do
           end
         end
 
-        context "removed question" do
+        context "when the question is removed" do
           before do
             @question.status = Question::Status::Removed
             put :add_question_to_voting_round, id: @question.id, voting_round_id: @voting_round.id
@@ -352,7 +352,7 @@ describe Admin::QuestionsController do
         end
       end
 
-      context "question is in a new voting round" do
+      context "when the question is in a new voting round" do
         it "can not remove the question" do
           question = FactoryGirl.create(:question)
           voting_round = FactoryGirl.create(:voting_round, status: VotingRound::Status::New)

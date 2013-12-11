@@ -55,8 +55,8 @@ describe QuestionsController do
       subject.stub(:load_categories)
     end
 
-    context "archive status " do
-      it "filters questions with new status" do
+    context "when the user wants new questions" do
+      it "filters questions for those with the new status" do
         questions = [double(:question, featured?:false)]
         statuses = [Question::Status::New]
         Question.should_receive(:with_status_and_category).with(statuses, 'somecategory').and_return(questions)
@@ -67,8 +67,8 @@ describe QuestionsController do
       end
     end
 
-    context "answered" do
-      it "filters questions with answered and investigating"  do
+    context "when the user wants answered questions" do
+      it "filters questions for those with answered or investigating statuses"  do
         question1 = double(:question, featured?: true)
         question2 = double(:question, featured?:false)
         statuses = [Question::Status::Answered, Question::Status::Investigating]
@@ -111,7 +111,7 @@ describe QuestionsController do
   end
 
   describe "POST picture" do
-    it "keeps the question" do
+    it "renders the image" do
       post :picture, :question => valid_attributes, format: 'js'
       response.should render_template("picture.js.erb")
     end
