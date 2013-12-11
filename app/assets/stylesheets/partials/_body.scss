@@ -461,6 +461,10 @@ h2 {
   .answers, .updates, .answer-image, .update-image {
     padding-left: 0;
   }  
+  
+  .search input#gsc-i-id1.gsc-input {
+    font-size: 11px !important;
+  }
 
 }
 
@@ -469,15 +473,23 @@ h2 {
     margin-top: 0px;
     height: 100%;
   }
+  
+  .search input#gsc-i-id1.gsc-input {
+    font-size: 11px !important;
+  }
+
 }
 
 .search > div > div {
   border: none;
 }
 
+.search input#gsc-i-id1.gsc-input {
+  margin: -3px !important;
+  height: 19px !important;
+}
+
 .search input.gsc-search-button-v2 {
   height: 25px;
   width: 67px;
-  background-position: 26px 5px;
-  background-repeat: no-repeat;
 }
