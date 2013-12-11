@@ -1,0 +1,47 @@
+<%= form_for(@question, :url => submit_mobile_url) do |f| %>
+  <% if @question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+        <% @question.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="field col-lg-8">
+      <%= f.label :display_text %>
+      <%= f.text_area :display_text, class:"form-control" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="field col-md-5">
+      <%= f.label :name %>
+      <%= f.text_field :name, class:"form-control" %>
+    </div>
+    <div class="field col-md-5">
+      <%= f.label :email %>
+      <%= f.text_field :email, class:"form-control" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="field col-md-5">
+      <%= f.check_box :anonymous %>
+      <%= f.label "Remain anonymous" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="field col-md-5">
+      <%= f.label :neighborhood %>
+      <%= f.text_field :neighbourhood, class: "form-control" %>
+    </div>
+  </div>
+ 
+  <div class="actions">
+    <%= f.submit nil, class:"btn btn-default", id: "submit-button" %>
+  </div>
+<% end %>

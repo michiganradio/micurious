@@ -57,6 +57,27 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def ask_mobile
+    @question = Question.new
+    @categories = Category.all
+    @question.attributes = params.permit(:display_text, :name, :anonymous,
+                                         :email, :neighbourhood)
+  end
+
+  def submit_mobile
+    @question = Question.new(question_mobile_params)
+    @question.email_confirmation = @question.email
+    @categories = Category.all
+    respond_to do |format|
+        if @question.save
+          flash.now[:notice] = 'Thanks for submitting your question!'
+          format.html { render action: 'submit_mobile'}
+        else
+          format.html { render action: 'ask_mobile' }
+        end
+      end
+  end
+
   def picture
     @question = Question.new(question_params)
     @categories = Category.all
@@ -87,6 +108,10 @@ class QuestionsController < ApplicationController
   private
     def question_params
       params.require(:question).permit(:searchfield, :original_text, :display_text, :description, :name, :anonymous, :email, :email_confirmation, :neighbourhood, :picture_url, :picture_owner, :picture_attribution_url, :category_ids => [] )
+    end
+
+    def question_mobile_params
+      params.require(:question).permit(:original_text, :display_text, :name, :anonymous, :email, :neighbourhood )
     end
 
     def load_answers_and_updates

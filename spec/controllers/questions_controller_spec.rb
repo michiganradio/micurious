@@ -18,6 +18,14 @@ describe QuestionsController do
                              :email_confirmation => "email@email.com"
                             }
                           }
+  let(:valid_mobile_attributes) {
+                           { :display_text => "display text",
+                             :name => "name",
+                             :email => "email@email.com",
+                             :neigbourhood => "something"
+                            }
+                          }
+
 
   describe "GET show" do
     before do
@@ -82,6 +90,22 @@ describe QuestionsController do
         assigns(:featured_answers).should eq featured
       end
     end
+  end
+
+  describe "GET ask_mobile" do
+    it "assigns a new question as @question" do
+      get :ask_mobile, {}
+      assigns(:question).should be_a_new(Question)
+    end
+  end
+
+  describe "POST submit_mobile" do
+    it "creates a new Question" do
+      Question.any_instance.should_receive(:save).and_return(true)
+      post :submit_mobile, :question => valid_mobile_attributes
+      response.should render_template 'submit_mobile'
+    end
+
   end
 
   describe "POST new" do
@@ -178,3 +202,4 @@ describe QuestionsController do
     end
   end
 end
+

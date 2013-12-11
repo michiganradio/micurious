@@ -24,6 +24,8 @@ Curiouscity::Application.routes.draw do
   match '/admin/questions/tag/:tag', to: 'admin/questions#filter_by_tag', via: 'get', as: 'filter_admin_questions'
   match '/admin/questions/search/', to: 'admin/questions#search', via: 'post', as: 'search_admin_questions'
   match '/search', to: 'questions#search', via: 'get', as: 'search_user_questions'
+  match '/ask_mobile', to: 'questions#ask_mobile', via: 'get', as: 'ask_mobile'
+  match '/submit_mobile', to: 'questions#submit_mobile', via: 'post', as: 'submit_mobile'
   resources :questions, only: [:create, :new, :show]
   resources :voting_rounds, only: [:show]
 
