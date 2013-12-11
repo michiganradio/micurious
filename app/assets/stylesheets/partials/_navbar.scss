@@ -31,12 +31,13 @@ $navbar-height: $grid-unit*2;
   position: relative;
   color: white;
   background-color: $hot-pink;
-  height: $grid-unit * 4/3;
+  height: $grid-unit * 2;
   font-family: 'Open Sans', sans-serif;
-  margin-top: $grid-unit/3;
-  margin-bottom: $grid-unit/3;
-  padding: 0 4px;
-  font-size: 14px;
+  font-weight: bold;
+  margin-top: $grid-unit/2;
+  margin-bottom: $grid-unit/2;
+  padding: 2px 9px;
+  font-size: 18px;
   text-decoration: none;
 }
 
@@ -49,7 +50,7 @@ $navbar-height: $grid-unit*2;
 }
 
 .navbar-brand {
-  padding: 5px 0;
+  padding: 14px 0;
   color: white;
   font-family: 'Open Sans', sans-serif;
   font-size: 20px;
@@ -146,6 +147,7 @@ ul.nav li a:hover {
     display: none !important;
   }
   .navbar {
+    min-height: 46px;
     height: auto;
   }
   .nav.navbar-nav {
@@ -169,11 +171,15 @@ ul.nav li a:hover {
     padding: 0;
   }
   .navbar-header {
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 2%;
+    padding-right: 2%;
   }
   #up-for-voting-id {
     border: none;
+  }
+
+  .navbar .navbar-toggle {
+    height: 46px;
   }
 }
 
