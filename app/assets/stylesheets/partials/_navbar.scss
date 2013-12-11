@@ -25,7 +25,7 @@ $navbar-height: $grid-unit*2;
       background-color: $hot-pink;
     }
     .icon-bar {
-      background-color: darkgray;
+      background-color: black;
     }
   }
 }
@@ -41,7 +41,15 @@ $navbar-height: $grid-unit*2;
 .navbar-brand {
   padding: 5px 0;
   color: white;
+  font-family: 'Open Sans', sans-serif;
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight:800;
+  & .radio-station {
+    color: black;  
+  }
 }
+
 
 .navbar-nav {
   padding: 0px;
