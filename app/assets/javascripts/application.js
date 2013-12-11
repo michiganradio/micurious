@@ -24,4 +24,5 @@ You should have received a copy of the GNU General Public License along with Cur
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require turbolinks
-//= require_tree .
+//= require bootstrap.min.js
+//= require limiter.js
