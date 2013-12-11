@@ -11,6 +11,7 @@ You should have received a copy of the GNU General Public License along with Cur
 module Admin
   class VotingRoundsController < Admin::AdminController
     before_action :set_voting_round, only: [:show, :edit, :update, :destroy, :remove_question]
+    before_action :admin_privilege_check, only: [:new, :edit]
 
     # GET /voting_rounds
     def index
@@ -23,14 +24,11 @@ module Admin
 
     # GET /voting_rounds/new
     def new
-      if admin_privilege_check
-        @voting_round = VotingRound.new
-      end
+      @voting_round = VotingRound.new
     end
 
     # GET /voting_rounds/1/edit
     def edit
-      admin_privilege_check
     end
 
     # POST /voting_rounds

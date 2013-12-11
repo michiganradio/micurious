@@ -10,6 +10,7 @@ You should have received a copy of the GNU General Public License along with Cur
 =end
 class Admin::CategoriesController < Admin::AdminController
   before_action :set_admin_category, only: [:show, :edit, :update, :deactivate]
+  before_action :admin_privilege_check, only: [:new, :edit, :deactivate]
 
   # GET /admin/categories
   def index
@@ -22,14 +23,11 @@ class Admin::CategoriesController < Admin::AdminController
 
   # GET /admin/categories/new
   def new
-    if admin_privilege_check
-      @admin_category = Category.new
-    end
-   end
+    @admin_category = Category.new
+  end
 
   # GET /admin/categories/1/edit
   def edit
-    admin_privilege_check
   end
 
   # POST /admin/categories
@@ -58,11 +56,9 @@ class Admin::CategoriesController < Admin::AdminController
 
   # POST /admin/categories/1
   def deactivate
-    if admin_privilege_check
-      @admin_category.update_attribute(:active, false)
-      respond_to do |format|
-        format.html { redirect_to admin_categories_url }
-      end
+    @admin_category.update_attribute(:active, false)
+    respond_to do |format|
+      format.html { redirect_to admin_categories_url }
     end
   end
 

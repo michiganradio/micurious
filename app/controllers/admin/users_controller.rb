@@ -12,6 +12,7 @@ module Admin
   class UsersController < Admin::AdminController
     before_action :set_admin, only: [:show, :edit, :update, :destroy]
     before_action :load_page_info, only: [:main]
+    before_action :admin_privilege_check, only: [:new, :edit, :destroy]
 
     # GET /admins
     def index
@@ -24,14 +25,11 @@ module Admin
 
     # GET /admins/new
     def new
-      if admin_privilege_check
-        @admin = User.new
-      end
+      @admin = User.new
     end
 
     # GET /admins/1/edit
     def edit
-      admin_privilege_check
     end
 
     # GET /admin_main
@@ -64,11 +62,9 @@ module Admin
 
     # DELETE /admins/1
     def destroy
-      if admin_privilege_check
-        @admin.destroy
-        respond_to do |format|
-          format.html { redirect_to admin_users_url }
-        end
+      @admin.destroy
+      respond_to do |format|
+        format.html { redirect_to admin_users_url }
       end
     end
 

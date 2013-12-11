@@ -23,11 +23,8 @@ class Admin::AdminController < ApplicationController
   end
 
   def admin_privilege_check
-    unless current_admin.admin
-      render :file => "public/401.html", :status => :unauthorized
-      false
-    else
-      true
+    if !current_admin.admin
+      render :file => "public/401.html", :status => :unauthorized and return
     end
   end
 end

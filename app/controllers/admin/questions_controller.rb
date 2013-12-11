@@ -14,6 +14,7 @@ module Admin
     before_action :load_answers_and_updates, only: [:show]
     before_action :load_voting_rounds, only: [:edit]
     before_action :load_tags, only: [:index, :filter_by_tag]
+    before_action :admin_privilege_check, only: [:new, :add_question_to_voting_round]
 
     # GET /questions
     def index
@@ -37,10 +38,9 @@ module Admin
 
     # GET /questions/new
     def new
-      if admin_privilege_check
         @question = Question.new
         @question.display_text = params["question"]["text"] if params["question"]
-      end
+
     end
 
     # GET /questions/1/edit
@@ -72,7 +72,6 @@ module Admin
     end
 
     def add_question_to_voting_round
-      if admin_privilege_check
         raise "Please select a voting round to add" unless params[:voting_round_id].present?
         voting_round = VotingRound.find(params[:voting_round_id])
         raise "No voting round exists!" unless voting_round
@@ -88,7 +87,6 @@ module Admin
         load_tags
         @questions = Question.order("created_at DESC")
         render 'index'
-      end
       rescue Exception => error
         redirect_to edit_admin_question_url(@question), flash: {error: error.message}
       end

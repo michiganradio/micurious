@@ -11,15 +11,14 @@ You should have received a copy of the GNU General Public License along with Cur
 module Admin
   class AnswersController < Admin::AdminController
     before_action :load_answers_and_updates, only: [:index, :destroy, :reorder]
+    before_action :admin_privilege_check, only: [:edit, :new, :reorder, :destroy]
 
     def index
       @question = Question.find(params[:question_id])
     end
 
     def edit
-      if admin_privilege_check
         @answer = Answer.find(params[:id])
-      end
     end
 
     def update
@@ -32,15 +31,12 @@ module Admin
     end
 
     def new
-      if admin_privilege_check
         params.require(:question_id)
         @answer = Answer.new
         @answer.question_id = params[:question_id]
-      end
     end
 
     def reorder
-      admin_privilege_check
     end
 
     def sort
@@ -60,12 +56,10 @@ module Admin
     end
 
     def destroy
-      if admin_privilege_check
         answer = Answer.find(params[:id])
         @question = Question.find(params[:question_id])
         answer.destroy
         render "index"
-      end
     end
 
     private
