@@ -70,7 +70,6 @@ class QuestionsController < ApplicationController
     @categories = Category.all
     respond_to do |format|
         if @question.save
-          flash.now[:notice] = 'Thanks for submitting your question!'
           format.html { render action: 'submit_mobile'}
         else
           format.html { render action: 'ask_mobile' }

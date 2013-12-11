@@ -380,6 +380,11 @@ h2 {
     & label {
       font-size: 16px;
     }
+
+    & #question_anonymous {
+      min-height: 20px;
+      min-width: 20px;
+    }
   }
 
   h2.rank {
