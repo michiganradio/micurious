@@ -385,6 +385,10 @@ h2 {
       min-height: 20px;
       min-width: 20px;
     }
+
+    & #error_explanation {
+      width: inherit;
+    }
   }
 
   h2.rank {
