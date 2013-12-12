@@ -24,14 +24,14 @@ You should have received a copy of the GNU General Public License along with Cur
     <% @voting_round.voting_round_questions.each do |voting_round_question| %>
       <tr class="voting-round-question">
         <td class="display-text">
-          <%= voting_round_question.question.display_text %>
+          <%= link_to voting_round_question.question.display_text, admin_question_path(voting_round_question.question), target: "blank" %>
         </td>
         <td>
           <%= voting_round_question.vote_number %>
         </td>
           <% if can_remove_question? %>
             <td>
-            <%= link_to 'Remove', remove_question_admin_voting_round_path(@voting_round, question_id: voting_round_question.question.id), method: :post, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Remove', remove_question_admin_voting_round_path(@voting_round, question_id: voting_round_question.question.id), method: :post, data: { confirm: 'Are you sure?' }, class: "remove-question-voting-round" %>
             </td>
           <% end %>
       </tr>

@@ -9,5 +9,5 @@ Curious City is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with Curious City.  If not, see <http://www.gnu.org/licenses/>.
 =end
 class Admin::QuestionSection < SitePrism::Section
-  element :remove, "a"
+  element :remove, ".remove-question-voting-round"
 end
