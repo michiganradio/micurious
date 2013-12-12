@@ -10,7 +10,7 @@ You should have received a copy of the GNU General Public License along with Cur
 =end
 require 'features/features_spec_helper'
 
-describe "Remove question from voting round" do
+describe "/admin/voting_rounds/{index} remove question from voting round" do
   before do
     signin_as_admin
     @question = FactoryGirl.create(:question)
@@ -19,7 +19,7 @@ describe "Remove question from voting round" do
     @admin_show_voting_round_page = Admin::ShowVotingRound.new
   end
 
-  context "question is only in one voting round" do
+  context "when the question is only in one voting round" do
     before do
       @admin_show_voting_round_page.load(id: @voting_round.id)
       @admin_show_voting_round_page.question_remove_links.first.click
@@ -35,7 +35,7 @@ describe "Remove question from voting round" do
     end
   end
 
-  context "question is in another voting round" do
+  context "when the question is in another voting round" do
     it "does not remove question from other voting round page" do
       voting_round_other = FactoryGirl.create(:voting_round, :other)
       voting_round_other.add_question(@question)

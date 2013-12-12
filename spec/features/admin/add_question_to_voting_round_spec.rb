@@ -10,7 +10,7 @@ You should have received a copy of the GNU General Public License along with Cur
 =end
 require 'features/features_spec_helper'
 
-describe "admin adding question to voting round" do
+describe "/admin/questions/{index}/edit adding question to voting round" do
   before do
     signin_as_admin
     @question = FactoryGirl.create(:question )

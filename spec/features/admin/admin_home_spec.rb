@@ -10,7 +10,7 @@ You should have received a copy of the GNU General Public License along with Cur
 =end
 require 'features/features_spec_helper'
 
-describe "/main" do
+describe "/admin" do
   subject { page }
 
   before do

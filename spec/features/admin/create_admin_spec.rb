@@ -10,7 +10,7 @@ You should have received a copy of the GNU General Public License along with Cur
 =end
 require 'features/features_spec_helper'
 
-describe "create user" do
+describe "/admin/users/new" do
   before do
     signin_as_admin
     @admin_create = Admin::NewUser.new
@@ -20,7 +20,7 @@ describe "create user" do
     @admin_create.confirmation_field.set("password")
   end
 
-  context "user being created is an admin" do
+  context "when the user being created is an admin" do
     it "is a user with admin privileges" do
       @admin_create.admin_field.set(true)
       @admin_create.create_user_button.click
@@ -31,7 +31,7 @@ describe "create user" do
     end
   end
 
-  context "user being created is a reporter" do
+  context "when the user being created is a reporter" do
     it "is a user without admin privileges" do
       @admin_create.admin_field.set(false)
       @admin_create.create_user_button.click

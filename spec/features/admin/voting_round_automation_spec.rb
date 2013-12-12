@@ -11,7 +11,7 @@ You should have received a copy of the GNU General Public License along with Cur
 require 'features/features_spec_helper'
 
 describe "Automate question status change in voting round" do
-  context "voting round status changes to completed" do
+  context "when the voting round status changes to completed" do
     it "changes winning question status to investigated" do
       signin_as_admin
       @voting_round = FactoryGirl.create(:voting_round, status: VotingRound::Status::Live)

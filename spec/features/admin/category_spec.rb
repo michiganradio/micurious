@@ -10,15 +10,17 @@ You should have received a copy of the GNU General Public License along with Cur
 =end
 require 'features/features_spec_helper'
 
-describe "activate deactivated category" do
-  it "changes the active status" do
-    FactoryGirl.create(:category)
-    signin_as_admin
-    @admin_categories = Admin::Categories.new
-    @admin_categories.load
-    @admin_categories.activate_links[0].click
-    @admin_categories.should be_displayed
-    @admin_categories.load
-    expect(@admin_categories.active_labels[0].text).to eq "true"
+describe "/admin/categories" do
+  describe "activate link on deactivated category" do
+    it "changes the active status to active" do
+      FactoryGirl.create(:category)
+      signin_as_admin
+      @admin_categories = Admin::Categories.new
+      @admin_categories.load
+      @admin_categories.activate_links[0].click
+      @admin_categories.should be_displayed
+      @admin_categories.load
+      expect(@admin_categories.active_labels[0].text).to eq "true"
+    end
   end
 end

@@ -10,7 +10,7 @@ You should have received a copy of the GNU General Public License along with Cur
 =end
 require 'features/features_spec_helper'
 
-describe "Admin navigation" do
+describe "Admin Navigation" do
   subject { page }
 
   before { signin_as_admin }
@@ -26,35 +26,35 @@ describe "Admin navigation" do
     end
   end
 
-  describe "dashboard page" do
+  describe "/admin" do
     before do
       visit admin_path
     end
     it_should_behave_like 'all admin pages'
   end
 
-  describe "signin page" do
+  describe "/admin/signin" do
     before do
       visit admin_signin_path
     end
     it_should_behave_like 'all admin pages'
   end
 
-  describe "categories page" do
+  describe "/admin/categories" do
     before do
       visit admin_categories_path
     end
     it_should_behave_like 'all admin pages'
   end
 
-  describe "new category page" do
+  describe "/admin/categories/new" do
     before do
       visit new_admin_category_path
     end
     it_should_behave_like 'all admin pages'
   end
 
-  describe "edit category page" do
+  describe "/admin/categories/{index}/edit" do
     before do
       category = FactoryGirl.create(:category)
       visit edit_admin_category_path(category.id)
@@ -62,7 +62,7 @@ describe "Admin navigation" do
     it_should_behave_like 'all admin pages'
   end
 
-  describe "show category page" do
+  describe "/admin/categories/{index}" do
     before do
       category = FactoryGirl.create(:category)
       visit admin_category_path(category.id)
@@ -70,21 +70,21 @@ describe "Admin navigation" do
     it_should_behave_like 'all admin pages'
   end
 
-  describe "questions page" do
+  describe "/admin/questions" do
     before do
       visit admin_questions_path
     end
     it_should_behave_like 'all admin pages'
   end
 
-  describe "new question page" do
+  describe "/admin/questions/new" do
     before do
       visit new_admin_question_path
     end
     it_should_behave_like 'all admin pages'
   end
 
-  describe "edit question page" do
+  describe "/admin/questions/{index}/edit" do
     let(:question) { FactoryGirl.create(:question) }
 
     before do
@@ -95,7 +95,7 @@ describe "Admin navigation" do
     it_should_behave_like 'all admin pages'
   end
 
-  describe "show question page" do
+  describe "/admin/questions/{index}" do
     before do
       question = FactoryGirl.create(:question)
       visit admin_question_path(question.id)
@@ -103,21 +103,21 @@ describe "Admin navigation" do
     it_should_behave_like 'all admin pages'
   end
 
-  describe "voting rounds page" do
+  describe "/admin/voting_rounds" do
     before do
       visit admin_voting_rounds_path
     end
     it_should_behave_like 'all admin pages'
   end
 
-  describe "new voting round page" do
+  describe "/admin/voting_rounds/new" do
     before do
       visit new_admin_voting_round_path
     end
     it_should_behave_like 'all admin pages'
   end
 
-  describe "edit voting round page" do
+  describe "/admin/voting_rounds/{index}/edit" do
     before do
       voting_round = FactoryGirl.create(:voting_round)
       visit edit_admin_voting_round_path(voting_round.id)
@@ -125,7 +125,7 @@ describe "Admin navigation" do
     it_should_behave_like 'all admin pages'
   end
 
-  describe "show voting round page" do
+  describe "/admin/voting_rounds/{index}" do
     before do
       voting_round = FactoryGirl.create(:voting_round)
       visit admin_voting_round_path(voting_round.id)
@@ -133,28 +133,21 @@ describe "Admin navigation" do
     it_should_behave_like 'all admin pages'
   end
 
-  describe "show admin dashboard page" do
-    before do
-      visit admin_path
-    end
-    it_should_behave_like 'all admin pages'
-  end
-
-  describe "users page" do
+  describe "/admin/users" do
     before do
       visit admin_users_path
     end
     it_should_behave_like 'all admin pages'
   end
 
-  describe "new user page" do
+  describe "/admin/users/new" do
     before do
       visit new_admin_user_path
     end
     it_should_behave_like 'all admin pages'
   end
 
-  describe "edit user page" do
+  describe "/admin/users/{index}/edit" do
     before do
       user = FactoryGirl.create(:user, username: "user2")
       visit edit_admin_user_path(user.id)
@@ -162,7 +155,7 @@ describe "Admin navigation" do
     it_should_behave_like 'all admin pages'
   end
 
-  describe "show user page" do
+  describe "/admin/users/{index}" do
     before do
       user = FactoryGirl.create(:user, username: "user1")
       visit admin_user_path(user.id)

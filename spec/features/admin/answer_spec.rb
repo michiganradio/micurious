@@ -10,7 +10,7 @@ You should have received a copy of the GNU General Public License along with Cur
 =end
 require 'features/features_spec_helper'
 
-describe "Question answers" do
+describe "/admin/answers/new{?question_id}" do
   def add_answer(answer_type)
     visit new_admin_answer_path(question_id: @question.id)
     @new_admin_answer_page = Admin::NewAnswer.new
@@ -27,7 +27,7 @@ describe "Question answers" do
   end
 
   describe "add answer" do
-    context "no type selected" do
+    context "when no answer type is selected" do
       it "displays error message" do
         add_answer(nil)
         @new_admin_answer_page.add_answer_to_question_errors[0].text.should ==
@@ -35,8 +35,8 @@ describe "Question answers" do
       end
     end
 
-    context "type selected" do
-      it "adds answer" do
+    context "when an answer type is selected" do
+      it "adds the answer" do
         add_answer(Answer::Type::Answer)
         @admin_answers_page = Admin::Answers.new
         @admin_answers_page.load(question_id: @question.id)
@@ -45,7 +45,7 @@ describe "Question answers" do
         @admin_answers_page.answers[0].type.text.should eq Answer::Type::Answer
       end
 
-      it "adds update" do
+      it "adds the update" do
         add_answer(Answer::Type::Update)
         @admin_answers_page = Admin::Answers.new
         @admin_answers_page.load(question_id: @question.id)
@@ -56,8 +56,8 @@ describe "Question answers" do
     end
   end
 
-  describe "edit answer" do
-    it "changes fields" do
+  describe "/admin/answers/{index}/edit" do
+    it "allows changing of the fields" do
       answer = FactoryGirl.create(:answer, question_id: @question.id)
       visit edit_admin_answer_path(answer)
       @admin_answers_page = Admin::Answers.new
@@ -76,8 +76,8 @@ describe "Question answers" do
     end
   end
 
-  describe "delete answer" do
-    it "removes answer" do
+  describe "delete link" do
+    it "removes answer from the question" do
       answer = FactoryGirl.create(:answer, label: "label!!!", question_id: @question.id)
       @admin_answers_page = Admin::Answers.new
       @admin_answers_page.load(question_id: @question.id)

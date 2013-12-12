@@ -10,9 +10,9 @@ You should have received a copy of the GNU General Public License along with Cur
 =end
 require 'features/features_spec_helper'
 
-describe 'admin edit question' do
-  context "user has admin privileges" do
-    it 'modifies the picture attribution, url, and owner', js: true do
+describe '/admin/questions/{index}/edit' do
+  context "when user has admin privileges" do
+    it 'allows modifcation of the picture attribution, url, and owner', js: true do
       signin_as_admin
       @question  = FactoryGirl.create(:question, picture_url: "picture_url",
                                       picture_owner: "picture_owner",
@@ -40,7 +40,7 @@ describe 'admin edit question' do
       @admin_edit_question.featured.should be_checked
     end
   end
-  context "user has no admin privileges" do
+  context "when user has no admin privileges" do
     it "only allows editing of notes and tags" do
       signin_as_reporter
       @question  = FactoryGirl.create(:question, picture_url: "picture_url",

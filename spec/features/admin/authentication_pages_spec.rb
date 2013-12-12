@@ -14,22 +14,22 @@ describe "Authentication" do
 
   subject { page }
 
-  describe "signin" do
+  describe "/admin/signin" do
     before { visit admin_signin_path }
 
-    describe "with invalid information" do
+    context "with invalid information" do
       before { click_button "Sign in" }
 
       it { should have_content('Sign in') }
       it { should have_selector('div.alert.alert-error', text: 'Invalid') }
 
-      describe "after visiting another page" do
+      context "after visiting another page" do
         before { visit admin_questions_path }
         it { should_not have_selector('div.alert.alert-error') }
       end
     end
 
-    describe "with valid information" do
+    context "with valid information" do
       let(:admin) { FactoryGirl.create(:user) }
       before do
         fill_in "Username", with: admin.username
@@ -38,8 +38,6 @@ describe "Authentication" do
       end
 
       it { should have_content("Admin Home Page") }
-      # it { should have_link('Sign out', href: signout_path) }
-      # it { should_not have_link('Sign in', href: signin_path) }
     end
   end
 end

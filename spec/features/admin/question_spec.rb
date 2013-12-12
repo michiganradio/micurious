@@ -10,7 +10,7 @@ You should have received a copy of the GNU General Public License along with Cur
 =end
 require 'features/features_spec_helper'
 
-describe "admin's questions page" do
+describe "/admin/questions" do
   it "displays question created_at, notes and tags" do
     signin_as_admin
     @question  = FactoryGirl.create(:question, created_at: "Dec 5, 2013", picture_url: "picture_url",
