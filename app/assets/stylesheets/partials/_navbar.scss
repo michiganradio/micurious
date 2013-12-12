@@ -107,8 +107,14 @@ $navbar-height: $grid-unit*2;
 }
 
 ul.nav li a:hover {
+  background-color: $nice-blue;
+  color: white;
+}
+
+ul.nav.visible-xs li a:hover {
   background-color: $hot-pink;
 }
+
 .dropdown:hover .dropdown-menu {
   display: inline-block;
   padding-top: 0px;
