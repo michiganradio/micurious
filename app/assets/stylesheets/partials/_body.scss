@@ -344,7 +344,21 @@ h2 {
   overflow: auto;
 }
 
+.img .bio-pic {
+  padding-left: 0;
+
+}
+
+img#bio-pic {
+   padding-left: 0;
+  }
+
+img#jenn-pic {
+  padding-right: 0;
+}
+
 .bio {
+  padding-right: 0;
   img {
     float: left;
     padding: $grid-unit;
@@ -352,6 +366,7 @@ h2 {
     padding-left: 0;
     width: 250px;
     height: 238px;
+
   }
 
   p {
@@ -360,6 +375,7 @@ h2 {
 }
 
 .faq {
+  padding-left: 0;
    img {
     width: 100%;
     margin: $grid-unit * 2 $grid-unit $grid-unit 0;
@@ -371,6 +387,7 @@ h2 {
 }
 
 .about {
+  padding-right: 0;
 
   p {
     text-align: justify;
@@ -378,6 +395,7 @@ h2 {
 }
 
 .credit {
+  padding-right: 0;
 
   p {
     text-align: justify;
