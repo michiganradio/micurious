@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License along with Cur
       <table class="table table-bordered">
         <% @recent_questions.each_with_index do |question, i| %>
           <div class="recent-question"><tr><td>
-                <%= link_to "#{i+1}. "+question.display_text, admin_question_path(question) %>
+                <%= link_to "#{i+1}. "+question.display_text, admin_question_path(question), target: "blank" %>
               </td></tr></div>
         <% end %>
       </table>
@@ -38,7 +38,7 @@ You should have received a copy of the GNU General Public License along with Cur
     <table class="table table-bordered">
       <% @recent_answers.each_with_index do |answer, i| %>
         <div class="recent-answer"><tr><td>
-          <%= link_to "#{i+1}. "+answer.label, admin_question_path(answer.question_id) %> 
+          <%= link_to "#{i+1}. "+answer.label, admin_question_path(answer.question_id), target: "blank"  %> 
     </td></tr></div>
       <% end %>
     </table>
@@ -50,7 +50,7 @@ You should have received a copy of the GNU General Public License along with Cur
     <table class="table table-bordered">
       <% @recent_updates.each_with_index do |update, i| %>
         <div class="recent-update"><tr><td>
-          <%= link_to "#{i+1}. "+update.label, admin_question_path(update.question_id) %> 
+          <%= link_to "#{i+1}. "+update.label, admin_question_path(update.question_id), target: "blank"  %> 
     </td></tr></div>
       <% end %>
     </table>
@@ -65,7 +65,7 @@ You should have received a copy of the GNU General Public License along with Cur
     <table class="table table-bordered">
       <% @recent_questions_with_updated_tags.each_with_index do |question, i| %>
         <div class="recent-tag"><tr><td>
-          <%= link_to "#{i+1}. " + display_tags(question), admin_question_path(question), id: "tag" %> 
+          <%= link_to "#{i+1}. " + display_tags(question), admin_question_path(question), id: "tag", target: "blank"  %> 
     </td></tr></div>
       <% end %>
     </table>
@@ -77,7 +77,7 @@ You should have received a copy of the GNU General Public License along with Cur
     <table class="table table-bordered">
       <% @recent_questions_with_updated_notes.each_with_index do |question, i| %>
         <div class="recent-note"><tr><td>
-              <%= link_to "#{i+1}. "+question.notes, admin_question_path(question) %> 
+              <%= link_to "#{i+1}. "+question.notes, admin_question_path(question), target: "blank"  %> 
     </td></tr></div>
       <% end %>
     </table>
