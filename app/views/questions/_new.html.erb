@@ -33,7 +33,7 @@ You should have received a copy of the GNU General Public License along with Cur
             <div class="field col-lg-12">
               <%= f.label :display_text, "Your question*" %>
               <%= render partial:'guidelines', locals:{guideline_content_partial:'question_guideline_content', link_label: 'Show some good question examples', placement: 'bottom', popover_id: 'question-guideline-link'} %>
-              <%= f.text_area :display_text, placeholder: "Enter your question here", rows: "4", maxlength: "140", class: "form-control no-changing"  %> 
+              <%= f.text_area :display_text, placeholder: "Enter your question here", rows: "4", maxlength: "140", class: "form-control no-changing question_display_modal"  %> 
               <div class="submit-question-spec">
                 (<span id="question_display_text_count"></span> characters left)
               </div>

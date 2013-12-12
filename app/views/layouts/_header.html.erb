@@ -12,7 +12,7 @@ You should have received a copy of the GNU General Public License along with Cur
     $('#how-it-works-link').click(function() {
       $('#how-it-works').slideToggle();
     });
-    $('#display_text').limiter(140, $('#question_display_text_count_header'));
+    $('.display_text_header').limiter(140, $('#question_display_text_count_header'));
     loadVisibleCCLogos();
 
     window.onresize = function() {
@@ -88,7 +88,7 @@ You should have received a copy of the GNU General Public License along with Cur
     <div class="carrot"></div>
     <div class="submit-question-container">
       <%= form_tag ask_question_path, id: 'ask-question-form', remote: true do %>
-        <%= text_area_tag :display_text, params[:display_text], placeholder: "What do you wonder about Chicago, the region or its people that you want WBEZ to investigate?", class: "submit-question-text", maxlength: 140 %>
+        <%= text_area_tag :display_text, params[:display_text], placeholder: "What do you wonder about Chicago, the region or its people that you want WBEZ to investigate?", class: "submit-question-text display_text_header", maxlength: 140%>
         <%= submit_tag "Ask", class: "btn submit-question-btn", remote: true%>
         <small class="submit-question-spec-header">
           (<span id="question_display_text_count_header"></span> characters left)

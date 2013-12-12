@@ -1,6 +1,6 @@
 <script>
   $(document).ready(function() {
-    $('#question_display_text').limiter(140, $('#question_display_text_count'));
+    $('.question_display_text_mobile').limiter(140, $('#question_display_text_count_mobile'));
     });
 </script>
 <div class="container-padding ask_mobile">
@@ -20,9 +20,9 @@
     <div class="row">
       <div class="field col-lg-8">
         <%= f.label :display_text, "Your question*" %>
-        <%= f.text_area :display_text, placeholder: "Enter your question here", rows: "4", maxlength: "140", class: "form-control no-changing"  %> 
+        <%= f.text_area :display_text, placeholder: "Enter your question here", rows: "4", maxlength: "140", class: "form-control no-changing question_display_text_mobile"  %> 
         <div class="submit-question-spec">
-          (<span id="question_display_text_count"></span> characters left)
+          (<span id="question_display_text_count_mobile"></span> characters left)
         </div>
         </div>
       </div>
