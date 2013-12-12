@@ -35,6 +35,11 @@ $question-height: $grid-unit * 8;
   opacity: 0.9;
 }
 
+.question-row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .question {
   background-image: image_url("bg_dots.png");
   height: $question-height; 
@@ -462,10 +467,6 @@ h2 {
       background-color: $nice-blue;
       opacity: 0.5;
     }
-  }
-  .question-row {
-    margin-left: 0;
-    margin-right: 0;
   }
   .question-text {
     font-size: 14px;
