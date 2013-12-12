@@ -14,7 +14,9 @@ You should have received a copy of the GNU General Public License along with Cur
     <tr>
       <th>Question</th>
       <th>Vote number</th>
-      <th></th>
+      <% if can_remove_question? %>
+         <th></th>
+      <% end %>
     </tr>
   </thead>
 
