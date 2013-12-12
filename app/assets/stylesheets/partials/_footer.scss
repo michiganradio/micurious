@@ -15,13 +15,17 @@ You should have received a copy of the GNU General Public License along with Cur
 
 .partners .footer-head {
   padding-bottom: 5px; 
-  padding-right: $grid-unit;
   text-align: right;
 }
 
 .status-bar {
   float: left;
 }
+
+.sponsor-logos {
+  margin-right: -14px;
+}
+
 .modal-footer .status-bar h4 {
   margin-top: -5px;
   text-align: left;
