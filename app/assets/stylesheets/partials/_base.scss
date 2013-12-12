@@ -27,7 +27,7 @@ $voting-round-image-width: $grid-unit * 25.5;
 $question-image-width: $voting-round-image-width + $grid-unit * 3;
 
 $logo-size: 350px;
-$carrot-width: 20px;
+$carrot-width: 18px;
 
 $mobile-max-width: 767px;
 
@@ -60,7 +60,7 @@ $mobile-max-width: 767px;
     top: 40%;
     @include set-size($carrot-width, 24px);
     background: image_url("carrot.png") no-repeat;
-    left: -1px;
+    left: 1;
   }
 
   .submit-question-container {
