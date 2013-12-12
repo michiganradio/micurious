@@ -19,10 +19,11 @@ $navbar-height: $grid-unit*2;
   .navbar-toggle {
     z-index: 1;
     margin: 0;
-    height:$grid-unit * 2;
+    height: 46px;
     padding: $grid-unit/3;
     .icon-bar {
       background-color: white;
+      width: 32.8px;
     }
   }
 }
@@ -36,7 +37,7 @@ $navbar-height: $grid-unit*2;
   font-weight: bold;
   margin-top: $grid-unit/2;
   margin-bottom: $grid-unit/2;
-  padding: 2px 9px;
+  padding: 2px $grid-unit/2;
   font-size: 18px;
   text-decoration: none;
 }
@@ -176,10 +177,6 @@ ul.nav li a:hover {
   }
   #up-for-voting-id {
     border: none;
-  }
-
-  .navbar .navbar-toggle {
-    height: 46px;
   }
 }
 
