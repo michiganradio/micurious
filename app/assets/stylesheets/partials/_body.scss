@@ -290,6 +290,10 @@ h2 {
   margin-top: $grid-unit;
 }
 
+.search {
+  max-width: 38*$grid-unit;
+}
+
 @media (max-width: 1024px) {
   .carousel .carousel-inner .item a img{
     margin-top: 0px
