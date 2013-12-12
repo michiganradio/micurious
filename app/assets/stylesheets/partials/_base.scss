@@ -53,6 +53,7 @@ $mobile-max-width: 767px;
 .submit-wrap {
   position: relative;
   padding: $grid-unit;
+  padding-right: 0;
   
   .carrot {
     position: absolute;

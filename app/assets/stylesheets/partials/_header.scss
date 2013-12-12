@@ -16,6 +16,7 @@ $social-media-logo-size: 18px;
   background: black left center;
   border: $grid-unit/2 solid black;
   border-left: 0px;
+  border-right: 0px;
   color: $nice-blue;
 
   .text-link {
@@ -45,8 +46,11 @@ $social-media-logo-size: 18px;
 
   img {
     height: $grid-unit * 2;
-    margin-left: -5px;
   }
+}
+
+.cc-logo {
+  padding: 0;
 }
 
 .image-logo {
@@ -73,7 +77,7 @@ $social-media-logo-size: 18px;
 .submit-question-btn {
   position: absolute;
   color: white;
-  right: $grid-unit * 1.5;
+  right: $grid-unit * 0.5;
   bottom: $grid-unit * 1.5;
   background-color: darkgray;
 
@@ -119,7 +123,7 @@ $social-media-logo-size: 18px;
 .submit-question-spec-header{
   position: absolute;
   bottom: $grid-unit * 1.5;
-  right: $grid-unit * 5;
+  right: $grid-unit * 4;
   color: lightgray;
   font-size: $grid-unit * .8;
 }
