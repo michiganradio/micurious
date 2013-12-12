@@ -15,11 +15,9 @@ You should have received a copy of the GNU General Public License along with Cur
       <details open>
       <summary><strong>Recent questions:</strong></summary>
       <table class="table table-bordered">
-        <% count = 1 %>
-        <% @recent_questions.each do |question| %>
+        <% @recent_questions.each_with_index do |question, i| %>
           <div class="recent-question"><tr><td>
-                <%= link_to "#{count}. "+question.display_text, admin_question_path(question) %>
-                <% count+=1 %>
+                <%= link_to "#{i+1}. "+question.display_text, admin_question_path(question) %>
               </td></tr></div>
         <% end %>
       </table>
@@ -38,11 +36,9 @@ You should have received a copy of the GNU General Public License along with Cur
     <details open>
     <summary><strong>Recent answers:</strong></summary>
     <table class="table table-bordered">
-    <% count = 1 %>
-      <% @recent_answers.each do |answer| %>
+      <% @recent_answers.each_with_index do |answer, i| %>
         <div class="recent-answer"><tr><td>
-          <%= link_to "#{count}. "+answer.label, admin_question_path(answer.question_id) %> 
-            <% count+=1 %>
+          <%= link_to "#{i+1}. "+answer.label, admin_question_path(answer.question_id) %> 
     </td></tr></div>
       <% end %>
     </table>
@@ -52,11 +48,9 @@ You should have received a copy of the GNU General Public License along with Cur
     <details open>
     <summary><strong>Recent updates:</strong></summary>
     <table class="table table-bordered">
-    <% count = 1 %>
-      <% @recent_updates.each do |update| %>
+      <% @recent_updates.each_with_index do |update, i| %>
         <div class="recent-update"><tr><td>
-          <%= link_to "#{count}. "+update.label, admin_question_path(update.question_id) %> 
-            <% count+=1 %>
+          <%= link_to "#{i+1}. "+update.label, admin_question_path(update.question_id) %> 
     </td></tr></div>
       <% end %>
     </table>
@@ -69,11 +63,9 @@ You should have received a copy of the GNU General Public License along with Cur
     <details open>
     <summary><strong>Recent tags:</strong></summary>
     <table class="table table-bordered">
-    <% count = 1 %>
-      <% @recent_questions_with_updated_tags.each do |question| %>
+      <% @recent_questions_with_updated_tags.each_with_index do |question, i| %>
         <div class="recent-tag"><tr><td>
-          <%= link_to "#{count}. " + display_tags(question), admin_question_path(question), id: "tag" %> 
-            <% count+=1 %>
+          <%= link_to "#{i+1}. " + display_tags(question), admin_question_path(question), id: "tag" %> 
     </td></tr></div>
       <% end %>
     </table>
@@ -83,11 +75,9 @@ You should have received a copy of the GNU General Public License along with Cur
     <details open>
     <summary><strong>Recent notes:</strong></summary>
     <table class="table table-bordered">
-    <% count = 1 %>
-      <% @recent_questions_with_updated_notes.each do |question| %>
+      <% @recent_questions_with_updated_notes.each_with_index do |question, i| %>
         <div class="recent-note"><tr><td>
-              <%= link_to "#{count}. "+question.notes, admin_question_path(question) %> 
-            <% count+=1 %>
+              <%= link_to "#{i+1}. "+question.notes, admin_question_path(question) %> 
     </td></tr></div>
       <% end %>
     </table>
