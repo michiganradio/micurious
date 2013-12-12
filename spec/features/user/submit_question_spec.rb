@@ -101,8 +101,8 @@ describe 'Ask a question', js: true do
 
   describe "flicker question modal" do
     before do
-      @category1 = FactoryGirl.create(:category)
-      @category2 = FactoryGirl.create(:category, label: "MyString2")
+      @category1 = FactoryGirl.create(:category, :other)
+      @category2 = FactoryGirl.create(:category, :other, label: "MyString2")
       setup_ask_question_modal
       setup_question_picture_modal
     end
@@ -136,8 +136,8 @@ describe 'Ask a question', js: true do
 
   describe "confirm question modal" do
     before do
-      @category1 = FactoryGirl.create(:category)
-      @category2 = FactoryGirl.create(:category, label: "MyString2")
+      @category1 = FactoryGirl.create(:category, :other)
+      @category2 = FactoryGirl.create(:category, :other, label: "MyString2")
       setup_ask_question_modal
       setup_question_picture_modal
       setup_confirm_question_modal
@@ -171,8 +171,8 @@ describe 'Ask a question', js: true do
 
   describe "question received modal" do
     it "has question received content" do
-      @category1 = FactoryGirl.create(:category)
-      @category2 = FactoryGirl.create(:category, label: "MyString2")
+      @category1 = FactoryGirl.create(:category, :other)
+      @category2 = FactoryGirl.create(:category, :other, label: "MyString2")
       setup_ask_question_modal
       setup_question_picture_modal
       setup_confirm_question_modal
@@ -188,8 +188,8 @@ describe 'Ask a question', js: true do
 
   describe "show question after submission" do
     it "has new question content in admin" do
-      @category1 = FactoryGirl.create(:category)
-      @category2 = FactoryGirl.create(:category, label: "MyString2")
+      @category1 = FactoryGirl.create(:category, :other)
+      @category2 = FactoryGirl.create(:category, :other, label: "MyString2")
       setup_ask_question_modal
       setup_question_picture_modal
       setup_confirm_question_modal

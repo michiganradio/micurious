@@ -10,7 +10,7 @@ You should have received a copy of the GNU General Public License along with Cur
 =end
 class QuestionsController < ApplicationController
   before_action :load_answers_and_updates, only: [:show]
-  before_action :load_categories, only: [:filter, :show, :search]
+  before_action :load_categories, only: [:filter, :show, :search, :new, :ask_mobile, :submit_mobile, :picture, :confirm]
 
   def show
       @question = Question.where("id = ? AND status != 'Removed'", params[:id]).first
@@ -35,7 +35,6 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
-    @categories = Category.all
     @question.attributes = params.permit(:display_text, :description, :name, :anonymous,
                                          :email, :email_confirmation, :neighbourhood,
                                          :picture_url, :picture_owner, :picture_attribution_url, :category_ids => [])
@@ -51,7 +50,7 @@ class QuestionsController < ApplicationController
       if @question.save
         format.js { render "received.js.erb" }
       else
-        @categories = Category.all
+        load_categories
         format.js { render "new.js.erb" }
       end
     end
@@ -59,7 +58,6 @@ class QuestionsController < ApplicationController
 
   def ask_mobile
     @question = Question.new
-    @categories = Category.all
     @question.attributes = params.permit(:display_text, :name, :anonymous,
                                          :email, :neighbourhood)
   end
@@ -67,7 +65,6 @@ class QuestionsController < ApplicationController
   def submit_mobile
     @question = Question.new(question_mobile_params)
     @question.email_confirmation = @question.email
-    @categories = Category.all
     respond_to do |format|
         if @question.save
           format.html { render action: 'submit_mobile'}
@@ -79,7 +76,6 @@ class QuestionsController < ApplicationController
 
   def picture
     @question = Question.new(question_params)
-    @categories = Category.all
     respond_to do |format|
       format.js { render @question.valid? ? 'picture.js.erb' : 'new.js.erb' }
     end
@@ -94,7 +90,6 @@ class QuestionsController < ApplicationController
 
   def confirm
     @question = Question.new(question_params)
-    @categories = Category.all
     respond_to do |format|
       format.js { render @question.valid? ? 'confirm.js.erb' : 'new.js.erb' }
     end
