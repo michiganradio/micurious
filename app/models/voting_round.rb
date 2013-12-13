@@ -71,8 +71,7 @@ class VotingRound < ActiveRecord::Base
   end
 
   def update_winning_question_status
-    previous_state = VotingRound.find(self.id)
-    if previous_state.status == VotingRound::Status::Live && self.status == VotingRound::Status::Completed
+    if self.status == VotingRound::Status::Completed && self.status_was == VotingRound::Status::Live
       self.winner.each { |question| question.update(status: Question::Status::Investigating) }
     end
   end
