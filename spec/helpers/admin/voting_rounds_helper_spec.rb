@@ -12,7 +12,7 @@ require 'spec_helper'
 
 describe Admin::VotingRoundsHelper do
 
-  describe "can_remove_question? method" do
+  describe "#can_remove_question?" do
     context "when voting round has New status" do
       it "returns true" do
         @voting_round = double(:voting_round, status: VotingRound::Status::New)

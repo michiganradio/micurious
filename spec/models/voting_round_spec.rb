@@ -12,8 +12,8 @@ require 'spec_helper'
 
 describe VotingRound do
   describe "after update" do
-     context "status is initially live" do
-      context "status is changed to completed" do
+    context "when status is initially live" do
+      context "when status is changed to completed" do
         it "updates the winning question status to Investigated" do
           question = FactoryGirl.create(:question)
           voting_round = FactoryGirl.create(:voting_round,
@@ -26,7 +26,7 @@ describe VotingRound do
         end
       end
 
-      context "status is not changed to Completed" do
+      context "when status is not changed to Completed" do
         it "does not change the winning question status" do
           question = FactoryGirl.create(:question)
           voting_round = FactoryGirl.create(:voting_round,
@@ -54,7 +54,7 @@ describe VotingRound do
   end
 
   describe "after save" do
-        context "public label is empty" do
+    context "when public label is empty" do
       it "creates default public label" do
         voting_round = VotingRound.new
         voting_round.save
@@ -62,7 +62,7 @@ describe VotingRound do
       end
     end
 
-    context "private label is empty" do
+    context "when private label is empty" do
       it "creates default private label" do
         voting_round = VotingRound.new
         voting_round.save
@@ -75,7 +75,7 @@ describe VotingRound do
   it {should validate_uniqueness_of(:private_label).case_insensitive}
 
   context "voting round question" do
-    context "add_question" do
+    context "#add_question" do
       it "adds a new question to the voting round" do
         voting_round  = VotingRound.new
         question = Question.new
@@ -84,7 +84,7 @@ describe VotingRound do
       end
     end
 
-    context "association" do
+    describe "association" do
       it "saves the association" do
         voting_round = FactoryGirl.create(:voting_round)
         voting_round.questions << FactoryGirl.create(:question)
@@ -94,14 +94,14 @@ describe VotingRound do
     end
   end
 
-  context "validation" do
+  describe "validation" do
     it "only validates the status when the new status is live" do
       FactoryGirl.create(:voting_round, status: VotingRound::Status::Live)
       expect { FactoryGirl.create(:voting_round) }.not_to raise_error
     end
   end
 
-  context "get previous voting round" do
+  describe "#previous" do
     it "gets voting round that is completed and previous" do
       old_voting_round = FactoryGirl.create(:voting_round, :completed)
       current_voting_round = FactoryGirl.create(:voting_round, :live, :other)
@@ -110,7 +110,7 @@ describe VotingRound do
     end
   end
 
-  context "get next voting round" do
+  describe "#next" do
     it "gets voting round that is completed and previous" do
       old_voting_round = FactoryGirl.create(:voting_round, :completed)
       newer_voting_round = FactoryGirl.create(:voting_round, :live, :other)
@@ -119,7 +119,7 @@ describe VotingRound do
     end
   end
 
-  context "winner" do
+  describe "#winner" do
     it "gives winner" do
       question = FactoryGirl.create(:question)
       question2 = FactoryGirl.create(:question, :other)
@@ -160,7 +160,7 @@ describe VotingRound do
   end
 
   describe "before update" do
-    context "existing live voting round" do
+    context "when there is an existing live voting round" do
       it "makes old voting round completed and new voting round live" do
          old_voting_round = double(:voting_round, id: 1, status: VotingRound::Status::Live)
          voting_round = VotingRound.create
@@ -171,14 +171,13 @@ describe VotingRound do
       end
     end
 
-    context "no live voting rounds" do
+    context "when there are no live voting rounds" do
       it "makes new voting round live" do
          voting_round = VotingRound.create
          VotingRound.should_receive(:where).with("status = ? AND id != ?", VotingRound::Status::Live, voting_round.id).and_return([])
          voting_round.update!({:status  => VotingRound::Status::Live})
          voting_round.status.should == VotingRound::Status::Live
       end
-
     end
   end
 end

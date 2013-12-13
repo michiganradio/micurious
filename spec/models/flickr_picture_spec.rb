@@ -35,7 +35,7 @@ describe 'FlickrPicture' do
     @picture.attribution_url.should == @photo.url
   end
 
-  context "url" do
+  describe "url" do
     it "sets the right url from multiple fields" do
       @picture.url.should == "http://farm4.staticflickr.com/1234/1234567890_abcd1234.jpg"
     end

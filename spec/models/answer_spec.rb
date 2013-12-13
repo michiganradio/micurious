@@ -12,24 +12,24 @@ require 'spec_helper'
 
 describe Answer do
   describe "validation" do
-    context "label" do
+    describe "label" do
       it { should ensure_length_of(:label).
             is_at_least(1).
             is_at_most(3000) }
     end
 
-    context "url" do
+    describe "url" do
       it { should ensure_length_of(:url).
            is_at_least(1).
            is_at_most(2000) }
     end
 
-    context "type" do
+    describe "type" do
       it { should validate_presence_of(:type) }
     end
   end
 
-  describe "recent_answer" do
+  describe "#recent_answer" do
       it "returns recent updated answers" do
         @most_recent_answers = [Answer.new]
         Answer.stub_chain(:where, :order, :limit).and_return(@most_recent_answers)
@@ -37,7 +37,7 @@ describe Answer do
       end
   end
 
-  describe "recent_update" do
+  describe "#recent_update" do
       it "returns recent updated updates" do
         @most_recent_updates = [Answer.new]
         Answer.stub_chain(:where, :order, :limit).and_return(@most_recent_updates)

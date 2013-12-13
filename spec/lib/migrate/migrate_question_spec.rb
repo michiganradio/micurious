@@ -135,7 +135,7 @@ describe "question migration" do
   end
 
   describe "sets picture url for question" do
-    context "image url cell in row is 'images/default.jpg'" do
+    context "when image url cell in row is 'images/default.jpg'" do
       it "pictureurl is nil" do
         question = Question.new
         @question_migrate.map_question_data(@row, question, @column_indices)
@@ -143,7 +143,7 @@ describe "question migration" do
       end
     end
 
-    context "image url cell in row is not 'images/default.jpg'" do
+    context "when image url cell in row is not 'images/default.jpg'" do
       it "picture_url is set to image url cell" do
         @row[5] = "image url"
         question = Question.new
@@ -183,7 +183,7 @@ describe "question migration" do
   end
 
   describe "generates timeline update for question"do
-    context "timeline key is not empty" do
+    context "when timeline key is not empty" do
       it "add new update using timeline key" do
         timeline_key = "123"
         question_id = 2
@@ -197,7 +197,7 @@ describe "question migration" do
       end
     end
 
-    context "timeline key is empty" do
+    context "when timeline key is empty" do
       it "do not add new update" do
         timeline_key = ""
         question_id = 2

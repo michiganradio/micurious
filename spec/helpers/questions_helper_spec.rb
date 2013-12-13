@@ -12,7 +12,7 @@ require 'spec_helper'
 
 describe QuestionsHelper do
 
-  describe "cache_key_for_questions" do
+  describe "#cache_key_for_questions" do
     it "returns a key based on the requests params and results" do
       last_updated_at = Time.now
       questions = double(:question, count: 2)

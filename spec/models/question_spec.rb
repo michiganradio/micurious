@@ -13,7 +13,7 @@ require 'spec_helper'
 describe Question do
   subject { @question }
 
-  context "original_text" do
+  describe "original_text" do
     before do
       @question = FactoryGirl.create(:question)
     end
@@ -24,11 +24,11 @@ describe Question do
       @question.reload.original_text.should eql original_text
     end
 
-    context "empty" do
+    context "when empty" do
       its('original_text') { should eq @question.display_text }
     end
 
-    context "not empty" do
+    context "when not empty" do
       it "keeps original text" do
         @question = FactoryGirl.create(:question, original_text: "original",
                                       display_text: "display")
@@ -37,12 +37,12 @@ describe Question do
     end
   end
 
-  context "validation" do
+  describe "validation" do
     before do
       @question = FactoryGirl.build(:question)
     end
 
-    context "display_text" do
+    describe "display_text" do
 
       it { should respond_to(:display_text) }
       it { should ensure_length_of(:display_text).
@@ -50,7 +50,7 @@ describe Question do
             is_at_most(2000) }
     end
 
-    context "neighborhood" do
+    describe "neighborhood" do
       it { should ensure_length_of(:neighbourhood).is_at_most(100) }
 
       it "is valid with letters, spaces,slashes, commas, apostrophes, parentheses, dashes,  and periods" do
@@ -59,7 +59,7 @@ describe Question do
       end
     end
 
-    context "name" do
+    describe "name" do
       it { should ensure_length_of(:name).is_at_least(1).is_at_most(255) }
 
       it "is not valid with special characters" do
@@ -94,7 +94,7 @@ describe Question do
       end
     end
 
-    context "email" do
+    describe "email" do
       it { should ensure_length_of(:email).is_at_most(255)}
 
       it "is not valid with different email confirmation" do
@@ -111,7 +111,7 @@ describe Question do
     end
   end
 
-  context "display_author" do
+  describe "#display_author" do
     context "when the question is submitted anonymously" do
       it "displays the name" do
         @question = FactoryGirl.build(:question, :anonymous)
@@ -127,16 +127,16 @@ describe Question do
     end
   end
 
-  describe "in_active_voting_rounds?" do
-    context "not in any voting round" do
+  describe "#in_active_voting_rounds?" do
+    context "when not in any voting round" do
       it "returns false" do
         @question = FactoryGirl.build(:question)
         @question.in_active_voting_rounds?.should be_false
       end
     end
 
-    context "in one voting round" do
-      context "voting round is new" do
+    context "when in one voting round" do
+      context "when voting round is new" do
         it "returns true" do
           voting_round = FactoryGirl.build(:voting_round,  status:VotingRound::Status::New)
           @question = FactoryGirl.build(:question)
@@ -145,7 +145,7 @@ describe Question do
           @question.in_active_voting_rounds?.should be_true
         end
       end
-      context "voting round is live" do
+      context "when voting round is live" do
         it "return true" do
             voting_round = FactoryGirl.build(:voting_round,  status:VotingRound::Status::Live)
             @question = FactoryGirl.build(:question)
@@ -154,7 +154,7 @@ describe Question do
             @question.in_active_voting_rounds?.should be_true
         end
       end
-      context "voting round is completed" do
+      context "when voting round is completed" do
         it "return false" do
             voting_round = FactoryGirl.build(:voting_round,  status:VotingRound::Status::Completed)
             @question = FactoryGirl.build(:question)
@@ -163,7 +163,7 @@ describe Question do
             @question.in_active_voting_rounds?.should be_false
         end
       end
-      context "voting round is deactivated" do
+      context "when voting round is deactivated" do
         it "return false" do
             voting_round = FactoryGirl.build(:voting_round,  status:VotingRound::Status::Deactivated)
             @question = FactoryGirl.build(:question)
@@ -174,8 +174,8 @@ describe Question do
       end
     end
 
-    context "in multiple voting rounds" do
-      context "none of the voting rounds is new, or live" do
+    context "when in multiple voting rounds" do
+      context "when none of the voting rounds are new, or live" do
         it "returns false" do
           voting_round1 = FactoryGirl.build(:voting_round,  status:VotingRound::Status::Deactivated)
           voting_round2 = FactoryGirl.build(:voting_round,  status:VotingRound::Status::Completed)
@@ -187,7 +187,7 @@ describe Question do
         end
       end
 
-      context "one of the voting rounds is new" do
+      context "when one of the voting rounds is new" do
         it "returns true" do
           voting_round1 = FactoryGirl.build(:voting_round,  status:VotingRound::Status::Deactivated)
           voting_round2 = FactoryGirl.build(:voting_round,  status:VotingRound::Status::New)
@@ -200,7 +200,7 @@ describe Question do
     end
   end
 
-  describe "with_status_and_category" do
+  describe ".with_status_and_category" do
     it "filters by status, category, and order by created_at desc" do
       category1 =  FactoryGirl.create(:category)
       category2 = FactoryGirl.create(:category, name: "some other")
@@ -236,8 +236,8 @@ describe Question do
 
   end
 
-  describe "with_search_text" do
-    context "no category selected" do
+  describe ".with_search_text" do
+    context "when no category selected" do
       it "returns questions with search text only" do
         question = FactoryGirl.create(:question, display_text: "Whatever you are searching for")
         question2 = FactoryGirl.create(:question)
@@ -291,7 +291,7 @@ describe Question do
     end
   end
 
-  describe "active?" do
+  describe ".active?" do
     it "is true when the status is New, Investigating, and Answered" do
       [Question::Status::New, Question::Status::Investigating, Question::Status::Answered].each do |status|
         question = FactoryGirl.build(:question, status: status)
@@ -305,15 +305,15 @@ describe Question do
     end
   end
 
-  describe "answered?" do
-    context "the status is Answered" do
+  describe "#answered?" do
+    context "when the status is Answered" do
       it "is true" do
         question = Question.new(status: Question::Status::Answered)
         question.answered?.should be_true
       end
     end
 
-    context "the status is not Answered" do
+    context "when the status is not Answered" do
       it "is false" do
         question = Question.new(status: "something else")
         question.answered?.should be_false
@@ -321,15 +321,15 @@ describe Question do
     end
   end
 
-  describe "investigating?" do
-    context "the status is Investigating" do
+  describe "#investigating?" do
+    context "when the status is Investigating" do
       it "is true" do
         question = Question.new(status: Question::Status::Investigating)
         question.investigating?.should be_true
       end
     end
 
-    context "the status is not Investigating" do
+    context "when the status is not Investigating" do
       it "is false" do
         question = Question.new(status: "something else")
         question.investigating?.should be_false
@@ -338,7 +338,7 @@ describe Question do
 
   end
 
-  describe "previous question" do
+  describe "#previous_question" do
     it "retrieves previous question" do
       previous_question = FactoryGirl.create(:question, :other)
       question = FactoryGirl.create(:question)
@@ -353,7 +353,7 @@ describe Question do
     end
   end
 
-  describe "next question" do
+  describe "#next_question" do
     it "retrieves next question" do
       question = FactoryGirl.create(:question)
       next_question = FactoryGirl.create(:question, :other)
@@ -369,7 +369,7 @@ describe Question do
   end
 
   describe "tags" do
-    context "tags are updated" do
+    context "when tags are updated" do
       it "saves the update time" do
         question = FactoryGirl.create(:question)
         question.tag_list = "something new"
@@ -377,7 +377,7 @@ describe Question do
         question.tags_updated_at.should_not eq nil
       end
     end
-    context "tags are not updated" do
+    context "when tags are not updated" do
       it "does not update time" do
         question = FactoryGirl.create(:question)
         question.save
@@ -387,7 +387,7 @@ describe Question do
   end
 
   describe "notes" do
-    context "notes are updated" do
+    context "when notes are updated" do
       it "saves the update time" do
         question = FactoryGirl.create(:question, notes: nil)
         question.notes = "something new"
@@ -395,7 +395,7 @@ describe Question do
         question.notes_updated_at.should_not eq nil
       end
     end
-    context "notes are not updated" do
+    context "when notes are not updated" do
       it "does not update time" do
         question = FactoryGirl.create(:question, notes: nil)
         question.save
@@ -404,7 +404,7 @@ describe Question do
     end
   end
 
-  describe "recent_questions" do
+  describe ".recent_questions" do
     it "returns recent updated questions" do
       @most_recent_questions = [Question.new]
       Question.stub_chain(:order, :limit).and_return(@most_recent_questions)
@@ -412,7 +412,7 @@ describe Question do
     end
   end
 
-  describe "recent_questions_with_updated_tags" do
+  describe ".recent_questions_with_updated_tags" do
     it "returns recent updated questions with updated tags" do
       @most_recent_questions_with_updated_tags = [Question.new]
       Question.stub_chain(:order, :where, :limit).and_return(@most_recent_questions_with_updated_tags)
@@ -420,12 +420,11 @@ describe Question do
     end
   end
 
-  describe "recent_questions_with_updated_notes" do
+  describe ".recent_questions_with_updated_notes" do
     it "returns recent updated questions with updated notes" do
       @most_recent_questions_with_updated_notes = [Question.new]
       Question.stub_chain(:order, :where, :limit).and_return(@most_recent_questions_with_updated_notes)
       Question.recent_questions_with_updated_notes.should == @most_recent_questions_with_updated_notes
     end
   end
-
 end

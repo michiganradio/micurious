@@ -37,7 +37,7 @@ describe VotingHelper do
       @questions = [@question, @question2, @question3]
     end
 
-    context "if not voted?" do
+    context "when not voted?" do
       specify "orders by shuffle" do
         helper.stub(:voted?).and_return(false)
         @questions.should_receive(:shuffle).and_return([@question2, @question, @question3])
@@ -45,7 +45,7 @@ describe VotingHelper do
       end
     end
 
-    context "if voted?" do
+    context "when voted?" do
       specify "orders by vote number, descending" do
         @voting_round_question = stub_model(VotingRoundQuestion, vote_number: 1)
         @voting_round_question2 = stub_model(VotingRoundQuestion, vote_number: 0)
