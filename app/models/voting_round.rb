@@ -49,7 +49,7 @@ class VotingRound < ActiveRecord::Base
   def vote_percentage(question)
     voting_round_question = voting_round_questions.select{ |vr_question| vr_question.question_id == question.id }[0]
     votes = voting_round_question.vote_number
-    total_votes = voting_round_questions.map(&:vote_number).inject(0) { |x,y| x + y }
+    total_votes = voting_round_questions.map(&:vote_number).inject(0, :+)
     return total_votes==0 ? 0 : ((votes * 100.0)/total_votes).round
   end
 
