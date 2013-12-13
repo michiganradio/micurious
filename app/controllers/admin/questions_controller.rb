@@ -62,8 +62,9 @@ module Admin
 
     # PATCH/PUT /questions/1
     def update
-      if @question.in_active_voting_rounds?
-        flash.now[:error] = "Can not update the question when it's in active (new or live) voting rounds"
+
+      if @question.in_active_voting_rounds? && question_params[:status] == Question::Status::Removed
+        flash.now[:error] = "Can not remove the question when it's in active (new or live) voting rounds"
       elsif @question.update(question_params)
         redirect_to admin_question_url(@question), notice: 'Question was successfully updated.' and return
       end

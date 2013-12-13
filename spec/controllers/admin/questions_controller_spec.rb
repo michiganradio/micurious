@@ -361,7 +361,17 @@ describe Admin::QuestionsController do
           post :update, {:id => question.id, :question => { :status => Question::Status::Removed}}
           question.reload.active?.should be_true
 
-          flash.now[:error].should eq "Can not update the question when it's in active (new or live) voting rounds"
+          flash.now[:error].should eq "Can not remove the question when it's in active (new or live) voting rounds"
+        end
+
+        it "can edit the question" do
+          question = FactoryGirl.create(:question)
+          voting_round = FactoryGirl.create(:voting_round, status: VotingRound::Status::New)
+          voting_round.add_question(question)
+          voting_round.save!
+          post :update, {:id => question.id, :question => { :email => "new@email.com"}}
+          question.reload.active?.should be_true
+          question.email.should == "new@email.com"
         end
       end
     end
