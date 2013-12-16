@@ -9,6 +9,7 @@ Curious City is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with Curious City.  If not, see <http://www.gnu.org/licenses/>.
 =end
 class Category < ActiveRecord::Base
+  validates :name, format: {with: /\A[a-zA-Z\-]+\z/, message: "only allows dash and letters" }
 
   has_and_belongs_to_many :questions
 end

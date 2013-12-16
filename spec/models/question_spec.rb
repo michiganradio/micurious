@@ -203,7 +203,7 @@ describe Question do
   describe ".with_status_and_category" do
     it "filters by status, category, and order by created_at desc" do
       category1 =  FactoryGirl.create(:category)
-      category2 = FactoryGirl.create(:category, name: "some other")
+      category2 = FactoryGirl.create(:category, name: "some-other")
       question1 = FactoryGirl.create(:question, categories: [category1],
                                      status: Question::Status::New,  created_at: 1.day.ago)
       question2 = FactoryGirl.create(:question,
@@ -218,7 +218,7 @@ describe Question do
 
     it "filters by status and order" do
       category1 = FactoryGirl.create(:category)
-      category2 = FactoryGirl.create(:category, name: "some other")
+      category2 = FactoryGirl.create(:category, name: "some-other")
 
       question1= FactoryGirl.create(:question, categories: [category1],
                                    status: Question::Status::Investigating,
