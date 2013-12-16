@@ -47,7 +47,7 @@ You should have received a copy of the GNU General Public License along with Cur
       <div class="notepad"></div>
     </div>
     <div class="updates col-sm-8">
-      <div class="update-text clearfix">
+      <div class="update-text">
         <h4>Reporting updates:</h4>
         <% @updates.each do |update| %>
           <%= link_to update.label, update.url, class: "update-link clearfix", target: "_blank" %>
