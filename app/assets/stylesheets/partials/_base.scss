@@ -60,7 +60,7 @@ $mobile-max-width: 767px;
     top: 40%;
     @include set-size($carrot-width, 24px);
     background: image_url("carrot.png") no-repeat;
-    left: 1;
+    left: 1px;
   }
 
   .submit-question-container {
