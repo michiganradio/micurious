@@ -215,6 +215,12 @@ h2 {
     }
   }
 
+  &.voting {
+    .question-link{
+      margin-right: $grid-unit;
+    }
+  }
+
   .checkmark {
     margin: $grid-unit;
   }
