@@ -64,13 +64,7 @@ class QuestionsController < ApplicationController
   def submit_mobile
     @question = Question.new(question_mobile_params)
     @question.email_confirmation = @question.email
-    respond_to do |format|
-        if @question.save
-          format.html { render action: 'submit_mobile'}
-        else
-          format.html { render action: 'ask_mobile' }
-        end
-      end
+    @question.save ? (render 'submit_mobile') : (render 'ask_mobile')
   end
 
   def picture
