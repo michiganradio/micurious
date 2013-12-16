@@ -559,6 +559,9 @@ img#jenn-pic {
     font-size: 11px !important;
   }
 
+  #vote-link, #browse-answers-link, #browse-questions-link {
+    color: $nice-blue;
+  }
 }
 
 @media (max-width: 1110px) and (min-width: 768px) {

@@ -11,11 +11,11 @@ You should have received a copy of the GNU General Public License along with Cur
   <h4>Thanks for submitting your question!</h4> 
   <br>
   <div>
-    <h4>So what happens now?</h4>
+    <h4>So what else can you do now?</h4>
     <ul>
-      <li> Ask another question </li>
-      <li> Browse other questions </li>
-      <li> Or vote for a question to be investigated </li>
+      <li> <%= link_to "Vote", root_url, id:"vote-link" %> </li>
+      <li><%= link_to "Browse Answers", filter_questions_url(status: "answered"), id:"browse-answers-link" %></li>
+      <li><%= link_to "Browse Questions", filter_questions_url(status: "archive"), id:"browse-questions-link" %></li>
     </ul>
   </div>
 </div>

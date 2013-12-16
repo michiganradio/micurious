@@ -11,4 +11,9 @@ You should have received a copy of the GNU General Public License along with Cur
 class SubmitMobile < SitePrism::Page
   set_url  "/submit_mobile"
   set_url_matcher /\/submit_mobile/
+
+  element :vote_link, "#vote-link"
+  element :browse_answers_link, "#browse-answers-link"
+  element :browse_questions_link, "#browse-questions-link"
+
 end

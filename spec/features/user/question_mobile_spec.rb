@@ -24,7 +24,9 @@ describe "ask question on mobile" do
 
     @user_submit_mobile_page = SubmitMobile.new
     @user_submit_mobile_page.should be_displayed
-    @user_submit_mobile_page.should have_content "Thanks for submitting your question!"
+    @user_submit_mobile_page.vote_link.text.should == 'Vote'
+    @user_submit_mobile_page.browse_answers_link.text.should == 'Browse Answers'
+    @user_submit_mobile_page.browse_questions_link.text.should == 'Browse Questions'
 
   end
 
