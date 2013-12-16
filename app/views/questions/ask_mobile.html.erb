@@ -4,7 +4,7 @@
     });
 </script>
 <div class="container-padding ask_mobile">
-  <%= form_for(@question, :url => submit_mobile_url) do |f| %>
+  <%= form_for(@question, :url => submit_mobile_url, html: {id: "mobile_new_question"}) do |f| %>
     <% if @question.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
