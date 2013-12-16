@@ -17,10 +17,12 @@ describe "/admin/questions" do
                              picture_owner: "picture_owner",
                              picture_attribution_url: "picture_attribution_url",
                              notes: "question notes",
-                             tag_list: "chicago, weather")
+                             tag_list: "chicago, weather",
+                             status: Question::Status::Removed)
 
     @admin_questions = Admin::Questions.new
     @admin_questions.load
+    @admin_questions.should have_content("Rem")
     @admin_questions.should have_content("question notes")
     @admin_questions.should have_content("12/05/2013")
     @admin_questions.should have_content("chicago")

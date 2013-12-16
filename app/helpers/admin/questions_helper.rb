@@ -16,4 +16,8 @@ module Admin::QuestionsHelper
   def display_date(date)
     date.strftime("%m/%d/%Y")
   end
+
+  def question_status_abbreviation(question)
+    question.status[0..2]
+  end
 end

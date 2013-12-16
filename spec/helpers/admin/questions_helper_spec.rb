@@ -25,4 +25,14 @@ describe Admin::QuestionsHelper do
       helper.display_date(date).should == "03/04/2013"
     end
   end
+
+  describe "#question_status_abbreviation" do
+    it "returns the three first letters" do
+      question = Question.new
+      question.status = Question::Status::Investigating
+      helper.question_status_abbreviation(question).should == Question::Status::Investigating[0..2]
+
+    end
+  end
+
 end
