@@ -26,9 +26,9 @@ class Question < ActiveRecord::Base
   before_create :copy_display_text_into_original_text
   validates :display_text, length: { maximum: 2000, minimum: 1}
   validates :neighbourhood, length: { maximum: 100 }
-  validates :name, length: {maximum: 255, minimum: 1 }, format: { with: /\A[a-zA-Z\s\.\-'@]+\z/, message: "only allows letters, spaces, periods, hyphens, apostrophes, and @ signs" }
-  validates :email, length: {maximum: 255}, confirmation: true, email: true
-  validates :email_confirmation, presence: true, on: :create
+  validates :name, length: {in: 1..255 }, format: { with: /\A[a-zA-Z\s\.\-'@]+\z/, message: "only allows letters, spaces, periods, hyphens, apostrophes, and @ signs" }
+  validates :email, length: {maximum: 255}, confirmation: {unless: "email.empty?"}, email: true
+  validates :email_confirmation, presence: true, on: :create,  unless: "email.empty?"
 
   def self.with_status_and_category(status, category_name)
     if category_name.present?

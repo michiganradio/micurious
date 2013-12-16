@@ -108,6 +108,13 @@ describe Question do
         @question.email_confirmation = "email@email.com"
         @question.should be_valid
       end
+
+      it "does not validate email confirmation if email is blank" do
+        @question.email = ""
+        @question.email_confirmation = "abc@a.com"
+        @question.should_not be_valid
+        @question.errors[:email_confirmation].should be_empty
+      end
     end
   end
 
