@@ -13,7 +13,6 @@ class QuestionsController < ApplicationController
   before_action :load_categories, only: [:filter, :show, :search, :new, :ask_mobile, :submit_mobile, :picture, :confirm]
 
   def show
-      @question = Question.where("id = ? AND status != 'Removed'", params[:id]).first
     @question = Question.find(params[:id])
     redirect_to root_url if @question.status == Question::Status::Removed
   end

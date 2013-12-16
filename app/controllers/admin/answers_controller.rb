@@ -32,8 +32,7 @@ module Admin
 
     def new
         params.require(:question_id)
-        @answer = Answer.new
-        @answer.question_id = params[:question_id]
+        @answer = Answer.new(question_id: params[:question_id])
     end
 
     def reorder

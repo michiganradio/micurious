@@ -54,7 +54,7 @@ module Admin
 
     def add_question
       VotingRoundQuestion.create(voting_round_id: params[:id], question_id: params[:question_id])
-      render :action => :show
+      render action: 'show'
     end
 
     def remove_question
