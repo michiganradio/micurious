@@ -593,3 +593,14 @@ img#jenn-pic {
   height: 25px;
   width: 67px;
 }
+
+@media (max-width: 890px) and (min-width: 768px) {
+  .question-text {
+    font-size: $grid-unit;
+    line-height: 20px;
+  } 
+
+  .comment-count-link {
+    font-size: $grid-unit * .875; 
+  }  
+}
