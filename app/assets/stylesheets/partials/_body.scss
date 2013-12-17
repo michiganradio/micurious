@@ -560,7 +560,7 @@ img#jenn-pic {
   }  
   
   .search input#gsc-i-id1.gsc-input {
-    font-size: 11px !important;
+     font-size: 11px !important;
   }
 
   #vote-link, #browse-answers-link, #browse-questions-link {
@@ -575,7 +575,7 @@ img#jenn-pic {
   }
   
   .search input#gsc-i-id1.gsc-input {
-    font-size: 11px !important;
+     font-size: 11px !important;
   }
 
 }
@@ -585,13 +585,18 @@ img#jenn-pic {
 }
 
 .search input#gsc-i-id1.gsc-input {
-  margin: -3px !important;
-  height: 19px !important;
+    position: relative;
+    height: 22px !important;
+    top: -2px;
 }
 
+.search div#gsc-iw-id1.gsc-input-box {
+    height: 32px !important;
+ } 
+
 .search input.gsc-search-button-v2 {
-  height: 25px;
-  width: 67px;
+    height: 25px;
+    width: 67px;
 }
 
 @media (max-width: 890px) and (min-width: 768px) {
