@@ -26,6 +26,7 @@ Curiouscity::Application.routes.draw do
   match '/search', to: 'questions#search', via: 'get', as: 'search_user_questions'
   match '/ask_mobile', to: 'questions#ask_mobile', via: 'get', as: 'ask_mobile'
   match '/submit_mobile', to: 'questions#submit_mobile', via: 'post', as: 'submit_mobile'
+  match '/confirm_mobile', to: 'questions#confirm_mobile', via: 'get', as: 'confirm_mobile'
   resources :questions, only: [:create, :new, :show]
   resources :voting_rounds, only: [:show]
 

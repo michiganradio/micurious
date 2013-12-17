@@ -103,7 +103,7 @@ describe QuestionsController do
     it "creates a new Question" do
       Question.any_instance.should_receive(:save).and_return(true)
       post :submit_mobile, :question => valid_mobile_attributes
-      response.should render_template 'submit_mobile'
+      response.should redirect_to :confirm_mobile
     end
 
   end

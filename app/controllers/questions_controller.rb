@@ -10,7 +10,7 @@ You should have received a copy of the GNU General Public License along with Cur
 =end
 class QuestionsController < ApplicationController
   before_action :load_answers_and_updates, only: [:show]
-  before_action :load_categories, only: [:filter, :show, :search, :new, :ask_mobile, :submit_mobile, :picture, :confirm]
+  before_action :load_categories
 
   def show
     @question = Question.find(params[:id])
@@ -64,7 +64,10 @@ class QuestionsController < ApplicationController
   def submit_mobile
     @question = Question.new(question_mobile_params)
     @question.email_confirmation = @question.email
-    @question.save ? (render 'submit_mobile') : (render 'ask_mobile')
+    @question.save ? (redirect_to :confirm_mobile) : (render 'ask_mobile')
+  end
+
+  def confirm_mobile
   end
 
   def picture

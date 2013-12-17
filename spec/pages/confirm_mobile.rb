@@ -8,9 +8,9 @@ Curious City is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU General Public License along with Curious City.  If not, see <http://www.gnu.org/licenses/>.
 =end
-class SubmitMobile < SitePrism::Page
-  set_url  "/submit_mobile"
-  set_url_matcher /\/submit_mobile/
+class ConfirmMobile < SitePrism::Page
+  set_url  "/confirm_mobile"
+  set_url_matcher /\/confirm_mobile/
 
   element :vote_link, "#vote-link"
   element :browse_answers_link, "#browse-answers-link"
