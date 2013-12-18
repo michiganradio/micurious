@@ -590,9 +590,18 @@ img#jenn-pic {
     top: -2px;
 }
 
+.search .gsc-selected-option-container.gsc-inline-block {
+    width: 80px !important;
+  }
+
 .search div#gsc-iw-id1.gsc-input-box {
     height: 32px !important;
  } 
+
+.search .gsc-orderby {
+  position: relative;
+  right: 10px;
+}
 
 .search input.gsc-search-button-v2 {
     height: 25px;
