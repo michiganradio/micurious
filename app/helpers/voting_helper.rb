@@ -18,19 +18,19 @@ module VotingHelper
     cookies.permanent[:question_id].to_i == question_id.to_i
   end
 
-  def display_order(questions)
+  def display_order(questions, voting_round_id)
     if voted?
-      questions.sort &sort_by_most_votes_proc
+     questions.sort &sort_by_most_votes_proc(voting_round_id)
     else
-      questions.shuffle
+     questions.shuffle
     end
   end
 
   private
 
-  def sort_by_most_votes_proc
+  def sort_by_most_votes_proc(voting_round_id)
     #TODO: find_by question_id and voting_round_id
-    Proc.new{ |q1, q2| VotingRoundQuestion.find_by(question_id: q2.id).vote_number <=> VotingRoundQuestion.find_by(question_id: q1.id).vote_number }
+    Proc.new{ |q1, q2| VotingRoundQuestion.where(question_id: q2.id, voting_round_id: voting_round_id).first.vote_number <=> VotingRoundQuestion.where(question_id: q1.id, voting_round_id: voting_round_id).first.vote_number }
   end
 
   def sort_by_id_proc
