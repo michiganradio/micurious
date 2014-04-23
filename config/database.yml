@@ -7,6 +7,7 @@ development: &default
   adapter: mysql2
   database: curiouscity_development
   username: root
+  password: x9pcq4nn
   pool: 5
   timeout: 5000
 
@@ -15,19 +16,25 @@ development: &default
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: *
+  database: curiouscity_test
+
+
 
 qa:
   <<: *default
-  database: *
-  password: *
+  database: curiouscity_production
+  password: wbez
 
 uat:
   <<: *default
-  database: *
-  password: *
+  username: cc
+  database: curiouscity_production 
+
+
+# Be cautous if this file is publicly visible. Please ensure that your database is protected
+# by any/all measures available in the environment you plan to host this application from.
 
 production:
   <<: *default
-  database: *
-  password: *
+  username: cc
+  database: curiouscity_production
