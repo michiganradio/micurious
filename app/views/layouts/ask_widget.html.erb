@@ -1,0 +1,35 @@
+<!--Copyright 2013 WBEZ
+This file is part of Curious City.
+
+Curious City is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+Curious City is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with Curious City.  If not, see <http://www.gnu.org/licenses/>.!-->
+<script>
+  $(document).ready(function() {
+  $("body").css("display", "none");
+  $("body").fadeIn(2000);
+  $(".submit-question-text").limiter(140, $("#question_display_text_count"));
+  });
+</script>
+<!--[if lte IE 9 ]>
+<script>
+  window.location = 'IE8_ask_widget';
+</script>
+<![endif]-->
+<div class="ask-widget">
+  <div class="widget-prompt"><br>ASK US <em>YOUR</em> QUESTION: </div>
+  <div class="submit-wrap">
+    <div class="carrot"></div>
+    <div class="submit-question-container">
+      <%= form_tag root_path(anchor:'ask'), id: 'ask-question-form', method: :get, target: '_blank' do %>
+        <%= text_area_tag :display_text, nil, placeholder: "What do you wonder about Michigan or its people that you want Michigan Radio to investigate?", class: "submit-question-text", maxlength: 140 %>
+        <%= submit_tag "Ask", class: "btn submit-question-btn" %>
+      <% end %>
+      <span class="char-limit"><small>(<span id="question_display_text_count"></span> characters left)</small></span>
+    </div>
+  </div>
+  <%= link_to image_tag("cc-logo.png", class: "widget-image-logo logo-background", alt: "WBEZ CuriousCity" ), root_url, target: "blank" %>
+</div>
+<%= render "footer_widget" %>

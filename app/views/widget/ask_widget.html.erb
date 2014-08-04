@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License along with Cur
     <div class="carrot"></div>
     <div class="submit-question-container">
       <%= form_tag root_path(anchor:'ask'), id: 'ask-question-form', method: :get, target: '_blank' do %>
-        <%= text_area_tag :display_text, nil, placeholder: "What do you wonder about Chicago, the region or its people that you want WBEZ to investigate?", class: "submit-question-text", maxlength: 140 %>
+        <%= text_area_tag :display_text, nil, placeholder: "What do you wonder about Michigan Radio or its people that you want Michigan Radio to investigate?", class: "submit-question-text", maxlength: 140 %>
         <%= submit_tag "Ask", class: "btn submit-question-btn" %>
       <% end %>
       <span class="char-limit"><small>(<span id="question_display_text_count"></span> characters left)</small></span>

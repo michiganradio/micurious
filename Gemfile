@@ -60,7 +60,7 @@ end
 # Use ActiveModel has_secure_password
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

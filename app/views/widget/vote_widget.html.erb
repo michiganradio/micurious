@@ -35,7 +35,7 @@ You should have received a copy of the GNU General Public License along with Cur
 </script>
 <% if @voting_round %>
   <div class="widget-prompt">
-    <%= voted? ? raw("<br>")+"THANKS FOR VOTING!" : "WHICH QUESTION SHOULD WBEZ INVESTIGATE NEXT?" %>
+    <%= voted? ? raw("<br>")+"THANKS FOR VOTING!" : "WHICH QUESTION SHOULD MICHIGAN RADIO INVESTIGATE NEXT?" %>
   </div>
   <div class="questions-container">
     <% display_order(@voting_round.questions[0..2], @voting_round.id).each_with_index do |question, index| %>
@@ -66,7 +66,7 @@ You should have received a copy of the GNU General Public License along with Cur
     <% end %>
   </div>
 <% end %>
-<%= link_to image_tag("cc-logo.png", class: "widget-image-logo logo-background", alt: "WBEZ CuriousCity" ), root_url, target: "blank" %>
+<%= link_to image_tag("cc-logo.png", class: "widget-image-logo logo-background", alt: "MI CURIOUS" ), root_url, target: "blank" %>
 <div class="widget-subtitle">
-  What do you wonder about Chicago?
+  What do you wonder about Michigan?
 </div>

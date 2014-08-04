@@ -7,6 +7,7 @@ Curious City is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU General Public License along with Curious City.  If not, see <http://www.gnu.org/licenses/>.!-->
 <header>
+
 <script>
   $(document).ready(function() {
     $('#how-it-works-link').click(function() {
@@ -50,7 +51,7 @@ You should have received a copy of the GNU General Public License along with Cur
     </li>
     <li class="step-3 col-sm-3">
     <i class="number-3"></i>
-    <p>WBEZ investigates, posting updates in real time</p>
+    <p> Michigan Radio investigates, posting updates in real time</p>
     </li>
     <li class="step-4 col-sm-2">
     <i class="number-4"></i>
@@ -64,19 +65,19 @@ You should have received a copy of the GNU General Public License along with Cur
 </div>
 <div class="header-logo hidden-xs">
   <div class="container-padding">
-    <%= link_to image_tag("wbez.gif"), "http://www.wbez.org/series/curious-city" %>
+    <%= link_to image_tag("miradio.gif"), "http://www.michiganradio.org" %>
     
     <div class="header-links btn-group hidden-xs">
       <a class="collapse-data-btn text-link" id = "how-it-works-link" href="#how-it-works">How It Works</a> |
       <%= link_to "Search", search_user_questions_path, class: "text-link" %> |
       <%= link_to "About", about_path, class: "text-link" %>
-      <%= mail_to "curiouscity@wbez.org", image_tag("mail.png") %>
-      <%= link_to image_tag("twitter.png" ),"https://twitter.com/wbezcuriouscity", target:"blank" %>
-      <%= link_to image_tag("facebook.png"), "http://www.facebook.com/curiouscityproject", target:"blank" %>
-      <%= link_to image_tag("tumblr.png"), "http://wbezcuriouscity.tumblr.com", target:"blank"%>
-      <%= link_to image_tag("youtube.png"), "http://www.youtube.com/playlist?list=PL0LxICU6xOzP7qETdSUW1nKWCjWtkkpek", target:"blank"%>
-      <%= link_to image_tag("soundcloud.png"), "http://soundcloud.com/curiouscity", target:"blank"%>
-      <%= link_to image_tag("rss.png"), "http://www.wbez.org/taxonomy/term/20056/feed", target:"blank"%>
+      <%= mail_to "micurious@michiganradio.org", image_tag("mail.png") %>
+      <%= link_to image_tag("twitter.png" ),"https://twitter.com/MichiganRadio", target:"blank" %>
+      <%= link_to image_tag("facebook.png"), "https://www.facebook.com/michiganradio", target:"blank" %>
+      <%= link_to image_tag("tumblr.png"), "http://michiganradio.tumblr.com", target:"blank"%>
+      <%= link_to image_tag("youtube.png"), "https://www.youtube.com/channel/UC1c5EKMshOkdc0OSGkFhcQA", target:"blank"%>
+      <%= link_to image_tag("soundcloud.png"), "https://soundcloud.com/michigan-radio", target:"blank"%>
+      <%= link_to image_tag("rss.png"), "http://michiganradio.org/rss.xml", target:"blank"%>
     </div>
   </div>
 </div>
@@ -88,7 +89,7 @@ You should have received a copy of the GNU General Public License along with Cur
     <div class="carrot"></div>
     <div class="submit-question-container">
       <%= form_tag ask_question_path, id: 'ask-question-form', remote: true do %>
-        <%= text_area_tag :display_text, params[:display_text], placeholder: "What do you wonder about Chicago, the region or its people that you want WBEZ to investigate?", class: "submit-question-text display_text_header", maxlength: 140%>
+        <%= text_area_tag :display_text, params[:display_text], placeholder: "What do you wonder about Michigan or its people that you want Michigan Radio to investigate?", class: "submit-question-text display_text_header", maxlength: 140%>
         <%= submit_tag "Ask", class: "btn submit-question-btn", remote: true%>
         <small class="submit-question-spec-header">
           (<span id="question_display_text_count_header"></span> characters left)

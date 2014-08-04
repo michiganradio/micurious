@@ -12,9 +12,9 @@ You should have received a copy of the GNU General Public License along with Cur
   });
 </script>
 <div>
-  <%= link_to image_tag("cc-logo.png", class: "widget-image-logo", alt: "WBEZ CuriousCity"), root_url, target: "blank" %>
+  <%= link_to image_tag("cc-logo.png", class: "widget-image-logo", alt: "Mi Curious"), root_url, target: "blank" %>
   <div>
-    <p>What do you wonder about Chicago, the region, or its people that you want WBEZ to investigate?</p>
+    <p>What do you wonder about Michigan, the region, or its people that you want Michigan Radio to investigate?</p>
     <div>
       <%= form_tag root_path(anchor:'ask'), id: 'ask-question-form-IE', method: :get, target: '_blank' do %>
         <%= text_area_tag :display_text, nil, rows: "5",  class: "submit-question-text", maxlength: 140 %>
