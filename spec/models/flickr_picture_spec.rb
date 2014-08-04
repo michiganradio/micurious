@@ -12,15 +12,13 @@ require 'spec_helper'
 
 describe 'FlickrPicture' do
   before do
-    @photo = double(Flickrie::Photo,
+    @photo = double(FlickRaw::Response,
                    farm: 4,
                    server: "1234",
                    id: "1234567890",
                    secret: "abcd1234",
-                   width: 100,
-                   height: 200,
-                   owner: double(:owner, username: "owner"),
-                   url: "attribution_url")
+                   owner: "owner"
+                   )
     @picture = FlickrPicture.new(@photo)
   end
 
@@ -29,15 +27,18 @@ describe 'FlickrPicture' do
     @picture.server.should == @photo.server
     @picture.picture_id.should == @photo.id
     @picture.secret_key.should == @photo.secret
-    @picture.width.should == @photo.width
-    @picture.height.should == @photo.height
-    @picture.owner.should == @photo.owner.username
-    @picture.attribution_url.should == @photo.url
+    @picture.owner.should == @photo.owner
   end
 
   describe "url" do
     it "sets the right url from multiple fields" do
       @picture.url.should == "http://farm4.staticflickr.com/1234/1234567890_abcd1234.jpg"
+    end
+  end
+
+  describe "attribution_url" do
+    it 'should set the right attribution url form multiple fields' do
+        @picture.attribution_url.should == 'https://www.flickr.com/photos/owner/1234567890'
     end
   end
 end

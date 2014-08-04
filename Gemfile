@@ -5,7 +5,7 @@ gem "acts-as-taggable-on", "~> 2.4.1"
 gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem "email_validator", "~> 1.4.0"
-gem "flickrie", "~> 1.6.0"
+gem 'flickraw' 
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'

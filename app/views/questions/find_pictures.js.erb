@@ -11,7 +11,7 @@ You should have received a copy of the GNU General Public License along with Cur
 $('document').ready(function() {
   pictures_html = "";
   <% @pictures.each do |picture| %>
-    pictures_html +=  '<span class="thumbnail"><%= image_tag picture.url, :size => "#{picture.width}x#{picture.height}", :data => { :owner => picture.owner, :attributionurl => picture.attribution_url } %></span>';
+    pictures_html +=  '<span class="thumbnail"><%= image_tag picture.url, :data => { :owner => picture.owner, :attributionurl => picture.attribution_url } %></span>';
   <% end %>
   $('#pictures').html(pictures_html);
 

@@ -12,19 +12,19 @@ require 'spec_helper'
 
 describe FlickrService do
   let(:flickr_service) { FlickrService.new }
+  let(:pair_of_keys) {{'key' =>  'mock_key', 'secret' => 'mock_secret'}}
 
   it "get API key" do
     File.stub(:exists?).and_return(true)
-    YAML.stub(:load_file).and_return({"key"=>"mock_key"})
-    flickr_service.get_api_key.should eq "mock_key"
+    YAML.stub(:load_file).and_return(pair_of_keys)
+    flickr_service.get_keys.should eq(pair_of_keys)
   end
 
   it "find_pictures" do
-    File.stub(:exists?).and_return(true)
-    YAML.stub(:load_file).and_return({"key"=>"mock_key"})
-    photo = double(Flickrie::Photo)
-    Flickrie.stub(:search_photos).and_return([photo])
-    FlickrPicture.stub(:new).with(photo).and_return("some photo")
+    FlickRaw.stub(:api_key)
+    FlickRaw.stub(:shared_secret)
+    FlickrService.any_instance.should_receive(:get_keys).and_return(pair_of_keys)
+    FlickrService.any_instance.should_receive(:get_pictures).with('chicago').and_return(["some photo"])
     flickr_service.find_pictures("chicago").should eq ["some photo"]
   end
 end

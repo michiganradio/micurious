@@ -8,20 +8,27 @@ Curious City is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU General Public License along with Curious City.  If not, see <http://www.gnu.org/licenses/>.
 =end
-require 'flickrie'
+require 'flickraw'
 
 class FlickrService
-  def get_api_key
+  def get_keys
     if File.exists? 'config/api-key.yml'
       config = YAML.load_file('config/api-key.yml')
-      return config["key"]
+      return { 'key' => config['key'], 'secret' => config['secret'] }
     end
-    return "some key"
+    { 'key' => "some key", 'secret' => 'secret' }
   end
 
   def find_pictures(search_string)
-    Flickrie.api_key = get_api_key
+    keys = get_keys
+    FlickRaw.api_key = keys['key']
+    FlickRaw.shared_secret = keys['secret']
+    get_pictures(search_string)
+  end
+
+  def get_pictures(search_string)
     query = {:text => search_string, :license=>"1,2,3,4,5,6", :extras=>['owner_name'], :per_page=>50}
-    Flickrie.search_photos(query).map{|photo| FlickrPicture.new(photo)}
+    x = flickr.photos.search(query).map{|photo| FlickrPicture.new(photo)}
+    x
   end
 end

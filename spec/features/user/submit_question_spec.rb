@@ -13,22 +13,19 @@ require 'features/features_spec_helper'
 describe 'Ask a question', js: true do
 
   before(:each) do
-    @mock_pictures=[double(Flickrie::Photo), double(Flickrie::Photo)]
+    @mock_pictures=[double(FlickRaw::Response), double(FlickRaw::Response)]
     @mock_pictures[0].stub(:id).and_return("10542729043")
     @mock_pictures[0].stub(:secret).and_return("af2c52cac9")
     @mock_pictures[0].stub(:farm).and_return(4)
     @mock_pictures[0].stub(:server).and_return("5477")
-    @mock_pictures[0].stub(:width).and_return(1)
-    @mock_pictures[0].stub(:height).and_return(2)
-    @mock_pictures[0].stub_chain(:owner, :username).and_return("owner")
+    @mock_pictures[0].stub(:owner).and_return("owner")
     @mock_pictures[0].stub(:url).and_return("url1")
     @mock_pictures[1].stub(:id).and_return("10542729043")
     @mock_pictures[1].stub(:secret).and_return("af2c52cac9")
     @mock_pictures[1].stub(:farm).and_return(4)
     @mock_pictures[1].stub(:server).and_return("5477")
-    @mock_pictures[1].stub(:width).and_return(1)
     @mock_pictures[1].stub(:height).and_return(2)
-    @mock_pictures[1].stub_chain(:owner, :username).and_return("owner")
+    @mock_pictures[1].stub(:owner).and_return("owner")
     @mock_pictures[1].stub(:url).and_return("url2")
     @mock_flickr_service = double(FlickrService)
     @pictures = @mock_pictures.map{|p| FlickrPicture.new(p)}
@@ -81,7 +78,7 @@ describe 'Ask a question', js: true do
       setup_ask_question_modal
     end
     it "has title, prepopulated question, and progress indication" do
-      @ask_question_modal.title.text.should == "Submit your question to Curious City"
+      @ask_question_modal.title.text.should == "Submit your question to M I Curious"
       @ask_question_modal.question_display_text.text.should == "Why is the sky blue?"
       @ask_question_modal.footer.should have_content "Step 1/3"
     end
@@ -96,7 +93,7 @@ describe 'Ask a question', js: true do
   it "is shown when root_path is visited with anchor '#ask'" do
     @home = Home.new
     @home.load(anchor: "ask")
-    @home.ask_question_modal.title.text.should == "Submit your question to Curious City"
+    @home.ask_question_modal.title.text.should == "Submit your question to M I Curious"
   end
 
   describe "flicker question modal" do
@@ -181,8 +178,6 @@ describe 'Ask a question', js: true do
       @question_received_modal.title.text.should == "Thanks for submitting your question!"
       @question_received_modal.archive_link.text.should == "new + unanswered archive" #todo: add link test.
       @question_received_modal.should have_link("public vote", href: root_path)
-      @question_received_modal.should have_link("online", href: "http://www.wbez.org/series/curious-city")
-      @question_received_modal.should have_link("WBEZ 91.5 FM", href: "http://www.wbez.org/player")
     end
   end
 

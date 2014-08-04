@@ -17,10 +17,8 @@ class FlickrPicture
     self.server = photo.server
     self.picture_id = photo.id
     self.secret_key = photo.secret
-    self.width = photo.width
-    self.height = photo.height
-    self.owner = photo.owner.username
-    self.attribution_url = photo.url
+    self.owner = photo.owner
+    self.attribution_url = "https://www.flickr.com/photos/#{self.owner}/#{self.picture_id}"
   end
 
   def url
