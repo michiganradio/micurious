@@ -5,7 +5,7 @@ gem "acts-as-taggable-on", "~> 2.4.1"
 gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem "email_validator", "~> 1.4.0"
-gem 'flickraw' 
+gem 'flickraw'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
@@ -38,6 +38,7 @@ gem 'will_paginate', '~> 3.0'
 #gem 'coffee-rails', '~> 4.0.0'
 
 group :development, :test do
+  gem 'test-unit'
   gem 'rspec-rails', '~> 2.0'
   gem 'shoulda', '~> 3.5.0'
   gem 'factory_girl_rails', '~>4.2.1'
@@ -49,7 +50,6 @@ group :development, :test do
   gem "launchy"
   gem "selenium-webdriver"
   gem "database_cleaner", '~> 1.2.0'
-  gem 'debugger'
 end
 
 group :doc do
