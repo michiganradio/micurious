@@ -46,6 +46,15 @@ describe VotingRoundsController do
         response.should redirect_to(filter_questions_url(status: "answered"))
       end
     end
+
+    context "when there is no live voting round" do
+      it "redirects to the 'under investigation' page" do
+        VotingRound.stub(:where).with(status: VotingRound::Status::Live).and_return([])
+        subject.stub(:load_categories)
+        get :home, {}, {}
+        response.should redirect_to(filter_questions_url(status: "answered"))
+      end
+    end
   end
 
   describe "GET about" do
