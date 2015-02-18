@@ -17,7 +17,12 @@ class VotingRoundsController < ApplicationController
   def home
     @up_for_voting_class = "highlighted"
     @voting_round = VotingRound.where(status: VotingRound::Status::Live).first
-    @previous_voting_round = @voting_round.previous unless @voting_round.nil?
+
+    if @voting_round
+      @previous_voting_round = @voting_round.previous
+    else
+      redirect_to filter_questions_url(status: "answered")
+    end
   end
 
   def about

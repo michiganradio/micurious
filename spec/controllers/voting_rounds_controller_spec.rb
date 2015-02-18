@@ -13,29 +13,41 @@ require 'spec_helper'
 describe VotingRoundsController do
 
   describe "GET home" do
-    before do
-      @voting_round = double(:voting_round)
-      VotingRound.stub(:where).with(status: VotingRound::Status::Live).and_return([@voting_round])
-      @prev_voting_round = double(:voting_round)
-      @voting_round.stub(:previous).and_return(@prev_voting_round)
-      subject.stub(:load_categories)
+    context "When there is a voting round live" do
+      before do
+        @voting_round = double(:voting_round)
+        VotingRound.stub(:where).with(status: VotingRound::Status::Live).and_return([@voting_round])
+        @prev_voting_round = double(:voting_round)
+        @voting_round.stub(:previous).and_return(@prev_voting_round)
+        subject.stub(:load_categories)
+      end
+
+      it "loads the categories" do
+        subject.should_receive(:load_categories)
+        get :home, {}, {}
+      end
+
+      it "assigns active voting round" do
+        get :home, {}, {}
+        assigns(:voting_round).should eq @voting_round
+      end
+
+      it "assigns past voting round" do
+        get :home, {}, {}
+        assigns(:previous_voting_round).should eq @prev_voting_round
+      end
     end
 
-    it "loads the categories" do
-      subject.should_receive(:load_categories)
-      get :home, {}, {}
-    end
-
-    it "assigns active voting round" do
-      get :home, {}, {}
-      assigns(:voting_round).should eq @voting_round
-    end
-
-    it "assigns past voting round" do
-      get :home, {}, {}
-      assigns(:previous_voting_round).should eq @prev_voting_round
+    context "when there is no live voting round" do
+      it "redirects to the 'under investigation' page" do
+        VotingRound.stub(:where).with(status: VotingRound::Status::Live).and_return([])
+        subject.stub(:load_categories)
+        get :home, {}, {}
+        response.should redirect_to(filter_questions_url(status: "answered"))
+      end
     end
   end
+
   describe "GET about" do
     it "assigns @about_class to highlighted" do
       get :about, {}, {}
