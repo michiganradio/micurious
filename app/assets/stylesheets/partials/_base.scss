@@ -8,17 +8,9 @@ Curious City is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU General Public License along with Curious City.  If not, see <http://www.gnu.org/licenses/>.
 */
+@import "modules/colors";
 @import "modules/all";
 @import "modules/common_features";
-$nice-blue: #03bef5;
-$hot-pink: #ff0066; 
-$bold-blue: #00bff3;
-$light_nice_blue: #3dcef6;
-$purple: #662d91;
-$blue: #6dcff6;
-$light-blue: #91d8f6;
-$light-green: #00FF00;
-
 $grid-unit: 16px;
 
 $crowded-room: 2%;
@@ -43,7 +35,7 @@ $mobile-max-width: 767px;
 }
 .little-writing {
   font-weight: normal;
-  font-size: 10px; 
+  font-size: 10px;
 }
 
 .no-changing {
@@ -54,7 +46,7 @@ $mobile-max-width: 767px;
   position: relative;
   padding: $grid-unit;
   padding-right: 0;
-  
+
   .carrot {
     position: absolute;
     top: 40%;
@@ -126,7 +118,7 @@ $mobile-max-width: 767px;
   display: inline;
   * {
     word-wrap: break-word;
-    margin: $grid-unit 0; 
+    margin: $grid-unit 0;
   }
   h4 {
     font-size: $grid-unit * 2;
@@ -197,14 +189,14 @@ a {
 
 @media (max-width: $mobile-max-width) {
   .container-padding {
-    padding: $container-padding / 4; 
+    padding: $container-padding / 4;
   }
   .submit-question-text {
     font-size: $grid-unit * .75;
   }
   .response-text {
     * {
-      margin: $grid-unit * .75 0; 
+      margin: $grid-unit * .75 0;
     }
     h4 {
       font-size: $grid-unit * 1.5;

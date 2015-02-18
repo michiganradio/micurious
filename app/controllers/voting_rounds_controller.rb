@@ -21,7 +21,7 @@ class VotingRoundsController < ApplicationController
     if @voting_round
       @previous_voting_round = @voting_round.previous
     else
-      redirect_to filter_questions_url(status: "answered"), notice: "We currently aren't running a voting round. Check out the questions we've already answered!"
+      redirect_to filter_questions_url(status: "answered"), flash: {"banner-message" => "We currently aren't running a voting round. Check out the questions we've already answered!"}
     end
   end
 

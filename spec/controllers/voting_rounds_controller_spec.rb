@@ -52,7 +52,7 @@ describe VotingRoundsController do
         VotingRound.stub(:where).with(status: VotingRound::Status::Live).and_return([])
         subject.stub(:load_categories)
         get :home, {}, {}
-        response.should redirect_to(filter_questions_url(status: "answered"))
+        expect(response).to redirect_to(filter_questions_url(status: "answered"))
       end
     end
   end
