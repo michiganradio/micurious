@@ -1,0 +1,8 @@
+@import "modules/colors";
+@import "modules/all";
+.alert.alert-banner-message {
+  color: black;
+  text-align: center;
+  border: hot-pink-border();
+  margin: 5px;
+}
